@@ -42,10 +42,20 @@ function SeamPosterPrototype({
             id={track.id}
             aria-labelledby={`poster-title-${track.id}`}
             key={track.id}
-            tabIndex={interactive ? 0 : undefined}
+            tabIndex={
+              interactive && track.lane === 'what-i-built' ? 0 : undefined
+            }
           >
+            {interactive && track.href ? (
+              <Link
+                aria-label={`Open ${track.items[0]?.name ?? track.label}`}
+                className="poster-field-background-link"
+                to={track.href}
+              />
+            ) : null}
+
             {track.lane === 'what-i-built' ? (
-              <FeatureRain variant="desktop" />
+              <FeatureRain interactive={interactive} variant="desktop" />
             ) : null}
 
             <header className="poster-meta">
@@ -65,7 +75,7 @@ function SeamPosterPrototype({
                 {track.items.map((item, itemIndex) => (
                   <li key={item.id}>
                     <span>{String(itemIndex + 1).padStart(2, '0')}</span>
-                    {item.href ? (
+                    {interactive && item.href ? (
                       <Link className="poster-index-link" to={item.href}>
                         {item.name}
                       </Link>

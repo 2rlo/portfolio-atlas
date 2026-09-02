@@ -102,10 +102,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 104,
-    'wght' 780;
-  font-weight: 780;
-  letter-spacing: -0.075em;
-  line-height: 0.78;
+    'wght' 650;
+  font-weight: 650;
+  letter-spacing: -0.052em;
+  line-height: 0.84;
   text-transform: uppercase;
 }
 
@@ -133,9 +133,9 @@
 .documentation-thesis-copy {
   margin-top: clamp(1.5rem, 3vh, 2.75rem) !important;
   font-size: clamp(1.75rem, 2.45vw, 2.75rem);
-  font-weight: 600;
-  letter-spacing: -0.045em;
-  line-height: 1.28;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.38;
   text-wrap: balance;
 }
 
@@ -460,10 +460,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 102,
-    'wght' 760;
-  font-weight: 760;
-  letter-spacing: -0.072em;
-  line-height: 0.8;
+    'wght' 650;
+  font-weight: 650;
+  letter-spacing: -0.05em;
+  line-height: 0.86;
 }
 
 .artifact-introduction {
@@ -556,9 +556,9 @@
   margin-top: 0.5rem;
   font-family: var(--cover-monumental);
   font-size: clamp(1.15rem, 1.35vw, 1.45rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
 }
 
 .artifact-index-copy small {
@@ -706,9 +706,9 @@
   margin-top: 1.15rem !important;
   font-family: var(--cover-monumental);
   font-size: clamp(2.4rem, 4vw, 4.75rem);
-  font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: 0.9;
+  font-weight: 620;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
 }
 
 .artifact-excerpt pre {
@@ -820,10 +820,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 103,
-    'wght' 770;
-  font-weight: 770;
-  letter-spacing: -0.075em;
-  line-height: 0.78;
+    'wght' 650;
+  font-weight: 650;
+  letter-spacing: -0.05em;
+  line-height: 0.84;
 }
 
 .artifact-detail-header > p:last-child {
@@ -1002,10 +1002,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 103,
-    'wght' 760;
-  font-weight: 760;
-  letter-spacing: -0.072em;
-  line-height: 0.82;
+    'wght' 650;
+  font-weight: 650;
+  letter-spacing: -0.05em;
+  line-height: 0.88;
 }
 
 .evolution-header h2 span,
@@ -1055,9 +1055,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 98,
-    'wght' 760;
-  letter-spacing: -0.07em;
-  line-height: 0.75;
+    'wght' 640;
+  font-weight: 640;
+  letter-spacing: -0.045em;
+  line-height: 0.82;
 }
 
 .evolution-origin > span {
@@ -1191,10 +1192,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 100,
-    'wght' 750;
-  font-weight: 750;
-  letter-spacing: -0.07em;
-  line-height: 0.82;
+    'wght' 640;
+  font-weight: 640;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
 }
 
 .evolution-pressure blockquote,
@@ -1280,10 +1281,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 104,
-    'wght' 790;
-  font-weight: 790;
-  letter-spacing: -0.08em;
-  line-height: 0.75;
+    'wght' 680;
+  font-weight: 680;
+  letter-spacing: -0.055em;
+  line-height: 0.82;
   white-space: nowrap;
 }
 
@@ -1450,10 +1451,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 98,
-    'wght' 760;
-  font-weight: 760;
-  letter-spacing: -0.065em;
-  line-height: 0.86;
+    'wght' 640;
+  font-weight: 640;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
 }
 
 .evolution-scene-heading {
@@ -1466,9 +1467,9 @@
   max-width: 14ch;
   font-family: var(--cover-monumental);
   font-size: clamp(1.65rem, 2.25vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
 }
 
 .evolution-scene-heading p {
@@ -1543,6 +1544,10 @@
 .evolution-frame dd,
 .evolution-frame li {
   font-family: var(--cover-monumental);
+}
+
+.evolution-frame strong {
+  font-weight: 600;
 }
 
 .evolution-frame-boundary {
@@ -2046,10 +2051,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 102,
-    'wght' 780;
-  font-weight: 780;
-  letter-spacing: -0.078em;
-  line-height: 0.78;
+    'wght' 650;
+  font-weight: 650;
+  letter-spacing: -0.052em;
+  line-height: 0.84;
 }
 
 .documentation-principle-boundary {
@@ -2120,6 +2125,12 @@
   color: var(--cover-cream);
   background: var(--cover-jade);
   border-top: 1px solid var(--cover-rule);
+  text-decoration: none;
+}
+
+.documentation-next:focus-visible {
+  outline: 2px solid var(--cover-cream);
+  outline-offset: -0.75rem;
 }
 
 .documentation-next .section-eyebrow {
@@ -2132,10 +2143,10 @@
   font-variation-settings:
     'opsz' 144,
     'wdth' 102,
-    'wght' 760;
-  font-weight: 760;
-  letter-spacing: -0.075em;
-  line-height: 0.82;
+    'wght' 640;
+  font-weight: 640;
+  letter-spacing: -0.05em;
+  line-height: 0.88;
 }
 
 .documentation-next > p:not(.section-eyebrow) {
