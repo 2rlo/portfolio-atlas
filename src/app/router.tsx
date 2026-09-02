@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router'
 import App from '../App.tsx'
 import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
+import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: 'how/documentation-system',
         Component: DocumentationSystemRoute,
+      },
+      {
+        path: 'what',
+        Component: WorkInProgressRoute,
       },
     ],
   },
