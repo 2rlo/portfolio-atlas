@@ -11,6 +11,7 @@ export interface HomeTrackContent {
   readonly lane: ContentLane
   readonly index: string
   readonly label: string
+  readonly href?: string
   readonly coverTitleLines: readonly string[]
   readonly seamTitle: string
   readonly descriptors: readonly string[]
@@ -30,6 +31,7 @@ export type WhatFeatureGroupId =
 export interface WhatFeatureItem {
   readonly id: string
   readonly name: string
+  readonly href: string
   readonly mobileLane: 1 | 2
 }
 
@@ -282,6 +284,7 @@ export interface DocumentationSystemContent {
     readonly eyebrow: string
     readonly title: string
     readonly summary: string
+    readonly href: string
     readonly available: false
   }
 }

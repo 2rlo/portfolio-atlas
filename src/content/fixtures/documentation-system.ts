@@ -280,6 +280,6 @@ export const documentationSystemContent = {
     notVerified: ['Documentation staleness CI', 'Automatic schema drift detection', 'Production migration-as-code', 'Backup / restore drill'],
   },
   nextPage: {
-    eyebrow: 'NEXT / 02', title: 'AI-NATIVE ENGINEERING', summary: 'Giving humans and AI enough context to work from the same project state.', available: false,
+    eyebrow: 'NEXT / 02', title: 'AI-NATIVE ENGINEERING', summary: 'Giving humans and AI enough context to work from the same project state.', href: '/how/ai-native-engineering', available: false,
   },
 } as const satisfies DocumentationSystemContent

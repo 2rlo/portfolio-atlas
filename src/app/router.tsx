@@ -20,7 +20,23 @@ export const router = createBrowserRouter([
         Component: DocumentationSystemRoute,
       },
       {
+        path: 'how/ai-native-engineering',
+        Component: WorkInProgressRoute,
+      },
+      {
+        path: 'how/technical-writing',
+        Component: WorkInProgressRoute,
+      },
+      {
+        path: 'how/security-operations',
+        Component: WorkInProgressRoute,
+      },
+      {
         path: 'what',
+        Component: WorkInProgressRoute,
+      },
+      {
+        path: 'what/:featureId',
         Component: WorkInProgressRoute,
       },
     ],

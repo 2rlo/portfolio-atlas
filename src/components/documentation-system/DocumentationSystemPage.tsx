@@ -94,12 +94,16 @@ function DocumentationSystemPage({ content }: DocumentationSystemPageProps) {
         </details>
       </section>
 
-      <section className="documentation-next" aria-labelledby="next-page-title">
+      <Link
+        className="documentation-next"
+        to={content.nextPage.href}
+        aria-labelledby="next-page-title"
+      >
         <p className="section-eyebrow">{content.nextPage.eyebrow}</p>
         <h2 id="next-page-title">{content.nextPage.title}</h2>
         <p>{content.nextPage.summary}</p>
         <span>PAGE IN DEVELOPMENT</span>
-      </section>
+      </Link>
     </main>
   )
 }
