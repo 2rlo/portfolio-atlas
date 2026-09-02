@@ -10,12 +10,7 @@ export const homeContent = {
       coverTitleLines: ['WHAT'],
       seamTitle: 'WHAT',
       descriptors: ['PRODUCT', 'WORKFLOW', 'STATE'],
-      items: [
-        { id: 'report', name: 'Report' },
-        { id: 'feature-validation', name: 'Feature Validation' },
-        { id: 'rag-assistant', name: 'RAG Assistant' },
-        { id: 'qa-schedule', name: 'QA & Schedule' },
-      ],
+      items: [],
     },
     {
       id: 'how-i-build',
