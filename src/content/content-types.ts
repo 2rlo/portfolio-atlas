@@ -21,6 +21,23 @@ export interface HomePageContent {
   readonly tracks: readonly HomeTrackContent[]
 }
 
+export type WhatFeatureGroupId =
+  | 'workflow'
+  | 'evidence'
+  | 'ai-knowledge'
+  | 'platform'
+
+export interface WhatFeatureItem {
+  readonly id: string
+  readonly name: string
+  readonly mobileLane: 1 | 2
+}
+
+export interface WhatFeatureGroup {
+  readonly id: WhatFeatureGroupId
+  readonly features: readonly WhatFeatureItem[]
+}
+
 export interface PublicFixtureBoundary {
   readonly dataOrigin: 'independently-authored-synthetic'
   readonly privateSourceRuntimeDependency: false
