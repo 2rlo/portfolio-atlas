@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Inter Tight Atlas Study';
+  src: url('../assets/fonts/display-studies/inter-tight/InterTight-Variable.ttf')
+    format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto Flex Atlas Study';
+  src: url('../assets/fonts/display-studies/roboto-flex/RobotoFlex-Variable.ttf')
+    format('truetype');
+  font-style: normal;
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+  font-display: swap;
+}
