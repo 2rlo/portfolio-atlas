@@ -1,0 +1,65 @@
+:root {
+  /* Canonical Jadebell palette */
+  --color-jade-600: #1f6b57;
+  --color-green-black: #14221d;
+  --color-warm-off-white: #f7f8f5;
+  --color-jade-off-white: #f1f5f2;
+  --color-pale-jade: #e9f2ee;
+  --color-light-jade: #9dd4c2;
+  --color-border-muted: #d6deda;
+  --color-cover-black: #0b0f0e;
+  --color-cover-jade: #0d342d;
+  --color-cover-cream: #f1ede2;
+  --color-cover-muted-jade: #86a99e;
+  --color-cover-rule: rgba(241, 237, 226, 0.24);
+  --color-document-paper: #fcfbf6;
+  --color-document-ink-muted: #66716c;
+  --color-document-dark-muted: rgba(241, 237, 226, 0.66);
+  --color-document-jade-line: rgba(134, 169, 158, 0.46);
+
+  /* Semantic color roles */
+  --paper: var(--color-warm-off-white);
+  --paper-jade: var(--color-jade-off-white);
+  --paper-bright: #ffffff;
+  --ink: var(--color-green-black);
+  --ink-soft: #56615c;
+  --jade: var(--color-jade-600);
+  --jade-deep: var(--color-green-black);
+  --sage: var(--color-light-jade);
+  --pale-jade: var(--color-pale-jade);
+  --line: var(--color-border-muted);
+  --grid-line: rgba(31, 107, 87, 0.035);
+  --status-halo: rgba(31, 107, 87, 0.12);
+  --focus-ring: var(--color-jade-600);
+  --cover-black: var(--color-cover-black);
+  --cover-jade: var(--color-cover-jade);
+  --cover-cream: var(--color-cover-cream);
+  --cover-muted-jade: var(--color-cover-muted-jade);
+  --cover-rule: var(--color-cover-rule);
+  --document-paper: var(--color-document-paper);
+  --document-ink-muted: var(--color-document-ink-muted);
+  --document-dark-muted: var(--color-document-dark-muted);
+  --document-jade-line: var(--color-document-jade-line);
+
+  /* Typography */
+  --display: 'Iowan Old Style', 'AppleMyungjo', 'Nanum Myeongjo',
+    'Noto Serif KR', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  --body: 'Avenir Next', Avenir, 'Pretendard', 'Apple SD Gothic Neo',
+    'Noto Sans KR', sans-serif;
+  --utility: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --grotesk: 'Helvetica Neue', 'Arial Narrow', 'Pretendard',
+    'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif;
+  --cover-monumental: 'Helvetica Neue', 'Arial Black', Arial, sans-serif;
+  --cover-condensed: 'DIN Condensed', 'Avenir Next Condensed', 'Arial Narrow',
+    'Helvetica Neue', Arial, sans-serif;
+  --cover-inter-tight-study: 'Inter Tight Atlas Study', 'Helvetica Neue', Arial,
+    sans-serif;
+  --cover-roboto-flex-study: 'Roboto Flex Atlas Study', 'Helvetica Neue', Arial,
+    sans-serif;
+  --cover-utility: 'SFMono-Regular', 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+
+  /* Layout */
+  --page-max-width: 96rem;
+  --page-gutter: clamp(1.25rem, 4vw, 4.5rem);
+}
