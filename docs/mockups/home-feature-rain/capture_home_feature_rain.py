@@ -139,7 +139,9 @@ def run() -> None:
                 )
                 mobile_links.filter(has_text="FEATURE VALIDATION").tap()
                 mobile_page.wait_for_url("**/what/feature-validation")
-                assert mobile_page.locator("main.feature-validation-page").count() == 1
+                mobile_page.locator("main.feature-validation-page").wait_for(
+                    state="visible"
+                )
 
             context.close()
 
