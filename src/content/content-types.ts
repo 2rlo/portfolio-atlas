@@ -345,31 +345,101 @@ export interface PublicCodemapContent {
   readonly boundary: readonly string[]
 }
 
+export type AiNativeWorkflowState =
+  | 'context'
+  | 'candidate'
+  | 'evidence'
+  | 'decision'
+  | 'canonical'
+
 export interface AiNativeWorkflowStep {
   readonly id: string
   readonly label: string
   readonly summary: string
-  readonly detail: string
+  readonly action: string
+  readonly proof: string
+  readonly exitRule: string
   readonly codemapUse?: string
-  readonly state: 'context' | 'candidate' | 'evidence' | 'decision' | 'canonical'
+  readonly state: AiNativeWorkflowState
 }
 
 export interface AiNativeEngineeringContent {
   readonly meta: {
     readonly classification: 'reconstructed-public-example'
     readonly disclosure: string
+    readonly boundary: PublicFixtureBoundary
   }
   readonly hero: {
     readonly eyebrow: string
     readonly titleLines: readonly string[]
     readonly thesis: string
     readonly summary: string
+    readonly manifest: {
+      readonly eyebrow: string
+      readonly title: string
+      readonly items: readonly {
+        readonly index: string
+        readonly label: string
+        readonly title: string
+        readonly description: string
+        readonly signals: readonly string[]
+      }[]
+      readonly statusLabel: string
+      readonly status: string
+    }
   }
   readonly scene: {
     readonly eyebrow: string
     readonly title: string
     readonly situation: string
+    readonly toolRule: string
+    readonly stateLegend: readonly {
+      readonly state: AiNativeWorkflowState
+      readonly label: string
+    }[]
     readonly steps: readonly AiNativeWorkflowStep[]
   }
-  readonly boundary: readonly string[]
+  readonly incident: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly symptom: string
+    readonly hypotheses: readonly string[]
+    readonly comparison: readonly {
+      readonly id: 'working-copy' | 'clean-baseline'
+      readonly label: string
+      readonly state: string
+      readonly observation: string
+    }[]
+    readonly evidence: string
+    readonly decision: string
+    readonly rule: readonly string[]
+  }
+  readonly artifacts: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly items: readonly {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly question: string
+      readonly responsibility: string
+      readonly maintenance: string
+      readonly fields?: readonly string[]
+      readonly href?: string
+    }[]
+  }
+  readonly principle: {
+    readonly eyebrow: string
+    readonly statement: string
+    readonly explanation: string
+    readonly maintenanceRule: {
+      readonly label: string
+      readonly statement: string
+      readonly detail: string
+    }
+    readonly boundary: readonly string[]
+    readonly appliedIn: string
+  }
 }
