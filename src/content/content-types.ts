@@ -1584,3 +1584,70 @@ export type RagAssistantPageContent = ReusableWhatCaseContent<
   RagAssistantProductFixture,
   RagAssistantEvolutionVisual
 >
+
+export type PermissionHotspotId =
+  | 'identity-link'
+  | 'role-default'
+  | 'personal-override'
+  | 'effective-permission'
+  | 'protected-change'
+
+export interface PermissionProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly members: readonly {
+    readonly person: PublicFixturePerson
+    readonly role: string
+    readonly state: 'active' | 'unlinked'
+  }[]
+  readonly selected: {
+    readonly person: PublicFixturePerson
+    readonly state: string
+    readonly identityGate: string
+    readonly linkedState: string
+    readonly lastChecked: string
+  }
+  readonly roleDefault: {
+    readonly label: string
+    readonly detail: string
+    readonly permissions: readonly string[]
+  }
+  readonly override: {
+    readonly label: string
+    readonly detail: string
+    readonly grants: readonly string[]
+    readonly revokes: readonly string[]
+  }
+  readonly effective: {
+    readonly label: string
+    readonly detail: string
+  }
+  readonly matrix: readonly {
+    readonly resource: string
+    readonly scope: string
+    readonly actions: readonly {
+      readonly label: 'VIEW' | 'EDIT' | 'DELETE' | 'MANAGE'
+      readonly state: 'role' | 'override' | 'guard' | 'none'
+    }[]
+    readonly result: string
+  }[]
+  readonly guard: {
+    readonly label: string
+    readonly detail: string
+    readonly blocked: readonly string[]
+    readonly audit: string
+  }
+}
+
+export type PermissionEvolutionVisual =
+  | 'read-only-need'
+  | 'oidc-role'
+  | 'resource-action'
+  | 'admin-surface'
+  | 'authority-split'
+
+export type PermissionPageContent = ReusableWhatCaseContent<
+  PermissionHotspotId,
+  PermissionProductFixture,
+  PermissionEvolutionVisual
+>

@@ -8,6 +8,7 @@ import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
 import DeveloperStatusRoute from '../routes/DeveloperStatusRoute.tsx'
 import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
+import PermissionRoute from '../routes/PermissionRoute.tsx'
 import ProjectSettingRoute from '../routes/ProjectSettingRoute.tsx'
 import QaRoute from '../routes/QaRoute.tsx'
 import RagAssistantRoute from '../routes/RagAssistantRoute.tsx'
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/ai-candidate-review',
         Component: AiCandidateReviewRoute,
+      },
+      {
+        path: 'what/permission',
+        Component: PermissionRoute,
       },
       {
         path: 'what/project-setting',
