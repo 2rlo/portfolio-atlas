@@ -1,0 +1,43 @@
+name: Check Git conventions
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  naming:
+    name: Branch and PR title
+    runs-on: ubuntu-latest
+    env:
+      HEAD_BRANCH: ${{ github.head_ref }}
+      PR_TITLE: ${{ github.event.pull_request.title }}
+    steps:
+      - name: Validate branch name
+        shell: bash
+        run: |
+          branch_pattern='^(feat|fix|docs|chore|refactor|test|ci)/[a-z0-9]+(-[a-z0-9]+)*$'
+          if [[ ! "$HEAD_BRANCH" =~ $branch_pattern ]]; then
+            echo "Invalid branch: $HEAD_BRANCH"
+            echo "Expected <type>/<kebab-case-description>. See docs/git-conventions.md."
+            exit 1
+          fi
+
+      - name: Validate pull request title
+        shell: bash
+        run: |
+          title_pattern='^(feat|fix|docs|chore|refactor|test|ci)(\([a-z0-9]+(-[a-z0-9]+)*\))?!?: .+'
+          if [[ ! "$PR_TITLE" =~ $title_pattern ]]; then
+            echo "Invalid pull request title: $PR_TITLE"
+            echo "Expected <type>(optional-scope): imperative summary. See docs/git-conventions.md."
+            exit 1
+          fi
+
+          branch_type="${HEAD_BRANCH%%/*}"
+          title_type="${BASH_REMATCH[1]}"
+          if [[ "$branch_type" != "$title_type" ]]; then
+            echo "Branch type '$branch_type' and PR title type '$title_type' do not match."
+            exit 1
+          fi
