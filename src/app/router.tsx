@@ -10,6 +10,7 @@ import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
 import ProjectSettingRoute from '../routes/ProjectSettingRoute.tsx'
 import QaRoute from '../routes/QaRoute.tsx'
+import RagAssistantRoute from '../routes/RagAssistantRoute.tsx'
 import ReportRoute from '../routes/ReportRoute.tsx'
 import ScheduleRoute from '../routes/ScheduleRoute.tsx'
 import WorklogReviewRoute from '../routes/WorklogReviewRoute.tsx'
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/project-setting',
         Component: ProjectSettingRoute,
+      },
+      {
+        path: 'what/rag-assistant',
+        Component: RagAssistantRoute,
       },
       {
         path: 'what/report',

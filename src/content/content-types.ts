@@ -1517,3 +1517,70 @@ export type ReportPageContent = ReusableWhatCaseContent<
   ReportProductFixture,
   ReportEvolutionVisual
 >
+
+export type RagAssistantHotspotId =
+  | 'context-entry'
+  | 'deterministic-first'
+  | 'source-hierarchy'
+  | 'insufficient-evidence'
+  | 'review-boundary'
+
+export interface RagAssistantProductFixture {
+  readonly productName: string
+  readonly assistantName: string
+  readonly workspaceLabel: string
+  readonly user: PublicFixturePerson
+  readonly sessions: readonly {
+    readonly label: string
+    readonly state: 'active' | 'history'
+  }[]
+  readonly scope: {
+    readonly label: string
+    readonly detail: string
+  }
+  readonly question: string
+  readonly deterministicContext: {
+    readonly label: string
+    readonly value: string
+    readonly state: string
+  }
+  readonly answer: {
+    readonly headline: string
+    readonly body: string
+    readonly risks: readonly {
+      readonly title: string
+      readonly detail: string
+    }[]
+  }
+  readonly sources: readonly {
+    readonly type: string
+    readonly title: string
+    readonly trust: 'canonical' | 'reviewed' | 'unreviewed'
+    readonly state: string
+  }[]
+  readonly followup: {
+    readonly question: string
+    readonly headline: string
+    readonly body: string
+    readonly missing: readonly string[]
+  }
+  readonly reviewAction: {
+    readonly label: string
+    readonly detail: string
+    readonly destination: string
+  }
+  readonly suggestions: readonly string[]
+}
+
+export type RagAssistantEvolutionVisual =
+  | 'deterministic'
+  | 'vector-support'
+  | 'trust-order'
+  | 'context-tool'
+  | 'memory-boundary'
+
+export type RagAssistantPageContent = ReusableWhatCaseContent<
+  RagAssistantHotspotId,
+  RagAssistantProductFixture,
+  RagAssistantEvolutionVisual
+>
