@@ -26,7 +26,7 @@ function ArtifactExcerpt({ artifact }: ArtifactExcerptProps) {
         <p>RECONSTRUCTED / PUBLIC-SAFE</p>
       </header>
 
-      <pre aria-label={`${artifact.title} 재구성 Markdown 예시`}>
+      <pre aria-label={`${artifact.title}의 공개용 재구성 예시`}>
         <code>{artifact.excerpt.join('\n')}</code>
       </pre>
 
@@ -70,12 +70,12 @@ function ArtifactDetail({ artifact, onClose }: ArtifactDetailProps) {
       {artifact ? (
         <article className="artifact-detail-sheet">
           <header className="artifact-detail-header">
-            <p>{artifact.index} / ARTIFACT NOTE</p>
+            <p>{artifact.index}</p>
             <button type="button" onClick={onClose} aria-label="문서 상세 닫기">
               CLOSE <span aria-hidden="true">×</span>
             </button>
             <h2 id="artifact-detail-title">{artifact.title}</h2>
-            <p>EDITORIAL NOTE / RECONSTRUCTED PUBLIC EXAMPLE</p>
+            <p>RECONSTRUCTED / PUBLIC-SAFE</p>
           </header>
 
           <div className="artifact-detail-notes">
@@ -84,7 +84,7 @@ function ArtifactDetail({ artifact, onClose }: ArtifactDetailProps) {
               <p>{artifact.why}</p>
             </section>
             <section>
-              <h3>AUDIENCE</h3>
+              <h3>FOR</h3>
               <p>{artifact.audience.join(' / ')}</p>
             </section>
             <section>
@@ -92,7 +92,7 @@ function ArtifactDetail({ artifact, onClose }: ArtifactDetailProps) {
               <p>{artifact.boundary}</p>
             </section>
             <section>
-              <h3>MAINTENANCE</h3>
+              <h3>UPDATE</h3>
               <p>{artifact.maintenance}</p>
             </section>
           </div>
@@ -103,9 +103,9 @@ function ArtifactDetail({ artifact, onClose }: ArtifactDetailProps) {
               {artifact.evidence.map((evidence) => (
                 <li key={evidence.label}>
                   <span>{evidence.label}</span>
-                  <p>{evidence.statement}</p>
+                  {evidence.statement ? <p>{evidence.statement}</p> : null}
                   {evidence.sequence ? (
-                    <ol aria-label={`${evidence.label} sequence`}>
+                    <ol aria-label={`${evidence.label} 흐름`}>
                       {evidence.sequence.map((item, index) => (
                         <li key={item}>
                           <strong>{item}</strong>
