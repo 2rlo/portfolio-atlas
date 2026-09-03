@@ -10,7 +10,7 @@ export const reportContent = {
     boundary: jadebellPublicFixture.meta.boundary,
   },
   hero: {
-    eyebrow: 'WHAT I BUILT / 02',
+    eyebrow: 'WHAT I BUILT / 09',
     titleLines: ['WEEKLY', 'REPORT'],
     thesis:
       'AI가 일주일을 대신 확정하게 하지 않고, 사람이 검토한 기록을 우선 원본으로 삼아 보고서의 출처 상태를 드러냈다.',
