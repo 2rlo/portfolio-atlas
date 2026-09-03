@@ -32,6 +32,10 @@ IA, Home, case study, artifact UI를 변경하기 전에
 이 문서는 두 트랙의 위계, HOW I BUILD 페이지 역할, cross-link,
 progressive disclosure, interaction, public artifact 기준의 canonical decision이다.
 
+모든 공개 페이지와 artifact의 문구 작성, 용어 선택, 번역 판단은
+`docs/atlas-language-policy.md`를 따른다. 이 정책은 Documentation System에만
+국한되지 않는다.
+
 ### WHAT I BUILT
 
 실제 제품/기능 중심

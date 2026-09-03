@@ -85,7 +85,7 @@ function DocumentationSystemPage({ content }: DocumentationSystemPageProps) {
         </p>
         <p className="documentation-principle-claim">{content.principle.claimBoundary}</p>
         <details className="documentation-principle-unverified">
-          <summary>아직 검증 또는 자동화되지 않음</summary>
+          <summary>아직 자동화·검증되지 않은 범위</summary>
           <ul>
             {content.principle.notVerified.map((item) => (
               <li key={item}>{item}</li>

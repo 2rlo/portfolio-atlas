@@ -7,6 +7,9 @@
 
 이 문서는 웹 아틀라스가 무엇을 보여주고, 무엇을 보여주지 않으며, 각 페이지가 어떤 질문에 답해야 하는지를 고정한다. 이후 에이전트는 IA, Home, case study, artifact UI를 변경하기 전에 이 문서를 읽는다.
 
+프로젝트 전체의 문구 작성, 용어 선택과 번역 판단은
+[`atlas-language-policy.md`](./atlas-language-policy.md)를 따른다.
+
 ## 1. Why this atlas exists
 
 PDF 포트폴리오는 선택된 결과와 핵심 근거를 빠르게 전달한다. 웹 아틀라스는 PDF에서 축약될 수밖에 없는 다음 연결을 더 깊게 탐색하게 한다.
@@ -85,10 +88,9 @@ HOW I BUILD의 심층 페이지는 최소한 다음 계약을 따른다.
 
 ## 7. Documentation System
 
-이 페이지의 언어와 번역 판단은
-[`documentation-system-language-policy.md`](./documentation-system-language-policy.md)를
-따른다. 한국어가 의미 전달을 맡고, 영어는 대형 그래픽 타이포그래피, 기술 고유어,
-실제 artifact 표현으로 제한한다.
+이 페이지의 언어와 번역 판단도 프로젝트 전역
+[`atlas-language-policy.md`](./atlas-language-policy.md)를 따른다. 한국어가 의미 전달을
+맡고, 영어는 대형 그래픽 타이포그래피, 기술 고유어, 실제 artifact 표현으로 제한한다.
 
 첫 화면은 Markdown 파일 목록이 아니라 정보 구조를 보여준다.
 
