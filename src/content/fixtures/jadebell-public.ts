@@ -42,6 +42,12 @@ export const jadebellPublicWorld = {
       role: 'Product Engineer',
       initials: 'DL',
     },
+    alexSeo: {
+      id: 'alex-seo',
+      name: 'Alex Seo',
+      role: 'QA Engineer',
+      initials: 'AS',
+    },
   },
 } as const
 
@@ -87,5 +93,6 @@ export const jadebellPublicFixture = {
   people: [
     jadebellPublicWorld.people.minaKim,
     jadebellPublicWorld.people.danielLee,
+    jadebellPublicWorld.people.alexSeo,
   ],
 } as const satisfies PublicProductFixture

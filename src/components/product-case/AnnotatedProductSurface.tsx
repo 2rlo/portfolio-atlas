@@ -31,6 +31,7 @@ interface ProductWorkflowProps<Id extends string> {
   readonly steps: readonly ProductWorkflowStep<Id>[]
   readonly activeId: Id | null
   readonly onActivate: (id: Id) => void
+  readonly ariaLabel?: string
 }
 
 function ProductHotspot<Id extends string>({
@@ -140,9 +141,10 @@ function ProductWorkflow<Id extends string>({
   steps,
   activeId,
   onActivate,
+  ariaLabel = '제품 검토 workflow',
 }: ProductWorkflowProps<Id>) {
   return (
-    <ol className="product-workflow" aria-label="Feature Validation 검토 workflow">
+    <ol className="product-workflow" aria-label={ariaLabel}>
       {steps.map((step) => {
         const isActive = activeId === step.hotspotId
 

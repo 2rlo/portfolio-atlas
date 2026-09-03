@@ -1029,3 +1029,134 @@ export interface WorklogReviewPageContent {
     readonly status: 'available' | 'in-development'
   }[]
 }
+
+export type QaHotspotId =
+  | 'test-context'
+  | 'human-result'
+  | 'attachments'
+  | 'revision-history'
+  | 'ai-boundary'
+
+export interface QaProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly author: PublicFixturePerson
+  readonly project: PublicFixtureProject
+  readonly report: {
+    readonly title: string
+    readonly date: string
+    readonly revision: string
+    readonly purpose: string
+    readonly environment: readonly string[]
+    readonly assessment: string
+    readonly resultSummary: readonly {
+      readonly label: string
+      readonly value: string
+    }[]
+  }
+  readonly testCases: readonly {
+    readonly id: string
+    readonly title: string
+    readonly result: 'PASS' | 'FAIL' | 'HOLD' | 'UNKNOWN'
+    readonly precondition: string
+    readonly expected: string
+    readonly actual: string
+    readonly discussion?: string
+    readonly attachments: readonly {
+      readonly name: string
+      readonly type: 'image' | 'video' | 'file'
+    }[]
+  }[]
+  readonly revisions: readonly {
+    readonly revision: string
+    readonly author: string
+    readonly time: string
+    readonly change: string
+  }[]
+}
+
+export interface QaPageContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+    readonly currentStatus: 'implemented-and-active'
+    readonly boundary: PublicFixtureBoundary
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: string
+    readonly summary: string
+    readonly problemLabel: string
+    readonly problem: string
+  }
+  readonly inspection: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly instruction: string
+    readonly defaultAnnotation: {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly body: string
+    }
+  }
+  readonly product: QaProductFixture
+  readonly annotations: readonly ProductEditorialAnnotation<QaHotspotId>[]
+  readonly workflow: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly steps: readonly ProductWorkflowStep<QaHotspotId>[]
+    readonly boundary: string
+  }
+  readonly decisions: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly items: readonly {
+      readonly statement: string
+      readonly explanation: string
+    }[]
+  }
+  readonly evolution: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly scenes: readonly {
+      readonly date: string
+      readonly label: string
+      readonly visual: 'source-shape' | 'history' | 'role' | 'regenerate' | 'database-source'
+      readonly decision: string
+      readonly trigger: string
+      readonly change: string
+      readonly currentEffect: string
+    }[]
+  }
+  readonly evidence: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly snapshot: string
+    readonly items: readonly {
+      readonly value: string
+      readonly label: string
+      readonly meaning: string
+      readonly boundary: string
+    }[]
+  }
+  readonly implementationStatus: {
+    readonly state: string
+    readonly items: readonly string[]
+    readonly runtime: string
+  }
+  readonly boundary: {
+    readonly eyebrow: string
+    readonly statement: string
+    readonly items: readonly string[]
+  }
+  readonly relatedSystems: readonly {
+    readonly title: string
+    readonly relation: string
+    readonly href?: string
+    readonly status: 'available' | 'in-development'
+  }[]
+}

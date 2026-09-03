@@ -7,6 +7,7 @@ import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
 import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
 import ProjectSettingRoute from '../routes/ProjectSettingRoute.tsx'
+import QaRoute from '../routes/QaRoute.tsx'
 import WorklogReviewRoute from '../routes/WorklogReviewRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/project-setting',
         Component: ProjectSettingRoute,
+      },
+      {
+        path: 'what/qa',
+        Component: QaRoute,
       },
       {
         path: 'what/:featureId',
