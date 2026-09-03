@@ -1449,3 +1449,71 @@ export type ApiUsagePageContent = ReusableWhatCaseContent<
   ApiUsageProductFixture,
   ApiUsageEvolutionVisual
 >
+
+export type ReportHotspotId =
+  | 'week-window'
+  | 'reviewed-source'
+  | 'structured-metrics'
+  | 'qa-evidence'
+  | 'generation-gate'
+
+export interface ReportProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly weeks: readonly {
+    readonly label: string
+    readonly state: 'current' | 'history' | 'fallback'
+  }[]
+  readonly selectedWeek: {
+    readonly label: string
+    readonly range: string
+    readonly generatedAt: string
+  }
+  readonly sourceState: {
+    readonly label: string
+    readonly detail: string
+    readonly fallbackLabel: string
+  }
+  readonly generation: {
+    readonly action: string
+    readonly automatic: string
+    readonly manual: string
+    readonly locale: string
+    readonly gatedLocale: string
+  }
+  readonly metrics: readonly {
+    readonly label: string
+    readonly value: string
+  }[]
+  readonly tests: readonly {
+    readonly label: string
+    readonly value: string
+    readonly tone: 'pass' | 'fail' | 'hold'
+  }[]
+  readonly reportSections: readonly {
+    readonly label: string
+    readonly introduction?: string
+    readonly entries: readonly {
+      readonly title: string
+      readonly body: string
+      readonly source?: {
+        readonly record: string
+        readonly status: string
+        readonly lineage: string
+      }
+    }[]
+  }[]
+}
+
+export type ReportEvolutionVisual =
+  | 'multi-source'
+  | 'reviewed-first'
+  | 'visible-fallback'
+  | 'date-window'
+  | 'manual-locale'
+
+export type ReportPageContent = ReusableWhatCaseContent<
+  ReportHotspotId,
+  ReportProductFixture,
+  ReportEvolutionVisual
+>
