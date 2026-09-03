@@ -71,10 +71,18 @@ export interface PublicFixtureFeature {
   readonly summary: string
 }
 
+export interface PublicFixturePerson {
+  readonly id: string
+  readonly name: string
+  readonly role: string
+  readonly initials: string
+}
+
 export interface PublicProductFixture {
   readonly meta: PublicFixtureMeta
   readonly projects: readonly PublicFixtureProject[]
   readonly features: readonly PublicFixtureFeature[]
+  readonly people: readonly PublicFixturePerson[]
 }
 
 export type DocumentationKnowledgeNodeId =
@@ -442,4 +450,192 @@ export interface AiNativeEngineeringContent {
     readonly boundary: readonly string[]
     readonly appliedIn: string
   }
+}
+
+export type FeatureValidationHotspotId =
+  | 'requirement'
+  | 'evidence'
+  | 'ai-assessment'
+  | 'unknown'
+  | 'human-review'
+
+export interface ProductEditorialSection {
+  readonly label: 'WHY' | 'DECISION' | 'BOUNDARY' | 'EVIDENCE'
+  readonly body: string
+}
+
+export interface ProductEditorialAnnotation<Id extends string = string> {
+  readonly id: Id
+  readonly index: string
+  readonly label: string
+  readonly title: string
+  readonly sections: readonly ProductEditorialSection[]
+  readonly evolution?: {
+    readonly label: string
+    readonly date: string
+  }
+}
+
+export interface ProductWorkflowStep<Id extends string = string> {
+  readonly id: string
+  readonly hotspotId: Id
+  readonly index: string
+  readonly label: string
+  readonly summary: string
+}
+
+export type FeatureValidationRequirementState =
+  | 'confirmed'
+  | 'linked'
+  | 'unknown'
+
+export interface FeatureValidationEvidenceFixture {
+  readonly eyebrow: string
+  readonly title: string
+  readonly summary: string
+  readonly tokens: readonly string[]
+  readonly companion?: {
+    readonly eyebrow: string
+    readonly body: string
+  }
+}
+
+export interface FeatureValidationRequirementFixture {
+  readonly id: string
+  readonly statement: string
+  readonly sourceLabel: string
+  readonly state: FeatureValidationRequirementState
+  readonly statusLabel: string
+  readonly statementHotspotId?: FeatureValidationHotspotId
+  readonly evidenceHotspotId: FeatureValidationHotspotId
+  readonly evidence: FeatureValidationEvidenceFixture
+  readonly signal: string
+  readonly reviewer?: {
+    readonly initials: string
+    readonly name: string
+    readonly note: string
+    readonly time: string
+  }
+}
+
+export interface FeatureValidationProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly project: {
+    readonly id: string
+    readonly name: string
+  }
+  readonly reviewer: PublicFixturePerson
+  readonly featureList: readonly {
+    readonly id: string
+    readonly name: string
+    readonly meta: string
+    readonly status: string
+    readonly tone: 'confirmed' | 'linked' | 'unknown'
+  }[]
+  readonly selectedFeature: {
+    readonly name: string
+    readonly summary: string
+    readonly status: string
+    readonly lastReviewed: string
+    readonly requirements: readonly FeatureValidationRequirementFixture[]
+    readonly unlinkedCandidate: {
+      readonly title: string
+      readonly label: string
+      readonly summary: string
+      readonly tokens: readonly string[]
+    }
+  }
+}
+
+export interface FeatureValidationPageContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+    readonly currentStatus: 'partial'
+    readonly boundary: PublicFixtureBoundary
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: string
+    readonly summary: string
+    readonly problemLabel: string
+    readonly problem: string
+  }
+  readonly inspection: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly instruction: string
+    readonly defaultAnnotation: {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly body: string
+    }
+  }
+  readonly product: FeatureValidationProductFixture
+  readonly annotations: readonly ProductEditorialAnnotation<FeatureValidationHotspotId>[]
+  readonly workflow: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly steps: readonly ProductWorkflowStep<FeatureValidationHotspotId>[]
+    readonly boundary: string
+  }
+  readonly decisions: {
+    readonly eyebrow: string
+    readonly items: readonly {
+      readonly statement: string
+      readonly explanation: string
+    }[]
+  }
+  readonly evolution: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly scenes: readonly {
+      readonly date: string
+      readonly label: string
+      readonly visual: 'read-only' | 'unknown' | 'human-link' | 'review-ui'
+      readonly decision: string
+      readonly trigger: string
+      readonly change: string
+    }[]
+  }
+  readonly evidence: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly snapshot: string
+    readonly items: readonly {
+      readonly value: string
+      readonly label: string
+      readonly meaning: string
+      readonly boundary: string
+    }[]
+  }
+  readonly implementationStatus: {
+    readonly implemented: {
+      readonly label: string
+      readonly phase: string
+      readonly items: readonly string[]
+    }
+    readonly remaining: {
+      readonly label: string
+      readonly phase: string
+      readonly items: readonly string[]
+    }
+    readonly runtime: string
+  }
+  readonly boundary: {
+    readonly eyebrow: string
+    readonly statement: string
+    readonly items: readonly string[]
+  }
+  readonly relatedSystems: readonly {
+    readonly title: string
+    readonly relation: string
+    readonly href?: string
+    readonly status: 'available' | 'in-development'
+  }[]
 }

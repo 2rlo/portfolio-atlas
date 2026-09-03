@@ -1,11 +1,32 @@
 import type { PublicProductFixture } from '../content-types.ts'
 
+export const jadebellPublicWorld = {
+  productName: 'Jadebell Hub',
+  organizationName: 'Jadebell Systems',
+  projects: {
+    atlas: {
+      id: 'atlas',
+      name: 'Atlas',
+      description:
+        '접근 정책과 출시 준비 상태를 함께 살펴보는 공개 데모 프로젝트입니다.',
+    },
+  },
+  people: {
+    minaKim: {
+      id: 'mina-kim',
+      name: 'Mina Kim',
+      role: 'Product Lead',
+      initials: 'MK',
+    },
+  },
+} as const
+
 export const jadebellPublicFixture = {
   meta: {
     id: 'jadebell-public-minimum',
-    version: '1.0.0',
-    productName: 'Jadebell Hub',
-    organizationName: 'Jadebell Systems',
+    version: '1.1.0',
+    productName: jadebellPublicWorld.productName,
+    organizationName: jadebellPublicWorld.organizationName,
     classification: 'synthetic-public-demo',
     locale: 'ko-KR',
     disclosure:
@@ -17,14 +38,7 @@ export const jadebellPublicFixture = {
       oneToOneInternalMapping: false,
     },
   },
-  projects: [
-    {
-      id: 'atlas',
-      name: 'Atlas',
-      description:
-        '접근 정책과 출시 준비 상태를 함께 살펴보는 공개 데모 프로젝트입니다.',
-    },
-  ],
+  projects: [jadebellPublicWorld.projects.atlas],
   features: [
     {
       id: 'release-readiness',
@@ -33,5 +47,13 @@ export const jadebellPublicFixture = {
       summary:
         '단계 확대 전에 확인 항목과 근거의 준비 상태를 검토하는 합성 기능입니다.',
     },
+    {
+      id: 'partner-notification-retry',
+      projectId: 'atlas',
+      name: 'Partner notification retry policy',
+      summary:
+        '알림 실패 뒤 재시도 범위와 사용자에게 보이는 최종 상태를 검토하는 합성 기능입니다.',
+    },
   ],
+  people: [jadebellPublicWorld.people.minaKim],
 } as const satisfies PublicProductFixture

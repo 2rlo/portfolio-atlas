@@ -3,6 +3,7 @@ import App from '../App.tsx'
 import AiNativeEngineeringRoute from '../routes/AiNativeEngineeringRoute.tsx'
 import CodemapExplorerRoute from '../routes/CodemapExplorerRoute.tsx'
 import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
+import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: 'what',
         Component: WorkInProgressRoute,
+      },
+      {
+        path: 'what/feature-validation',
+        Component: FeatureValidationRoute,
       },
       {
         path: 'what/:featureId',
