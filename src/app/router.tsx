@@ -6,6 +6,7 @@ import CodemapExplorerRoute from '../routes/CodemapExplorerRoute.tsx'
 import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
 import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
+import ProjectSettingRoute from '../routes/ProjectSettingRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/ai-candidate-review',
         Component: AiCandidateReviewRoute,
+      },
+      {
+        path: 'what/project-setting',
+        Component: ProjectSettingRoute,
       },
       {
         path: 'what/:featureId',

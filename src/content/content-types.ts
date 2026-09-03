@@ -783,3 +783,121 @@ export interface AiCandidateReviewPageContent {
     readonly status: 'available' | 'in-development'
   }[]
 }
+
+export type ProjectSettingHotspotId =
+  | 'stable-identity'
+  | 'existing-row'
+  | 'shared-order'
+  | 'archive-provenance'
+  | 'restore-guard'
+
+export interface ProjectSettingProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly administrator: PublicFixturePerson
+  readonly registration: {
+    readonly codePlaceholder: string
+    readonly labelPlaceholder: string
+    readonly resolutionHint: string
+  }
+  readonly trackedProjects: readonly {
+    readonly order: number
+    readonly code: string
+    readonly label: string
+    readonly scheduleCount: number
+    readonly pendingCount: number
+  }[]
+  readonly archivedProject: {
+    readonly code: string
+    readonly label: string
+    readonly archivedAt: string
+    readonly archiveEvent: string
+    readonly dependencyState: string
+  }
+}
+
+export interface ProjectSettingPageContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+    readonly currentStatus: 'implemented-and-active'
+    readonly boundary: PublicFixtureBoundary
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: string
+    readonly summary: string
+    readonly problemLabel: string
+    readonly problem: string
+  }
+  readonly inspection: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly instruction: string
+    readonly defaultAnnotation: {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly body: string
+    }
+  }
+  readonly product: ProjectSettingProductFixture
+  readonly annotations: readonly ProductEditorialAnnotation<ProjectSettingHotspotId>[]
+  readonly workflow: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly steps: readonly ProductWorkflowStep<ProjectSettingHotspotId>[]
+    readonly boundary: string
+  }
+  readonly rules: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly items: readonly {
+      readonly statement: string
+      readonly explanation: string
+    }[]
+  }
+  readonly evolution: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly scenes: readonly {
+      readonly date: string
+      readonly label: string
+      readonly visual: 'separate' | 'registry' | 'consumers' | 'provenance'
+      readonly decision: string
+      readonly trigger: string
+      readonly change: string
+      readonly currentEffect: string
+    }[]
+  }
+  readonly evidence: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly snapshot: string
+    readonly items: readonly {
+      readonly value: string
+      readonly label: string
+      readonly meaning: string
+      readonly boundary: string
+    }[]
+  }
+  readonly implementationStatus: {
+    readonly state: string
+    readonly items: readonly string[]
+    readonly runtime: string
+  }
+  readonly boundary: {
+    readonly eyebrow: string
+    readonly statement: string
+    readonly items: readonly string[]
+  }
+  readonly relatedSystems: readonly {
+    readonly title: string
+    readonly relation: string
+    readonly href?: string
+    readonly status: 'available' | 'in-development'
+  }[]
+}

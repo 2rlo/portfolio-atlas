@@ -22,6 +22,12 @@ export const jadebellPublicWorld = {
       description:
         '검색과 배포 흐름의 운영 상태를 살펴보는 공개 데모 프로젝트입니다.',
     },
+    meadow: {
+      id: 'meadow',
+      name: 'Meadow',
+      description:
+        '과거 참조를 보존한 보관·복원 흐름을 설명하는 공개 데모 프로젝트입니다.',
+    },
   },
   people: {
     minaKim: {
@@ -42,7 +48,7 @@ export const jadebellPublicWorld = {
 export const jadebellPublicFixture = {
   meta: {
     id: 'jadebell-public-minimum',
-    version: '1.2.0',
+    version: '1.3.0',
     productName: jadebellPublicWorld.productName,
     organizationName: jadebellPublicWorld.organizationName,
     classification: 'synthetic-public-demo',
@@ -60,6 +66,7 @@ export const jadebellPublicFixture = {
     jadebellPublicWorld.projects.atlas,
     jadebellPublicWorld.projects.canopy,
     jadebellPublicWorld.projects.harbor,
+    jadebellPublicWorld.projects.meadow,
   ],
   features: [
     {
