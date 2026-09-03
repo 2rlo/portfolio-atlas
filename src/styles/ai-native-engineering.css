@@ -1,81 +1,1135 @@
 .ai-native-page {
   min-height: 100vh;
+  overflow: clip;
   color: var(--cover-cream);
   background: var(--cover-black);
 }
-.ai-native-page :where(h1, h2, h3, p, ol, ul) { margin: 0; }
-.ai-native-page :where(ol, ul) { padding: 0; list-style: none; }
+
+.ai-native-page :where(h1, h2, h3, h4, p, ol, ul, dl, dd) {
+  margin: 0;
+}
+
+.ai-native-page :where(ol, ul) {
+  padding: 0;
+  list-style: none;
+}
 
 .ai-native-back,
-.ai-native-hero header > p,
-.ai-native-scene > header > p,
+.ai-native-hero-heading > p,
+.ai-native-manifest header p,
+.ai-native-manifest > ol > li > span,
+.ai-native-manifest small,
+.ai-native-manifest footer span,
+.ai-native-section-heading > p,
+.ai-native-tool-rule > p,
+.ai-native-state-legend,
 .ai-native-steps button > span,
-.ai-native-step-detail > p,
-.ai-native-step-detail aside small,
-.ai-native-boundary > p {
+.ai-native-step-heading > p,
+.ai-native-step-evidence h4,
+.ai-native-step-context small,
+.ai-native-incident-heading > p,
+.ai-native-hypotheses > p,
+.ai-native-hypotheses li > span,
+.ai-native-baseline-comparison header p,
+.ai-native-baseline-comparison header strong,
+.ai-native-incident-findings dt,
+.ai-native-artifacts-heading > p,
+.ai-native-artifact-index,
+.ai-native-artifact-maintenance small,
+.ai-native-boundary-heading > p,
+.ai-native-current-rule > p,
+.ai-native-applied-boundary > p {
   font-family: var(--cover-utility);
   font-size: clamp(0.58rem, 0.56vw, 0.7rem);
   letter-spacing: 0.12em;
-  line-height: 1.35;
+  line-height: 1.45;
   text-transform: uppercase;
 }
 
-.ai-native-hero {
-  min-height: 100svh;
-  padding: clamp(6.8rem, 10vh, 8.5rem) var(--page-gutter) clamp(4rem, 7vw, 7rem);
-  background: linear-gradient(115deg, var(--cover-black) 0 57%, var(--cover-jade) 57% 100%);
+.ai-native-page :where(
+  .ai-native-thesis,
+  .ai-native-manifest,
+  .ai-native-section-heading,
+  .ai-native-tool-rule,
+  .ai-native-step-detail,
+  .ai-native-incident-heading,
+  .ai-native-incident-record,
+  .ai-native-artifacts-heading,
+  .ai-native-artifact-register,
+  .ai-native-boundary
+) {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
-.ai-native-back { display: inline-flex; gap: 0.8rem; color: var(--cover-muted-jade); text-decoration: none; }
-.ai-native-hero-layout { display: grid; grid-template-columns: minmax(31rem, 1.2fr) minmax(19rem, 0.8fr); gap: clamp(3rem, 7vw, 8rem); align-items: end; width: min(100%, var(--page-max-width)); min-height: 72svh; margin-inline: auto; }
-.ai-native-hero header > p { color: var(--cover-muted-jade); }
-.ai-native-hero h1 { margin-top: 1.5rem; font-family: var(--cover-roboto-flex-study); font-size: clamp(4.7rem, 9.3vw, 10rem); font-variation-settings: 'opsz' 144, 'wdth' 101, 'wght' 670; font-weight: 670; letter-spacing: -0.06em; line-height: 0.75; }
-.ai-native-hero h1 span { display: block; }
-.ai-native-hero h1 span:last-child { margin-left: 0.55em; }
-.ai-native-hero-layout > div > strong { display: block; max-width: 20ch; font-size: clamp(1.55rem, 2.4vw, 2.65rem); font-weight: 540; letter-spacing: -0.03em; line-height: 1.3; word-break: keep-all; }
-.ai-native-hero-layout > div > p { max-width: 35rem; margin-top: 1.5rem; color: var(--document-dark-muted); font-size: 0.98rem; line-height: 1.7; word-break: keep-all; }
-.ai-native-hero-layout > div > small { display: block; padding-top: 1rem; margin-top: 2rem; color: var(--cover-muted-jade); font-family: var(--cover-utility); font-size: 0.62rem; line-height: 1.5; border-top: 1px solid var(--cover-rule); }
 
-.ai-native-scene { width: min(100%, var(--page-max-width)); padding: clamp(7rem, 11vw, 11rem) var(--page-gutter); margin-inline: auto; }
-.ai-native-scene > header { display: grid; grid-template-columns: 18% minmax(0, 1fr) minmax(15rem, 0.42fr); gap: clamp(1.5rem, 4vw, 5rem); align-items: end; }
-.ai-native-scene > header > p { color: var(--cover-muted-jade); }
-.ai-native-scene h2 { max-width: 17ch; font-size: clamp(2.8rem, 5vw, 5.6rem); font-weight: 600; letter-spacing: -0.055em; line-height: 1; word-break: keep-all; }
-.ai-native-scene > header > span { color: var(--document-dark-muted); font-size: 0.92rem; line-height: 1.65; word-break: keep-all; }
+.ai-native-hero {
+  position: relative;
+  min-height: 100svh;
+  padding: clamp(6.6rem, 10vh, 8rem) var(--page-gutter) clamp(3.5rem, 6vh, 5.5rem);
+  background: var(--cover-black);
+  isolation: isolate;
+}
 
-.ai-native-workbench { display: grid; grid-template-columns: minmax(20rem, 0.43fr) minmax(0, 0.57fr); gap: clamp(3rem, 7vw, 9rem); margin-top: clamp(5rem, 9vw, 9rem); }
-.ai-native-steps { border-top: 1px solid var(--cover-rule); }
-.ai-native-steps li { border-bottom: 1px solid var(--cover-rule); }
-.ai-native-steps button { display: grid; grid-template-columns: 2.4rem minmax(7rem, 0.45fr) minmax(0, 0.55fr); gap: 1rem; width: 100%; min-height: 4.8rem; align-items: center; padding: 0.8rem 0; color: var(--document-dark-muted); text-align: left; cursor: pointer; background: transparent; border: 0; }
-.ai-native-steps button[aria-pressed='true'] { color: var(--cover-cream); }
-.ai-native-steps button > span { color: var(--cover-muted-jade); }
-.ai-native-steps button > strong { font-size: 0.78rem; letter-spacing: 0.03em; }
-.ai-native-steps button > small { line-height: 1.4; }
-.ai-native-steps button[aria-pressed='true'] > span::before { margin-right: 0.45rem; color: var(--sage); content: '●'; }
+.ai-native-hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 0 57%;
+  background: var(--cover-jade);
+  clip-path: polygon(13% 0, 100% 0, 100% 100%, 0 100%);
+  content: '';
+}
 
-.ai-native-step-detail { position: sticky; top: 2rem; min-height: 34rem; padding: clamp(2rem, 4vw, 4.5rem); color: var(--ink); background: var(--document-paper); }
-.ai-native-step-detail > p { color: var(--jade); }
-.ai-native-step-detail h3 { margin-top: clamp(3rem, 6vw, 6rem); font-family: var(--cover-roboto-flex-study); font-size: clamp(3.8rem, 7vw, 8rem); font-variation-settings: 'opsz' 144, 'wdth' 102, 'wght' 670; font-weight: 670; letter-spacing: -0.055em; line-height: 0.82; }
-.ai-native-step-detail > strong { display: block; margin-top: 2rem; font-size: clamp(1.15rem, 1.6vw, 1.65rem); line-height: 1.35; }
-.ai-native-step-detail > span { display: block; max-width: 37rem; margin-top: 1rem; color: var(--ink-soft); font-size: 0.94rem; line-height: 1.7; word-break: keep-all; }
-.ai-native-step-detail aside { padding-top: 1.2rem; margin-top: clamp(3rem, 6vw, 6rem); border-top: 1px solid var(--ink); }
-.ai-native-step-detail aside small { color: var(--jade); }
-.ai-native-step-detail aside p { max-width: 36rem; margin-top: 0.8rem; font-size: 0.88rem; line-height: 1.6; word-break: keep-all; }
-.ai-native-step-detail aside a { display: inline-flex; gap: 0.7rem; margin-top: 1.4rem; color: var(--jade); font-size: 0.82rem; text-decoration: none; border-bottom: 1px solid var(--jade); }
+.ai-native-back {
+  display: inline-flex;
+  gap: 0.8rem;
+  color: var(--cover-muted-jade);
+  text-decoration: none;
+}
 
-.ai-native-boundary { width: min(100%, var(--page-max-width)); padding: clamp(4rem, 7vw, 7rem) var(--page-gutter); margin-inline: auto; background: var(--cover-jade); box-shadow: 0 0 0 100vmax var(--cover-jade); clip-path: inset(0 -100vmax); }
-.ai-native-boundary > p { color: var(--cover-muted-jade); }
-.ai-native-boundary ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; margin-top: 1.5rem; }
-.ai-native-boundary li { color: var(--document-dark-muted); font-size: 0.9rem; line-height: 1.65; word-break: keep-all; }
-.ai-native-boundary a { display: inline-flex; gap: 0.8rem; margin-top: 4rem; color: var(--cover-cream); text-decoration: none; border-bottom: 1px solid var(--cover-muted-jade); }
+.ai-native-back:hover {
+  color: var(--cover-cream);
+}
+
+.ai-native-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(22rem, 0.72fr);
+  gap: clamp(4rem, 8vw, 9rem);
+  align-items: end;
+  width: min(100%, var(--page-max-width));
+  min-height: calc(100svh - clamp(11rem, 17vh, 13.5rem));
+  margin-inline: auto;
+}
+
+.ai-native-hero-heading > p {
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-hero h1 {
+  margin-top: clamp(1.3rem, 3vh, 2.5rem);
+  font-family: var(--cover-roboto-flex-study);
+  font-size: clamp(4.8rem, 8.6vw, 9.4rem);
+  font-variation-settings: 'opsz' 144, 'wdth' 101, 'wght' 670;
+  font-weight: 670;
+  letter-spacing: -0.065em;
+  line-height: 0.76;
+}
+
+.ai-native-hero h1 span {
+  display: block;
+}
+
+.ai-native-hero h1 span:last-child {
+  margin-left: 0.43em;
+}
+
+.ai-native-thesis {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.65fr) minmax(15rem, 0.75fr);
+  gap: 1.5rem clamp(2rem, 4vw, 5rem);
+  align-items: start;
+  max-width: 58rem;
+  margin-top: clamp(3rem, 6vh, 5.5rem);
+}
+
+.ai-native-thesis > strong {
+  font-size: clamp(1.35rem, 1.8vw, 2rem);
+  font-weight: 560;
+  letter-spacing: -0.035em;
+  line-height: 1.35;
+}
+
+.ai-native-thesis > p {
+  color: var(--document-dark-muted);
+  font-size: 0.95rem;
+  line-height: 1.72;
+}
+
+.ai-native-thesis > small {
+  grid-column: 2;
+  padding-top: 0.9rem;
+  color: var(--cover-muted-jade);
+  font-family: var(--cover-utility);
+  font-size: 0.6rem;
+  line-height: 1.55;
+  border-top: 1px solid var(--cover-rule);
+}
+
+.ai-native-manifest {
+  align-self: stretch;
+  padding-left: clamp(0rem, 2vw, 2rem);
+}
+
+.ai-native-manifest header {
+  padding-bottom: 1.4rem;
+}
+
+.ai-native-manifest header p {
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-manifest header h2 {
+  margin-top: 0.55rem;
+  font-family: var(--cover-utility);
+  font-size: clamp(1rem, 1.2vw, 1.32rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.ai-native-manifest > ol {
+  border-top: 1px solid var(--cover-rule);
+}
+
+.ai-native-manifest > ol > li {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: clamp(1.1rem, 2vh, 1.65rem) 0;
+  border-bottom: 1px solid var(--cover-rule);
+}
+
+.ai-native-manifest > ol > li > span,
+.ai-native-manifest small {
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-manifest h3 {
+  margin-top: 0.45rem;
+  font-size: clamp(1.1rem, 1.45vw, 1.55rem);
+  font-weight: 620;
+  letter-spacing: -0.025em;
+}
+
+.ai-native-manifest li p {
+  max-width: 35rem;
+  margin-top: 0.55rem;
+  color: var(--document-dark-muted);
+  font-size: 0.79rem;
+  line-height: 1.58;
+}
+
+.ai-native-manifest li ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.8rem;
+  margin-top: 0.85rem;
+  color: var(--cover-muted-jade);
+  font-family: var(--cover-utility);
+  font-size: 0.53rem;
+  letter-spacing: 0.08em;
+}
+
+.ai-native-manifest li ul li:not(:last-child)::after {
+  margin-left: 0.8rem;
+  color: var(--cover-rule);
+  content: '/';
+}
+
+.ai-native-manifest footer {
+  display: grid;
+  grid-template-columns: 5.4rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-top: 1.3rem;
+}
+
+.ai-native-manifest footer span {
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-manifest footer strong {
+  font-size: 0.75rem;
+  font-weight: 540;
+  line-height: 1.55;
+}
+
+.ai-native-scene {
+  width: min(100%, var(--page-max-width));
+  padding: clamp(7rem, 11vw, 11rem) var(--page-gutter) clamp(8rem, 12vw, 12rem);
+  margin-inline: auto;
+}
+
+.ai-native-section-heading,
+.ai-native-incident-heading,
+.ai-native-artifacts-heading {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.2fr) minmax(0, 0.52fr) minmax(16rem, 0.28fr);
+  gap: clamp(1.5rem, 4vw, 5rem);
+  align-items: end;
+}
+
+.ai-native-section-heading > p {
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-section-heading h2,
+.ai-native-incident-heading h2,
+.ai-native-artifacts-heading h2 {
+  max-width: 16ch;
+  font-size: clamp(2.7rem, 5vw, 5.5rem);
+  font-weight: 610;
+  letter-spacing: -0.058em;
+  line-height: 1;
+}
+
+.ai-native-section-heading > span {
+  color: var(--document-dark-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.ai-native-tool-rule {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.2fr) minmax(0, 0.8fr);
+  gap: clamp(1.5rem, 4vw, 5rem);
+  padding: clamp(1.8rem, 3vw, 2.8rem) 0;
+  margin-top: clamp(4rem, 7vw, 7rem);
+  border-block: 1px solid var(--cover-rule);
+}
+
+.ai-native-tool-rule > p {
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-tool-rule > strong {
+  max-width: 70rem;
+  font-size: clamp(1rem, 1.4vw, 1.35rem);
+  font-weight: 520;
+  line-height: 1.65;
+}
+
+.ai-native-state-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.6rem;
+  margin-top: 2rem;
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-state-legend span {
+  display: inline-flex;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.ai-native-state-legend span::before {
+  width: 0.38rem;
+  height: 0.38rem;
+  background: currentColor;
+  border-radius: 50%;
+  content: '';
+}
+
+.ai-native-state-legend span[data-state='candidate'] {
+  opacity: 0.55;
+}
+
+.ai-native-state-legend span[data-state='evidence'] {
+  color: var(--cover-cream);
+}
+
+.ai-native-state-legend span[data-state='decision'] {
+  color: var(--sage);
+}
+
+.ai-native-state-legend span[data-state='canonical'] {
+  color: var(--document-paper);
+}
+
+.ai-native-workbench {
+  display: grid;
+  grid-template-columns: minmax(21rem, 0.4fr) minmax(0, 0.6fr);
+  gap: clamp(3rem, 7vw, 8rem);
+  margin-top: clamp(3rem, 5vw, 5rem);
+}
+
+.ai-native-steps {
+  border-top: 1px solid var(--cover-rule);
+}
+
+.ai-native-steps li {
+  position: relative;
+  border-bottom: 1px solid var(--cover-rule);
+}
+
+.ai-native-steps li::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--sage);
+  opacity: 0;
+  content: '';
+}
+
+.ai-native-steps li:has(button[aria-pressed='true'])::before {
+  opacity: 1;
+}
+
+.ai-native-steps button {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(7.5rem, 0.42fr) minmax(0, 0.58fr);
+  gap: 0.85rem;
+  width: 100%;
+  min-height: 5.35rem;
+  align-items: center;
+  padding: 0.9rem 0.75rem;
+  color: var(--document-dark-muted);
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.ai-native-steps button:hover,
+.ai-native-steps button[aria-pressed='true'] {
+  color: var(--cover-cream);
+  background: var(--cover-rule);
+}
+
+.ai-native-steps button > span {
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-steps button > strong {
+  font-size: 0.78rem;
+  letter-spacing: 0.025em;
+}
+
+.ai-native-steps button > small {
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.ai-native-step-detail {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+  min-height: 42rem;
+  padding: clamp(2rem, 4vw, 4.5rem);
+  color: var(--ink);
+  background: var(--document-paper);
+}
+
+.ai-native-step-heading > p {
+  color: var(--jade);
+}
+
+.ai-native-step-heading > p span {
+  color: var(--ink-soft);
+}
+
+.ai-native-step-heading h3 {
+  margin-top: clamp(2.6rem, 5vw, 5rem);
+  font-family: var(--cover-roboto-flex-study);
+  font-size: clamp(3.6rem, 6vw, 7rem);
+  font-variation-settings: 'opsz' 144, 'wdth' 102, 'wght' 670;
+  font-weight: 670;
+  letter-spacing: -0.06em;
+  line-height: 0.83;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.ai-native-step-heading > strong {
+  display: block;
+  margin-top: 1.8rem;
+  font-size: clamp(1.12rem, 1.55vw, 1.55rem);
+  line-height: 1.38;
+}
+
+.ai-native-step-evidence {
+  margin-top: clamp(2.7rem, 5vw, 4.8rem);
+  border-top: 1px solid var(--ink);
+}
+
+.ai-native-step-evidence section {
+  display: grid;
+  grid-template-columns: 5.4rem minmax(0, 1fr);
+  gap: 1.2rem;
+  padding: 1.05rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.ai-native-step-evidence h4 {
+  color: var(--jade);
+}
+
+.ai-native-step-evidence p {
+  color: var(--ink-soft);
+  font-size: 0.83rem;
+  line-height: 1.62;
+}
+
+.ai-native-step-context {
+  display: flex;
+  gap: 1.5rem;
+  align-items: end;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--ink);
+}
+
+.ai-native-step-context small {
+  color: var(--jade);
+}
+
+.ai-native-step-context p {
+  max-width: 32rem;
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+  line-height: 1.58;
+}
+
+.ai-native-step-context a {
+  flex: 0 0 auto;
+  color: var(--jade);
+  font-size: 0.76rem;
+  line-height: 1.4;
+  text-decoration: none;
+  border-bottom: 1px solid var(--jade);
+}
+
+.ai-native-incident {
+  color: var(--ink);
+  background: var(--document-paper);
+}
+
+.ai-native-incident-inner,
+.ai-native-artifacts {
+  width: min(100%, var(--page-max-width));
+  padding: clamp(7rem, 11vw, 11rem) var(--page-gutter);
+  margin-inline: auto;
+}
+
+.ai-native-incident-heading > p,
+.ai-native-artifacts-heading > p {
+  color: var(--jade);
+}
+
+.ai-native-incident-heading > span,
+.ai-native-artifacts-heading > span {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.72;
+}
+
+.ai-native-incident-record {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.34fr) minmax(0, 0.66fr);
+  gap: 0 clamp(2.5rem, 6vw, 7rem);
+  margin-top: clamp(5rem, 8vw, 8rem);
+}
+
+.ai-native-incident-record > * {
+  min-width: 0;
+}
+
+.ai-native-hypotheses {
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--ink);
+}
+
+.ai-native-hypotheses > p {
+  color: var(--jade);
+}
+
+.ai-native-hypotheses > strong {
+  display: block;
+  margin: 0.8rem 0 clamp(3rem, 5vw, 5rem);
+  font-size: clamp(1.25rem, 1.8vw, 1.85rem);
+  line-height: 1.42;
+}
+
+.ai-native-hypotheses ol {
+  margin-top: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+
+.ai-native-hypotheses li {
+  display: grid;
+  grid-template-columns: 1.7rem minmax(0, 1fr);
+  gap: 0.65rem;
+  padding: 0.9rem 0;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--line);
+}
+
+.ai-native-hypotheses li > span {
+  color: var(--jade);
+}
+
+.ai-native-baseline-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ai-native-baseline-comparison article {
+  display: flex;
+  min-height: 24rem;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.8rem, 3.5vw, 3.6rem);
+  color: var(--cover-cream);
+}
+
+.ai-native-baseline-comparison article[data-baseline='working-copy'] {
+  background: var(--cover-black);
+}
+
+.ai-native-baseline-comparison article[data-baseline='clean-baseline'] {
+  background: var(--cover-jade);
+}
+
+.ai-native-baseline-comparison header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.ai-native-baseline-comparison header p {
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-baseline-comparison header strong {
+  color: var(--sage);
+}
+
+.ai-native-baseline-comparison article > p {
+  font-size: clamp(1.05rem, 1.5vw, 1.45rem);
+  font-weight: 520;
+  line-height: 1.5;
+}
+
+.ai-native-incident-findings {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 2.4rem;
+  border-top: 1px solid var(--ink);
+}
+
+.ai-native-incident-findings > div {
+  display: grid;
+  grid-template-columns: 5.4rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1.15rem 1.5rem 1.15rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.ai-native-incident-findings > div + div {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--line);
+}
+
+.ai-native-incident-findings dt {
+  color: var(--jade);
+}
+
+.ai-native-incident-findings dd {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.58;
+}
+
+.ai-native-incident-rule {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding-top: clamp(4rem, 8vw, 8rem);
+  margin-top: clamp(4rem, 8vw, 8rem);
+  font-family: var(--cover-roboto-flex-study);
+  font-size: clamp(3.5rem, 8.3vw, 9rem);
+  font-variation-settings: 'opsz' 144, 'wdth' 101, 'wght' 670;
+  font-weight: 670;
+  letter-spacing: -0.065em;
+  line-height: 0.84;
+  border-top: 1px solid var(--ink);
+}
+
+.ai-native-incident-rule span {
+  display: block;
+}
+
+.ai-native-artifacts {
+  color: var(--ink);
+  background: var(--cover-cream);
+  box-shadow: 0 0 0 100vmax var(--cover-cream);
+  clip-path: inset(0 -100vmax);
+}
+
+.ai-native-artifact-register {
+  margin-top: clamp(5rem, 8vw, 8rem);
+  border-top: 1px solid var(--ink);
+}
+
+.ai-native-artifact-register > li {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.2fr) minmax(0, 0.52fr) minmax(16rem, 0.28fr);
+  gap: clamp(1.5rem, 4vw, 5rem);
+  padding: clamp(2.5rem, 4vw, 4.5rem) 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+.ai-native-artifact-index {
+  display: flex;
+  gap: 1rem;
+  color: var(--jade);
+}
+
+.ai-native-artifact-index small {
+  color: var(--ink-soft);
+  font: inherit;
+}
+
+.ai-native-artifact-copy h3 {
+  font-family: var(--cover-roboto-flex-study);
+  font-size: clamp(2.2rem, 4vw, 4.4rem);
+  font-variation-settings: 'opsz' 144, 'wdth' 102, 'wght' 650;
+  font-weight: 650;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.ai-native-artifact-copy > strong {
+  display: block;
+  max-width: 38rem;
+  margin-top: 1.6rem;
+  font-size: clamp(1rem, 1.3vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.ai-native-artifact-copy > p,
+.ai-native-artifact-maintenance > p {
+  max-width: 38rem;
+  margin-top: 0.8rem;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.ai-native-artifact-copy ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.7rem;
+  margin-top: 1.3rem;
+  color: var(--jade);
+  font-family: var(--cover-utility);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+}
+
+.ai-native-artifact-copy ul li:not(:last-child)::after {
+  margin-left: 0.7rem;
+  color: var(--ink-soft);
+  content: '/';
+}
+
+.ai-native-artifact-maintenance small {
+  color: var(--jade);
+}
+
+.ai-native-artifact-maintenance a {
+  display: inline-flex;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+  color: var(--jade);
+  font-size: 0.8rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--jade);
+}
+
+.ai-native-boundary {
+  display: grid;
+  grid-template-columns: minmax(0, 0.56fr) minmax(21rem, 0.44fr);
+  gap: clamp(3rem, 7vw, 8rem);
+  width: min(100%, var(--page-max-width));
+  padding: clamp(7rem, 11vw, 11rem) var(--page-gutter) clamp(5rem, 8vw, 8rem);
+  margin-inline: auto;
+  background: var(--cover-jade);
+  box-shadow: 0 0 0 100vmax var(--cover-jade);
+  clip-path: inset(0 -100vmax);
+}
+
+.ai-native-boundary-heading > p,
+.ai-native-current-rule > p,
+.ai-native-applied-boundary > p {
+  color: var(--cover-muted-jade);
+}
+
+.ai-native-boundary-heading h2 {
+  max-width: 13ch;
+  margin-top: 1.5rem;
+  font-size: clamp(3rem, 5.7vw, 6.2rem);
+  font-weight: 610;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.ai-native-boundary-heading > span {
+  display: block;
+  max-width: 42rem;
+  margin-top: 2rem;
+  color: var(--document-dark-muted);
+  font-size: 0.95rem;
+  line-height: 1.72;
+}
+
+.ai-native-current-rule {
+  align-self: start;
+  padding: clamp(2rem, 4vw, 4rem);
+  background: var(--cover-black);
+}
+
+.ai-native-current-rule > strong {
+  display: block;
+  margin-top: clamp(3rem, 6vw, 6rem);
+  font-family: var(--cover-roboto-flex-study);
+  font-size: clamp(2.5rem, 4.5vw, 5rem);
+  font-variation-settings: 'opsz' 144, 'wdth' 102, 'wght' 660;
+  font-weight: 660;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.ai-native-current-rule > span {
+  display: block;
+  margin-top: 1.5rem;
+  color: var(--document-dark-muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.ai-native-boundary-list {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(2rem, 4vw, 4rem);
+  border-top: 1px solid var(--cover-rule);
+}
+
+.ai-native-boundary-list li {
+  position: relative;
+  padding: 1.35rem 2rem 1.35rem 1.4rem;
+  color: var(--document-dark-muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  border-bottom: 1px solid var(--cover-rule);
+}
+
+.ai-native-boundary-list li:nth-child(odd) {
+  border-right: 1px solid var(--cover-rule);
+}
+
+.ai-native-boundary-list li::before {
+  position: absolute;
+  top: 1.78rem;
+  left: 0;
+  width: 0.36rem;
+  height: 0.36rem;
+  background: var(--sage);
+  border-radius: 50%;
+  content: '';
+}
+
+.ai-native-applied-boundary {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.25fr) minmax(0, 0.75fr);
+  gap: 2rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--cover-rule);
+}
+
+.ai-native-applied-boundary > span {
+  color: var(--document-dark-muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.ai-native-cross-links {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.ai-native-cross-links a {
+  display: inline-flex;
+  gap: 0.7rem;
+  color: var(--cover-cream);
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--cover-muted-jade);
+}
+
+.ai-native-page :where(a, button) {
+  transition-duration: 160ms;
+}
+
+@media (max-width: 1100px) {
+  .ai-native-hero::before {
+    inset-inline-start: 52%;
+  }
+
+  .ai-native-hero-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.82fr);
+    gap: 4rem;
+  }
+
+  .ai-native-thesis {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-native-thesis > small {
+    grid-column: 1;
+  }
+
+  .ai-native-section-heading,
+  .ai-native-incident-heading,
+  .ai-native-artifacts-heading,
+  .ai-native-artifact-register > li {
+    grid-template-columns: minmax(7.5rem, 0.18fr) minmax(0, 0.5fr) minmax(14rem, 0.32fr);
+    gap: 2.5rem;
+  }
+
+  .ai-native-workbench {
+    gap: 3rem;
+  }
+
+  .ai-native-incident-record {
+    gap: 0 3rem;
+  }
+}
 
 @media (max-width: 800px) {
-  .ai-native-hero { background: var(--cover-black); }
-  .ai-native-hero-layout { grid-template-columns: 1fr; min-height: auto; margin-top: 4rem; }
-  .ai-native-hero h1 { font-size: clamp(4rem, 20vw, 6.8rem); }
-  .ai-native-hero h1 span:last-child { margin-left: 0; font-size: 0.64em; line-height: 1.2; }
-  .ai-native-scene > header,
-  .ai-native-workbench { grid-template-columns: 1fr; }
-  .ai-native-steps button { grid-template-columns: 2rem minmax(7rem, 0.45fr) minmax(0, 0.55fr); }
-  .ai-native-step-detail { position: static; min-height: 30rem; }
-  .ai-native-step-detail h3 { font-size: clamp(3.5rem, 17vw, 5.5rem); }
-  .ai-native-boundary ul { grid-template-columns: 1fr; }
+  .ai-native-hero {
+    min-height: auto;
+    padding-bottom: 0;
+  }
+
+  .ai-native-hero::before {
+    display: none;
+  }
+
+  .ai-native-hero-layout {
+    grid-template-columns: 1fr;
+    gap: clamp(4rem, 12vw, 7rem);
+    min-height: auto;
+    margin-top: clamp(4rem, 12vw, 7rem);
+  }
+
+  .ai-native-hero h1 {
+    font-size: clamp(4rem, 18vw, 7.2rem);
+  }
+
+  .ai-native-hero h1 span:last-child {
+    margin-left: 0;
+    font-size: 0.64em;
+    line-height: 1.18;
+  }
+
+  .ai-native-thesis {
+    margin-top: 3rem;
+  }
+
+  .ai-native-manifest {
+    padding: clamp(2rem, 7vw, 4rem) var(--page-gutter) 3rem;
+    margin-inline: calc(var(--page-gutter) * -1);
+    background: var(--cover-jade);
+  }
+
+  .ai-native-section-heading,
+  .ai-native-incident-heading,
+  .ai-native-artifacts-heading,
+  .ai-native-tool-rule,
+  .ai-native-workbench,
+  .ai-native-incident-record,
+  .ai-native-artifact-register > li,
+  .ai-native-boundary {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-native-section-heading h2,
+  .ai-native-incident-heading h2,
+  .ai-native-artifacts-heading h2 {
+    max-width: 18ch;
+  }
+
+  .ai-native-tool-rule {
+    gap: 1rem;
+  }
+
+  .ai-native-workbench {
+    gap: 2.5rem;
+  }
+
+  .ai-native-steps button {
+    grid-template-columns: 2rem minmax(6.6rem, 0.42fr) minmax(0, 0.58fr);
+  }
+
+  .ai-native-step-detail {
+    position: static;
+    min-height: 0;
+  }
+
+  .ai-native-step-heading h3 {
+    font-size: clamp(3.3rem, 14vw, 6rem);
+  }
+
+  .ai-native-step-detail[data-step='canonicalize'] h3 {
+    font-size: clamp(2.7rem, 11.4vw, 3.5rem);
+    letter-spacing: -0.07em;
+    white-space: nowrap;
+  }
+
+  .ai-native-incident-record {
+    gap: 3rem;
+  }
+
+  .ai-native-baseline-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-native-baseline-comparison article {
+    min-height: 17rem;
+  }
+
+  .ai-native-incident-findings {
+    grid-column: 1;
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+
+  .ai-native-incident-findings > div + div {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .ai-native-incident-rule {
+    grid-column: 1;
+  }
+
+  .ai-native-artifact-register > li {
+    gap: 1.8rem;
+  }
+
+  .ai-native-artifact-maintenance {
+    padding-top: 1.3rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .ai-native-boundary {
+    gap: 4rem;
+  }
+
+  .ai-native-boundary-list,
+  .ai-native-applied-boundary,
+  .ai-native-cross-links {
+    grid-column: 1;
+  }
+
+  .ai-native-boundary-list {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+
+  .ai-native-boundary-list li:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .ai-native-applied-boundary {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .ai-native-hero {
+    padding-top: 5.8rem;
+  }
+
+  .ai-native-hero h1 {
+    font-size: clamp(3.55rem, 18vw, 5.6rem);
+  }
+
+  .ai-native-thesis > strong {
+    font-size: 1.25rem;
+  }
+
+  .ai-native-manifest > ol > li {
+    grid-template-columns: 1.7rem minmax(0, 1fr);
+  }
+
+  .ai-native-manifest footer,
+  .ai-native-step-evidence section,
+  .ai-native-incident-findings > div {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .ai-native-scene,
+  .ai-native-incident-inner,
+  .ai-native-artifacts,
+  .ai-native-boundary {
+    padding-top: 6.5rem;
+    padding-bottom: 6.5rem;
+  }
+
+  .ai-native-state-legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ai-native-steps button {
+    grid-template-columns: 1.7rem minmax(0, 1fr);
+    gap: 0.45rem 0.75rem;
+  }
+
+  .ai-native-steps button > small {
+    grid-column: 2;
+  }
+
+  .ai-native-step-detail {
+    padding: 1.5rem;
+  }
+
+  .ai-native-step-context {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .ai-native-baseline-comparison article {
+    min-height: 15rem;
+    padding: 1.5rem;
+  }
+
+  .ai-native-incident-rule {
+    font-size: clamp(2.25rem, 10vw, 3.4rem);
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .ai-native-incident-rule span {
+    white-space: normal;
+  }
+
+  .ai-native-current-rule {
+    padding: 1.75rem;
+  }
+
+  .ai-native-cross-links {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-native-page :where(a, button) {
+    transition: none;
+  }
 }
