@@ -54,6 +54,12 @@ export const jadebellPublicWorld = {
       role: 'Partner Manager',
       initials: 'JH',
     },
+    soraLim: {
+      id: 'sora-lim',
+      name: 'Sora Lim',
+      role: 'Product Designer',
+      initials: 'SL',
+    },
   },
 } as const
 
@@ -101,5 +107,6 @@ export const jadebellPublicFixture = {
     jadebellPublicWorld.people.danielLee,
     jadebellPublicWorld.people.alexSeo,
     jadebellPublicWorld.people.juliaHan,
+    jadebellPublicWorld.people.soraLim,
   ],
 } as const satisfies PublicProductFixture

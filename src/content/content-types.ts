@@ -1315,3 +1315,70 @@ export type SchedulePageContent = ReusableWhatCaseContent<
   ScheduleProductFixture,
   ScheduleEvolutionVisual
 >
+
+export type DeveloperStatusHotspotId =
+  | 'identity-scope'
+  | 'source-hierarchy'
+  | 'grouped-evidence'
+  | 'partial-state'
+  | 'refresh-cadence'
+
+export interface DeveloperStatusProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly window: string
+  readonly people: readonly {
+    readonly person: PublicFixturePerson
+    readonly project: string
+    readonly state: string
+    readonly tone: 'ready' | 'partial'
+  }[]
+  readonly selected: {
+    readonly person: PublicFixturePerson
+    readonly project: PublicFixtureProject
+    readonly refreshedAt: string
+    readonly state: string
+    readonly summary: string
+    readonly counts: readonly {
+      readonly label: string
+      readonly value: string
+    }[]
+    readonly warnings: readonly string[]
+    readonly focus: readonly string[]
+    readonly projectProgress: {
+      readonly feature: string
+      readonly status: string
+      readonly summary: string
+      readonly verified: string
+    }
+    readonly changes: readonly {
+      readonly title: string
+      readonly date: string
+      readonly symbols: readonly string[]
+      readonly state: string
+    }[]
+    readonly sources: readonly {
+      readonly type: 'reviewed' | 'draft' | 'change-set'
+      readonly title: string
+      readonly meta: string
+    }[]
+  }
+  readonly cadence: {
+    readonly schedule: string
+    readonly window: string
+    readonly recovery: string
+  }
+}
+
+export type DeveloperStatusEvolutionVisual =
+  | 'identity'
+  | 'time-window'
+  | 'batch'
+  | 'partial'
+  | 'daily'
+
+export type DeveloperStatusPageContent = ReusableWhatCaseContent<
+  DeveloperStatusHotspotId,
+  DeveloperStatusProductFixture,
+  DeveloperStatusEvolutionVisual
+>

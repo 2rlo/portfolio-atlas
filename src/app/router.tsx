@@ -4,6 +4,7 @@ import AiCandidateReviewRoute from '../routes/AiCandidateReviewRoute.tsx'
 import AiNativeEngineeringRoute from '../routes/AiNativeEngineeringRoute.tsx'
 import CodemapExplorerRoute from '../routes/CodemapExplorerRoute.tsx'
 import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
+import DeveloperStatusRoute from '../routes/DeveloperStatusRoute.tsx'
 import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
 import ProjectSettingRoute from '../routes/ProjectSettingRoute.tsx'
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/schedule',
         Component: ScheduleRoute,
+      },
+      {
+        path: 'what/developer-status',
+        Component: DeveloperStatusRoute,
       },
       {
         path: 'what/:featureId',
