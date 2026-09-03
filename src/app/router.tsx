@@ -16,6 +16,7 @@ import RagAssistantRoute from '../routes/RagAssistantRoute.tsx'
 import ReportRoute from '../routes/ReportRoute.tsx'
 import ScheduleRoute from '../routes/ScheduleRoute.tsx'
 import VersionLogRoute from '../routes/VersionLogRoute.tsx'
+import WikiRoute from '../routes/WikiRoute.tsx'
 import WorklogReviewRoute from '../routes/WorklogReviewRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/version-log',
         Component: VersionLogRoute,
+      },
+      {
+        path: 'what/wiki',
+        Component: WikiRoute,
       },
       {
         path: 'what/schedule',
