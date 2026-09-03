@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import type {
   ContentLane,
@@ -44,7 +44,7 @@ function MobileDiagonalPoster({
       </h1>
 
       <div className="mobile-poster-background" aria-hidden="true" />
-      <FeatureRain interactive={interactive} variant="mobile" />
+      <FeatureRain variant="mobile" />
 
       {tracks.map((track) => {
         const isActive = visibleLane === track.lane
@@ -52,79 +52,72 @@ function MobileDiagonalPoster({
         const indexId = `mobile-poster-index-${track.id}`
         const titleId = `mobile-poster-title-${track.id}`
 
+        const primaryDestination =
+          track.items.find((item) => item.href === track.href)?.name ??
+          track.label
+
         return (
-          <article
-            className={`mobile-poster-content mobile-poster-content--${track.lane}`}
-            aria-labelledby={titleId}
-            key={track.id}
-          >
-            <header className="mobile-poster-meta">
-              <span>{track.index} /</span>
-              <p>{track.label}</p>
-            </header>
-
-            <h2 className="mobile-poster-word" id={titleId}>
-              {track.seamTitle}
-            </h2>
-
-            {hasIndex ? (
-              <ol
-                className="mobile-poster-index"
-                id={indexId}
-                aria-label={`${track.label} index`}
-                aria-hidden={!isActive}
-              >
-                {track.items.map((item, itemIndex) => (
-                  <li key={item.id}>
-                    <span>{String(itemIndex + 1).padStart(2, '0')}</span>
-                    {interactive && item.href ? (
-                      <Link
-                        className="poster-index-link"
-                        tabIndex={isActive ? undefined : -1}
-                        to={item.href}
-                      >
-                        {item.name}
-                      </Link>
-                    ) : (
-                      <span>{item.name}</span>
-                    )}
-                  </li>
-                ))}
-              </ol>
+          <Fragment key={track.id}>
+            {interactive ? (
+              <button
+                className={`mobile-poster-control mobile-poster-control--${track.lane}`}
+                type="button"
+                aria-controls={hasIndex ? indexId : undefined}
+                aria-expanded={hasIndex ? isActive : undefined}
+                aria-pressed={hasIndex ? undefined : isActive}
+                aria-label={
+                  hasIndex
+                    ? isActive && track.href
+                      ? `Open ${primaryDestination}`
+                      : `${isActive ? 'Hide' : 'Show'} ${track.label} index`
+                    : `${isActive ? 'Reset' : 'Focus'} ${track.label}`
+                }
+                onClick={() => activateLane(track)}
+              />
             ) : null}
-          </article>
+
+            <article
+              className={`mobile-poster-content mobile-poster-content--${track.lane}`}
+              aria-labelledby={titleId}
+            >
+              <header className="mobile-poster-meta">
+                <span>{track.index} /</span>
+                <p>{track.label}</p>
+              </header>
+
+              <h2 className="mobile-poster-word" id={titleId}>
+                {track.seamTitle}
+              </h2>
+
+              {hasIndex ? (
+                <ol
+                  className="mobile-poster-index"
+                  id={indexId}
+                  aria-label={`${track.label} index`}
+                  aria-hidden={!isActive}
+                >
+                  {track.items.map((item, itemIndex) => (
+                    <li key={item.id}>
+                      <span>{String(itemIndex + 1).padStart(2, '0')}</span>
+                      {interactive && item.href ? (
+                        <Link
+                          className="poster-index-link"
+                          tabIndex={isActive ? undefined : -1}
+                          to={item.href}
+                        >
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <span>{item.name}</span>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              ) : null}
+            </article>
+          </Fragment>
         )
       })}
-
-      {interactive
-          ? tracks.map((track) => {
-              const isActive = visibleLane === track.lane
-              const hasIndex = track.items.length > 0
-              const indexId = `mobile-poster-index-${track.id}`
-              const primaryDestination =
-                track.items.find((item) => item.href === track.href)?.name ??
-                track.label
-
-              return (
-                <button
-                  className={`mobile-poster-control mobile-poster-control--${track.lane}`}
-                  type="button"
-                  aria-controls={hasIndex ? indexId : undefined}
-                  aria-expanded={hasIndex ? isActive : undefined}
-                  aria-pressed={hasIndex ? undefined : isActive}
-                  aria-label={
-                    hasIndex
-                      ? isActive && track.href
-                        ? `Open ${primaryDestination}`
-                        : `${isActive ? 'Hide' : 'Show'} ${track.label} index`
-                      : `${isActive ? 'Reset' : 'Focus'} ${track.label}`
-                  }
-                  key={track.id}
-                  onClick={() => activateLane(track)}
-                />
-              )
-          })
-        : null}
     </section>
   )
 }

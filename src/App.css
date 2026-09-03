@@ -234,14 +234,7 @@
   text-transform: uppercase;
   white-space: nowrap;
   cursor: default;
-  opacity: 0.14;
-  transition: opacity 180ms ease;
-}
-
-.feature-rain-link {
-  color: inherit;
-  cursor: pointer;
-  text-decoration: none;
+  opacity: 0.2;
 }
 
 .feature-rain-item--long {
@@ -260,7 +253,7 @@
     'wdth' 92,
     'wght' 650;
   letter-spacing: -0.025em;
-  opacity: 0.19;
+  opacity: 0.24;
 }
 
 .feature-rain--desktop .feature-rain-lane:nth-child(1)
@@ -283,6 +276,12 @@
   visibility: visible;
   opacity: 1;
   transition-delay: 0s;
+}
+
+.seam-poster[data-interactive='true']
+  .poster-field--what-i-built:focus-within
+  .feature-rain-track {
+  animation-play-state: paused;
 }
 
 @keyframes feature-rain-down {
@@ -309,34 +308,34 @@
   .feature-rain--desktop {
     -webkit-mask-image: linear-gradient(
       to bottom,
-      transparent 3%,
-      #000 14%,
-      #000 78%,
-      transparent 96%
+      transparent 10%,
+      #000 22%,
+      #000 58%,
+      transparent 74%
     );
     mask-image: linear-gradient(
       to bottom,
-      transparent 3%,
-      #000 14%,
-      #000 78%,
-      transparent 96%
+      transparent 10%,
+      #000 22%,
+      #000 58%,
+      transparent 74%
     );
   }
 
   .feature-rain--mobile {
     -webkit-mask-image: linear-gradient(
       to bottom,
-      transparent 5%,
-      #000 14%,
-      #000 78%,
-      transparent 94%
+      transparent 9%,
+      #000 22%,
+      #000 58%,
+      transparent 80%
     );
     mask-image: linear-gradient(
       to bottom,
-      transparent 5%,
-      #000 14%,
-      #000 78%,
-      transparent 94%
+      transparent 9%,
+      #000 22%,
+      #000 58%,
+      transparent 80%
     );
   }
 
@@ -358,36 +357,36 @@
 
   .feature-rain--desktop .feature-rain-lane:nth-child(1)
     .feature-rain-track {
-    animation: feature-rain-down 24s -7s linear infinite;
+    animation: feature-rain-down 48s -14s linear infinite;
   }
 
   .feature-rain--desktop .feature-rain-lane:nth-child(2)
     .feature-rain-track {
-    animation: feature-rain-down 31s -19s linear infinite;
+    animation: feature-rain-down 52s -31s linear infinite;
   }
 
   .feature-rain--desktop .feature-rain-lane:nth-child(3)
     .feature-rain-track {
-    animation: feature-rain-up 35s -11s linear infinite;
+    animation: feature-rain-up 56s -18s linear infinite;
   }
 
   .feature-rain--desktop .feature-rain-lane:nth-child(4)
     .feature-rain-track {
-    animation: feature-rain-down 27s -16s linear infinite;
+    animation: feature-rain-down 50s -26s linear infinite;
   }
 
   .feature-rain--mobile .feature-rain-lane:nth-child(1)
     .feature-rain-track {
-    animation: feature-rain-down 34s -10s linear infinite;
+    animation: feature-rain-down 64s -19s linear infinite;
   }
 
   .feature-rain--mobile .feature-rain-lane:nth-child(2)
     .feature-rain-track {
-    animation: feature-rain-up 39s -23s linear infinite;
+    animation: feature-rain-up 70s -41s linear infinite;
   }
 
   .feature-rain--mobile .feature-rain-track {
-    height: 280%;
+    height: 220%;
   }
 }
 
@@ -531,6 +530,12 @@
 
 .poster-field--what-i-built .poster-index-list {
   left: var(--page-gutter);
+  display: grid;
+  grid-template-rows: repeat(7, minmax(2.5rem, auto));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: column;
+  column-gap: clamp(1.5rem, 3vw, 3.5rem);
+  width: min(38rem, calc(100% - (var(--page-gutter) * 2)));
 }
 
 .poster-field--how-i-build .poster-index-list {
@@ -541,8 +546,8 @@
   display: grid;
   grid-template-columns: 2.25rem minmax(0, 1fr);
   gap: 0.75rem;
-  align-items: baseline;
-  padding-block: 0.58rem;
+  align-items: center;
+  min-height: 2.5rem;
   border-top: 1px solid var(--cover-rule);
   font-size: clamp(0.67rem, 0.62vw, 0.78rem);
   font-weight: 500;
@@ -555,6 +560,10 @@
   border-bottom: 1px solid var(--cover-rule);
 }
 
+.poster-field--what-i-built .poster-index-list li:nth-child(7) {
+  border-bottom: 1px solid var(--cover-rule);
+}
+
 .poster-index-list li span:first-child {
   color: var(--cover-muted-jade);
   font-family: var(--cover-utility);
@@ -563,15 +572,42 @@
 }
 
 .poster-index-link {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  min-height: 2.5rem;
   color: inherit;
   text-decoration: none;
+  opacity: 0.78;
+  transition: opacity 160ms ease;
+}
+
+.poster-index-link::after {
+  margin-left: auto;
+  font-family: var(--cover-utility);
+  font-size: 0.72em;
+  content: '↗';
+  opacity: 0;
+  transition: opacity 160ms ease;
 }
 
 .poster-index-link:hover,
 .poster-index-link:focus-visible {
+  opacity: 1;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.28em;
+}
+
+.poster-index-link:hover::after,
+.poster-index-link:focus-visible::after {
+  opacity: 1;
+}
+
+.poster-index-link:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: -2px;
 }
 
 @media (min-width: 821px) {
@@ -676,51 +712,7 @@
     transition-delay: 0s;
   }
 
-  .seam-poster[data-interactive='true']
-    .poster-field--what-i-built:hover
-    .feature-rain-link,
-  .seam-poster[data-interactive='true']
-    .poster-field--what-i-built:focus-within
-    .feature-rain-link {
-    pointer-events: auto;
-  }
-
-  .feature-rain-item {
-    position: relative;
-  }
-
-  .feature-rain-item::after {
-    position: absolute;
-    top: 50%;
-    left: calc(100% + 0.24rem);
-    font-family: var(--cover-monumental);
-    font-size: 0.64em;
-    font-variation-settings: normal;
-    letter-spacing: 0;
-    content: '↗';
-    opacity: 0;
-    transform: translateY(-54%);
-    transition: opacity 160ms ease;
-  }
-
-  .feature-rain-link:hover,
-  .feature-rain-link:focus-visible {
-    opacity: 0.96;
-  }
-
-  .feature-rain-link:hover::after,
-  .feature-rain-link:focus-visible::after {
-    opacity: 1;
-  }
-
-  .feature-rain-link:focus-visible {
-    outline: 1px solid currentColor;
-    outline-offset: 0.18rem;
-  }
-
-  .feature-rain-lane:has(
-      :is(.feature-rain-link:hover, .feature-rain-link:focus-visible)
-    )
+  .poster-field--what-i-built:has(.poster-index-link:hover)
     .feature-rain-track {
     animation-play-state: paused;
   }
@@ -907,7 +899,7 @@
 
   .feature-rain--mobile .feature-rain-item {
     font-size: clamp(0.7rem, 3.3vw, 0.84rem);
-    opacity: 0.13;
+    opacity: 0.18;
   }
 
   .feature-rain--mobile .feature-rain-item--long {
@@ -916,7 +908,7 @@
 
   .feature-rain--mobile .feature-rain-item--short {
     font-size: clamp(1.42rem, 6.8vw, 1.72rem);
-    opacity: 0.18;
+    opacity: 0.23;
   }
 
   .feature-rain--mobile .feature-rain-lane:nth-child(1)
@@ -930,11 +922,6 @@
     visibility: visible;
     opacity: 1;
     transition-delay: 0s;
-  }
-
-  .mobile-diagonal-poster[data-active-lane='what-i-built']
-    .feature-rain-link {
-    pointer-events: auto;
   }
 
   .mobile-poster-content {
@@ -1032,8 +1019,14 @@
   }
 
   .mobile-poster-content--what-i-built .mobile-poster-index {
-    top: 43%;
+    top: 38%;
     left: clamp(1rem, 5.1vw, 1.5rem);
+    width: min(72vw, 18rem);
+    max-height: 50svh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--cover-black);
+    scrollbar-width: thin;
   }
 
   .mobile-poster-content--how-i-build .mobile-poster-index {
@@ -1045,10 +1038,10 @@
     display: grid;
     grid-template-columns: 1.65rem minmax(0, 1fr);
     gap: 0.55rem;
-    align-items: baseline;
-    padding-block: 0.5rem;
+    align-items: center;
+    min-height: 2.75rem;
     border-top: 1px solid var(--cover-rule);
-    font-size: clamp(0.56rem, 2.35vw, 0.64rem);
+    font-size: clamp(0.63rem, 2.8vw, 0.72rem);
     font-weight: 500;
     letter-spacing: 0.02em;
     line-height: 1.15;
@@ -1067,7 +1060,19 @@
   }
 
   .mobile-poster-index .poster-index-link {
+    min-height: 2.75rem;
     pointer-events: auto;
+  }
+
+  .mobile-poster-content--what-i-built .mobile-poster-index li:last-child {
+    border-bottom: 1px solid var(--cover-rule);
+  }
+
+  .mobile-diagonal-poster:has(
+      .mobile-poster-content--what-i-built .poster-index-link:focus-visible
+    )
+    .feature-rain-track {
+    animation-play-state: paused;
   }
 
   .mobile-diagonal-poster[data-active-lane='what-i-built']

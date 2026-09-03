@@ -1,4 +1,3 @@
-import { Link } from 'react-router'
 import type { WhatFeatureItem } from '../../content/content-types.ts'
 import { whatFeatureGroups } from '../../content/what-features.ts'
 
@@ -6,7 +5,6 @@ type FeatureRainVariant = 'desktop' | 'mobile'
 
 interface FeatureRainProps {
   readonly variant: FeatureRainVariant
-  readonly interactive: boolean
 }
 
 interface FeatureRainLane {
@@ -33,16 +31,14 @@ function getLengthClass(name: string) {
   return 'feature-rain-item--medium'
 }
 
-export function FeatureRain({ variant, interactive }: FeatureRainProps) {
+export function FeatureRain({ variant }: FeatureRainProps) {
   const lanes = variant === 'desktop' ? desktopLanes : mobileLanes
 
   return (
     <div
       className={`feature-rain feature-rain--${variant}`}
       data-feature-rain={variant}
-      aria-hidden={interactive ? undefined : true}
-      aria-label={interactive ? 'WHAT I BUILT pages' : undefined}
-      role={interactive ? 'navigation' : undefined}
+      aria-hidden="true"
     >
       {lanes.map((lane) => (
         <div
@@ -55,32 +51,17 @@ export function FeatureRain({ variant, interactive }: FeatureRainProps) {
               <div
                 className="feature-rain-sequence"
                 data-rain-copy={copyIndex}
-                aria-hidden={copyIndex === 1 ? true : undefined}
                 key={copyIndex}
               >
-                {lane.features.map((feature) => {
-                  const className = `feature-rain-item ${getLengthClass(feature.name)}`
-
-                  return interactive ? (
-                    <Link
-                      className={`${className} feature-rain-link`}
-                      data-feature-id={feature.id}
-                      key={feature.id}
-                      tabIndex={copyIndex === 0 ? undefined : -1}
-                      to={feature.href}
-                    >
-                      {feature.name}
-                    </Link>
-                  ) : (
-                    <span
-                      className={className}
-                      data-feature-id={feature.id}
-                      key={feature.id}
-                    >
-                      {feature.name}
-                    </span>
-                  )
-                })}
+                {lane.features.map((feature) => (
+                  <span
+                    className={`feature-rain-item ${getLengthClass(feature.name)}`}
+                    data-feature-id={feature.id}
+                    key={feature.id}
+                  >
+                    {feature.name}
+                  </span>
+                ))}
               </div>
             ))}
           </div>
