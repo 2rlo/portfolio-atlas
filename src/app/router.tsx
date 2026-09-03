@@ -8,6 +8,7 @@ import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
 import DeveloperStatusRoute from '../routes/DeveloperStatusRoute.tsx'
 import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
+import MeetingLogRoute from '../routes/MeetingLogRoute.tsx'
 import PermissionRoute from '../routes/PermissionRoute.tsx'
 import ProjectSettingRoute from '../routes/ProjectSettingRoute.tsx'
 import QaRoute from '../routes/QaRoute.tsx'
@@ -79,6 +80,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/report',
         Component: ReportRoute,
+      },
+      {
+        path: 'what/meeting-log',
+        Component: MeetingLogRoute,
       },
       {
         path: 'what/qa',

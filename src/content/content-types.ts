@@ -1651,3 +1651,74 @@ export type PermissionPageContent = ReusableWhatCaseContent<
   PermissionProductFixture,
   PermissionEvolutionVisual
 >
+
+export type MeetingLogHotspotId =
+  | 'source-record'
+  | 'change-guard'
+  | 'candidate-group'
+  | 'human-review'
+  | 'capture-boundary'
+
+export interface MeetingLogProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly project: PublicFixtureProject
+  readonly meeting: {
+    readonly title: string
+    readonly date: string
+    readonly duration: string
+    readonly source: string
+    readonly syncState: string
+    readonly participants: readonly PublicFixturePerson[]
+    readonly summary: string
+    readonly sections: readonly {
+      readonly time: string
+      readonly label: string
+      readonly text: string
+    }[]
+  }
+  readonly changeGuard: {
+    readonly label: string
+    readonly state: string
+    readonly detail: string
+    readonly checkedAt: string
+  }
+  readonly candidates: readonly {
+    readonly category: '결정' | '이슈' | '기능 요구'
+    readonly title: string
+    readonly state: 'selected' | 'pending'
+    readonly sourceRange: string
+  }[]
+  readonly selectedCandidate: {
+    readonly category: '결정' | '이슈' | '기능 요구'
+    readonly title: string
+    readonly body: string
+    readonly project: string
+    readonly sourceExcerpt: string
+    readonly duplicateState: string
+    readonly destination: string
+  }
+  readonly review: {
+    readonly reviewer: PublicFixturePerson
+    readonly actions: readonly string[]
+    readonly notice: string
+  }
+  readonly captureBoundary: {
+    readonly label: string
+    readonly state: string
+    readonly activeInput: string
+    readonly remaining: string
+  }
+}
+
+export type MeetingLogEvolutionVisual =
+  | 'transcript-path'
+  | 'candidate-gate'
+  | 'capture-paused'
+  | 'current-sync'
+
+export type MeetingLogPageContent = ReusableWhatCaseContent<
+  MeetingLogHotspotId,
+  MeetingLogProductFixture,
+  MeetingLogEvolutionVisual
+>
