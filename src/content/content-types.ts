@@ -901,3 +901,131 @@ export interface ProjectSettingPageContent {
     readonly status: 'available' | 'in-development'
   }[]
 }
+
+export type WorklogReviewHotspotId =
+  | 'source-continuity'
+  | 'structured-draft'
+  | 'ambiguity-level'
+  | 'human-correction'
+  | 'report-boundary'
+
+export interface WorklogReviewProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly author: PublicFixturePerson
+  readonly reviewer: PublicFixturePerson
+  readonly project: PublicFixtureProject
+  readonly queue: readonly {
+    readonly id: string
+    readonly title: string
+    readonly project: string
+    readonly date: string
+    readonly state: 'selected' | 'waiting'
+  }[]
+  readonly source: {
+    readonly type: string
+    readonly date: string
+    readonly message: string
+  }
+  readonly draft: {
+    readonly work: string
+    readonly result: string
+    readonly ambiguity: string
+    readonly reviewQuestion: string
+  }
+  readonly corrected: {
+    readonly result: string
+    readonly nextCheck: string
+    readonly reviewedAt: string
+  }
+  readonly fallback: {
+    readonly condition: string
+    readonly label: string
+  }
+}
+
+export interface WorklogReviewPageContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+    readonly currentStatus: 'implemented-and-active'
+    readonly boundary: PublicFixtureBoundary
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: string
+    readonly summary: string
+    readonly problemLabel: string
+    readonly problem: string
+  }
+  readonly inspection: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly instruction: string
+    readonly defaultAnnotation: {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly body: string
+    }
+  }
+  readonly product: WorklogReviewProductFixture
+  readonly annotations: readonly ProductEditorialAnnotation<WorklogReviewHotspotId>[]
+  readonly workflow: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly steps: readonly ProductWorkflowStep<WorklogReviewHotspotId>[]
+    readonly boundary: string
+  }
+  readonly rules: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly items: readonly {
+      readonly statement: string
+      readonly explanation: string
+    }[]
+  }
+  readonly evolution: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly scenes: readonly {
+      readonly date: string
+      readonly label: string
+      readonly visual: 'review-level' | 'readable-body' | 'fallback' | 'glossary' | 'anomaly'
+      readonly decision: string
+      readonly trigger: string
+      readonly change: string
+      readonly currentEffect: string
+    }[]
+  }
+  readonly evidence: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly snapshot: string
+    readonly items: readonly {
+      readonly value: string
+      readonly label: string
+      readonly meaning: string
+      readonly boundary: string
+    }[]
+  }
+  readonly implementationStatus: {
+    readonly state: string
+    readonly items: readonly string[]
+    readonly runtime: string
+  }
+  readonly boundary: {
+    readonly eyebrow: string
+    readonly statement: string
+    readonly items: readonly string[]
+  }
+  readonly relatedSystems: readonly {
+    readonly title: string
+    readonly relation: string
+    readonly href?: string
+    readonly status: 'available' | 'in-development'
+  }[]
+}

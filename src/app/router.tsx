@@ -7,6 +7,7 @@ import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
 import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
 import ProjectSettingRoute from '../routes/ProjectSettingRoute.tsx'
+import WorklogReviewRoute from '../routes/WorklogReviewRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/feature-validation',
         Component: FeatureValidationRoute,
+      },
+      {
+        path: 'what/worklog-review',
+        Component: WorklogReviewRoute,
       },
       {
         path: 'what/ai-candidate-review',
