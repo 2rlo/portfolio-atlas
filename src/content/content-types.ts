@@ -1160,3 +1160,158 @@ export interface QaPageContent {
     readonly status: 'available' | 'in-development'
   }[]
 }
+
+export interface ReusableWhatCaseContent<
+  Id extends string,
+  Product,
+  EvolutionVisual extends string,
+> {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+    readonly currentStatus: string
+    readonly boundary: PublicFixtureBoundary
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: string
+    readonly summary: string
+    readonly problemLabel: string
+    readonly problem: string
+  }
+  readonly inspection: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly instruction: string
+    readonly defaultAnnotation: {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly body: string
+    }
+  }
+  readonly product: Product
+  readonly annotations: readonly ProductEditorialAnnotation<Id>[]
+  readonly workflow: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly steps: readonly ProductWorkflowStep<Id>[]
+    readonly boundary: string
+  }
+  readonly decisions: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly items: readonly {
+      readonly statement: string
+      readonly explanation: string
+    }[]
+  }
+  readonly evolution: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly scenes: readonly {
+      readonly date: string
+      readonly label: string
+      readonly visual: EvolutionVisual
+      readonly decision: string
+      readonly trigger: string
+      readonly change: string
+      readonly currentEffect: string
+    }[]
+  }
+  readonly evidence: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly snapshot: string
+    readonly items: readonly {
+      readonly value: string
+      readonly label: string
+      readonly meaning: string
+      readonly boundary: string
+    }[]
+  }
+  readonly implementationStatus: {
+    readonly state: string
+    readonly items: readonly string[]
+    readonly runtime: string
+  }
+  readonly boundary: {
+    readonly eyebrow: string
+    readonly statement: string
+    readonly items: readonly string[]
+  }
+  readonly relatedSystems: readonly {
+    readonly title: string
+    readonly relation: string
+    readonly href?: string
+    readonly status: 'available' | 'in-development'
+  }[]
+}
+
+export type ScheduleHotspotId =
+  | 'canonical-timeline'
+  | 'missing-data'
+  | 'staged-changes'
+  | 'audit-revert'
+  | 'role-boundary'
+
+export interface ScheduleProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly editor: PublicFixturePerson
+  readonly viewer: PublicFixturePerson
+  readonly days: readonly string[]
+  readonly timeline: readonly {
+    readonly project: string
+    readonly items: readonly {
+      readonly title: string
+      readonly start: number
+      readonly span: number
+      readonly actualSpan?: number
+      readonly tone: 'normal' | 'warning' | 'overdue'
+    }[]
+  }[]
+  readonly plans: readonly {
+    readonly project: string
+    readonly title: string
+    readonly status: string
+    readonly period: string
+    readonly owner: string
+    readonly actual: string
+    readonly needsReview?: boolean
+  }[]
+  readonly changes: readonly {
+    readonly project: string
+    readonly title: string
+    readonly proposedBy: string
+    readonly state: string
+  }[]
+  readonly recentApply: {
+    readonly title: string
+    readonly actor: string
+    readonly state: string
+    readonly rule: string
+  }
+  readonly readOnlyScope: {
+    readonly label: string
+    readonly person: string
+    readonly visible: readonly string[]
+    readonly restricted: readonly string[]
+  }
+}
+
+export type ScheduleEvolutionVisual =
+  | 'canonical'
+  | 'proposal'
+  | 'role-scope'
+  | 'actual-line'
+  | 'share-state'
+
+export type SchedulePageContent = ReusableWhatCaseContent<
+  ScheduleHotspotId,
+  ScheduleProductFixture,
+  ScheduleEvolutionVisual
+>
