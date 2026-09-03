@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router'
 import App from '../App.tsx'
 import AiCandidateReviewRoute from '../routes/AiCandidateReviewRoute.tsx'
 import AiNativeEngineeringRoute from '../routes/AiNativeEngineeringRoute.tsx'
+import ApiUsageRoute from '../routes/ApiUsageRoute.tsx'
 import CodemapExplorerRoute from '../routes/CodemapExplorerRoute.tsx'
 import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
 import DeveloperStatusRoute from '../routes/DeveloperStatusRoute.tsx'
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/developer-status',
         Component: DeveloperStatusRoute,
+      },
+      {
+        path: 'what/api-usage',
+        Component: ApiUsageRoute,
       },
       {
         path: 'what/:featureId',

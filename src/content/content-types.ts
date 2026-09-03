@@ -1382,3 +1382,70 @@ export type DeveloperStatusPageContent = ReusableWhatCaseContent<
   DeveloperStatusProductFixture,
   DeveloperStatusEvolutionVisual
 >
+
+export type ApiUsageHotspotId =
+  | 'usage-ledger'
+  | 'pricing-dimensions'
+  | 'workload-split'
+  | 'budget-guard'
+  | 'counterfactual'
+
+export interface ApiUsageProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly period: string
+  readonly syntheticSummary: readonly {
+    readonly label: string
+    readonly value: string
+    readonly note: string
+    readonly tone: 'normal' | 'warning'
+  }[]
+  readonly guard: {
+    readonly status: string
+    readonly dailyWarning: string
+    readonly dailyStop: string
+    readonly monthlyProjection: string
+    readonly keptOnline: string
+    readonly paused: string
+  }
+  readonly workloads: readonly {
+    readonly name: string
+    readonly model: string
+    readonly cost: string
+    readonly share: number
+    readonly mode: 'standard' | 'batch'
+  }[]
+  readonly tokenLedger: readonly {
+    readonly label: string
+    readonly tokens: string
+    readonly rate: string
+  }[]
+  readonly ledgerRows: readonly {
+    readonly date: string
+    readonly feature: string
+    readonly mode: string
+    readonly input: string
+    readonly output: string
+    readonly cost: string
+    readonly state: string
+  }[]
+  readonly counterfactual: {
+    readonly recorded: string
+    readonly standardNoCache: string
+    readonly difference: string
+    readonly label: string
+  }
+}
+
+export type ApiUsageEvolutionVisual =
+  | 'disconnect'
+  | 'dashboard'
+  | 'batch-rate'
+  | 'retry-ledger'
+  | 'workload-effect'
+
+export type ApiUsagePageContent = ReusableWhatCaseContent<
+  ApiUsageHotspotId,
+  ApiUsageProductFixture,
+  ApiUsageEvolutionVisual
+>
