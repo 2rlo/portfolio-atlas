@@ -23,6 +23,7 @@ interface ProductInspectionFrameProps {
   }
   readonly disclosure: string
   readonly surfaceLabel: string
+  readonly evolutionTargetId: string
   readonly children: ReactNode
 }
 
@@ -65,9 +66,11 @@ function ProductHotspot<Id extends string>({
 function EditorialAnnotation({
   annotation,
   fallback,
+  evolutionTargetId,
 }: {
   readonly annotation?: ProductEditorialAnnotation
   readonly fallback: ProductInspectionFrameProps['defaultAnnotation']
+  readonly evolutionTargetId: string
 }) {
   return (
     <aside
@@ -97,7 +100,7 @@ function EditorialAnnotation({
       )}
 
       {annotation?.evolution ? (
-        <a className="product-editorial-evolution" href="#feature-validation-evolution">
+        <a className="product-editorial-evolution" href={`#${evolutionTargetId}`}>
           <span>{annotation.evolution.label}</span>
           <strong>{annotation.evolution.date} ↓</strong>
         </a>
@@ -111,6 +114,7 @@ function ProductInspectionFrame({
   defaultAnnotation,
   disclosure,
   surfaceLabel,
+  evolutionTargetId,
   children,
 }: ProductInspectionFrameProps) {
   return (
@@ -126,6 +130,7 @@ function ProductInspectionFrame({
       <EditorialAnnotation
         annotation={activeAnnotation}
         fallback={defaultAnnotation}
+        evolutionTargetId={evolutionTargetId}
       />
     </div>
   )

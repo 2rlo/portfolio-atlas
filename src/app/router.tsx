@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 import App from '../App.tsx'
+import AiCandidateReviewRoute from '../routes/AiCandidateReviewRoute.tsx'
 import AiNativeEngineeringRoute from '../routes/AiNativeEngineeringRoute.tsx'
 import CodemapExplorerRoute from '../routes/CodemapExplorerRoute.tsx'
 import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/feature-validation',
         Component: FeatureValidationRoute,
+      },
+      {
+        path: 'what/ai-candidate-review',
+        Component: AiCandidateReviewRoute,
       },
       {
         path: 'what/:featureId',

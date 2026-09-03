@@ -10,6 +10,18 @@ export const jadebellPublicWorld = {
       description:
         '접근 정책과 출시 준비 상태를 함께 살펴보는 공개 데모 프로젝트입니다.',
     },
+    canopy: {
+      id: 'canopy',
+      name: 'Canopy',
+      description:
+        '파트너 준비 상태와 운영 인계를 살펴보는 공개 데모 프로젝트입니다.',
+    },
+    harbor: {
+      id: 'harbor',
+      name: 'Harbor',
+      description:
+        '검색과 배포 흐름의 운영 상태를 살펴보는 공개 데모 프로젝트입니다.',
+    },
   },
   people: {
     minaKim: {
@@ -18,13 +30,19 @@ export const jadebellPublicWorld = {
       role: 'Product Lead',
       initials: 'MK',
     },
+    danielLee: {
+      id: 'daniel-lee',
+      name: 'Daniel Lee',
+      role: 'Product Engineer',
+      initials: 'DL',
+    },
   },
 } as const
 
 export const jadebellPublicFixture = {
   meta: {
     id: 'jadebell-public-minimum',
-    version: '1.1.0',
+    version: '1.2.0',
     productName: jadebellPublicWorld.productName,
     organizationName: jadebellPublicWorld.organizationName,
     classification: 'synthetic-public-demo',
@@ -38,7 +56,11 @@ export const jadebellPublicFixture = {
       oneToOneInternalMapping: false,
     },
   },
-  projects: [jadebellPublicWorld.projects.atlas],
+  projects: [
+    jadebellPublicWorld.projects.atlas,
+    jadebellPublicWorld.projects.canopy,
+    jadebellPublicWorld.projects.harbor,
+  ],
   features: [
     {
       id: 'release-readiness',
@@ -55,5 +77,8 @@ export const jadebellPublicFixture = {
         '알림 실패 뒤 재시도 범위와 사용자에게 보이는 최종 상태를 검토하는 합성 기능입니다.',
     },
   ],
-  people: [jadebellPublicWorld.people.minaKim],
+  people: [
+    jadebellPublicWorld.people.minaKim,
+    jadebellPublicWorld.people.danielLee,
+  ],
 } as const satisfies PublicProductFixture

@@ -113,6 +113,7 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
               defaultAnnotation={content.inspection.defaultAnnotation}
               disclosure={content.meta.disclosure}
               surfaceLabel="Feature Validation 재구성 제품 화면과 editorial annotation"
+              evolutionTargetId="feature-validation-evolution"
             >
               <FeatureValidationProductView
                 fixture={content.product}

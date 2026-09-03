@@ -639,3 +639,147 @@ export interface FeatureValidationPageContent {
     readonly status: 'available' | 'in-development'
   }[]
 }
+
+export type AiCandidateReviewHotspotId =
+  | 'review-queue'
+  | 'source-provenance'
+  | 'editable-draft'
+  | 'human-decision'
+  | 'trust-boundary'
+
+export interface AiCandidateReviewProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly reviewer: PublicFixturePerson
+  readonly author: PublicFixturePerson
+  readonly project: PublicFixtureProject
+  readonly filters: readonly string[]
+  readonly queue: readonly {
+    readonly id: string
+    readonly category: string
+    readonly title: string
+    readonly source: string
+    readonly age: string
+    readonly state: 'selected' | 'waiting' | 'recent'
+  }[]
+  readonly selectedCandidate: {
+    readonly id: string
+    readonly category: string
+    readonly title: string
+    readonly risk: string
+    readonly createdAt: string
+    readonly source: {
+      readonly type: string
+      readonly author: string
+      readonly context: string
+      readonly excerpt: string
+    }
+    readonly draft: {
+      readonly title: string
+      readonly body: string
+      readonly project: string
+      readonly category: string
+      readonly risk: string
+    }
+    readonly duplicateCheck: {
+      readonly label: string
+      readonly result: string
+    }
+    readonly destination: string
+  }
+  readonly recentDecision: {
+    readonly title: string
+    readonly decision: string
+    readonly reviewer: string
+  }
+}
+
+export interface AiCandidateReviewPageContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+    readonly currentStatus: 'implemented-and-active'
+    readonly boundary: PublicFixtureBoundary
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: string
+    readonly summary: string
+    readonly problemLabel: string
+    readonly problem: string
+  }
+  readonly inspection: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly instruction: string
+    readonly defaultAnnotation: {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly body: string
+    }
+  }
+  readonly product: AiCandidateReviewProductFixture
+  readonly annotations: readonly ProductEditorialAnnotation<AiCandidateReviewHotspotId>[]
+  readonly workflow: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly steps: readonly ProductWorkflowStep<AiCandidateReviewHotspotId>[]
+    readonly boundary: string
+  }
+  readonly rules: {
+    readonly eyebrow: string
+    readonly items: readonly {
+      readonly statement: string
+      readonly explanation: string
+    }[]
+  }
+  readonly evolution: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly introduction: string
+    readonly scenes: readonly {
+      readonly date: string
+      readonly label: string
+      readonly visual:
+        | 'inline-card'
+        | 'target-source'
+        | 'multi-source'
+        | 'knowledge-gate'
+        | 'registry'
+      readonly decision: string
+      readonly trigger: string
+      readonly change: string
+      readonly currentEffect: string
+    }[]
+  }
+  readonly evidence: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly snapshot: string
+    readonly items: readonly {
+      readonly value: string
+      readonly label: string
+      readonly meaning: string
+      readonly boundary: string
+    }[]
+  }
+  readonly implementationStatus: {
+    readonly state: string
+    readonly items: readonly string[]
+    readonly runtime: string
+  }
+  readonly boundary: {
+    readonly eyebrow: string
+    readonly statement: string
+    readonly items: readonly string[]
+  }
+  readonly relatedSystems: readonly {
+    readonly title: string
+    readonly relation: string
+    readonly href?: string
+    readonly status: 'available' | 'in-development'
+  }[]
+}
