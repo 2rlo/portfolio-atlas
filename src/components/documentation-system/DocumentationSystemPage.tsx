@@ -36,10 +36,10 @@ function DocumentationSystemPage({ content }: DocumentationSystemPageProps) {
             </p>
             <p className="documentation-thesis-copy">{content.hero.thesis}</p>
             <p className="documentation-summary">{content.hero.summary}</p>
-            <aside className="documentation-scope" aria-label="Documentation system scope">
+            <aside className="documentation-scope" aria-label="문서 체계 범위">
               <strong>{content.hero.scope.eyebrow}</strong>
               <p>{content.hero.scope.statement}</p>
-              <ul aria-label="Included documentation artifacts">
+              <ul aria-label="포함된 문서">
                 {content.hero.scope.artifacts.map((artifact) => (
                   <li key={artifact}>{artifact}</li>
                 ))}
@@ -85,7 +85,7 @@ function DocumentationSystemPage({ content }: DocumentationSystemPageProps) {
         </p>
         <p className="documentation-principle-claim">{content.principle.claimBoundary}</p>
         <details className="documentation-principle-unverified">
-          <summary>NOT YET VERIFIED / AUTOMATED</summary>
+          <summary>아직 검증 또는 자동화되지 않음</summary>
           <ul>
             {content.principle.notVerified.map((item) => (
               <li key={item}>{item}</li>
@@ -102,7 +102,7 @@ function DocumentationSystemPage({ content }: DocumentationSystemPageProps) {
         <p className="section-eyebrow">{content.nextPage.eyebrow}</p>
         <h2 id="next-page-title">{content.nextPage.title}</h2>
         <p>{content.nextPage.summary}</p>
-        <span>PAGE IN DEVELOPMENT</span>
+        <span>{content.nextPage.available ? '페이지 열기 →' : '페이지 준비 중'}</span>
       </Link>
     </main>
   )

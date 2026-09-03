@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router'
 import type { DocumentationArtifact } from '../../content/content-types.ts'
 
 interface ArtifactShelfProps {
@@ -25,7 +26,7 @@ function ArtifactExcerpt({ artifact }: ArtifactExcerptProps) {
         <p>RECONSTRUCTED / PUBLIC-SAFE</p>
       </header>
 
-      <pre aria-label={`${artifact.title} reconstructed Markdown sample`}>
+      <pre aria-label={`${artifact.title} 재구성 Markdown 예시`}>
         <code>{artifact.excerpt.join('\n')}</code>
       </pre>
 
@@ -70,7 +71,7 @@ function ArtifactDetail({ artifact, onClose }: ArtifactDetailProps) {
         <article className="artifact-detail-sheet">
           <header className="artifact-detail-header">
             <p>{artifact.index} / ARTIFACT NOTE</p>
-            <button type="button" onClick={onClose} aria-label="Close artifact detail">
+            <button type="button" onClick={onClose} aria-label="문서 상세 닫기">
               CLOSE <span aria-hidden="true">×</span>
             </button>
             <h2 id="artifact-detail-title">{artifact.title}</h2>
@@ -171,7 +172,7 @@ function ArtifactShelf({
     <section className="artifact-section" aria-labelledby="artifact-section-title">
       <div className="artifact-section-header">
         <p className="section-eyebrow">{eyebrow}</p>
-        <h2 id="artifact-section-title">{title}</h2>
+        <h2 id="artifact-section-title" lang="ko">{title}</h2>
         <p className="artifact-introduction">{introduction}</p>
         <p className="artifact-disclosure">{disclosure}</p>
       </div>
@@ -180,7 +181,7 @@ function ArtifactShelf({
         <div className="artifact-index-column">
           <ol
             className="artifact-index"
-            aria-label="Primary documentation artifacts"
+            aria-label="대표 문서"
             onMouseLeave={() => setPreviewArtifactId(null)}
           >
             {primaryArtifacts.map((artifact) => {
@@ -215,21 +216,29 @@ function ArtifactShelf({
           <details className="artifact-library">
             <summary>
               <span>DOCUMENT LIBRARY</span>
-              <strong>{libraryArtifacts.length} MORE ARTIFACTS</strong>
+              <strong>추가 문서 {libraryArtifacts.length}개</strong>
               <span aria-hidden="true">+</span>
             </summary>
-            <ol aria-label="Secondary documentation artifacts">
+            <ol aria-label="추가 문서">
               {libraryArtifacts.map((artifact) => (
                 <li key={artifact.id}>
-                  <button
-                    type="button"
-                    aria-haspopup="dialog"
-                    onClick={() => setDetailArtifactId(artifact.id)}
-                  >
-                    <span>{artifact.index}</span>
-                    <strong>{artifact.title}</strong>
-                    <small>{artifact.responsibility}</small>
-                  </button>
+                  {artifact.href ? (
+                    <Link to={artifact.href}>
+                      <span>{artifact.index}</span>
+                      <strong>{artifact.title}</strong>
+                      <small>{artifact.responsibility}</small>
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      aria-haspopup="dialog"
+                      onClick={() => setDetailArtifactId(artifact.id)}
+                    >
+                      <span>{artifact.index}</span>
+                      <strong>{artifact.title}</strong>
+                      <small>{artifact.responsibility}</small>
+                    </button>
+                  )}
                 </li>
               ))}
             </ol>

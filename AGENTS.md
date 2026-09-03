@@ -114,6 +114,20 @@ Route는 콘텐츠 파일을 직접 해석하지 않는다. `src/content`에서 
 
 ## Working Rule
 
+### Git naming — mandatory gate
+
+코드나 문서를 수정하기 전에 `git branch --show-current`로 현재 브랜치를 확인한다.
+`main`이 아닌 작업 브랜치는 반드시 `docs/git-conventions.md`를 따른다.
+
+- 형식: `<type>/<kebab-case-description>`
+- 허용 type: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`
+- `feature/*`, `ops/*`, underscore가 포함된 이름은 사용하지 않는다.
+- 현재 작업 범위가 branch type과 달라졌다면 계속 수정하기 전에 새 이름을 제안하거나 변경한다.
+- PR 제목은 Conventional Commit 형식을 따른다.
+
+완료 보고 전에 branch 이름과 PR 제목을 다시 확인한다. 상세 규칙과 예시는
+`docs/git-conventions.md`가 canonical source다.
+
 변경 전:
 
 1. `docs/atlas-experience-strategy.md`의 accepted decision 확인

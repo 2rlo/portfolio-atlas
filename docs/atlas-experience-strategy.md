@@ -85,6 +85,11 @@ HOW I BUILD의 심층 페이지는 최소한 다음 계약을 따른다.
 
 ## 7. Documentation System
 
+이 페이지의 언어와 번역 판단은
+[`documentation-system-language-policy.md`](./documentation-system-language-policy.md)를
+따른다. 한국어가 의미 전달을 맡고, 영어는 대형 그래픽 타이포그래피, 기술 고유어,
+실제 artifact 표현으로 제한한다.
+
 첫 화면은 Markdown 파일 목록이 아니라 정보 구조를 보여준다.
 
 Knowledge map은 현재 프로젝트 information map의 계층을 보존하되, 중요한 노드마다
@@ -120,6 +125,27 @@ Artifact shelf의 각 항목은 다음 metadata를 가진다.
 Data Pipeline, API Map, Deployment 등은 `DOCUMENT LIBRARY`의 secondary index로 보낸다.
 문서 수가 아니라 서로 다른 documentation responsibility가 primary shelf의 선택 기준이다.
 
+### Codemap ownership
+
+Codemap은 `Documentation System`이 소유하고 유지하는 code-level context artifact다.
+HTML, JSON, LOCK은 각각 사람의 탐색, 도구가 읽는 구조화된 맥락, 생성 기준과
+freshness 확인을 담당하지만 세 파일을 하나의 artifact 계약으로 본다.
+
+`AI-native Engineering`은 개발 workflow에서 이 Codemap을 조회하고 검증하며,
+human-confirmed 변경 뒤 갱신 대상으로 연결할 수 있다. 그러나 별도 Codemap을 만들거나
+소유권을 복제하지 않는다. Codemap의 설명, 공개 경계, maintenance rule과 canonical
+artifact 위치는 `Documentation System`을 기준으로 한다.
+
+Codemap은 대표 artifact 세 개에 추가하지 않고 `DOCUMENT LIBRARY`에 유지한다. 대신
+공유 가능한 공개 재구성본은 `/how/documentation-system/artifacts/codemap`의 고유 URL을
+가진다. 이 상세 페이지는 실제 저장소 topology를 복사하지 않고, synthetic module을 통해
+호출자, dependency, test, evidence와 flow 탐색 방식을 보여준다. 모바일에서는 축소된
+graph 대신 module과 관계를 세로 순서로 펼친다.
+
+`AI-native Engineering`은 해당 URL을 `CONTEXT`, `SCOPE`, `VERIFY`, `CANONICALIZE`
+단계에서 사용하는 한 장면으로 연결한다. 이 cross-link는 Codemap의 소유권을 옮기지 않고
+같은 artifact가 문서 체계와 개발 workflow에서 맡는 역할 차이를 보여준다.
+
 Documentation Evolution은 동일한 크기의 timeline item을 반복하지 않는다. 하나의
 information structure가 압력에 따라 확장되는 `growing structure`로 보여준다.
 각 단계는 다음 순서로 읽혀야 한다.
@@ -129,6 +155,10 @@ information structure가 압력에 따라 확장되는 `growing structure`로 �
 예: 시스템 확장, 운영 문제, 코드 복잡도, stale context 같은 압력이 문서 구조와 갱신 규칙을 어떻게 바꾸었는지 설명한다. “처음부터 완벽했다”는 서사를 만들지 않는다.
 공개 가능한 구체 signal은 확인된 evidence가 있을 때만 추가하고, 근거가 없으면 pressure
 label만 유지한다.
+
+Codemap의 현재 evolution은 `stale map 발견 → freshness를 별도 검증할 필요 확인 →
+LOCK에 revision / generated time / scan scope / module fingerprint 기록`으로 설명한다.
+실제 private commit과 module 경로는 공개 예시에 포함하지 않는다.
 
 `SAME CHANGE.`는 다섯 번째 evolution 단계가 아니라 `CURRENT RULE`이다. 실행 문법은
 `CHANGE → CONTEXT → VERIFY`이며, boundary / route / dependency / schema / major data

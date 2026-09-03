@@ -4,6 +4,13 @@ Read `AGENTS.md` first.
 
 Its rules are canonical and apply to every task.
 
+## Mandatory Git Naming Gate
+
+Before the first edit, run `git branch --show-current` and read
+`docs/git-conventions.md`. Unless the branch is `main`, do not continue on a branch
+that fails `<type>/<kebab-case-description>` or whose type no longer matches the
+work. Before reporting completion, check the branch and proposed PR title again.
+
 For IA, Home, case-study, HOW I BUILD, or artifact UI work, also read
 `docs/atlas-experience-strategy.md` before editing. It is the accepted
 experience-strategy decision record; do not silently diverge from it.

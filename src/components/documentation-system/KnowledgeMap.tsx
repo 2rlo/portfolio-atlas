@@ -170,7 +170,7 @@ function KnowledgeMap({
           ))}
         </svg>
 
-        <ol className="knowledge-nodes" aria-label="Project context map">
+        <ol className="knowledge-nodes" aria-label="프로젝트 맥락 지도">
           {nodes.map((node) => {
             const position = nodePositions[node.id]
             const isActive = activeNodeId === node.id
@@ -207,7 +207,7 @@ function KnowledgeMap({
             className="knowledge-annotation"
             id="knowledge-active-annotation"
             aria-live="polite"
-            aria-label="Selected context note"
+            aria-label="선택한 맥락 설명"
             key={activeNode.id}
           >
             <header>
@@ -219,7 +219,7 @@ function KnowledgeMap({
         ) : null}
       </div>
 
-      <ol className="knowledge-mobile-outline" aria-label="Project context hierarchy">
+      <ol className="knowledge-mobile-outline" aria-label="프로젝트 맥락 계층">
         {orderedMobileNodes.map((node) => {
           const isActive = activeNodeId === node.id
 

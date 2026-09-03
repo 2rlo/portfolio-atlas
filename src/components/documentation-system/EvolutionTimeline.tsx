@@ -261,7 +261,7 @@ function CurrentRule({ currentRule }: Pick<EvolutionTimelineProps, 'currentRule'
       <h3 id="current-rule-title">{currentRule.title}</h3>
       <p className="evolution-current-rule-statement">{currentRule.statement}</p>
 
-      <ol className="maintenance-flow" aria-label="Same-change maintenance flow">
+      <ol className="maintenance-flow" aria-label="같은 변경에서 수행하는 유지보수 흐름">
         {currentRule.flow.map((step, index) => (
           <li key={step.label}>
             <span>{step.label}</span>
@@ -367,7 +367,7 @@ function EvolutionTimeline({ eyebrow, headline, introduction, takeaway, scenes, 
           </aside>
         ) : null}
 
-        <ol className="evolution-steps" aria-label="Documentation system evolution">
+        <ol className="evolution-steps" aria-label="문서 체계 발전 과정">
           {scenes.map((scene) => (
             <EvolutionStep
               key={scene.id}

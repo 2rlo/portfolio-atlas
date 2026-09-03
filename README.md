@@ -55,3 +55,9 @@ src/
   WHAT I BUILT / HOW I BUILD 정보 구조, 페이지 역할, 상호 링크, Home 진입점의 기준
 - [`docs/documentation-system-content-audit.md`](docs/documentation-system-content-audit.md):
   Documentation System 공개 콘텐츠의 근거·축약·공개 경계와 scrollytelling 장면 계약
+
+## Git conventions
+
+작업 브랜치와 PR 제목은 [`docs/git-conventions.md`](docs/git-conventions.md)를 따릅니다.
+브랜치는 `<type>/<kebab-case-description>`, PR 제목은 Conventional Commit 형식을 사용하며
+PR 생성 시 GitHub Actions가 두 규칙을 검사합니다.
