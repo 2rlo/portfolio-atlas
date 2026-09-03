@@ -15,6 +15,7 @@ import QaRoute from '../routes/QaRoute.tsx'
 import RagAssistantRoute from '../routes/RagAssistantRoute.tsx'
 import ReportRoute from '../routes/ReportRoute.tsx'
 import ScheduleRoute from '../routes/ScheduleRoute.tsx'
+import VersionLogRoute from '../routes/VersionLogRoute.tsx'
 import WorklogReviewRoute from '../routes/WorklogReviewRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
@@ -88,6 +89,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/qa',
         Component: QaRoute,
+      },
+      {
+        path: 'what/version-log',
+        Component: VersionLogRoute,
       },
       {
         path: 'what/schedule',

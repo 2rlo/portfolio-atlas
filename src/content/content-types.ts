@@ -1722,3 +1722,67 @@ export type MeetingLogPageContent = ReusableWhatCaseContent<
   MeetingLogProductFixture,
   MeetingLogEvolutionVisual
 >
+
+export type VersionLogHotspotId =
+  | 'release-status'
+  | 'same-date-builds'
+  | 'compatibility-scope'
+  | 'deployment-note'
+  | 'source-trace'
+
+export interface VersionLogProductFixture {
+  readonly productName: string
+  readonly workspaceLabel: string
+  readonly project: PublicFixtureProject
+  readonly filters: readonly {
+    readonly label: string
+    readonly active: boolean
+  }[]
+  readonly query: {
+    readonly label: string
+    readonly value: string
+    readonly result: string
+  }
+  readonly groups: readonly {
+    readonly date: string
+    readonly records: readonly {
+      readonly product: string
+      readonly version: string
+      readonly displayName: string
+      readonly releaseStatus: 'RELEASE' | 'DEVELOPMENT'
+      readonly compatibility: string
+      readonly selected: boolean
+    }[]
+  }[]
+  readonly selected: {
+    readonly product: string
+    readonly version: string
+    readonly displayName: string
+    readonly releaseStatus: 'RELEASE' | 'DEVELOPMENT'
+    readonly releaseDate: string
+    readonly compatibility: readonly string[]
+    readonly updates: readonly string[]
+    readonly fixes: readonly string[]
+    readonly deploymentNote: string
+  }
+  readonly sourceTrace: {
+    readonly source: string
+    readonly sync: string
+    readonly structuredLookup: string
+    readonly semanticIndex: string
+    readonly reference: string
+  }
+}
+
+export type VersionLogEvolutionVisual =
+  | 'normalized-sync'
+  | 'search-source'
+  | 'ambiguous-latest'
+  | 'missing-tolerant'
+  | 'evidence-axis'
+
+export type VersionLogPageContent = ReusableWhatCaseContent<
+  VersionLogHotspotId,
+  VersionLogProductFixture,
+  VersionLogEvolutionVisual
+>
