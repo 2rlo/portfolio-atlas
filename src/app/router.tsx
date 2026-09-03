@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router'
 import App from '../App.tsx'
+import AiNativeEngineeringRoute from '../routes/AiNativeEngineeringRoute.tsx'
+import CodemapExplorerRoute from '../routes/CodemapExplorerRoute.tsx'
 import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
@@ -20,8 +22,12 @@ export const router = createBrowserRouter([
         Component: DocumentationSystemRoute,
       },
       {
+        path: 'how/documentation-system/artifacts/codemap',
+        Component: CodemapExplorerRoute,
+      },
+      {
         path: 'how/ai-native-engineering',
-        Component: WorkInProgressRoute,
+        Component: AiNativeEngineeringRoute,
       },
       {
         path: 'how/technical-writing',

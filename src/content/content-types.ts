@@ -147,6 +147,7 @@ export interface DocumentationArtifact {
   readonly maintenance: string
   readonly evidence: readonly DocumentationArtifactEvidence[]
   readonly excerpt: readonly string[]
+  readonly href?: string
 }
 
 export interface DocumentationEvolutionBoundaryVisual {
@@ -285,6 +286,90 @@ export interface DocumentationSystemContent {
     readonly title: string
     readonly summary: string
     readonly href: string
-    readonly available: false
+    readonly available: boolean
   }
+}
+
+export type PublicCodemapNodeId =
+  | 'workspace'
+  | 'interface'
+  | 'access'
+  | 'service'
+  | 'store'
+
+export interface PublicCodemapNode {
+  readonly id: PublicCodemapNodeId
+  readonly index: string
+  readonly label: string
+  readonly kind: string
+  readonly role: string
+  readonly callers: readonly string[]
+  readonly dependencies: readonly string[]
+  readonly tests: readonly string[]
+  readonly evidence: readonly string[]
+}
+
+export interface PublicCodemapFlow {
+  readonly id: string
+  readonly label: string
+  readonly trigger: string
+  readonly outcome: string
+  readonly steps: readonly PublicCodemapNodeId[]
+}
+
+export interface PublicCodemapContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly owner: 'Documentation System'
+    readonly disclosure: string
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: string
+    readonly summary: string
+  }
+  readonly freshness: {
+    readonly state: 'FRESH'
+    readonly reviewedAt: string
+    readonly scope: string
+    readonly rule: string
+  }
+  readonly nodes: readonly PublicCodemapNode[]
+  readonly flows: readonly PublicCodemapFlow[]
+  readonly contract: readonly {
+    readonly format: 'HTML' | 'JSON' | 'LOCK'
+    readonly audience: string
+    readonly responsibility: string
+  }[]
+  readonly boundary: readonly string[]
+}
+
+export interface AiNativeWorkflowStep {
+  readonly id: string
+  readonly label: string
+  readonly summary: string
+  readonly detail: string
+  readonly codemapUse?: string
+  readonly state: 'context' | 'candidate' | 'evidence' | 'decision' | 'canonical'
+}
+
+export interface AiNativeEngineeringContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: string
+    readonly summary: string
+  }
+  readonly scene: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly situation: string
+    readonly steps: readonly AiNativeWorkflowStep[]
+  }
+  readonly boundary: readonly string[]
 }

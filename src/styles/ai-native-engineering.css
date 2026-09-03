@@ -1,0 +1,81 @@
+.ai-native-page {
+  min-height: 100vh;
+  color: var(--cover-cream);
+  background: var(--cover-black);
+}
+.ai-native-page :where(h1, h2, h3, p, ol, ul) { margin: 0; }
+.ai-native-page :where(ol, ul) { padding: 0; list-style: none; }
+
+.ai-native-back,
+.ai-native-hero header > p,
+.ai-native-scene > header > p,
+.ai-native-steps button > span,
+.ai-native-step-detail > p,
+.ai-native-step-detail aside small,
+.ai-native-boundary > p {
+  font-family: var(--cover-utility);
+  font-size: clamp(0.58rem, 0.56vw, 0.7rem);
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.ai-native-hero {
+  min-height: 100svh;
+  padding: clamp(6.8rem, 10vh, 8.5rem) var(--page-gutter) clamp(4rem, 7vw, 7rem);
+  background: linear-gradient(115deg, var(--cover-black) 0 57%, var(--cover-jade) 57% 100%);
+}
+.ai-native-back { display: inline-flex; gap: 0.8rem; color: var(--cover-muted-jade); text-decoration: none; }
+.ai-native-hero-layout { display: grid; grid-template-columns: minmax(31rem, 1.2fr) minmax(19rem, 0.8fr); gap: clamp(3rem, 7vw, 8rem); align-items: end; width: min(100%, var(--page-max-width)); min-height: 72svh; margin-inline: auto; }
+.ai-native-hero header > p { color: var(--cover-muted-jade); }
+.ai-native-hero h1 { margin-top: 1.5rem; font-family: var(--cover-roboto-flex-study); font-size: clamp(4.7rem, 9.3vw, 10rem); font-variation-settings: 'opsz' 144, 'wdth' 101, 'wght' 670; font-weight: 670; letter-spacing: -0.06em; line-height: 0.75; }
+.ai-native-hero h1 span { display: block; }
+.ai-native-hero h1 span:last-child { margin-left: 0.55em; }
+.ai-native-hero-layout > div > strong { display: block; max-width: 20ch; font-size: clamp(1.55rem, 2.4vw, 2.65rem); font-weight: 540; letter-spacing: -0.03em; line-height: 1.3; word-break: keep-all; }
+.ai-native-hero-layout > div > p { max-width: 35rem; margin-top: 1.5rem; color: var(--document-dark-muted); font-size: 0.98rem; line-height: 1.7; word-break: keep-all; }
+.ai-native-hero-layout > div > small { display: block; padding-top: 1rem; margin-top: 2rem; color: var(--cover-muted-jade); font-family: var(--cover-utility); font-size: 0.62rem; line-height: 1.5; border-top: 1px solid var(--cover-rule); }
+
+.ai-native-scene { width: min(100%, var(--page-max-width)); padding: clamp(7rem, 11vw, 11rem) var(--page-gutter); margin-inline: auto; }
+.ai-native-scene > header { display: grid; grid-template-columns: 18% minmax(0, 1fr) minmax(15rem, 0.42fr); gap: clamp(1.5rem, 4vw, 5rem); align-items: end; }
+.ai-native-scene > header > p { color: var(--cover-muted-jade); }
+.ai-native-scene h2 { max-width: 17ch; font-size: clamp(2.8rem, 5vw, 5.6rem); font-weight: 600; letter-spacing: -0.055em; line-height: 1; word-break: keep-all; }
+.ai-native-scene > header > span { color: var(--document-dark-muted); font-size: 0.92rem; line-height: 1.65; word-break: keep-all; }
+
+.ai-native-workbench { display: grid; grid-template-columns: minmax(20rem, 0.43fr) minmax(0, 0.57fr); gap: clamp(3rem, 7vw, 9rem); margin-top: clamp(5rem, 9vw, 9rem); }
+.ai-native-steps { border-top: 1px solid var(--cover-rule); }
+.ai-native-steps li { border-bottom: 1px solid var(--cover-rule); }
+.ai-native-steps button { display: grid; grid-template-columns: 2.4rem minmax(7rem, 0.45fr) minmax(0, 0.55fr); gap: 1rem; width: 100%; min-height: 4.8rem; align-items: center; padding: 0.8rem 0; color: var(--document-dark-muted); text-align: left; cursor: pointer; background: transparent; border: 0; }
+.ai-native-steps button[aria-pressed='true'] { color: var(--cover-cream); }
+.ai-native-steps button > span { color: var(--cover-muted-jade); }
+.ai-native-steps button > strong { font-size: 0.78rem; letter-spacing: 0.03em; }
+.ai-native-steps button > small { line-height: 1.4; }
+.ai-native-steps button[aria-pressed='true'] > span::before { margin-right: 0.45rem; color: var(--sage); content: '●'; }
+
+.ai-native-step-detail { position: sticky; top: 2rem; min-height: 34rem; padding: clamp(2rem, 4vw, 4.5rem); color: var(--ink); background: var(--document-paper); }
+.ai-native-step-detail > p { color: var(--jade); }
+.ai-native-step-detail h3 { margin-top: clamp(3rem, 6vw, 6rem); font-family: var(--cover-roboto-flex-study); font-size: clamp(3.8rem, 7vw, 8rem); font-variation-settings: 'opsz' 144, 'wdth' 102, 'wght' 670; font-weight: 670; letter-spacing: -0.055em; line-height: 0.82; }
+.ai-native-step-detail > strong { display: block; margin-top: 2rem; font-size: clamp(1.15rem, 1.6vw, 1.65rem); line-height: 1.35; }
+.ai-native-step-detail > span { display: block; max-width: 37rem; margin-top: 1rem; color: var(--ink-soft); font-size: 0.94rem; line-height: 1.7; word-break: keep-all; }
+.ai-native-step-detail aside { padding-top: 1.2rem; margin-top: clamp(3rem, 6vw, 6rem); border-top: 1px solid var(--ink); }
+.ai-native-step-detail aside small { color: var(--jade); }
+.ai-native-step-detail aside p { max-width: 36rem; margin-top: 0.8rem; font-size: 0.88rem; line-height: 1.6; word-break: keep-all; }
+.ai-native-step-detail aside a { display: inline-flex; gap: 0.7rem; margin-top: 1.4rem; color: var(--jade); font-size: 0.82rem; text-decoration: none; border-bottom: 1px solid var(--jade); }
+
+.ai-native-boundary { width: min(100%, var(--page-max-width)); padding: clamp(4rem, 7vw, 7rem) var(--page-gutter); margin-inline: auto; background: var(--cover-jade); box-shadow: 0 0 0 100vmax var(--cover-jade); clip-path: inset(0 -100vmax); }
+.ai-native-boundary > p { color: var(--cover-muted-jade); }
+.ai-native-boundary ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; margin-top: 1.5rem; }
+.ai-native-boundary li { color: var(--document-dark-muted); font-size: 0.9rem; line-height: 1.65; word-break: keep-all; }
+.ai-native-boundary a { display: inline-flex; gap: 0.8rem; margin-top: 4rem; color: var(--cover-cream); text-decoration: none; border-bottom: 1px solid var(--cover-muted-jade); }
+
+@media (max-width: 800px) {
+  .ai-native-hero { background: var(--cover-black); }
+  .ai-native-hero-layout { grid-template-columns: 1fr; min-height: auto; margin-top: 4rem; }
+  .ai-native-hero h1 { font-size: clamp(4rem, 20vw, 6.8rem); }
+  .ai-native-hero h1 span:last-child { margin-left: 0; font-size: 0.64em; line-height: 1.2; }
+  .ai-native-scene > header,
+  .ai-native-workbench { grid-template-columns: 1fr; }
+  .ai-native-steps button { grid-template-columns: 2rem minmax(7rem, 0.45fr) minmax(0, 0.55fr); }
+  .ai-native-step-detail { position: static; min-height: 30rem; }
+  .ai-native-step-detail h3 { font-size: clamp(3.5rem, 17vw, 5.5rem); }
+  .ai-native-boundary ul { grid-template-columns: 1fr; }
+}
