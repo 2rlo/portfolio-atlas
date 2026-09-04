@@ -9,14 +9,14 @@ interface ReusableWhatCasePageProps<Id extends string, Product, Visual extends s
   readonly titleId: string
   readonly surfaceLabel: string
   readonly workflowLabel: string
-  readonly evolutionTargetId: string
+  readonly evolutionTargetId?: string
   readonly relatedLabel: string
   readonly renderProduct: (props: {
     readonly fixture: Product
     readonly activeId: Id | null
     readonly onActivate: (id: Id) => void
   }) => ReactNode
-  readonly renderEvolutionFragment: (visual: Visual) => ReactNode
+  readonly renderEvolutionFragment?: (visual: Visual) => ReactNode
 }
 
 function ReusableWhatCasePage<Id extends string, Product, Visual extends string>({
@@ -64,19 +64,21 @@ function ReusableWhatCasePage<Id extends string, Product, Visual extends string>
         <ol>{content.decisions.items.map((decision) => <li key={decision.statement}><strong>{decision.statement}</strong><p>{decision.explanation}</p></li>)}</ol>
       </section>
 
-      <section className="qa-evolution" id={evolutionTargetId} aria-labelledby={`${titleId}-evolution`}>
-        <header className="qa-section-heading"><p>{content.evolution.eyebrow}</p><h2 id={`${titleId}-evolution`}>{content.evolution.title}</h2><span>{content.evolution.introduction}</span></header>
-        <ol className="qa-evolution-scenes">
-          {content.evolution.scenes.map((scene) => (
-            <li key={`${scene.date}-${scene.label}`}>
-              <header><time>{scene.date}</time><span>{scene.label}</span></header>
-              {renderEvolutionFragment(scene.visual)}
-              <strong>{scene.decision}</strong>
-              <dl><div><dt>TRIGGER</dt><dd>{scene.trigger}</dd></div><div><dt>CHANGE</dt><dd>{scene.change}</dd></div><div><dt>CURRENT EFFECT</dt><dd>{scene.currentEffect}</dd></div></dl>
-            </li>
-          ))}
-        </ol>
-      </section>
+      {content.evolution && evolutionTargetId && renderEvolutionFragment ? (
+        <section className="qa-evolution" id={evolutionTargetId} aria-labelledby={`${titleId}-evolution`}>
+          <header className="qa-section-heading"><p>{content.evolution.eyebrow}</p><h2 id={`${titleId}-evolution`}>{content.evolution.title}</h2><span>{content.evolution.introduction}</span></header>
+          <ol className="qa-evolution-scenes">
+            {content.evolution.scenes.map((scene) => (
+              <li key={`${scene.date}-${scene.label}`}>
+                <header><time>{scene.date}</time><span>{scene.label}</span></header>
+                {renderEvolutionFragment(scene.visual)}
+                <strong>{scene.decision}</strong>
+                <dl><div><dt>TRIGGER</dt><dd>{scene.trigger}</dd></div><div><dt>CHANGE</dt><dd>{scene.change}</dd></div><div><dt>CURRENT EFFECT</dt><dd>{scene.currentEffect}</dd></div></dl>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
 
       <section className="qa-evidence" aria-labelledby={`${titleId}-evidence`}>
         <header className="qa-evidence-heading"><p>{content.evidence.eyebrow}</p><h2 id={`${titleId}-evidence`}>{content.evidence.title}</h2><span>{content.evidence.snapshot}</span></header>

@@ -1208,7 +1208,7 @@ export interface ReusableWhatCaseContent<
       readonly explanation: string
     }[]
   }
-  readonly evolution: {
+  readonly evolution?: {
     readonly eyebrow: string
     readonly title: string
     readonly introduction: string
@@ -1785,4 +1785,45 @@ export type VersionLogPageContent = ReusableWhatCaseContent<
   VersionLogHotspotId,
   VersionLogProductFixture,
   VersionLogEvolutionVisual
+>
+
+export type WikiHotspotId =
+  | 'search-entry'
+  | 'collection-structure'
+  | 'return-views'
+  | 'document-metadata'
+
+export interface WikiProductFixture {
+  readonly productName: string
+  readonly platformLabel: string
+  readonly workspaceLabel: string
+  readonly actor: PublicFixturePerson
+  readonly searchPlaceholder: string
+  readonly createLabel: string
+  readonly primaryNavigation: readonly {
+    readonly symbol: string
+    readonly label: string
+    readonly active: boolean
+  }[]
+  readonly collections: readonly {
+    readonly symbol: string
+    readonly label: string
+  }[]
+  readonly tabs: readonly {
+    readonly label: string
+    readonly active: boolean
+  }[]
+  readonly documents: readonly {
+    readonly title: string
+    readonly editedBy: PublicFixturePerson
+    readonly updated: string
+    readonly collection: string
+    readonly viewed: string
+  }[]
+}
+
+export type WikiPageContent = ReusableWhatCaseContent<
+  WikiHotspotId,
+  WikiProductFixture,
+  never
 >

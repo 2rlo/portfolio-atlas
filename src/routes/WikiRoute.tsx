@@ -1,15 +1,10 @@
-import WorkInProgressPage from '../components/work-in-progress/WorkInProgressPage.tsx'
-import { wikiPlaceholderContent } from '../content/wiki.ts'
-import '../styles/work-in-progress.css'
+import WikiPage from '../components/wiki/WikiPage.tsx'
+import { wikiContent } from '../content/wiki.ts'
+import '../styles/qa.css'
+import '../styles/wiki.css'
 
 function WikiRoute() {
-  return (
-    <WorkInProgressPage
-      eyebrow={wikiPlaceholderContent.eyebrow}
-      primaryCopy={wikiPlaceholderContent.primaryCopy}
-      secondaryCopy={wikiPlaceholderContent.secondaryCopy}
-    />
-  )
+  return <WikiPage content={wikiContent} />
 }
 
 export default WikiRoute
