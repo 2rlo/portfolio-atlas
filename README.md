@@ -26,18 +26,20 @@ src/
 ├── app/
 │   └── router.tsx                    # route 등록 단일 진입점
 ├── components/
-│   ├── home/                         # Home cover와 display study
-│   └── documentation-system/         # Knowledge Map, artifact, evolution UI
+│   ├── home/                         # Home cover와 WHAT / HOW index
+│   ├── product-case/                 # WHAT 페이지의 공통 inspection 문법
+│   └── */                            # HOW / WHAT별 presentation component
 ├── content/
 │   ├── content-types.ts              # 공개 콘텐츠 타입 계약
 │   ├── home.ts                       # Home 공개 콘텐츠
+│   ├── what-features.ts              # WHAT route index
 │   └── fixtures/                     # runtime private source가 없는 공개 fixture
 ├── routes/
 │   ├── HomeRoute.tsx                 # `/` Home route
-│   └── DocumentationSystemRoute.tsx  # `/how/documentation-system`
+│   └── *Route.tsx                    # URL 단위 HOW / WHAT route
 ├── styles/
 │   ├── tokens.css                    # 디자인 토큰 단일 원본
-│   └── documentation-system.css      # 상세 페이지 전용 스타일
+│   └── *.css                         # 페이지별 스타일
 ├── App.tsx                            # 공통 레이아웃과 Outlet
 ├── App.css                            # 페이지 레이아웃 스타일
 ├── index.css                          # 전역 기본 스타일
@@ -55,6 +57,10 @@ src/
   WHAT I BUILT / HOW I BUILD 정보 구조, 페이지 역할, 상호 링크, Home 진입점의 기준
 - [`docs/documentation-system-content-audit.md`](docs/documentation-system-content-audit.md):
   Documentation System 공개 콘텐츠의 근거·축약·공개 경계와 scrollytelling 장면 계약
+- [`docs/technical-writing-content-audit.md`](docs/technical-writing-content-audit.md):
+  Technical Writing의 독자·목적·행동·위험별 writing decision과 공개 경계
+- [`docs/security-operations-content-audit.md`](docs/security-operations-content-audit.md):
+  Security & Operations의 권한·배포·복구 decision과 확인된 운영 경계
 
 ## Git conventions
 

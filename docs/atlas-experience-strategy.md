@@ -32,15 +32,15 @@ HOME
 ├── WHAT I BUILT
 │   └── product behavior / workflow / state / operation
 └── HOW I BUILD
-    └── EXTERNALIZED CONTEXT SYSTEM
-        ├── Documentation System
-        ├── AI-native Engineering
-        └── Technical Writing Library
+    ├── Documentation System
+    ├── AI-native Engineering
+    ├── Technical Writing
+    └── Security & Operations
 ```
 
 `WHAT I BUILT`를 먼저 모두 보여준 뒤 `HOW I BUILD`를 아래에 묻지 않는다. 두 트랙은 첫 화면과 전역 탐색에서 함께 보여야 한다. 이것은 위아래의 우선순위가 아니라 서로를 설명하는 두 관점이다.
 
-Security / Governance와 Operations / Reliability는 근거와 사례가 충분해질 때 HOW I BUILD 내부의 별도 grouping으로 확장할 수 있다. 초기에는 모든 주제를 같은 깊이의 여섯 개 페이지로 만들지 않는다.
+Security & Operations는 권한·변경·검증·복구의 확인된 evidence를 함께 다루는 네 번째 HOW 페이지다. 별도 evidence와 route가 없는 주제를 같은 깊이의 페이지처럼 navigation에 추가하지 않는다.
 
 ## 3. Unifying philosophy
 
@@ -52,7 +52,10 @@ Security / Governance와 Operations / Reliability는 근거와 사례가 충분�
 - AI-native Engineering: 그 맥락을 실제 개발 workflow가 사용하게 한다.
 - Technical Writing: 독자와 목적에 맞는 해상도로 맥락을 전달한다.
 
-`Externalized Context System`은 HOW I BUILD 세 영역을 묶는 설명용 umbrella다. 개별 도구 이름보다 이 시스템과 검증 방식이 앞에 온다.
+`Externalized Context System`은 Documentation System, AI-native Engineering,
+Technical Writing 세 영역을 묶는 설명용 umbrella다. Security & Operations는
+제품 권한과 운영 경계를 별도 축으로 다룬다. 개별 도구 이름보다 각 시스템의 판단과
+검증 방식이 앞에 온다.
 
 ## 4. Reading depths
 
@@ -84,7 +87,7 @@ HOW I BUILD의 심층 페이지는 최소한 다음 계약을 따른다.
 5. 핵심 artifact 최대 세 개
 6. 현재의 boundary와 maintenance rule
 
-나머지 artifact는 library 또는 appendix로 보낸다. 세 페이지 모두 같은 템플릿처럼 보이게 만들지 말고, 각 주제에 맞는 signature interaction을 하나만 선택한다.
+나머지 artifact는 library 또는 appendix로 보낸다. HOW 페이지가 모두 같은 템플릿처럼 보이지 않게 하고, 각 주제에 맞는 signature interaction을 하나만 선택한다.
 
 ## 7. Documentation System
 
@@ -198,21 +201,18 @@ Incident는 다음 구조로 설명한다.
 
 가장 중요한 질문은 “AI를 어떤 도구로 썼는가”가 아니라 “AI나 초기 가설이 틀렸을 때 어떻게 알아차렸는가”다.
 
-## 9. Technical Writing Library
+## 9. Technical Writing
 
-Technical Writing은 긴 case study보다 문서 자체가 주인공인 gallery로 만든다.
+Technical Writing은 문서 종류나 파일 수보다 같은 기술 정보를 독자, 권한, 목적,
+실행 위험에 따라 어떻게 다르게 썼는지 보여준다. Documentation System이 정보의 위치,
+책임, 검색, 최신성 규칙을 다룬다면 이 페이지는 실제 독자가 이해하고 판단하고 다음
+행동을 할 수 있게 만든 writing decision을 다룬다.
 
-기본 유형:
-
-- Architecture: explain a system
-- API Map: explain a contract
-- Deployment Runbook: guide an operation
-- Recovery Guide: guide a failure
-- Decision Record: explain why
-
-문서 상세는 Audience, Purpose, Design decision, reconstructed excerpt, Maintenance rule을 보여준다. fake Notion 또는 fake IDE 프레임을 만들지 않는다. 좋은 typography의 raw Markdown rendering을 우선한다.
-
-최소 한 번은 `same system, different audience` 비교를 제공한다. 같은 내용을 개발자, 운영자, 의사결정자에게 어떻게 다른 해상도로 전달했는지 보여주는 것이 글쓰기 능력의 더 강한 증거다.
+대표 사례는 역할별 안내에서 통합 안내로 바뀐 독자 모델, future maintainer를 위한
+Internal API Reference, 위험 절차의 순서와 검증 의미를 구분한 Deployment / Recovery다.
+각 사례는 public-safe reconstructed excerpt와 Audience, Purpose, Action, Boundary를
+연결한다. private Markdown 원문을 복사하거나 외부 SDK documentation 경험으로
+확대하지 않는다.
 
 ## 10. Interaction and routing
 
@@ -271,7 +271,8 @@ Home cover의 현재 visual decision:
 - mobile tap 또는 keyboard activation은 선택한 field를 약 60~65%까지 확장하고
   해당 index만 공개한다. 같은 field를 다시 선택하면 50:50 default로 돌아간다.
   충분히 넓은 화면과 landscape에서는 desktop vertical seam을 유지한다.
-- 실제 route가 있는 `Documentation System`만 연결한다. 아직 존재하지 않는 나머지 index는 visual prototype으로 남긴다.
+- 현재 route가 있는 Documentation System, AI-native Engineering, Technical Writing,
+  Security & Operations를 실제 index에 연결한다. 존재하지 않는 HOW route는 연결하지 않는다.
 - 현재는 Home cover 목업이며 실제 사례, 성과, adoption을 암시하지 않는다.
 
 Typography study와 선택안 snapshot은 `docs/mockups/README.md`에서 관리한다.

@@ -53,16 +53,17 @@ progressive disclosure, interaction, public artifact 기준의 canonical decisio
 - Documentation System
 - AI-native Engineering
 - Technical Writing
-- AI Trust
-- Security / Governance
-- Operations / Reliability
+- Security & Operations
+
+AI Trust처럼 별도 evidence와 route가 아직 없는 주제는 현재 공개 navigation에
+있는 것처럼 설명하지 않는다.
 
 
 
 ## Repository Architecture
 
 - `src/app/router.tsx`: React Router 설정의 단일 진입점. 라우터 인스턴스는 React 트리 밖에서 한 번만 생성한다.
-- `src/routes/*Route.tsx`: URL 단위 페이지 컴포넌트. 현재 공개 route는 Home(`/`)과 Documentation System(`/how/documentation-system`)이다.
+- `src/routes/*Route.tsx`: URL 단위 페이지 컴포넌트. 현재 공개 route inventory는 `src/app/router.tsx`를 단일 기준으로 확인한다.
 - `src/styles/tokens.css`: 색상, 타이포그래피, 레이아웃 토큰의 단일 원본. 컴포넌트 CSS에 새 brand color를 직접 추가하지 않는다.
 - `src/content/content-types.ts`: 공개 콘텐츠와 fixture가 따라야 하는 타입 계약.
 - `src/content/home.ts`: Home route가 렌더링하는 공개용·타입 검증 콘텐츠.
