@@ -126,6 +126,6 @@ export const apiUsageContent = {
   relatedSystems: [
     { title: 'DEVELOPER STATUS', relation: '지연 허용 Message Batch의 대표 workload', href: '/what/developer-status', status: 'available' },
     { title: 'AI-NATIVE ENGINEERING', relation: 'cache·batch·retry·budget을 운영 정책으로 연결', href: '/how/ai-native-engineering', status: 'available' },
-    { title: 'OPERATIONS / RELIABILITY', relation: 'provider·worker·incident 관측의 남은 범위', status: 'in-development' },
+    { title: 'SECURITY & OPERATIONS', relation: 'provider·worker·incident 관측의 현재 경계와 남은 범위', href: '/how/security-operations', status: 'available' },
   ],
 } as const satisfies ApiUsagePageContent

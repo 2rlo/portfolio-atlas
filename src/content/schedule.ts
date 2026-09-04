@@ -119,29 +119,27 @@ export const scheduleContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / SNAPSHOT 2026.08.26',
+    eyebrow: 'EVIDENCE / SNAPSHOT 2026.09.04',
     title: '관리 범위의 기록이지, 납기 성과가 아니다.',
-    snapshot: '운영 DB와 audit snapshot의 의미를 좁게 유지합니다.',
+    snapshot: '읽기 전용 production snapshot의 project·plan 범위입니다.',
     items: [
-      { value: '4', label: 'TRACKED PROJECTS', meaning: '일정 화면이 참조한 당시 project 범위', boundary: '프로젝트 성과 비교 수치가 아님' },
-      { value: '74', label: 'CANONICAL PLANS', meaning: '운영 데이터베이스의 계획 항목', boundary: '일정 준수율 분모가 아님' },
-      { value: '168', label: 'CHANGE HISTORIES', meaning: '66개 계획에 연결된 변경 이력', boundary: '효율이나 자동화 성공률이 아님' },
-      { value: '122', label: 'RECORDED WEB WRITES', meaning: '생성·수정·적용 등 성공한 web write', boundary: '조회는 미측정 · 서비스 성공률 아님' },
+      { value: '4', label: 'TRACKED PROJECTS', meaning: '일정 화면이 참조하는 project registry', boundary: '조직 전체 프로젝트 수나 성과 비교 수치가 아님' },
+      { value: '80', label: 'CANONICAL PLANS', meaning: '운영 데이터베이스의 계획 항목', boundary: '일정 준수율·완료율의 분모가 아님' },
     ],
   },
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / RUNTIME ACTIVE',
-    items: ['계획 CRUD와 KO/EN detail', '계획·실제 timeline과 overdue 표현', 'proposal 선택 적용·audit·revert', 'role-based read/write와 project registry 연동'],
-    runtime: '제한된 팀 사용과 일부 역할의 반복 사용은 확인됐지만, 일정 화면 자체의 역할별 조회 빈도와 영업 사용은 측정되지 않았습니다. 8월 27일 URL state 확장의 production 반영은 별도 검증이 필요합니다.',
+    items: ['계획 CRUD와 KO/EN detail', '계획·실제 timeline과 overdue 표현', 'proposal 선택 적용·audit·revert', 'effective permission 기반 read/write와 project registry 연동'],
+    runtime: '2026.09.04 production snapshot에서 4개 project와 80개 plan의 운영 범위를 확인했다. 역할별 조회 빈도·일정 준수율·사용 효과는 측정하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / CONFIRMED DATES, NOT FORECAST',
     statement: 'The timeline does not predict what the source did not say.',
-    items: ['누락된 날짜·담당자·진행률을 AI로 추정하지 않습니다.', '날짜 경과나 progress 100만으로 완료 상태를 결정하지 않습니다.', '122회 write를 일정 준수율·납기 단축·업무시간 절감으로 해석하지 않습니다.', 'limited-team use를 역할별 반복 조회나 조직 adoption으로 확대하지 않습니다.'],
+    items: ['누락된 날짜·담당자·진행률을 AI로 추정하지 않습니다.', '날짜 경과나 progress 100만으로 완료 상태를 결정하지 않습니다.', '80개 plan을 일정 준수율·납기 단축·업무시간 절감으로 해석하지 않습니다.', '저장 범위를 역할별 반복 조회나 조직 adoption으로 확대하지 않습니다.'],
   },
   relatedSystems: [
     { title: 'PROJECT SETTING', relation: '일정·후보가 함께 읽는 tracked project registry', href: '/what/project-setting', status: 'available' },
     { title: 'AI-NATIVE ENGINEERING', relation: 'proposal을 검증 가능한 변경으로 다루는 방식', href: '/how/ai-native-engineering', status: 'available' },
-    { title: 'SECURITY / GOVERNANCE', relation: '항목 공개 flag와 route-level mutation boundary', status: 'in-development' },
+    { title: 'SECURITY & OPERATIONS', relation: '항목 공개 flag와 route-level mutation boundary', href: '/how/security-operations', status: 'available' },
   ],
 } as const satisfies SchedulePageContent

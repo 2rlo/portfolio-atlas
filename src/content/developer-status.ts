@@ -44,7 +44,7 @@ export const developerStatusContent = {
       id: 'source-hierarchy', index: '02', label: 'SOURCE HIERARCHY', title: '검토된 기록과 AI 초안을 같은 사실로 섞지 않았다.',
       sections: [
         { label: 'WHY', body: 'AI draft에는 생략된 맥락과 모호한 표현이 남을 수 있습니다. 깔끔한 요약 문장만 보면 검토 여부를 잃습니다.' },
-        { label: 'DECISION', body: '검토 완료 업무일지를 우선하고, 없는 날짜의 draft만 보조로 사용하면서 source type과 warning을 유지했습니다.' },
+        { label: 'DECISION', body: '같은 원문에 연결된 검토본을 우선하고, 연결되지 않은 draft만 보조로 사용하면서 source type과 warning을 유지했습니다.' },
         { label: 'BOUNDARY', body: 'draft가 포함된 요약은 ready 상태로 보이지 않습니다.' },
       ],
     },
@@ -106,18 +106,18 @@ export const developerStatusContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / SNAPSHOT 2026.08.26', title: '수집·처리 이력이지, 개인 개발량이 아니다.', snapshot: '서로 다른 기간과 재처리가 섞인 pipeline snapshot입니다.',
+    eyebrow: 'EVIDENCE / SNAPSHOT 2026.09.04', title: '연결된 evidence corpus이지, 개인 개발량이 아니다.', snapshot: '읽기 전용 production snapshot에 저장된 GitHub evidence corpus입니다.',
     items: [
-      { value: '1,052', label: 'CHANGE SETS', meaning: '화면이 참조할 수 있는 수집 변경 묶음', boundary: '특정 개인의 산출량이 아님' },
-      { value: '23,866', label: 'FILE CHANGES', meaning: 'change set에 포함된 파일 변경 기록', boundary: '코드 품질·생산성 지표가 아님' },
-      { value: '255', label: 'READY ROLLUPS', meaning: '운영 DB에 기록된 성공 결과 이력', boundary: '고유 사용자나 화면 조회 수가 아님' },
-      { value: '104 / 32', label: 'PARTIAL / ERROR', meaning: '부분 결과와 영구 오류 처리 이력', boundary: '같은 기간의 성공률로 환산하지 않음' },
+      { value: '25', label: 'REPOSITORIES', meaning: 'evidence corpus에 연결된 repository record', boundary: '조직 전체 저장소나 개인 소유 수가 아님' },
+      { value: '3,401', label: 'COMMIT RECORDS', meaning: 'corpus에 저장된 commit record', boundary: '개인 생산성이나 배포 횟수가 아님' },
+      { value: '707', label: 'PR RECORDS', meaning: 'corpus에 저장된 pull request record', boundary: '한 사람의 성과나 merge 성공률이 아님' },
+      { value: '12,543', label: 'IMPLEMENTATION CLAIMS', meaning: 'change evidence에서 추출해 저장한 구현 주장', boundary: '사람이 확정한 완료 verdict가 아님' },
     ],
   },
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / SCHEDULED',
-    items: ['활성 구성원·Git identity 명시 매핑', 'reviewed worklog·all-branch change evidence', 'hierarchical digest·cache·Message Batch', 'partial·stale·fallback·retry 상태'],
-    runtime: '평일 KST 13:00에 최근 7일 snapshot을 생성하고 batch 결과를 회수합니다. 반복 생성은 확인됐지만 실제 열람자 수·의사결정 변화·생산성 향상은 측정하지 않았습니다.',
+    items: ['활성 구성원·Git identity 명시 매핑', 'web-reviewed worklog·all-branch change evidence', 'hierarchical digest·cache·Message Batch', 'partial·stale·fallback·retry 상태'],
+    runtime: '예약·worker 코드와 production evidence corpus는 확인했다. worker heartbeat와 job별 success rate, 실제 열람·의사결정 변화·생산성 향상은 측정하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / STATUS, NOT PERFORMANCE', statement: 'Evidence can describe recent work. It cannot rank a person.',

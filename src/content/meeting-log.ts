@@ -6,16 +6,16 @@ export const meetingLogContent = {
   meta: {
     classification: 'reconstructed-public-example',
     disclosure: 'RECONSTRUCTED MEETING REVIEW VIEW / SYNTHETIC DATA',
-    currentStatus: 'partially-implemented-upstream-decision-waiting',
+    currentStatus: 'partial-transcript-upstream-blocked',
     boundary: jadebellPublicFixture.meta.boundary,
   },
   hero: {
     eyebrow: 'WHAT I BUILT / 12',
     titleLines: ['MEETING', 'LOG'],
     thesis:
-      '회의에서 나온 말을 곧바로 공식 사실로 만들지 않고, 회의록에서 AI 후보를 분리한 뒤 사람이 다시 확인하는 흐름을 만들었다.',
+      '동기화된 회의 메모는 검토 가능한 기록으로 연결했지만, transcript upstream은 아직 연결되지 않았다.',
     summary:
-      '동기화된 회의 기록부터 후보 검토까지의 downstream은 구현했습니다. 자동 녹화·전사에서 시작하는 upstream은 계정과 요금제 제약을 확인한 뒤 의사결정 대기로 분리했습니다.',
+      '회의 메모의 동기화·후보 추출·review·공식 기록 반영은 구현했습니다. 회사 회의의 자동 녹화·전사·원문 확보는 upstream 제약으로 막혀 있어 end-to-end 자동화는 planned / blocked로 남아 있습니다.',
     problemLabel: 'PROBLEM / A MEETING IS NOT YET A DECISION RECORD',
     problem:
       '결정·이슈·요구사항이 대화와 녹화물에만 남으면 다시 찾기 어렵지만, AI가 정리했다는 이유만으로 공식 기록에 쓰면 해석 오류와 잘못된 연결도 함께 굳어집니다.',
@@ -29,7 +29,7 @@ export const meetingLogContent = {
       index: '00',
       label: 'REVIEW GUIDE',
       title: '회의록과 후보와 검토를 한 source context 안에서 읽는다.',
-      body: '동기화된 회의록을 source로 두고 change guard, AI candidate group, human review를 따라갑니다. 공식 기록으로 넘어가는 시점은 사람의 최종 판단 이후로 제한합니다.',
+      body: '동기화된 회의 메모를 source로 두고 change guard, AI candidate group, human review를 따라갑니다. 이 화면은 자동 녹화·전사가 연결됐다는 뜻이 아닙니다.',
     },
   },
   product: meetingLogProductFixture,
@@ -143,7 +143,7 @@ export const meetingLogContent = {
   workflow: {
     eyebrow: 'MEETING TRUST WORKFLOW',
     title: '회의록에서 후보를 만들고, Human Review를 통과한 것만 공식 기록으로 남긴다.',
-    introduction: '사용자가 확정한 세 단계가 위 product surface의 source·candidate·review 영역과 직접 연결됩니다.',
+    introduction: '구현된 downstream의 세 단계가 위 source·candidate·review 영역과 연결됩니다.',
     steps: [
       { id: 'meeting-flow-record', hotspotId: 'source-record', index: '01', label: '회의록', summary: '원문과 의미 단위 근거 보존' },
       { id: 'meeting-flow-candidate', hotspotId: 'candidate-group', index: '02', label: 'AI 후보', summary: '결정·이슈·기능 요구를 pending으로 분리' },
@@ -190,7 +190,7 @@ export const meetingLogContent = {
         decision: '회의록에서 후보를 만들되 같은 Human Review 대기열을 통과하게 했다.',
         trigger: '회의록을 동기화해도 공식 결정·이슈로 안전하게 승격할 경로가 없음',
         change: '결정·이슈·기능 요구 후보 추출과 미변경 회의록 재추출 방지',
-        currentEffect: 'source record → pending candidate → review가 현재 화면의 중심',
+        currentEffect: 'source record → pending candidate → review가 현재 downstream의 중심',
       },
       {
         date: '2026.08.19',
@@ -199,7 +199,7 @@ export const meetingLogContent = {
         decision: '회사 회의를 가져오지 못하는 계정 제약을 발견하고 upstream을 완료 처리하지 않았다.',
         trigger: '선택한 도구의 개인용 플랜이 회사 Microsoft 365 회의를 수집하지 못함',
         change: '유료 플랜 유지안과 다른 수집·전사 방식 재설계안을 분리해 제시',
-        currentEffect: 'product surface에서 capture를 DECISION WAITING으로 표시',
+        currentEffect: 'current evidence에서는 transcript automation을 PLANNED / BLOCKED로 분류',
       },
       {
         date: '2026.08.20',
@@ -208,14 +208,14 @@ export const meetingLogContent = {
         decision: '자동 수집 결정을 기다리는 동안, 구현된 일일 회의록 동기화는 별도 경로로 유지했다.',
         trigger: '부분 구현과 전체 자동화 계획을 같은 상태로 말할 위험',
         change: '매일 07:00 KST meeting sync와 upstream 남은 범위를 구분',
-        currentEffect: '현재 입력과 미완료 capture가 동시에 보이는 status rail',
+        currentEffect: '현재 downstream 입력과 upstream blocker를 서로 다른 상태로 보존',
       },
     ],
   },
   evidence: {
     eyebrow: 'EVIDENCE / READ-ONLY SNAPSHOT 2026.08.26',
-    title: '동작하는 downstream의 범위이지, end-to-end 자동화 성과가 아니다.',
-    snapshot: '운영 기록과 자동화 목록에서 서로 다른 의미의 세 항목을 확인했습니다.',
+    title: '과거 downstream snapshot이지, 9월 4일 자동화 완료 근거가 아니다.',
+    snapshot: '2026.08.26에 확인한 historical snapshot이며 current 수치로 합치지 않습니다.',
     items: [
       {
         value: '20',
@@ -238,20 +238,20 @@ export const meetingLogContent = {
     ],
   },
   implementationStatus: {
-    state: 'PARTIAL / DOWNSTREAM ACTIVE, UPSTREAM WAITING',
+    state: 'PARTIAL / DOWNSTREAM IMPLEMENTED — TRANSCRIPT UPSTREAM BLOCKED',
     items: [
-      '회의록 일일 동기화와 검색 데이터 연결',
-      '변경된 회의록의 AI 후보 추출과 검토함 적재',
-      '수정·승인·반려 뒤 공식 기록 반영',
-      '자동 녹화·전사·외부 API 수집은 미완료',
+      '동기화된 회의 메모와 검색 데이터 연결',
+      '후보 추출·검토·공식 기록 반영 구조',
+      '회사 회의 transcript upstream blocker',
+      '자동 녹화·전사·원문 확보의 end-to-end 검증 미완료',
     ],
-    runtime: '동기화된 회의록을 읽는 downstream은 구현 기록과 운영 데이터가 확인됩니다. 회사 회의 자동 수집은 계정·플랜 제약 뒤 도입 방식을 결정하지 않아 end-to-end 운영 완료로 주장하지 않습니다.',
+    runtime: 'downstream review 구조는 구현되어 있다. 2026.09.04에는 회사 회의 transcript upstream이 막혀 있어 production end-to-end 자동화로 주장하지 않는다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / A REVIEW PIPELINE, NOT AN E2E CAPTURE CLAIM',
-    statement: 'The review path exists. The full capture path does not—yet.',
+    statement: 'The downstream design exists. The capture path is blocked.',
     items: [
-      '20건은 meetings 테이블의 snapshot이며 외부 도구 자동 수집량이나 adoption이 아닙니다.',
+      '20건은 8월 26일 historical snapshot이며 9월 4일 current 자동 수집량이나 adoption이 아닙니다.',
       '자동 녹화·전사·참석자 수집·외부 API 연결의 end-to-end 운영 검증은 완료되지 않았습니다.',
       '후보 정확도·승인율·회의 정리 시간 절감·반복 열람 사용자는 측정하지 않았습니다.',
       '수집 도구·비용·관리자 권한의 최종 선택은 구현자가 단독으로 결정한 범위가 아닙니다.',
@@ -259,7 +259,7 @@ export const meetingLogContent = {
   },
   relatedSystems: [
     { title: 'AI CANDIDATE REVIEW', relation: '회의 source에서 나온 pending 후보를 공식 기록으로 승격하는 gate', href: '/what/ai-candidate-review', status: 'available' },
-    { title: 'REPORT', relation: '검토된 회의 기록이 주간 narrative의 source가 되는 product surface', href: '/what/report', status: 'available' },
+    { title: 'REPORT', relation: 'historical meeting source와 current report authority를 구분하는 product surface', href: '/what/report', status: 'available' },
     { title: 'RAG ASSISTANT', relation: '검토된 기록과 낮은 신뢰의 raw source를 구분해 검색하는 surface', href: '/what/rag-assistant', status: 'available' },
   ],
 } as const satisfies MeetingLogPageContent

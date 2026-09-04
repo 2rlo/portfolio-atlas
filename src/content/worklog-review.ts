@@ -124,11 +124,11 @@ export const worklogReviewContent = {
       sections: [
         {
           label: 'WHY',
-          body: '월요일까지 검토 완료 기록이 0건이면 보고 생성 자체가 멈추지만, 미검토 자료를 확정 source처럼 쓰는 것도 위험하다.',
+          body: '같은 주와 작성자 안에서도 원문별 검토 상태는 다를 수 있다. 미검토 자료를 확정 source처럼 쓰는 것도 위험하다.',
         },
         {
           label: 'DECISION',
-          body: '검토본을 우선하고 0건일 때만 draft를 fallback으로 사용하며 결과에 미검토 포함 label을 남겼다.',
+          body: '같은 원문에 연결된 reviewed 기록을 우선하고, 검토본이 없는 원문에만 draft를 보완하며 결과에 미검토 포함 label을 남겼다.',
         },
         {
           label: 'BOUNDARY',
@@ -258,48 +258,49 @@ export const worklogReviewContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / 2026.08.27 12:42 KST',
+    eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
     title: '검토 상태의 규모를 세되, 생산성으로 바꾸지 않는다.',
     snapshot:
-      '서로 다른 테이블과 상태를 읽은 시점 snapshot입니다. 열람 수·시간 절감·정규화 정확도 지표가 아닙니다.',
+      '서로 다른 테이블과 상태를 읽은 snapshot입니다. 같은 cohort의 funnel이나 검토율로 합산하지 않습니다.',
     items: [
       {
-        value: '332',
-        label: 'REVIEWED WORKLOGS',
-        meaning: '사람 검토 완료 상태로 관측된 업무일지 row',
-        boundary: '고유 업무 사건 수나 실제 열람 수가 아님',
+        value: '295',
+        label: 'RAW RECORDS',
+        meaning: '원문 상태로 보존된 worklog row',
+        boundary: '검토 대기·완료 건수와 같은 분모가 아님',
       },
       {
-        value: '302',
-        label: 'AI DRAFTS',
-        meaning: '공식 검토 데이터와 별도로 유지된 정규화 초안 row',
-        boundary: '모두 오류이거나 모두 사용됐다는 뜻이 아님',
+        value: '199',
+        label: 'WEB QUEUE / UNREVIEWED',
+        meaning: 'web 검토 queue에 남은 미검토 draft',
+        boundary: '오류 건수나 미사용 기록 수가 아님',
       },
       {
-        value: '2 → 0',
-        label: 'FUTURE-DATED DRAFTS',
-        meaning: '11:45 발견 뒤 사용자 교정, 12:42 같은 조건 재조회 결과',
-        boundary: '전체 날짜 정확도나 재발 방지를 보증하지 않음',
+        value: '141',
+        label: 'REVIEWED-SOURCE LINKS',
+        meaning: 'source ID로 사람 검토 기록과 연결된 원문',
+        boundary: '295건 전체의 전환율이나 반복 사용량이 아님',
       },
     ],
   },
   implementationStatus: {
-    state: 'IMPLEMENTED / DEPLOYED / REVIEWED-FIRST',
+    state: 'IMPLEMENTED / DEPLOYED / WEB AUTHORITY',
     items: [
       'Teams 원문 수집과 AI L3 정규화 draft',
-      '불명확 사항 표시와 사람 수정·검토 완료 상태',
-      '검토본 우선 주간보고와 0건 fallback label',
+      'web에서 불명확 사항을 수정하고 source ID로 검토 완료',
+      '같은 원문의 검토본 우선과 표시가 있는 draft 보완',
+      'Notion으로 돌아가는 명시적 rollback mode',
       '날짜·편집 중복 보정과 용어집 context',
     ],
     runtime:
-      '검토 데이터 누적과 주간보고 입력 경로는 운영에서 확인됐다. 공개 화면은 실제 Notion 기록을 복사하지 않고 그 상태 관계만 재구성했다. 검토 시간 절감·정확도·사용자별 반복 이용량은 측정하지 않았다.',
+      '2026.09.04 현재 업무일지 authority는 web이며 Notion은 자동 fallback이 아닌 명시적 rollback 경로다. 공개 화면은 원문 대신 상태 관계만 재구성했고, 검토 시간·정확도·반복 이용량은 측정하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / REVIEWED-FIRST, NOT AI-FIRST',
     statement: 'A clean sentence is still a draft until its missing context is answered.',
     items: [
       'AI 정규화 결과를 바로 공식 업무일지나 확정 보고 source로 사용하지 않는다.',
-      '검토 완료 0건 fallback은 명시적 예외이며 reviewed record와 같은 지위가 아니다.',
+      '검토본이 없는 원문의 draft 보완은 명시적 예외이며 reviewed record와 같은 지위가 아니다.',
       '미래 날짜 draft 0건 재조회는 전체 데이터 정확도나 재발 방지 효과를 뜻하지 않는다.',
       '데이터 누적은 확인했지만 보고 준비 시간 단축·읽은 사용자 수·의사결정 효과는 미측정이다.',
     ],
@@ -320,7 +321,8 @@ export const worklogReviewContent = {
     {
       title: 'REPORT',
       relation: '검토 완료 기록과 명시적 fallback을 사용하는 downstream',
-      status: 'in-development',
+      href: '/what/report',
+      status: 'available',
     },
   ],
 } as const satisfies WorklogReviewPageContent

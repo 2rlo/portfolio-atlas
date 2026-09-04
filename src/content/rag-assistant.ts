@@ -224,14 +224,14 @@ export const ragAssistantContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / IMPLEMENTED OPERATING BOUNDS',
+    eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
     title: '구현·운영 확인은 있지만 검색 정확도 수치는 없다.',
-    snapshot: '문서·코드·제한된 운영 확인에서 직접 확인 가능한 범위만 표시합니다.',
+    snapshot: '채널과 채팅의 서로 다른 수집 경로에서 저장된 context 범위입니다.',
     items: [
-      { value: '20–30', label: 'MODEL WINDOW', meaning: 'LLM 호출에 보내는 최근 대화 turn 범위', boundary: 'DB에 보존된 전체 session 길이가 아님' },
-      { value: '4,096', label: 'OUTPUT CEILING', meaning: '잘림 보완 뒤 출력 token 상한', boundary: '평균 응답 길이나 품질 점수가 아님' },
-      { value: '08.06', label: 'TEAMS PATH OBSERVED', meaning: '1:1·group chat 수신과 답변 반영 확인일', boundary: '반복 사용이나 전체 source 정확도 검증이 아님' },
-      { value: '08.24', label: 'MEMORY ROUTES ACTIVE', meaning: 'Conversation Memory 검색·후보 추출 활성 확인일', boundary: '후보 승인량·유용성·adoption은 미측정' },
+      { value: '5 / 1,962', label: 'GRAPH CHANNELS / RAW', meaning: 'Microsoft Graph polling으로 저장된 채널과 원문', boundary: '모든 Teams 대화나 검색 정확도를 뜻하지 않음' },
+      { value: '493 / 565', label: 'THREADS / CHUNKS', meaning: '채널 원문에서 정규화·색인한 context', boundary: '답변 품질이나 retrieval 성공률이 아님' },
+      { value: '2 / 1,834', label: 'PA GROUP CHATS / MESSAGES', meaning: 'Power Automate가 선택한 그룹 채팅 수집 범위', boundary: '접근 가능한 전체 채팅이나 Graph chat polling이 아님' },
+      { value: '0', label: 'ONE-ON-ONE / SELECTED SCOPE', meaning: '해당 snapshot의 Power Automate 대상 선택 결과', boundary: '앱 코드가 1:1 chat을 차단했다는 뜻이 아님' },
     ],
   },
   implementationStatus: {
@@ -239,17 +239,18 @@ export const ragAssistantContent = {
     items: [
       'intent 기반 deterministic context와 pgvector 보조 검색',
       'source 신뢰도 우선순위·출처 표시·검색 실패 격리',
-      'Teams·회의·업무·QA·구현 근거의 제한된 검색',
+      'Graph 채널과 Power Automate 선택 채팅의 분리된 수집 경로',
       'owner-scoped Conversation Memory와 reviewed Knowledge 승격',
     ],
-    runtime: '핵심 RAG와 Company Context는 운영 배포·사용 가능 상태였고 Teams 실제 수신과 권한 경계를 제한적으로 확인했습니다. 검색 정확도, 평균 응답시간, 반복 사용, 조직 표준 정착은 측정하지 않았습니다.',
+    runtime: 'deterministic lookup과 provenance-aware RAG 경로는 운영 구성에 있다. 채널은 Graph, 선택 채팅은 Power Automate로 수집하며 검색 정확도·응답시간·반복 사용·조직 정착은 측정하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / RETRIEVAL, NOT TRUTH ENGINE',
     statement: 'A relevant source can support an answer. It cannot certify the world.',
     items: [
       'AI 답변과 미검토 원문을 승인된 공식 기록처럼 취급하지 않습니다.',
-      'source 수·vector score·배포 상태를 답변 정확도나 adoption으로 해석하지 않습니다.',
+      'source·thread·chunk 수와 vector score를 답변 정확도나 adoption으로 해석하지 않습니다.',
+      'oneOnOne 0건은 Power Automate 대상 선택 결과이며 application privacy restriction이 아닙니다.',
       '질문·답변·검색어 원문은 관측 로그에 저장하지 않고 단계 metadata만 기록했습니다.',
       '관계 기반 Current State, 자동 검색 평가셋, chat spike breaker는 후속 범위입니다.',
     ],

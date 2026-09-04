@@ -251,28 +251,22 @@ export const projectSettingContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / 2026.08.27 SNAPSHOT',
+    eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
     title: 'registry의 적용 범위를 세되, 운영 성과로 읽지 않는다.',
     snapshot:
-      '같은 시점의 읽기 전용 데이터 범위입니다. 효율·정확도·기능별 반복 사용량 지표가 아닙니다.',
+      '읽기 전용 production snapshot의 registry와 계획 범위입니다. 효율·정확도·반복 사용량 지표가 아닙니다.',
     items: [
       {
-        value: '4 / 8',
-        label: 'TRACKED / ALL ROWS',
-        meaning: '전체 project row 중 tracked registry에 노출된 범위',
-        boundary: '나머지 4개가 모두 archive라는 뜻이 아님',
+        value: '4',
+        label: 'TRACKED PROJECTS',
+        meaning: '현재 schedule과 product surface가 참조하는 project registry',
+        boundary: '조직 전체 프로젝트 수나 성과 비교 수치가 아님',
       },
       {
-        value: '74 / 74',
-        label: 'SCHEDULE LINKS',
-        meaning: '관측한 일정 row가 tracked project ID에 연결된 상태',
-        boundary: '일정 품질이나 사용 완료율을 의미하지 않음',
-      },
-      {
-        value: '213 / 307',
-        label: 'CANDIDATE LINKS',
-        meaning: 'AI 기록 후보 중 tracked project ID가 연결된 범위',
-        boundary: '연결되지 않은 후보가 모두 오류라는 뜻이 아님',
+        value: '80',
+        label: 'PLAN ITEMS',
+        meaning: 'tracked project에 연결된 canonical 계획 범위',
+        boundary: '일정 품질·완료율·조직 전체 계획 수가 아님',
       },
     ],
   },
@@ -285,7 +279,7 @@ export const projectSettingContent = {
       'AI 분류의 registry 선택지·기타 경계·후보 backfill',
     ],
     runtime:
-      '2026.08.26 운영 반영과 consumer 조회 경로는 확인됐다. 8월 27일 provenance 보완은 코드·계약 근거이며 production 복원 실행 횟수와 관리 동작별 adoption은 미확인이다.',
+      '2026.09.04 production snapshot에서 4개 project와 80개 plan의 current 범위를 확인했다. 복원 실행 횟수와 관리 동작별 반복 사용은 측정하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / IDENTITY IS NOT OUTCOME',
@@ -311,9 +305,10 @@ export const projectSettingContent = {
       status: 'available',
     },
     {
-      title: 'SECURITY / GOVERNANCE',
+      title: 'SECURITY & OPERATIONS',
       relation: '프로젝트 lifecycle과 접근 권한의 책임 분리',
-      status: 'in-development',
+      href: '/how/security-operations',
+      status: 'available',
     },
   ],
 } as const satisfies ProjectSettingPageContent

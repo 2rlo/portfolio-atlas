@@ -78,8 +78,8 @@ export const meetingLogProductFixture = {
   },
   captureBoundary: {
     label: 'AUTOMATED CAPTURE',
-    state: 'DECISION WAITING',
-    activeInput: '현재 입력 · 매일 동기화되는 회의 메모',
-    remaining: '남은 범위 · 자동 녹화 · 전사 · 참석자 수집',
+    state: 'UPSTREAM BLOCKED',
+    activeInput: '현재 입력 · 동기화된 회의 메모',
+    remaining: '현재 남은 범위 · 자동 녹화 · 전사 · 원문 확보',
   },
 } as const satisfies MeetingLogProductFixture

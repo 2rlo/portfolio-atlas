@@ -211,27 +211,27 @@ export const qaContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / SNAPSHOT 2026.08.26',
+    eyebrow: 'EVIDENCE / SNAPSHOT 2026.09.04',
     title: '운영 기록의 규모이지, 품질 성과 지표가 아니다.',
     snapshot:
-      '아래 숫자는 확인 가능한 당시 snapshot입니다. 정확도·생산성·조직 adoption으로 해석하지 않습니다.',
+      '읽기 전용 production snapshot의 QA 저장 범위입니다. 정확도·생산성·조직 adoption으로 해석하지 않습니다.',
     items: [
       { value: '51', label: 'ACTIVE REPORTS', meaning: '보관되지 않은 테스트 보고서', boundary: '보고서 수는 테스트 품질을 뜻하지 않음' },
-      { value: '217', label: 'EXECUTION HISTORIES', meaning: '175개 케이스에 연결된 전체 실행 기록', boundary: '29개 케이스 재실행 · 최대 6회' },
-      { value: '352', label: 'ATTACHMENTS', meaning: '이미지 282개와 영상 70개', boundary: '파일 수는 결함 해결 수가 아님' },
-      { value: '67', label: 'RECORDED WRITES', meaning: '8월 3–24일 성공한 report·case·translation confirm write', boundary: '3명 범위의 반복 사용 · 조직 adoption 아님' },
+      { value: '3', label: 'ARCHIVE', meaning: '보관 상태의 테스트 보고서', boundary: '삭제 수나 품질 실패 수가 아님' },
+      { value: '177', label: 'TEST CASES', meaning: '보고서에 연결된 테스트 케이스', boundary: '고유 결함 수나 자동화 수가 아님' },
+      { value: '222', label: 'TEST RUNS', meaning: '케이스에 연결된 실행 기록', boundary: '성공률이나 품질 향상률이 아님' },
     ],
   },
   implementationStatus: {
-    state: 'IMPLEMENTED / DEPLOYED / LIMITED-TEAM USE',
+    state: 'IMPLEMENTED / DEPLOYED / OPERATING DATA',
     items: [
       '보고서와 테스트 케이스 CRUD·archive',
       '재실행 history와 이미지·영상 attachment',
       '한국어·영어 translation과 explicit regenerate',
-      'QA write role과 QAViewer read-only role',
+      '보기·편집·삭제를 나눈 effective permission 경계',
     ],
     runtime:
-      '당시 제품 데이터베이스가 현재 기록의 운영 source였고 제한된 팀 사용 기록이 확인됩니다. 외부 문서의 주기적 polling은 중단됐으며 수동 recovery 경로는 남아 있었습니다.',
+      '2026.09.04 production snapshot에서 QA 저장 범위와 제품 데이터베이스 authority를 확인했다. 반복 사용량·성공률·품질 변화는 측정하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / RECORD, NOT OUTCOME',
@@ -240,12 +240,12 @@ export const qaContent = {
       'AI assessment와 번역은 QA의 PASS·FAIL·HOLD 판정을 변경하지 않습니다.',
       '첨부와 revision은 관찰과 변경 순서를 보존하지만 수정 완료를 증명하지 않습니다.',
       '기록 수와 write 수를 생산성·정확도·품질 향상 지표로 사용하지 않습니다.',
-      '제한된 사용자 범위의 반복 사용을 조직 전체 adoption으로 확대 해석하지 않습니다.',
+      '기록의 존재를 반복 사용이나 조직 전체 adoption으로 확대 해석하지 않습니다.',
     ],
   },
   relatedSystems: [
     { title: 'FEATURE VALIDATION', relation: '요구사항과 구현 evidence를 사람이 다시 확인하는 검토 경계', href: '/what/feature-validation', status: 'available' },
     { title: 'DOCUMENTATION SYSTEM', relation: '여러 source의 authority와 recovery 맥락을 구분하는 방식', href: '/how/documentation-system', status: 'available' },
-    { title: 'OPERATIONS / RELIABILITY', relation: '운영 source 전환과 수동 recovery boundary', status: 'in-development' },
+    { title: 'SECURITY & OPERATIONS', relation: '운영 source 전환과 수동 recovery boundary', href: '/how/security-operations', status: 'available' },
   ],
 } as const satisfies QaPageContent

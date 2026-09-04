@@ -134,7 +134,7 @@ export const permissionContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '마지막 관리자 제거, 위임자의 자기 권한 상승, 보호 역할 재배정은 전체 rollback합니다.',
+          body: '마지막 관리자 제거는 전체 rollback한다. 위임 관리자는 자신·owner를 바꾸거나 팀원 관리 권한을 재위임할 수 없고, 초대 생성·취소도 할 수 없다.',
         },
       ],
       evolution: { label: 'DELEGATED ADMIN GUARDS', date: '2026.08.26' },
@@ -224,32 +224,31 @@ export const permissionContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / OPERATING DB 2026.08.26',
+    eyebrow: 'EVIDENCE / OPERATING DB 2026.09.04',
     title: '권한 구성의 규모이지, 보안 수준의 점수가 아니다.',
-    snapshot: '같은 읽기 전용 운영 snapshot에서 확인한 authorization 구성입니다.',
+    snapshot: '읽기 전용 production snapshot에서 확인한 현재 authorization contract입니다.',
     items: [
-      { value: '6', label: 'ROLE TEMPLATES', meaning: '운영 DB에 정의된 역할 기본값', boundary: '모든 팀원이 반드시 template을 가져야 한다는 뜻이 아님' },
-      { value: '26', label: 'PERMISSIONS', meaning: '운영 DB의 resource × action 정의', boundary: '8월 27일 code catalog 29개와 다른 snapshot' },
-      { value: '15', label: 'LINKED ACCOUNTS', meaning: 'Entra identity가 연결된 운영 계정', boundary: '로그인 횟수·활성 사용자·전사 adoption이 아님' },
-      { value: '3', label: 'PERSONAL OVERRIDES', meaning: 'role 기본값과 다르게 적용된 개별 예외', boundary: '최소권한 달성률이나 예외 위험도를 뜻하지 않음' },
+      { value: '31', label: 'PERMISSION CATALOG', meaning: '현재 resource × action 정의', boundary: '보안 인증이나 최소권한 달성률이 아님' },
+      { value: '6', label: 'PERMISSION TEMPLATES', meaning: '운영 DB에 정의된 역할 기본값', boundary: '모든 팀원이 같은 template만 사용한다는 뜻이 아님' },
     ],
   },
   implementationStatus: {
-    state: 'DEPLOYED / ACTIVE AUTHORIZATION BOUNDARY',
+    state: 'DEPLOYED / CURRENT DB AUTHORIZATION',
     items: [
-      'Entra OIDC·Redis session·CSRF 기반 로그인 경계',
-      'PostgreSQL resource × action과 role ± override 계산',
+      'Entra OIDC·server-side session·CSRF 코드 경계',
+      'PostgreSQL catalog·template·개인 override 기반 effective permission',
       '관리자 invite·권한 편집·감사·위임 control',
-      'last-admin·self-escalation·protected role guard',
+      'self·owner·관리 권한 재위임과 invite 생성·취소 guard',
     ],
-    runtime: '핵심 인증·권한 경계와 관리자 시스템은 production에 반영돼 활성화됐고 제한된 실제 계정 시나리오를 확인했습니다. 8월 27일 code catalog 확장은 같은 정의의 운영 DB 재조회 전까지 production 적용 여부를 확정하지 않습니다.',
+    runtime: '2026.09.04 production DB의 31개 catalog와 6개 template, effective permission contract를 확인했다. Azure Portal 구성과 interactive OIDC login smoke는 같은 시점에 재검증하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / ACCESS CONTROL, NOT SECURITY COMPLETION',
     statement: 'A permission matrix narrows authority. It does not prove security is complete.',
     items: [
-      '6개 role·26개 permission·15개 연결 계정은 구성 규모이며 최소권한 달성률이 아닙니다.',
-      '8월 27일 code catalog 29개를 8월 26일 운영 DB의 최신 수치로 덮어쓰지 않습니다.',
+      '31개 catalog와 6개 template은 구성 규모이며 최소권한 달성률이 아닙니다.',
+      'production developer template에 포함된 permission 28개와 repository seed의 26개 차이는 deployment divergence로 남아 있습니다.',
+      'Azure Portal 설정과 interactive OIDC login smoke는 9월 4일 current evidence로 확인하지 않았습니다.',
       '권한 화면의 배포와 반복적인 관리자 사용·조직 adoption을 같은 상태로 보지 않습니다.',
       '정식 침투 테스트·외부 보안 감사·Zero Trust 완성을 수행했다고 주장하지 않습니다.',
     ],
@@ -257,6 +256,6 @@ export const permissionContent = {
   relatedSystems: [
     { title: 'SCHEDULE', relation: 'read-only actor와 변경 권한이 실제로 소비되는 product surface', href: '/what/schedule', status: 'available' },
     { title: 'QA', relation: 'writer와 viewer의 action boundary가 적용되는 기록 surface', href: '/what/qa', status: 'available' },
-    { title: 'SECURITY / GOVERNANCE', relation: 'OIDC·session·privacy·배포 access의 더 넓은 위험 경계', status: 'in-development' },
+    { title: 'SECURITY & OPERATIONS', relation: 'OIDC·session·권한·배포 access의 더 넓은 위험 경계', href: '/how/security-operations', status: 'available' },
   ],
 } as const satisfies PermissionPageContent

@@ -67,7 +67,7 @@ export const reportContent = {
         },
         {
           label: 'DECISION',
-          body: '검토 완료 기록을 우선 원본으로 사용하고, 해당 주에 검토본이 0건일 때만 미검토 초안을 fallback으로 허용했습니다.',
+          body: '같은 원문의 검토 완료 기록을 우선하고, 검토본이 없는 원문에만 미검토 초안을 fallback으로 허용했습니다.',
         },
         {
           label: 'BOUNDARY',
@@ -147,7 +147,7 @@ export const reportContent = {
     steps: [
       { id: 'report-flow-collect', hotspotId: 'week-window', index: '01', label: 'COLLECT', summary: '기록 날짜를 같은 주차로 정규화' },
       { id: 'report-flow-review', hotspotId: 'reviewed-source', index: '02', label: 'REVIEW', summary: 'AI 초안을 사람이 확인·수정' },
-      { id: 'report-flow-select', hotspotId: 'reviewed-source', index: '03', label: 'SELECT', summary: '검토본 우선, 0건만 fallback' },
+      { id: 'report-flow-select', hotspotId: 'reviewed-source', index: '03', label: 'SELECT', summary: '원문별 검토본 우선, 없는 원문만 fallback' },
       { id: 'report-flow-compose', hotspotId: 'qa-evidence', index: '04', label: 'COMPOSE', summary: '업무·QA·회의를 주간 문서로 구성' },
       { id: 'report-flow-store', hotspotId: 'structured-metrics', index: '05', label: 'STORE', summary: '본문과 제한된 지표를 함께 저장' },
     ],
@@ -162,8 +162,8 @@ export const reportContent = {
         explanation: '보고서 문장보다 먼저 검토본 기반인지 미검토 초안이 포함됐는지 보여줍니다.',
       },
       {
-        statement: 'ZERO REVIEWED IS AN EXCEPTION.',
-        explanation: '검토 지연이 보고서 공백으로 이어지지 않게 하되 예외 사용 사실은 숨기지 않습니다.',
+        statement: 'UNREVIEWED FALLBACK IS AN EXCEPTION.',
+        explanation: '검토본이 없는 원문을 보완하되, 미검토 source가 포함됐다는 사실은 숨기지 않습니다.',
       },
       {
         statement: 'SHIPPED DOES NOT MEAN EXPOSED.',
@@ -224,32 +224,30 @@ export const reportContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / SNAPSHOT 2026.08.26',
+    eyebrow: 'EVIDENCE / SNAPSHOT 2026.09.04',
     title: '반복 생성 규모는 확인됐지만, 읽은 사람과 절감 시간은 측정하지 않았다.',
-    snapshot: '같은 읽기 전용 운영 snapshot에서 확인한 저장·누적 집계 범위입니다.',
+    snapshot: '읽기 전용 production snapshot에서 확인한 서로 다른 저장 상태입니다.',
     items: [
-      { value: '22', label: 'WEEKLY REPORTS', meaning: '저장된 주간보고 문서', boundary: '열람·의사결정 활용 횟수가 아님' },
-      { value: '316', label: 'REVIEWED WORKLOGS', meaning: '9명·73 업무일 범위의 검토 완료 row', boundary: '8월 27일의 332건 snapshot과 측정 시점이 다름' },
-      { value: '360', label: 'WORKLOG ITEMS', meaning: '22개 보고서에 기록된 주차별 누적 항목', boundary: '중복 제거된 고유 사건 수가 아님' },
-      { value: '131', label: 'TEST ENTRIES', meaning: '같은 보고서들에 집계된 테스트 항목', boundary: '품질 개선률이나 전체 테스트 성공률이 아님' },
+      { value: '24', label: 'WEEKLY REPORTS', meaning: '저장된 주간보고 문서', boundary: '열람·의사결정 활용 횟수가 아님' },
+      { value: '141', label: 'REVIEWED-SOURCE LINKS', meaning: 'source ID로 검토 기록과 연결된 업무 원문', boundary: '보고서 24건과 같은 분모가 아니며 전환율이 아님' },
     ],
   },
   implementationStatus: {
     state: 'AUTOMATIC + MANUAL GENERATION ACTIVE',
     items: [
       '업무일지·QA·회의 source의 주차별 요약',
-      '검토 완료 기록 우선과 표시가 있는 draft fallback',
+      '같은 원문의 검토 완료 기록 우선과 표시가 있는 draft fallback',
       '보고서 본문과 구조화 지표 저장',
       '권한 기반 수동 생성과 자동 월요일 생성',
     ],
-    runtime: '주간보고의 반복 생성과 수동 생성 경로의 production 배포는 확인됐습니다. KO/EN 결과 구조도 배포됐지만 EN 화면은 feature flag off이며, provider 중단으로 품질 비교와 생성 검증이 막혀 있었습니다.',
+    runtime: '주간보고 생성 경로는 production에 있고 현재 업무일지 authority는 web이다. Notion은 명시적 rollback mode이며, 열람·의사결정 효과와 번역 품질은 이 snapshot으로 주장하지 않는다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / REPORT, NOT BUSINESS OUTCOME',
     statement: 'A generated report is evidence of a workflow, not proof of impact.',
     items: [
       'AI 정규화 초안과 사람이 검토한 source를 같은 상태로 취급하지 않습니다.',
-      '검토본 0건 fallback은 availability 규칙이며 검토를 대체하지 않습니다.',
+      '검토본이 없는 원문의 draft fallback은 availability 규칙이며 검토를 대체하지 않습니다.',
       '보고서와 누적 지표가 있어도 준비 시간 절감·열람·의사결정 효과는 미측정입니다.',
       '영문 구조의 배포는 화면 활성화나 반복 사용을 의미하지 않습니다.',
     ],
@@ -257,6 +255,6 @@ export const reportContent = {
   relatedSystems: [
     { title: 'WORKLOG REVIEW', relation: 'AI 초안을 사람이 공식 report source로 승격하는 흐름', href: '/what/worklog-review', status: 'available' },
     { title: 'QA', relation: '같은 주차에 포함되는 테스트 상태와 반복 검증 evidence', href: '/what/qa', status: 'available' },
-    { title: 'MEETING LOG', relation: '회의 기록과 후보 검토가 report source가 되는 흐름', status: 'in-development' },
+    { title: 'MEETING LOG', relation: '구현된 downstream과 planned / blocked transcript upstream을 분리한 회의 source 경계', href: '/what/meeting-log', status: 'available' },
   ],
 } as const satisfies ReportPageContent

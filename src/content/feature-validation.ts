@@ -246,27 +246,21 @@ export const featureValidationContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / 2026.08.26 SNAPSHOT',
+    eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
     title: '성과가 아니라, 연결하고 검토한 범위.',
-    snapshot: '운영 데이터의 특정 시점 snapshot이며 현재 실시간 수치가 아닙니다.',
+    snapshot: '읽기 전용 production snapshot의 저장·분석 범위이며 현재 실시간 수치가 아닙니다.',
     items: [
       {
-        value: '32',
+        value: '40',
         label: 'FEATURES',
-        meaning: '기능 검증 범위에 등록된 기능',
-        boundary: '기능 완료 수가 아님',
+        meaning: '기능 검증에 저장된 분석 대상 feature',
+        boundary: '기능 완료 수나 배포 완료가 아님',
       },
       {
-        value: '240',
-        label: 'TRACE LINKS',
-        meaning: 'Requirement·결정·계획·QA·업무 기록·change set 연결',
-        boundary: '구현 일치율이 아님',
-      },
-      {
-        value: '12 / 13',
-        label: 'HUMAN-REVIEWED SETS',
-        meaning: '사람의 확인을 거친 Requirement 세트',
-        boundary: '기능 완료율이 아님',
+        value: '12,543',
+        label: 'IMPLEMENTATION CLAIMS',
+        meaning: 'GitHub evidence corpus에 저장된 구현 주장 record',
+        boundary: '사람이 확정한 verdict나 개인 성과가 아님',
       },
     ],
   },
@@ -281,15 +275,16 @@ export const featureValidationContent = {
       ],
     },
     remaining: {
-      label: 'NOT STARTED',
-      phase: 'PHASE 3–4',
+      label: 'NEXT SCOPE',
+      phase: 'POLICY + PHASE 3–4',
       items: [
-        'HEAD·테스트·배포 evidence와 stale 자동 재분석',
-        '반영 제안과 다른 제품 화면의 교차 동작',
+        'actor·domain별로 세분화한 permission policy',
+        'HEAD·test·deployment evidence 자동 연결과 stale 재분석',
+        '반영 proposal과 다른 제품 화면의 교차 동작',
       ],
     },
     runtime:
-      '2026.08.19 운영 화면 배포와 제한된 실제 검토가 확인됐다. 정기 반복 사용이나 조직 표준 정착은 확인되지 않았다.',
+      '2026.09.04 기준 Phase 1–2의 구현과 production 경로를 확인했다. Phase 3–4의 자동 evidence·stale 재분석·proposal workflow는 시작하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / CURRENT SCOPE',
@@ -298,7 +293,7 @@ export const featureValidationContent = {
       'AI는 구현 완료를 단독 확정하지 않는다.',
       '근거 부족을 완료 또는 미구현으로 추측하지 않는다.',
       'Requirement와 코드 변경의 연결은 품질·QA·배포·사용자·사업 결과를 증명하지 않는다.',
-      '현재 확인된 구현 범위는 Phase 1–2이며 전체 상태는 partial이다.',
+      '현재 권한은 조회·편집의 coarse gate이며 actor·domain별 세분화는 planned다.',
     ],
   },
   relatedSystems: [
