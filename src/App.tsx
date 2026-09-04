@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router'
+import RouteScrollRestoration from './app/RouteScrollRestoration.tsx'
 import './App.css'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         </header>
 
         <Outlet />
+        <RouteScrollRestoration />
       </div>
     </>
   )
