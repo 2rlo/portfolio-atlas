@@ -4,6 +4,8 @@ import AiNativeEngineeringRoute from '../routes/AiNativeEngineeringRoute.tsx'
 import CodemapExplorerRoute from '../routes/CodemapExplorerRoute.tsx'
 import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
+import SecurityOperationsRoute from '../routes/SecurityOperationsRoute.tsx'
+import TechnicalWritingRoute from '../routes/TechnicalWritingRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
@@ -31,11 +33,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'how/technical-writing',
-        Component: WorkInProgressRoute,
+        Component: TechnicalWritingRoute,
       },
       {
         path: 'how/security-operations',
-        Component: WorkInProgressRoute,
+        Component: SecurityOperationsRoute,
       },
       {
         path: 'what',

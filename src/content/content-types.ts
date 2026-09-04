@@ -443,3 +443,304 @@ export interface AiNativeEngineeringContent {
     readonly appliedIn: string
   }
 }
+
+export interface TechnicalWritingAnnotation {
+  readonly marker: string
+  readonly label: string
+  readonly title: string
+  readonly body: string
+}
+
+export interface TechnicalWritingReaderGuide {
+  readonly id: 'writer' | 'viewer'
+  readonly index: string
+  readonly label: string
+  readonly role: string
+  readonly purpose: string
+  readonly permission: string
+  readonly steps: readonly {
+    readonly index: string
+    readonly action: string
+    readonly detail: string
+    readonly annotation?: TechnicalWritingAnnotation
+  }[]
+  readonly handoff: string
+}
+
+export interface TechnicalWritingContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+    readonly boundary: PublicFixtureBoundary
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: readonly string[]
+    readonly coordinates: readonly {
+      readonly label: string
+      readonly value: string
+    }[]
+  }
+  readonly reader: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly question: string
+    readonly commonContext: string
+    readonly decision: string
+    readonly guides: readonly TechnicalWritingReaderGuide[]
+    readonly actionStructure: readonly string[]
+    readonly evolution: {
+      readonly before: {
+        readonly label: string
+        readonly title: string
+        readonly description: string
+      }
+      readonly pressure: {
+        readonly label: string
+        readonly title: string
+        readonly items: readonly string[]
+      }
+      readonly after: {
+        readonly label: string
+        readonly title: string
+        readonly description: string
+      }
+      readonly takeaway: string
+    }
+  }
+  readonly implementation: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly artifact: {
+      readonly label: string
+      readonly title: string
+      readonly method: string
+      readonly path: string
+      readonly purpose: string
+      readonly authorization: string
+      readonly request: readonly {
+        readonly field: string
+        readonly type: string
+        readonly required: string
+        readonly description: string
+      }[]
+      readonly outcomes: readonly {
+        readonly status: string
+        readonly changed: string
+        readonly meaning: string
+      }[]
+      readonly behavior: string
+      readonly annotation: TechnicalWritingAnnotation
+    }
+    readonly notes: readonly {
+      readonly label: string
+      readonly value: string
+    }[]
+    readonly notFormalized: readonly string[]
+  }
+  readonly operations: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly artifacts: readonly {
+      readonly label: string
+      readonly title: string
+      readonly responsibility: string
+    }[]
+    readonly flow: readonly {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly description: string
+      readonly tone: 'observe' | 'act' | 'stop'
+    }[]
+    readonly verification: readonly {
+      readonly signal: string
+      readonly proves: string
+      readonly doesNotProve: string
+    }[]
+    readonly rollbackBoundary: {
+      readonly title: string
+      readonly statement: string
+      readonly stopRule: string
+    }
+  }
+  readonly principles: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly items: readonly {
+      readonly index: string
+      readonly title: string
+      readonly statement: string
+      readonly evidence: string
+    }[]
+  }
+  readonly boundary: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly statements: readonly string[]
+    readonly notClaimed: readonly string[]
+  }
+  readonly nextPage: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly href: string
+  }
+}
+
+export type SecurityOperationsAnnotationId =
+  | 'template'
+  | 'override'
+  | 'effective'
+  | 'guard'
+
+export interface SecurityOperationsAnnotation {
+  readonly id: SecurityOperationsAnnotationId
+  readonly index: string
+  readonly label: string
+  readonly title: string
+  readonly body: string
+}
+
+export type SecurityOperationsDeployStepId =
+  | 'checks'
+  | 'inactive'
+  | 'readiness'
+  | 'switch'
+  | 'smoke'
+  | 'worker'
+  | 'decision'
+
+export interface SecurityOperationsDeployStep {
+  readonly id: SecurityOperationsDeployStepId
+  readonly index: string
+  readonly label: string
+  readonly title: string
+  readonly summary: string
+  readonly proves: string
+  readonly doesNotProve: string
+  readonly tone: 'prepare' | 'verify' | 'switch' | 'separate' | 'decision'
+}
+
+export interface SecurityOperationsContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+    readonly boundary: PublicFixtureBoundary
+  }
+  readonly hero: {
+    readonly eyebrow: string
+    readonly titleLines: readonly string[]
+    readonly thesis: readonly string[]
+    readonly coordinates: readonly {
+      readonly label: string
+      readonly value: string
+    }[]
+  }
+  readonly authorization: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly question: string
+    readonly summary: string
+    readonly productLabel: string
+    readonly members: readonly {
+      readonly id: string
+      readonly name: string
+      readonly role: string
+      readonly state: string
+      readonly selected?: boolean
+    }[]
+    readonly templates: readonly {
+      readonly id: string
+      readonly title: string
+      readonly description: string
+      readonly selected?: boolean
+    }[]
+    readonly delegated: readonly {
+      readonly label: string
+      readonly description: string
+      readonly enabled: boolean
+    }[]
+    readonly permissionRows: readonly {
+      readonly group: string
+      readonly resource: string
+      readonly view: 'base' | 'grant' | 'revoke' | 'none'
+      readonly edit: 'base' | 'grant' | 'revoke' | 'none'
+      readonly manage: 'base' | 'grant' | 'revoke' | 'none'
+    }[]
+    readonly annotations: readonly SecurityOperationsAnnotation[]
+    readonly formula: readonly {
+      readonly label: string
+      readonly value: string
+      readonly tone: 'base' | 'grant' | 'revoke' | 'effective'
+    }[]
+    readonly evolution: readonly {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly summary: string
+      readonly state: 'historical' | 'transition' | 'current'
+    }[]
+    readonly takeaway: string
+  }
+  readonly security: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly decisions: readonly {
+      readonly index: string
+      readonly risk: string
+      readonly decision: string
+      readonly boundary: string
+      readonly evidence: string
+    }[]
+    readonly currentRule: string
+  }
+  readonly deployment: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly steps: readonly SecurityOperationsDeployStep[]
+    readonly components: readonly {
+      readonly label: string
+      readonly mode: string
+      readonly boundary: string
+      readonly state: 'switchable' | 'separate' | 'shared'
+    }[]
+  }
+  readonly recovery: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly flow: readonly {
+      readonly index: string
+      readonly label: string
+      readonly title: string
+      readonly detail: string
+      readonly state: 'failure' | 'automatic' | 'terminal' | 'human'
+    }[]
+    readonly modes: readonly {
+      readonly label: 'AUTOMATED' | 'ASSISTED' | 'MANUAL / NOT VERIFIED'
+      readonly title: string
+      readonly items: readonly string[]
+    }[]
+    readonly knownBoundary: readonly string[]
+  }
+  readonly boundary: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly built: readonly string[]
+    readonly notClaimed: readonly string[]
+    readonly maintenanceRule: string
+  }
+  readonly nextPage: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly href: string
+  }
+}
