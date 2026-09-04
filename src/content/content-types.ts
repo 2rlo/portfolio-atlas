@@ -1,5 +1,13 @@
 export type ContentLane = 'what-i-built' | 'how-i-build'
 
+export interface AtlasEvidenceFreeze {
+  readonly evidenceDate: string
+  readonly implementationRevision: string
+  readonly documentationRevision: string
+  readonly codemapRevision: string
+  readonly visibility: 'non-rendered-development-metadata'
+}
+
 export interface HomeTrackItem {
   readonly id: string
   readonly name: string

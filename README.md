@@ -61,6 +61,8 @@ src/
   Technical Writing의 독자·목적·행동·위험별 writing decision과 공개 경계
 - [`docs/security-operations-content-audit.md`](docs/security-operations-content-audit.md):
   Security & Operations의 권한·배포·복구 decision과 확인된 운영 경계
+- [`docs/evidence-freeze-20260904-audit.md`](docs/evidence-freeze-20260904-audit.md):
+  2026-09-04 기준 route·상태·수치·claim boundary 정합성 ledger
 
 ## Git conventions
 
