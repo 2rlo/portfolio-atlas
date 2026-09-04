@@ -207,6 +207,6 @@ export const aiNativeEngineeringContent = {
       '구현과 테스트 통과는 deployment, runtime use 또는 adoption을 의미하지 않는다.',
       '생산성·정확도·시간 단축 효과는 측정하지 않았으므로 주장하지 않는다.',
     ],
-    appliedIn: '제품 사례 연결은 공개용 근거와 페이지가 준비된 뒤 엽니다.',
+    appliedIn: '제품 사례는 각 공개 페이지에서 확인된 근거와 boundary를 분리해 연결한다.',
   },
 } as const satisfies AiNativeEngineeringContent

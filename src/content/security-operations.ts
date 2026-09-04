@@ -152,7 +152,7 @@ export const securityOperationsContent = {
         index: '04',
         label: 'ADMIN GUARD',
         title: '위임에도 넘지 못할 선을 둔다.',
-        body: '위임받은 관리자는 자신을 승격하거나 상위 관리자를 바꾸고 같은 관리 권한을 다시 위임할 수 없다. 마지막 관리자 접근을 없애는 변경도 한 트랜잭션 안에서 막는다.',
+        body: '위임받은 관리자는 자기 자신이나 owner를 변경할 수 없고, 팀원·권한 관리 권한을 부여·회수·재위임할 수 없다. 초대 생성과 취소도 상위 관리자 전용 경계로 남긴다.',
       },
     ],
     formula: [
@@ -320,7 +320,7 @@ export const securityOperationsContent = {
     eyebrow: '04 / FAILURE & RECOVERY',
     title: '재시도할 실패와, 멈춰서 볼 실패를 나눴다.',
     summary:
-      '일시 오류는 좁게 다시 시도한다. 같은 실패가 계속되면 자동화를 끝내고 원인과 대상 범위를 사람이 확인한다.',
+      '일부 수집 실패의 일시 오류는 좁게 다시 시도한다. 같은 실패가 계속되면 자동화를 끝내고 원인과 대상 범위를 사람이 확인한다.',
     flow: [
       {
         index: '01',

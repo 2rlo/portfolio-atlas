@@ -30,7 +30,7 @@ export const technicalWritingContent = {
     eyebrow: '01 / WRITING FOR THE READER',
     title: '같은 화면, 다른 다음 행동.',
     question: '같은 기능을 권한이 다른 사람에게 어떻게 설명했는가?',
-    commonContext: 'QUALITY RECORD / SAME SCREEN',
+    commonContext: 'QUALITY RECORD / HISTORICAL ROLE SNAPSHOT (2026.08)',
     decision:
       '같은 화면을 보더라도 할 수 있는 일이 다르면, 필요한 설명도 달랐다.',
     guides: [
@@ -269,7 +269,7 @@ export const technicalWritingContent = {
         index: '05',
         label: 'STOP / ROLLBACK',
         title: '실패하면 더 진행하지 않기',
-        description: '준비·전환·복원 중 하나라도 실패하면 기존 상태를 보존하고 수동 복구로 전환.',
+        description: '준비·전환·복원 중 실패하면 자동 rollback 결과를 먼저 확인하고, 이전 대상 복원까지 실패하면 수동 복구로 전환.',
         tone: 'stop',
       },
     ],

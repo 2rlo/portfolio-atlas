@@ -207,7 +207,7 @@ export const documentationSystemContent = {
       },
       {
         id: 'codemap', index: '10', title: 'CODEMAP', responsibility: '코드 수준 맥락', summary: '호출자, 영향, 테스트, 제약, 근거를 코드 위치와 함께 찾는다.',
-        why: '파일을 열기 전에 변경의 영향 범위를 묻는다.', audience: ['개발자', '개발 에이전트'], boundary: 'HTML·JSON·LOCK으로 구성한 저장소 Codemap이 정본. 날짜별 외부 사본은 백업이고, AI-native Engineering은 이 지도를 사용한다.', maintenance: '모듈·라우트·의존성·진입점·fingerprint가 바뀔 때.', evidence: [{ label: 'HTML', statement: '관계 탐색' }, { label: 'JSON', statement: 'role / entrypoint / tests / constraints / evidence' }, { label: 'LOCK', statement: 'revision / generated time / scan scope / fingerprint' }], excerpt: ['# Codemap', '', 'HTML → explore relationships', 'JSON → role / entrypoint / tests / constraints / evidence', 'LOCK → revision / generated time / scan scope / fingerprint'], href: '/how/documentation-system/artifacts/codemap',
+        why: '파일을 열기 전에 변경의 영향 범위를 묻는다.', audience: ['개발자', '개발 에이전트'], boundary: 'HTML·JSON·LOCK으로 구성한 저장소 Codemap이 정본. 날짜별 외부 사본은 당시 상태를 보존한 point-in-time snapshot이며, AI-native Engineering은 저장소 Codemap을 사용한다.', maintenance: '모듈·라우트·의존성·진입점·fingerprint가 바뀔 때.', evidence: [{ label: 'HTML', statement: '관계 탐색' }, { label: 'JSON', statement: 'role / entrypoint / tests / constraints / evidence' }, { label: 'LOCK', statement: 'revision / generated time / scan scope / fingerprint' }], excerpt: ['# Codemap', '', 'HTML → explore relationships', 'JSON → role / entrypoint / tests / constraints / evidence', 'LOCK → revision / generated time / scan scope / fingerprint'], href: '/how/documentation-system/artifacts/codemap',
       },
     ],
   },
