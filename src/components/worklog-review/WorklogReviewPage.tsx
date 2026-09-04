@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react'
 import { Link } from 'react-router'
 import type {
   WorklogReviewHotspotId,
@@ -8,6 +7,7 @@ import {
   ProductInspectionFrame,
   ProductWorkflow,
 } from '../product-case/AnnotatedProductSurface.tsx'
+import useProductInspectionState from '../product-case/useProductInspectionState.ts'
 import WorklogReviewProductView from './WorklogReviewProductView.tsx'
 
 interface WorklogReviewPageProps {
@@ -35,13 +35,16 @@ function EvolutionFragment({
 }
 
 function WorklogReviewPage({ content }: WorklogReviewPageProps) {
-  const [activeHotspotId, setActiveHotspotId] = useState<WorklogReviewHotspotId | null>(null)
+  const {
+    activeHotspotId,
+    interactionMode,
+    activateHotspot,
+    clearPointerPreview,
+    clearFocusPreview,
+  } = useProductInspectionState<WorklogReviewHotspotId>()
   const activeAnnotation = content.annotations.find(
     (annotation) => annotation.id === activeHotspotId,
   )
-  const activateHotspot = useCallback((id: WorklogReviewHotspotId) => {
-    setActiveHotspotId(id)
-  }, [])
 
   return (
     <main className="worklog-review-page" id="main-content">
@@ -64,6 +67,9 @@ function WorklogReviewPage({ content }: WorklogReviewPageProps) {
               disclosure={content.meta.disclosure}
               surfaceLabel="Worklog Review 재구성 제품 화면과 editorial annotation"
               evolutionTargetId="worklog-review-evolution"
+              interactionMode={interactionMode}
+              onPointerPreviewEnd={clearPointerPreview}
+              onFocusPreviewEnd={clearFocusPreview}
             >
               <WorklogReviewProductView fixture={content.product} activeId={activeHotspotId} onActivate={activateHotspot} />
             </ProductInspectionFrame>
@@ -73,7 +79,7 @@ function WorklogReviewPage({ content }: WorklogReviewPageProps) {
 
       <section className="wl-workflow-section" aria-labelledby="wl-workflow-title">
         <header className="wl-section-heading"><p>{content.workflow.eyebrow}</p><h2 id="wl-workflow-title">{content.workflow.title}</h2><span>{content.workflow.introduction}</span></header>
-        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} />
+        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
         <p className="wl-workflow-boundary">{content.workflow.boundary}</p>
       </section>
 

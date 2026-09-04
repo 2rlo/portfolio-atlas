@@ -29,7 +29,7 @@ export const qaContent = {
       index: '00',
       label: 'INSPECTION GUIDE',
       title: '한 테스트 기록 안에서 근거와 변화가 이어집니다.',
-      body: 'Test context, Human result, Attachments, Revision history, AI boundary를 차례로 살펴보세요. 화면의 모든 값은 공개용 합성 데이터입니다.',
+      body: 'Test context에서 사람의 판정, 첨부 근거, 수정 이력, AI boundary까지 한 기록 안에서 이어집니다. 현재 결과만이 아니라 왜 다시 실행했는지까지 되짚는 화면입니다.',
     },
   },
   product: qaProductFixture,

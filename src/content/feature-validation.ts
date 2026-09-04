@@ -29,7 +29,7 @@ export const featureValidationContent = {
       index: '00',
       label: 'INSPECTION GUIDE',
       title: '다섯 개의 판단 지점',
-      body: 'Requirement, Evidence, AI candidate, Unknown, Human review 중 하나를 선택하면 기능 설명이 아니라 해당 구조가 필요했던 이유를 볼 수 있습니다.',
+      body: 'Requirement가 질문을 만들고 Evidence와 AI candidate가 검토 재료를 모읍니다. Unknown과 Human review는 근거가 최종 판정으로 넘어가는 경계를 지킵니다.',
     },
   },
   product: featureValidationProductFixture,

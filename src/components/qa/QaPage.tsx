@@ -1,10 +1,10 @@
-import { useCallback, useState } from 'react'
 import { Link } from 'react-router'
 import type { QaHotspotId, QaPageContent } from '../../content/content-types.ts'
 import {
   ProductInspectionFrame,
   ProductWorkflow,
 } from '../product-case/AnnotatedProductSurface.tsx'
+import useProductInspectionState from '../product-case/useProductInspectionState.ts'
 import QaProductView from './QaProductView.tsx'
 
 interface QaPageProps {
@@ -20,9 +20,14 @@ function EvolutionFragment({ visual }: { readonly visual: QaPageContent['evoluti
 }
 
 function QaPage({ content }: QaPageProps) {
-  const [activeHotspotId, setActiveHotspotId] = useState<QaHotspotId | null>(null)
+  const {
+    activeHotspotId,
+    interactionMode,
+    activateHotspot,
+    clearPointerPreview,
+    clearFocusPreview,
+  } = useProductInspectionState<QaHotspotId>()
   const activeAnnotation = content.annotations.find((annotation) => annotation.id === activeHotspotId)
-  const activateHotspot = useCallback((id: QaHotspotId) => setActiveHotspotId(id), [])
 
   return (
     <main className="qa-page" id="main-content">
@@ -50,6 +55,9 @@ function QaPage({ content }: QaPageProps) {
               disclosure={content.meta.disclosure}
               surfaceLabel="QA test detail 재구성 제품 화면과 editorial annotation"
               evolutionTargetId="qa-evolution"
+              interactionMode={interactionMode}
+              onPointerPreviewEnd={clearPointerPreview}
+              onFocusPreviewEnd={clearFocusPreview}
             >
               <QaProductView fixture={content.product} activeId={activeHotspotId} onActivate={activateHotspot} />
             </ProductInspectionFrame>
@@ -59,7 +67,7 @@ function QaPage({ content }: QaPageProps) {
 
       <section className="qa-workflow-section" aria-labelledby="qa-workflow-title">
         <header className="qa-section-heading"><p>{content.workflow.eyebrow}</p><h2 id="qa-workflow-title">{content.workflow.title}</h2><span>{content.workflow.introduction}</span></header>
-        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} ariaLabel="QA 기록 workflow" />
+        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} ariaLabel="QA 기록 workflow" onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
         <p className="qa-workflow-boundary">{content.workflow.boundary}</p>
       </section>
 

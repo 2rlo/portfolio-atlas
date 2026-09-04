@@ -29,7 +29,7 @@ export const aiCandidateReviewContent = {
       index: '00',
       label: 'REVIEW GUIDE',
       title: '후보와 공식 기록 사이의 간격',
-      body: 'Queue, Source, Editable draft, Human decision, Canonical boundary를 따라가면 AI 결과가 바로 공식 데이터가 되지 않는 이유를 볼 수 있습니다.',
+      body: 'Queue에 머문 후보는 source와 editable draft를 거쳐 human decision 뒤에만 canonical record로 이동합니다. 이 화면은 그 사이의 검토 책임을 한곳에 모읍니다.',
     },
   },
   product: aiCandidateReviewProductFixture,

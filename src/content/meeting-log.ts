@@ -29,7 +29,7 @@ export const meetingLogContent = {
       index: '00',
       label: 'REVIEW GUIDE',
       title: '회의록과 후보와 검토를 한 source context 안에서 읽는다.',
-      body: '회의 제목·참석자·대화·후보는 Jadebell 공개용 합성 예시입니다. 실제 회의 원문이나 인물·프로젝트 식별정보는 사용하지 않았습니다.',
+      body: '동기화된 회의록을 source로 두고 change guard, AI candidate group, human review를 따라갑니다. 공식 기록으로 넘어가는 시점은 사람의 최종 판단 이후로 제한합니다.',
     },
   },
   product: meetingLogProductFixture,

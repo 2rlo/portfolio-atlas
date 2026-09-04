@@ -4,12 +4,19 @@ import type {
   ProductWorkflowStep,
 } from '../../content/content-types.ts'
 
+type ProductActivationIntent = 'pointer' | 'focus' | 'press'
+type ProductInteractionMode = 'idle' | 'pointer' | 'focus' | 'pinned'
+type ProductActivationHandler<Id extends string> = (
+  id: Id,
+  intent?: ProductActivationIntent,
+) => void
+
 interface ProductHotspotProps<Id extends string> {
   readonly id: Id
   readonly activeId: Id | null
   readonly label: string
   readonly className?: string
-  readonly onActivate: (id: Id) => void
+  readonly onActivate: ProductActivationHandler<Id>
   readonly children: ReactNode
 }
 
@@ -24,14 +31,19 @@ interface ProductInspectionFrameProps {
   readonly disclosure: string
   readonly surfaceLabel: string
   readonly evolutionTargetId?: string
+  readonly interactionMode?: ProductInteractionMode
+  readonly onPointerPreviewEnd?: () => void
+  readonly onFocusPreviewEnd?: () => void
   readonly children: ReactNode
 }
 
 interface ProductWorkflowProps<Id extends string> {
   readonly steps: readonly ProductWorkflowStep<Id>[]
   readonly activeId: Id | null
-  readonly onActivate: (id: Id) => void
+  readonly onActivate: ProductActivationHandler<Id>
   readonly ariaLabel?: string
+  readonly onPointerPreviewEnd?: () => void
+  readonly onFocusPreviewEnd?: () => void
 }
 
 function ProductHotspot<Id extends string>({
@@ -52,12 +64,13 @@ function ProductHotspot<Id extends string>({
       data-active={isActive ? 'true' : 'false'}
       aria-label={`${label} 설계 설명 보기`}
       aria-controls="product-editorial-note"
-      aria-pressed={isActive}
       onPointerEnter={(event) => {
-        if (event.pointerType !== 'touch') onActivate(id)
+        if (event.pointerType !== 'touch') onActivate(id, 'pointer')
       }}
-      onFocus={() => onActivate(id)}
-      onClick={() => onActivate(id)}
+      onFocus={(event) => {
+        if (event.currentTarget.matches(':focus-visible')) onActivate(id, 'focus')
+      }}
+      onClick={() => onActivate(id, 'press')}
     >
       {children}
     </button>
@@ -68,16 +81,20 @@ function EditorialAnnotation({
   annotation,
   fallback,
   evolutionTargetId,
+  interactionMode = 'idle',
 }: {
   readonly annotation?: ProductEditorialAnnotation
   readonly fallback: ProductInspectionFrameProps['defaultAnnotation']
   readonly evolutionTargetId?: string
+  readonly interactionMode?: ProductInteractionMode
 }) {
+  const announcesSelection = interactionMode === 'focus' || interactionMode === 'pinned'
+
   return (
     <aside
       className="product-editorial-note"
       id="product-editorial-note"
-      aria-live="polite"
+      aria-live={announcesSelection ? 'polite' : 'off'}
       aria-atomic="true"
     >
       <div className="product-editorial-heading">
@@ -106,6 +123,13 @@ function EditorialAnnotation({
           <strong>{annotation.evolution.date} ↓</strong>
         </a>
       ) : null}
+
+      <p className="product-editorial-interaction">
+        <span>{interactionMode === 'pinned' ? 'PINNED' : 'INTERACTION'}</span>
+        {interactionMode === 'pinned'
+          ? '같은 요소를 다시 선택하거나 Esc를 누르면 전체 보기로 돌아갑니다.'
+          : 'Hover 또는 focus로 살펴보고, click이나 tap으로 설명을 고정합니다.'}
+      </p>
     </aside>
   )
 }
@@ -116,12 +140,23 @@ function ProductInspectionFrame({
   disclosure,
   surfaceLabel,
   evolutionTargetId,
+  interactionMode = 'idle',
+  onPointerPreviewEnd,
+  onFocusPreviewEnd,
   children,
 }: ProductInspectionFrameProps) {
   return (
     <div
       className="product-inspection-frame"
       data-inspection-active={activeAnnotation ? 'true' : 'false'}
+      data-interaction-mode={interactionMode}
+      onPointerLeave={(event) => {
+        if (event.pointerType !== 'touch') onPointerPreviewEnd?.()
+      }}
+      onBlurCapture={(event) => {
+        const nextTarget = event.relatedTarget as Node | null
+        if (!event.currentTarget.contains(nextTarget)) onFocusPreviewEnd?.()
+      }}
     >
       <div className="product-inspection-surface" aria-label={surfaceLabel}>
         <p className="product-inspection-disclosure">{disclosure}</p>
@@ -132,6 +167,7 @@ function ProductInspectionFrame({
         annotation={activeAnnotation}
         fallback={defaultAnnotation}
         evolutionTargetId={evolutionTargetId}
+        interactionMode={interactionMode}
       />
     </div>
   )
@@ -142,9 +178,21 @@ function ProductWorkflow<Id extends string>({
   activeId,
   onActivate,
   ariaLabel = '제품 검토 workflow',
+  onPointerPreviewEnd,
+  onFocusPreviewEnd,
 }: ProductWorkflowProps<Id>) {
   return (
-    <ol className="product-workflow" aria-label={ariaLabel}>
+    <ol
+      className="product-workflow"
+      aria-label={ariaLabel}
+      onPointerLeave={(event) => {
+        if (event.pointerType !== 'touch') onPointerPreviewEnd?.()
+      }}
+      onBlurCapture={(event) => {
+        const nextTarget = event.relatedTarget as Node | null
+        if (!event.currentTarget.contains(nextTarget)) onFocusPreviewEnd?.()
+      }}
+    >
       {steps.map((step) => {
         const isActive = activeId === step.hotspotId
 
@@ -154,12 +202,15 @@ function ProductWorkflow<Id extends string>({
               type="button"
               aria-label={`${step.label}: ${step.summary}`}
               aria-controls="product-editorial-note"
-              aria-pressed={isActive}
               onPointerEnter={(event) => {
-                if (event.pointerType !== 'touch') onActivate(step.hotspotId)
+                if (event.pointerType !== 'touch') onActivate(step.hotspotId, 'pointer')
               }}
-              onFocus={() => onActivate(step.hotspotId)}
-              onClick={() => onActivate(step.hotspotId)}
+              onFocus={(event) => {
+                if (event.currentTarget.matches(':focus-visible')) {
+                  onActivate(step.hotspotId, 'focus')
+                }
+              }}
+              onClick={() => onActivate(step.hotspotId, 'press')}
             >
               <span>{step.index}</span>
               <strong>{step.label}</strong>
@@ -173,3 +224,8 @@ function ProductWorkflow<Id extends string>({
 }
 
 export { ProductHotspot, ProductInspectionFrame, ProductWorkflow }
+export type {
+  ProductActivationHandler,
+  ProductActivationIntent,
+  ProductInteractionMode,
+}

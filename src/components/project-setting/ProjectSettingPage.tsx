@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react'
 import { Link } from 'react-router'
 import type {
   ProjectSettingHotspotId,
@@ -8,6 +7,7 @@ import {
   ProductInspectionFrame,
   ProductWorkflow,
 } from '../product-case/AnnotatedProductSurface.tsx'
+import useProductInspectionState from '../product-case/useProductInspectionState.ts'
 import ProjectSettingProductView from './ProjectSettingProductView.tsx'
 
 interface ProjectSettingPageProps {
@@ -34,13 +34,16 @@ function EvolutionFragment({
 }
 
 function ProjectSettingPage({ content }: ProjectSettingPageProps) {
-  const [activeHotspotId, setActiveHotspotId] = useState<ProjectSettingHotspotId | null>(null)
+  const {
+    activeHotspotId,
+    interactionMode,
+    activateHotspot,
+    clearPointerPreview,
+    clearFocusPreview,
+  } = useProductInspectionState<ProjectSettingHotspotId>()
   const activeAnnotation = content.annotations.find(
     (annotation) => annotation.id === activeHotspotId,
   )
-  const activateHotspot = useCallback((id: ProjectSettingHotspotId) => {
-    setActiveHotspotId(id)
-  }, [])
 
   return (
     <main className="project-setting-page" id="main-content">
@@ -73,6 +76,9 @@ function ProjectSettingPage({ content }: ProjectSettingPageProps) {
               disclosure={content.meta.disclosure}
               surfaceLabel="Project Setting 재구성 제품 화면과 editorial annotation"
               evolutionTargetId="project-setting-evolution"
+              interactionMode={interactionMode}
+              onPointerPreviewEnd={clearPointerPreview}
+              onFocusPreviewEnd={clearFocusPreview}
             >
               <ProjectSettingProductView
                 fixture={content.product}
@@ -90,7 +96,7 @@ function ProjectSettingPage({ content }: ProjectSettingPageProps) {
           <h2 id="ps-workflow-title">{content.workflow.title}</h2>
           <span>{content.workflow.introduction}</span>
         </header>
-        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} />
+        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
         <p className="ps-workflow-boundary">{content.workflow.boundary}</p>
       </section>
 

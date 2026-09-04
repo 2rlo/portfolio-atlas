@@ -29,7 +29,7 @@ export const permissionContent = {
       index: '00',
       label: 'ACCESS GUIDE',
       title: 'checkbox 목록이 아니라, 현재 이 사람이 할 수 있는 action의 계산 결과를 본다.',
-      body: '사람·역할·권한 배정은 Jadebell 공개용 합성 예시입니다. 실제 계정·email·tenant·permission code는 사용하지 않았습니다.',
+      body: 'Identity와 role default, personal override가 하나의 effective matrix로 합쳐지고 protected change에 적용되는 흐름을 따라갑니다.',
     },
   },
   product: permissionProductFixture,

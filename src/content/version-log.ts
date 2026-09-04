@@ -29,7 +29,7 @@ export const versionLogContent = {
       index: '00',
       label: 'LEDGER GUIDE',
       title: '버전 이름보다 구조화된 상태와 적용 범위를 먼저 읽는다.',
-      body: '제품명·버전·호환 장비·변경사항은 Jadebell 공개용 합성 예시입니다. 실제 release 이름이나 내부 배포 내용을 사용하지 않았습니다.',
+      body: 'Release status, 같은 날짜의 build, compatibility, deployment note, source trace를 함께 읽어 “최신”이 어떤 목적과 적용 범위를 뜻하는지 확인합니다.',
     },
   },
   product: versionLogProductFixture,

@@ -29,7 +29,7 @@ export const ragAssistantContent = {
       index: '00',
       label: 'ASSISTANT GUIDE',
       title: '답을 먼저 믿게 하지 않고, 어떤 종류의 source가 연결됐는지 남긴다.',
-      body: '질문·답변·프로젝트·source 내용은 Jadebell 공개용 합성 예시입니다. 실제 대화 원문이나 검색어는 사용하지 않았습니다.',
+      body: '질문의 context를 먼저 좁히고, 결정적 조회와 source hierarchy, insufficient evidence, review handoff 순서로 답변의 신뢰 범위를 읽습니다.',
     },
   },
   product: ragAssistantProductFixture,

@@ -136,6 +136,29 @@
   font-weight: 500;
 }
 
+.product-editorial-interaction {
+  display: grid;
+  gap: 0.4rem;
+  margin: 1.75rem 0 0;
+  padding-top: 0.9rem;
+  color: var(--document-dark-muted);
+  border-top: 1px solid var(--cover-rule);
+  font-size: 0.72rem;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
+.product-editorial-interaction span {
+  color: var(--cover-muted-jade);
+  font-family: var(--utility);
+  font-size: 0.54rem;
+  letter-spacing: 0.12em;
+}
+
+.product-inspection-frame[data-interaction-mode='pinned'] .product-editorial-interaction span {
+  color: var(--sage);
+}
+
 .product-hotspot {
   position: relative;
   width: 100%;

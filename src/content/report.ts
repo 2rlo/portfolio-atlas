@@ -29,7 +29,7 @@ export const reportContent = {
       index: '00',
       label: 'REPORT GUIDE',
       title: '읽기 좋은 문장보다 먼저, 어떤 기록으로 만들었는지 표시한다.',
-      body: '화면의 사람·프로젝트·기록 내용과 숫자는 Jadebell 공개용 합성 데이터입니다. 아래 Evidence의 운영 규모와 섞어 읽지 않습니다.',
+      body: '주차 범위 안에서 reviewed source와 fallback을 먼저 구분합니다. 구조화 지표, QA evidence, 생성 gate는 어떤 기록이 보고서에 들어왔는지 되짚는 경로입니다.',
     },
   },
   product: reportProductFixture,

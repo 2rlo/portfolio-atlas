@@ -1,7 +1,8 @@
-import { useCallback, useState, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { Link } from 'react-router'
 import type { ReusableWhatCaseContent } from '../../content/content-types.ts'
 import { ProductInspectionFrame, ProductWorkflow } from './AnnotatedProductSurface.tsx'
+import useProductInspectionState from './useProductInspectionState.ts'
 
 interface ReusableWhatCasePageProps<Id extends string, Product, Visual extends string> {
   readonly content: ReusableWhatCaseContent<Id, Product, Visual>
@@ -30,9 +31,14 @@ function ReusableWhatCasePage<Id extends string, Product, Visual extends string>
   renderProduct,
   renderEvolutionFragment,
 }: ReusableWhatCasePageProps<Id, Product, Visual>) {
-  const [activeHotspotId, setActiveHotspotId] = useState<Id | null>(null)
+  const {
+    activeHotspotId,
+    interactionMode,
+    activateHotspot,
+    clearPointerPreview,
+    clearFocusPreview,
+  } = useProductInspectionState<Id>()
   const activeAnnotation = content.annotations.find((annotation) => annotation.id === activeHotspotId)
-  const activateHotspot = useCallback((id: Id) => setActiveHotspotId(id), [])
 
   return (
     <main className={`qa-page ${pageClassName}`} id="main-content">
@@ -46,7 +52,7 @@ function ReusableWhatCasePage<Id extends string, Product, Visual extends string>
 
           <section className="qa-inspection" aria-labelledby={`${titleId}-inspection`}>
             <header className="qa-inspection-heading"><p>{content.inspection.eyebrow}</p><h2 id={`${titleId}-inspection`}>{content.inspection.title}</h2><span>{content.inspection.instruction}</span></header>
-            <ProductInspectionFrame activeAnnotation={activeAnnotation} defaultAnnotation={content.inspection.defaultAnnotation} disclosure={content.meta.disclosure} surfaceLabel={surfaceLabel} evolutionTargetId={evolutionTargetId}>
+            <ProductInspectionFrame activeAnnotation={activeAnnotation} defaultAnnotation={content.inspection.defaultAnnotation} disclosure={content.meta.disclosure} surfaceLabel={surfaceLabel} evolutionTargetId={evolutionTargetId} interactionMode={interactionMode} onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview}>
               {renderProduct({ fixture: content.product, activeId: activeHotspotId, onActivate: activateHotspot })}
             </ProductInspectionFrame>
           </section>
@@ -55,7 +61,7 @@ function ReusableWhatCasePage<Id extends string, Product, Visual extends string>
 
       <section className="qa-workflow-section" aria-labelledby={`${titleId}-workflow`}>
         <header className="qa-section-heading"><p>{content.workflow.eyebrow}</p><h2 id={`${titleId}-workflow`}>{content.workflow.title}</h2><span>{content.workflow.introduction}</span></header>
-        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} ariaLabel={workflowLabel} />
+        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} ariaLabel={workflowLabel} onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
         <p className="qa-workflow-boundary">{content.workflow.boundary}</p>
       </section>
 

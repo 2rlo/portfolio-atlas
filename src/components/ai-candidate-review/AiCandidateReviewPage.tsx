@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react'
 import { Link } from 'react-router'
 import type {
   AiCandidateReviewHotspotId,
@@ -8,6 +7,7 @@ import {
   ProductInspectionFrame,
   ProductWorkflow,
 } from '../product-case/AnnotatedProductSurface.tsx'
+import useProductInspectionState from '../product-case/useProductInspectionState.ts'
 import AiCandidateReviewProductView from './AiCandidateReviewProductView.tsx'
 
 interface AiCandidateReviewPageProps {
@@ -34,14 +34,16 @@ function EvolutionFragment({
 }
 
 function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
-  const [activeHotspotId, setActiveHotspotId] =
-    useState<AiCandidateReviewHotspotId | null>(null)
+  const {
+    activeHotspotId,
+    interactionMode,
+    activateHotspot,
+    clearPointerPreview,
+    clearFocusPreview,
+  } = useProductInspectionState<AiCandidateReviewHotspotId>()
   const activeAnnotation = content.annotations.find(
     (annotation) => annotation.id === activeHotspotId,
   )
-  const activateHotspot = useCallback((id: AiCandidateReviewHotspotId) => {
-    setActiveHotspotId(id)
-  }, [])
 
   return (
     <main className="ai-candidate-review-page" id="main-content">
@@ -81,6 +83,9 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
               disclosure={content.meta.disclosure}
               surfaceLabel="AI Candidate Review 재구성 제품 화면과 editorial annotation"
               evolutionTargetId="ai-candidate-review-evolution"
+              interactionMode={interactionMode}
+              onPointerPreviewEnd={clearPointerPreview}
+              onFocusPreviewEnd={clearFocusPreview}
             >
               <AiCandidateReviewProductView
                 fixture={content.product}
@@ -102,6 +107,8 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
           steps={content.workflow.steps}
           activeId={activeHotspotId}
           onActivate={activateHotspot}
+          onPointerPreviewEnd={clearPointerPreview}
+          onFocusPreviewEnd={clearFocusPreview}
         />
         <p className="acr-workflow-boundary">{content.workflow.boundary}</p>
       </section>

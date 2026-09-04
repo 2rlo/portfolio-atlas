@@ -26,7 +26,7 @@ export const apiUsageContent = {
     instruction: 'ledger, pricing dimensions, workload split, guard, counterfactual을 선택해 비용 판단의 근거와 한계를 확인하세요.',
     defaultAnnotation: {
       index: '00', label: 'LEDGER GUIDE', title: '합계보다 먼저, 빠지거나 중복된 호출이 없는지 본다.',
-      body: '화면 안 금액과 토큰은 Jadebell 공개용 합성 데이터입니다. 실제 운영 snapshot은 아래 Evidence에서 기간과 boundary를 함께 제시합니다.',
+      body: '사용량 원장, 과금 차원, workload 분리, budget guard를 따라가면 합계가 어떤 호출과 운영 정책에서 만들어졌는지 다시 확인할 수 있습니다.',
     },
   },
   product: apiUsageProductFixture,
