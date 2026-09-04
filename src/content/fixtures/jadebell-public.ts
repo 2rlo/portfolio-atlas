@@ -1,11 +1,74 @@
 import type { PublicProductFixture } from '../content-types.ts'
 
+export const jadebellPublicWorld = {
+  productName: 'Jadebell Hub',
+  organizationName: 'Jadebell Systems',
+  projects: {
+    atlas: {
+      id: 'atlas',
+      name: 'Atlas',
+      description:
+        '접근 정책과 출시 준비 상태를 함께 살펴보는 공개 데모 프로젝트입니다.',
+    },
+    canopy: {
+      id: 'canopy',
+      name: 'Canopy',
+      description:
+        '파트너 준비 상태와 운영 인계를 살펴보는 공개 데모 프로젝트입니다.',
+    },
+    harbor: {
+      id: 'harbor',
+      name: 'Harbor',
+      description:
+        '검색과 배포 흐름의 운영 상태를 살펴보는 공개 데모 프로젝트입니다.',
+    },
+    meadow: {
+      id: 'meadow',
+      name: 'Meadow',
+      description:
+        '과거 참조를 보존한 보관·복원 흐름을 설명하는 공개 데모 프로젝트입니다.',
+    },
+  },
+  people: {
+    minaKim: {
+      id: 'mina-kim',
+      name: 'Mina Kim',
+      role: 'Product Lead',
+      initials: 'MK',
+    },
+    danielLee: {
+      id: 'daniel-lee',
+      name: 'Daniel Lee',
+      role: 'Product Engineer',
+      initials: 'DL',
+    },
+    alexSeo: {
+      id: 'alex-seo',
+      name: 'Alex Seo',
+      role: 'QA Engineer',
+      initials: 'AS',
+    },
+    juliaHan: {
+      id: 'julia-han',
+      name: 'Julia Han',
+      role: 'Partner Manager',
+      initials: 'JH',
+    },
+    soraLim: {
+      id: 'sora-lim',
+      name: 'Sora Lim',
+      role: 'Product Designer',
+      initials: 'SL',
+    },
+  },
+} as const
+
 export const jadebellPublicFixture = {
   meta: {
     id: 'jadebell-public-minimum',
-    version: '1.0.0',
-    productName: 'Jadebell Hub',
-    organizationName: 'Jadebell Systems',
+    version: '1.3.0',
+    productName: jadebellPublicWorld.productName,
+    organizationName: jadebellPublicWorld.organizationName,
     classification: 'synthetic-public-demo',
     locale: 'ko-KR',
     disclosure:
@@ -18,12 +81,10 @@ export const jadebellPublicFixture = {
     },
   },
   projects: [
-    {
-      id: 'atlas',
-      name: 'Atlas',
-      description:
-        '접근 정책과 출시 준비 상태를 함께 살펴보는 공개 데모 프로젝트입니다.',
-    },
+    jadebellPublicWorld.projects.atlas,
+    jadebellPublicWorld.projects.canopy,
+    jadebellPublicWorld.projects.harbor,
+    jadebellPublicWorld.projects.meadow,
   ],
   features: [
     {
@@ -33,5 +94,19 @@ export const jadebellPublicFixture = {
       summary:
         '단계 확대 전에 확인 항목과 근거의 준비 상태를 검토하는 합성 기능입니다.',
     },
+    {
+      id: 'partner-notification-retry',
+      projectId: 'atlas',
+      name: 'Partner notification retry policy',
+      summary:
+        '알림 실패 뒤 재시도 범위와 사용자에게 보이는 최종 상태를 검토하는 합성 기능입니다.',
+    },
+  ],
+  people: [
+    jadebellPublicWorld.people.minaKim,
+    jadebellPublicWorld.people.danielLee,
+    jadebellPublicWorld.people.alexSeo,
+    jadebellPublicWorld.people.juliaHan,
+    jadebellPublicWorld.people.soraLim,
   ],
 } as const satisfies PublicProductFixture

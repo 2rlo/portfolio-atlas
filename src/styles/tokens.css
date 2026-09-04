@@ -16,6 +16,10 @@
   --color-document-ink-muted: #66716c;
   --color-document-dark-muted: rgba(241, 237, 226, 0.66);
   --color-document-jade-line: rgba(134, 169, 158, 0.46);
+  --color-signal-amber: #c47a1d;
+  --color-signal-amber-ink: #a86415;
+  --color-signal-amber-soft: #fff4dc;
+  --color-signal-amber-line: #f2dba8;
 
   /* Semantic color roles */
   --paper: var(--color-warm-off-white);
@@ -40,6 +44,10 @@
   --document-ink-muted: var(--color-document-ink-muted);
   --document-dark-muted: var(--color-document-dark-muted);
   --document-jade-line: var(--color-document-jade-line);
+  --warning: var(--color-signal-amber);
+  --warning-ink: var(--color-signal-amber-ink);
+  --warning-soft: var(--color-signal-amber-soft);
+  --warning-line: var(--color-signal-amber-line);
 
   /* Typography */
   --display: 'Iowan Old Style', 'AppleMyungjo', 'Nanum Myeongjo',

@@ -37,12 +37,11 @@ export function FeatureRain({ variant, interactive }: FeatureRainProps) {
   const lanes = variant === 'desktop' ? desktopLanes : mobileLanes
 
   return (
-    <div
+    <nav
       className={`feature-rain feature-rain--${variant}`}
       data-feature-rain={variant}
       aria-hidden={interactive ? undefined : true}
       aria-label={interactive ? 'WHAT I BUILT pages' : undefined}
-      role={interactive ? 'navigation' : undefined}
     >
       {lanes.map((lane) => (
         <div
@@ -86,6 +85,6 @@ export function FeatureRain({ variant, interactive }: FeatureRainProps) {
           </div>
         </div>
       ))}
-    </div>
+    </nav>
   )
 }

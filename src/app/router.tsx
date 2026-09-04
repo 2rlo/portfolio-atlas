@@ -1,11 +1,25 @@
 import { createBrowserRouter } from 'react-router'
 import App from '../App.tsx'
+import AiCandidateReviewRoute from '../routes/AiCandidateReviewRoute.tsx'
 import AiNativeEngineeringRoute from '../routes/AiNativeEngineeringRoute.tsx'
+import ApiUsageRoute from '../routes/ApiUsageRoute.tsx'
 import CodemapExplorerRoute from '../routes/CodemapExplorerRoute.tsx'
 import DocumentationSystemRoute from '../routes/DocumentationSystemRoute.tsx'
+import DeveloperStatusRoute from '../routes/DeveloperStatusRoute.tsx'
+import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
+import MeetingLogRoute from '../routes/MeetingLogRoute.tsx'
+import PermissionRoute from '../routes/PermissionRoute.tsx'
+import ProjectSettingRoute from '../routes/ProjectSettingRoute.tsx'
+import QaRoute from '../routes/QaRoute.tsx'
+import RagAssistantRoute from '../routes/RagAssistantRoute.tsx'
+import ReportRoute from '../routes/ReportRoute.tsx'
+import ScheduleRoute from '../routes/ScheduleRoute.tsx'
 import SecurityOperationsRoute from '../routes/SecurityOperationsRoute.tsx'
 import TechnicalWritingRoute from '../routes/TechnicalWritingRoute.tsx'
+import VersionLogRoute from '../routes/VersionLogRoute.tsx'
+import WikiRoute from '../routes/WikiRoute.tsx'
+import WorklogReviewRoute from '../routes/WorklogReviewRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
@@ -42,6 +56,62 @@ export const router = createBrowserRouter([
       {
         path: 'what',
         Component: WorkInProgressRoute,
+      },
+      {
+        path: 'what/feature-validation',
+        Component: FeatureValidationRoute,
+      },
+      {
+        path: 'what/worklog-review',
+        Component: WorklogReviewRoute,
+      },
+      {
+        path: 'what/ai-candidate-review',
+        Component: AiCandidateReviewRoute,
+      },
+      {
+        path: 'what/permission',
+        Component: PermissionRoute,
+      },
+      {
+        path: 'what/project-setting',
+        Component: ProjectSettingRoute,
+      },
+      {
+        path: 'what/rag-assistant',
+        Component: RagAssistantRoute,
+      },
+      {
+        path: 'what/report',
+        Component: ReportRoute,
+      },
+      {
+        path: 'what/meeting-log',
+        Component: MeetingLogRoute,
+      },
+      {
+        path: 'what/qa',
+        Component: QaRoute,
+      },
+      {
+        path: 'what/version-log',
+        Component: VersionLogRoute,
+      },
+      {
+        path: 'what/wiki',
+        Component: WikiRoute,
+      },
+      {
+        path: 'what/schedule',
+        Component: ScheduleRoute,
+      },
+      {
+        path: 'what/developer-status',
+        Component: DeveloperStatusRoute,
+      },
+      {
+        path: 'what/api-usage',
+        Component: ApiUsageRoute,
       },
       {
         path: 'what/:featureId',
