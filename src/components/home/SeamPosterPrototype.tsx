@@ -55,7 +55,7 @@ function SeamPosterPrototype({
             ) : null}
 
             {track.lane === 'what-i-built' ? (
-              <FeatureRain variant="desktop" />
+              <FeatureRain interactive={interactive} variant="desktop" />
             ) : null}
 
             <header className="poster-meta">

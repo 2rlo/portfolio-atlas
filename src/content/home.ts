@@ -1,9 +1,4 @@
 import type { HomePageContent } from './content-types.ts'
-import { whatFeatureGroups } from './what-features.ts'
-
-const whatFeatureIndex = whatFeatureGroups.flatMap((group) =>
-  group.features.map(({ id, name, href }) => ({ id, name, href })),
-)
 
 export const homeContent = {
   tracks: [
@@ -15,7 +10,7 @@ export const homeContent = {
       coverTitleLines: ['WHAT'],
       seamTitle: 'WHAT',
       descriptors: ['PRODUCT', 'WORKFLOW', 'STATE'],
-      items: whatFeatureIndex,
+      items: [],
     },
     {
       id: 'how-i-build',

@@ -44,7 +44,6 @@ function MobileDiagonalPoster({
       </h1>
 
       <div className="mobile-poster-background" aria-hidden="true" />
-      <FeatureRain variant="mobile" />
 
       {tracks.map((track) => {
         const isActive = visibleLane === track.lane
@@ -73,6 +72,13 @@ function MobileDiagonalPoster({
                     : `${isActive ? 'Reset' : 'Focus'} ${track.label}`
                 }
                 onClick={() => activateLane(track)}
+              />
+            ) : null}
+
+            {track.lane === 'what-i-built' ? (
+              <FeatureRain
+                interactive={interactive && isActive}
+                variant="mobile"
               />
             ) : null}
 

@@ -235,6 +235,29 @@
   white-space: nowrap;
   cursor: default;
   opacity: 0.2;
+  transition: opacity 180ms ease;
+}
+
+.feature-rain-link {
+  position: relative;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.feature-rain-link::before {
+  position: absolute;
+  inset-block: -1.1rem;
+  inset-inline: -0.55rem;
+  content: '';
+}
+
+.feature-rain-link:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 0.45rem;
+  opacity: 0.96;
 }
 
 .feature-rain-item--long {
@@ -278,8 +301,7 @@
   transition-delay: 0s;
 }
 
-.seam-poster[data-interactive='true']
-  .poster-field--what-i-built:focus-within
+.feature-rain-lane:has(.feature-rain-link:focus-visible)
   .feature-rain-track {
   animation-play-state: paused;
 }
@@ -387,6 +409,20 @@
 
   .feature-rain--mobile .feature-rain-track {
     height: 220%;
+  }
+
+  .seam-poster[data-interactive='true']
+    .poster-field--what-i-built:is(:focus-visible, :has(:focus-visible))
+    .feature-rain-track,
+  .mobile-diagonal-poster:has(
+      :is(
+          .mobile-poster-control--what-i-built:focus-visible,
+          .feature-rain-link:focus-visible
+        )
+    )
+    .feature-rain-track {
+    animation: none;
+    transform: none;
   }
 }
 
@@ -528,16 +564,6 @@
   transform: translateY(8px);
 }
 
-.poster-field--what-i-built .poster-index-list {
-  left: var(--page-gutter);
-  display: grid;
-  grid-template-rows: repeat(7, minmax(2.5rem, auto));
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-flow: column;
-  column-gap: clamp(1.5rem, 3vw, 3.5rem);
-  width: min(38rem, calc(100% - (var(--page-gutter) * 2)));
-}
-
 .poster-field--how-i-build .poster-index-list {
   right: var(--page-gutter);
 }
@@ -557,10 +583,6 @@
 }
 
 .poster-index-list li:last-child {
-  border-bottom: 1px solid var(--cover-rule);
-}
-
-.poster-field--what-i-built .poster-index-list li:nth-child(7) {
   border-bottom: 1px solid var(--cover-rule);
 }
 
@@ -712,7 +734,43 @@
     transition-delay: 0s;
   }
 
-  .poster-field--what-i-built:has(.poster-index-link:hover)
+  .seam-poster[data-interactive='true']
+    .poster-field--what-i-built:hover
+    .feature-rain-link,
+  .seam-poster[data-interactive='true']
+    .poster-field--what-i-built:focus-within
+    .feature-rain-link {
+    pointer-events: auto;
+  }
+
+  .feature-rain-item {
+    position: relative;
+  }
+
+  .feature-rain-item::after {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 0.24rem);
+    font-family: var(--cover-monumental);
+    font-size: 0.64em;
+    font-variation-settings: normal;
+    letter-spacing: 0;
+    content: '↗';
+    opacity: 0;
+    transform: translateY(-54%);
+    transition: opacity 160ms ease;
+  }
+
+  .feature-rain-link:hover {
+    opacity: 0.96;
+  }
+
+  .feature-rain-link:hover::after,
+  .feature-rain-link:focus-visible::after {
+    opacity: 1;
+  }
+
+  .feature-rain-lane:has(.feature-rain-link:hover)
     .feature-rain-track {
     animation-play-state: paused;
   }
@@ -924,6 +982,11 @@
     transition-delay: 0s;
   }
 
+  .mobile-diagonal-poster[data-active-lane='what-i-built']
+    .feature-rain-link {
+    pointer-events: auto;
+  }
+
   .mobile-poster-content {
     position: absolute;
     z-index: 8;
@@ -1018,17 +1081,6 @@
       transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .mobile-poster-content--what-i-built .mobile-poster-index {
-    top: 38%;
-    left: clamp(1rem, 5.1vw, 1.5rem);
-    width: min(72vw, 18rem);
-    max-height: 50svh;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    background: var(--cover-black);
-    scrollbar-width: thin;
-  }
-
   .mobile-poster-content--how-i-build .mobile-poster-index {
     top: 34%;
     right: clamp(1rem, 5.1vw, 1.5rem);
@@ -1062,17 +1114,6 @@
   .mobile-poster-index .poster-index-link {
     min-height: 2.75rem;
     pointer-events: auto;
-  }
-
-  .mobile-poster-content--what-i-built .mobile-poster-index li:last-child {
-    border-bottom: 1px solid var(--cover-rule);
-  }
-
-  .mobile-diagonal-poster:has(
-      .mobile-poster-content--what-i-built .poster-index-link:focus-visible
-    )
-    .feature-rain-track {
-    animation-play-state: paused;
   }
 
   .mobile-diagonal-poster[data-active-lane='what-i-built']
