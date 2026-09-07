@@ -41,7 +41,7 @@ export function FeatureRain({ variant, interactive }: FeatureRainProps) {
       className={`feature-rain feature-rain--${variant}`}
       data-feature-rain={variant}
       aria-hidden={interactive ? undefined : true}
-      aria-label={interactive ? 'WHAT I BUILT pages' : undefined}
+      aria-label={interactive ? '만든 제품 목록' : undefined}
     >
       {lanes.map((lane) => (
         <div

@@ -37,10 +37,10 @@ function MobileDiagonalPoster({
       className="mobile-diagonal-poster"
       data-active-lane={visibleLane ?? 'none'}
       data-interactive={interactive}
-      aria-label="Portfolio Atlas, WHAT I BUILT and HOW I BUILD"
+      aria-label="Portfolio Atlas, 만든 제품과 만드는 방식"
     >
       <h1 className="visually-hidden">
-        WHAT I BUILT and HOW I BUILD, Portfolio Atlas
+        만든 제품과 만드는 방식, Portfolio Atlas
       </h1>
 
       <div className="mobile-poster-background" aria-hidden="true" />
@@ -67,9 +67,9 @@ function MobileDiagonalPoster({
                 aria-label={
                   hasIndex
                     ? isActive && track.href
-                      ? `Open ${primaryDestination}`
-                      : `${isActive ? 'Hide' : 'Show'} ${track.label} index`
-                    : `${isActive ? 'Reset' : 'Focus'} ${track.label}`
+                      ? `${primaryDestination} 열기`
+                      : `${track.label} 목록 ${isActive ? '접기' : '펼치기'}`
+                    : `${track.label} ${isActive ? '강조 해제' : '강조'}`
                 }
                 onClick={() => activateLane(track)}
               />
@@ -99,7 +99,7 @@ function MobileDiagonalPoster({
                 <ol
                   className="mobile-poster-index"
                   id={indexId}
-                  aria-label={`${track.label} index`}
+                  aria-label={`${track.label} 목록`}
                   aria-hidden={!isActive}
                 >
                   {track.items.map((item, itemIndex) => (

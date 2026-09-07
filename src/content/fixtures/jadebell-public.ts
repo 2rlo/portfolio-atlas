@@ -33,13 +33,13 @@ export const jadebellPublicWorld = {
     minaKim: {
       id: 'mina-kim',
       name: 'Mina Kim',
-      role: 'Product Lead',
+      role: '제품 책임자',
       initials: 'MK',
     },
     danielLee: {
       id: 'daniel-lee',
       name: 'Daniel Lee',
-      role: 'Product Engineer',
+      role: '제품 개발자',
       initials: 'DL',
     },
     alexSeo: {
@@ -51,13 +51,13 @@ export const jadebellPublicWorld = {
     juliaHan: {
       id: 'julia-han',
       name: 'Julia Han',
-      role: 'Partner Manager',
+      role: '파트너 담당자',
       initials: 'JH',
     },
     soraLim: {
       id: 'sora-lim',
       name: 'Sora Lim',
-      role: 'Product Designer',
+      role: '제품 디자이너',
       initials: 'SL',
     },
   },
