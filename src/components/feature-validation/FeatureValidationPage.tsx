@@ -1,14 +1,6 @@
 import { Link } from 'react-router'
-import type {
-  FeatureValidationPageContent,
-  FeatureValidationHotspotId,
-} from '../../content/content-types.ts'
-import {
-  ProductInspectionFrame,
-  ProductWorkflow,
-} from '../product-case/AnnotatedProductSurface.tsx'
-import useProductInspectionState from '../product-case/useProductInspectionState.ts'
-import FeatureValidationProductView from './FeatureValidationProductView.tsx'
+import type { FeatureValidationPageContent } from '../../content/content-types.ts'
+import FeatureValidationSurfaceWorkflow from './FeatureValidationSurfaceWorkflow.tsx'
 
 interface FeatureValidationPageProps {
   readonly content: FeatureValidationPageContent
@@ -60,17 +52,6 @@ function EvolutionFragment({
 }
 
 function FeatureValidationPage({ content }: FeatureValidationPageProps) {
-  const {
-    activeHotspotId,
-    interactionMode,
-    activateHotspot,
-    clearPointerPreview,
-    clearFocusPreview,
-  } = useProductInspectionState<FeatureValidationHotspotId>()
-  const activeAnnotation = content.annotations.find(
-    (annotation) => annotation.id === activeHotspotId,
-  )
-
   return (
     <main className="feature-validation-page" id="main-content">
       <section className="fv-hero" aria-labelledby="feature-validation-title">
@@ -98,55 +79,10 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
               </aside>
             </div>
           </header>
-
-          <section
-            className="fv-inspection"
-            id="product-inspection"
-            aria-labelledby="product-inspection-title"
-          >
-            <header className="fv-inspection-heading">
-              <p>{content.inspection.eyebrow}</p>
-              <h2 id="product-inspection-title">{content.inspection.title}</h2>
-              <span>{content.inspection.instruction}</span>
-            </header>
-
-            <ProductInspectionFrame
-              activeAnnotation={activeAnnotation}
-              defaultAnnotation={content.inspection.defaultAnnotation}
-              disclosure={content.meta.disclosure}
-              surfaceLabel="Feature Validation 재구성 화면과 설계 해설"
-              evolutionTargetId="feature-validation-evolution"
-              interactionMode={interactionMode}
-              onPointerPreviewEnd={clearPointerPreview}
-              onFocusPreviewEnd={clearFocusPreview}
-            >
-              <FeatureValidationProductView
-                fixture={content.product}
-                activeId={activeHotspotId}
-                onActivate={activateHotspot}
-              />
-            </ProductInspectionFrame>
-          </section>
         </div>
       </section>
 
-      <section className="fv-workflow-section" aria-labelledby="fv-workflow-title">
-        <header className="fv-section-heading">
-          <p>{content.workflow.eyebrow}</p>
-          <h2 id="fv-workflow-title">{content.workflow.title}</h2>
-          <span>{content.workflow.introduction}</span>
-        </header>
-
-        <ProductWorkflow
-          steps={content.workflow.steps}
-          activeId={activeHotspotId}
-          onActivate={activateHotspot}
-          onPointerPreviewEnd={clearPointerPreview}
-          onFocusPreviewEnd={clearFocusPreview}
-        />
-
-        <p className="fv-workflow-boundary">{content.workflow.boundary}</p>
-      </section>
+      <FeatureValidationSurfaceWorkflow content={content} />
 
       <section className="fv-decisions" aria-labelledby="fv-decisions-title">
         <div className="fv-decisions-heading">
