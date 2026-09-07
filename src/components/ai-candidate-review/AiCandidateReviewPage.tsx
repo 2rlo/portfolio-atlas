@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link, useSearchParams } from 'react-router'
 import type {
   AiCandidateReviewHotspotId,
   AiCandidateReviewPageContent,
@@ -9,6 +9,7 @@ import {
 } from '../product-case/AnnotatedProductSurface.tsx'
 import useProductInspectionState from '../product-case/useProductInspectionState.ts'
 import AiCandidateReviewProductView from './AiCandidateReviewProductView.tsx'
+import AiReviewSurfaceWorkflow, { AiReviewPrototypeSwitch } from './AiReviewSurfaceWorkflow.tsx'
 
 interface AiCandidateReviewPageProps {
   readonly content: AiCandidateReviewPageContent
@@ -34,6 +35,8 @@ function EvolutionFragment({
 }
 
 function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
+  const [searchParams] = useSearchParams()
+  const isPrototype = searchParams.get('workflow') !== 'classic'
   const {
     activeHotspotId,
     interactionMode,
@@ -46,7 +49,7 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
   )
 
   return (
-    <main className="ai-candidate-review-page" id="main-content">
+    <main className="ai-candidate-review-page" id="main-content" data-workflow-layout={isPrototype ? 'sticky' : 'classic'}>
       <section className="acr-hero" aria-labelledby="ai-candidate-review-title">
         <div className="acr-hero-frame">
           <Link className="acr-back" to="/">
@@ -70,7 +73,8 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
             </div>
           </header>
 
-          <section className="acr-inspection" aria-labelledby="acr-inspection-title">
+          {!isPrototype && <section className="acr-inspection" id="acr-product-journey" aria-labelledby="acr-inspection-title">
+            <AiReviewPrototypeSwitch isPrototype={false} />
             <header className="acr-inspection-heading">
               <p>{content.inspection.eyebrow}</p>
               <h2 id="acr-inspection-title">{content.inspection.title}</h2>
@@ -93,11 +97,11 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
                 onActivate={activateHotspot}
               />
             </ProductInspectionFrame>
-          </section>
+          </section>}
         </div>
       </section>
 
-      <section className="acr-workflow-section" aria-labelledby="acr-workflow-title">
+      {isPrototype ? <AiReviewSurfaceWorkflow content={content} /> : <section className="acr-workflow-section" aria-labelledby="acr-workflow-title">
         <header className="acr-section-heading">
           <p>{content.workflow.eyebrow}</p>
           <h2 id="acr-workflow-title">{content.workflow.title}</h2>
@@ -111,7 +115,7 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
           onFocusPreviewEnd={clearFocusPreview}
         />
         <p className="acr-workflow-boundary">{content.workflow.boundary}</p>
-      </section>
+      </section>}
 
       <section className="acr-rules" aria-labelledby="acr-rules-title">
         <header>
