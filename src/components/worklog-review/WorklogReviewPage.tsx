@@ -1,14 +1,6 @@
 import { Link } from 'react-router'
-import type {
-  WorklogReviewHotspotId,
-  WorklogReviewPageContent,
-} from '../../content/content-types.ts'
-import {
-  ProductInspectionFrame,
-  ProductWorkflow,
-} from '../product-case/AnnotatedProductSurface.tsx'
-import useProductInspectionState from '../product-case/useProductInspectionState.ts'
-import WorklogReviewProductView from './WorklogReviewProductView.tsx'
+import type { WorklogReviewPageContent } from '../../content/content-types.ts'
+import WorklogReviewSurfaceWorkflow from './WorklogReviewSurfaceWorkflow.tsx'
 
 interface WorklogReviewPageProps {
   readonly content: WorklogReviewPageContent
@@ -35,17 +27,6 @@ function EvolutionFragment({
 }
 
 function WorklogReviewPage({ content }: WorklogReviewPageProps) {
-  const {
-    activeHotspotId,
-    interactionMode,
-    activateHotspot,
-    clearPointerPreview,
-    clearFocusPreview,
-  } = useProductInspectionState<WorklogReviewHotspotId>()
-  const activeAnnotation = content.annotations.find(
-    (annotation) => annotation.id === activeHotspotId,
-  )
-
   return (
     <main className="worklog-review-page" id="main-content">
       <section className="wl-hero" aria-labelledby="worklog-review-title">
@@ -59,29 +40,10 @@ function WorklogReviewPage({ content }: WorklogReviewPageProps) {
             </div>
           </header>
 
-          <section className="wl-inspection" aria-labelledby="wl-inspection-title">
-            <header className="wl-inspection-heading"><p>{content.inspection.eyebrow}</p><h2 id="wl-inspection-title">{content.inspection.title}</h2><span>{content.inspection.instruction}</span></header>
-            <ProductInspectionFrame
-              activeAnnotation={activeAnnotation}
-              defaultAnnotation={content.inspection.defaultAnnotation}
-              disclosure={content.meta.disclosure}
-              surfaceLabel="Worklog Review 재구성 화면과 설계 해설"
-              evolutionTargetId="worklog-review-evolution"
-              interactionMode={interactionMode}
-              onPointerPreviewEnd={clearPointerPreview}
-              onFocusPreviewEnd={clearFocusPreview}
-            >
-              <WorklogReviewProductView fixture={content.product} activeId={activeHotspotId} onActivate={activateHotspot} />
-            </ProductInspectionFrame>
-          </section>
         </div>
       </section>
 
-      <section className="wl-workflow-section" aria-labelledby="wl-workflow-title">
-        <header className="wl-section-heading"><p>{content.workflow.eyebrow}</p><h2 id="wl-workflow-title">{content.workflow.title}</h2><span>{content.workflow.introduction}</span></header>
-        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
-        <p className="wl-workflow-boundary">{content.workflow.boundary}</p>
-      </section>
+      <WorklogReviewSurfaceWorkflow content={content} />
 
       <section className="wl-rules" aria-labelledby="wl-rules-title">
         <header><p>{content.rules.eyebrow}</p><h2 id="wl-rules-title">{content.rules.title}</h2></header>
