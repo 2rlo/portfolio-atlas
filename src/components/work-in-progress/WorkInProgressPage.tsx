@@ -11,7 +11,7 @@ interface WorkInProgressPageProps {
 function WorkInProgressPage({
   backHref = '/',
   eyebrow = 'WORK IN PROGRESS',
-  primaryCopy = '다람쥐 작업반이 이 페이지를 만들고 있어요.',
+  primaryCopy = 'The squirrel crew is still building this page.',
   secondaryCopy = '',
 }: WorkInProgressPageProps) {
   return (
