@@ -548,3 +548,458 @@
     transition-duration: 0s !important;
   }
 }
+
+/* Wiki-only surface × workflow reading grammar. */
+.wikj-journey {
+  --wikj-expanded-height: 55rem;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.wikj-journey-heading {
+  padding: 0 max(var(--page-gutter), calc((100vw - var(--page-max-width)) / 2 + var(--page-gutter))) 1.5rem;
+  color: var(--cover-cream);
+  background: var(--cover-black);
+}
+
+.wikj-journey-heading .qa-inspection-heading {
+  margin: 0;
+}
+
+.wikj-journey-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+  column-gap: clamp(2rem, 5vw, 5rem);
+  width: min(100%, var(--page-max-width));
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+  padding-bottom: 5rem;
+  isolation: isolate;
+  overflow-anchor: none;
+}
+
+.wikj-journey-stage::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: calc((100% - 100vw) / 2);
+  width: 100vw;
+  height: calc(var(--wikj-expanded-height) + 3rem);
+  background: var(--cover-black);
+  content: '';
+}
+
+.wikj-following-surface {
+  position: relative;
+  z-index: 3;
+  grid-area: 1 / 1 / 2 / -1;
+  align-self: start;
+  width: 100%;
+  min-width: 0;
+}
+
+.wikj-journey-stage[data-compact='true'] .wikj-following-surface {
+  position: sticky;
+  top: 1.5rem;
+  width: calc((100% - clamp(2rem, 5vw, 5rem)) * 0.43);
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.wikj-journey-stage[data-compact='true'] .product-inspection-frame {
+  display: block;
+  border: 0;
+}
+
+.wikj-journey-stage[data-compact='true'] .product-editorial-note,
+.wikj-journey-stage[data-compact='true'] .product-inspection-disclosure {
+  display: none;
+}
+
+.wikj-journey-stage[data-compact='true'] .product-inspection-surface {
+  padding: 0;
+  background: var(--paper-jade);
+}
+
+.wikj-journey-stage[data-compact='true'] .wikj-surface-viewport {
+  position: relative;
+  height: var(--wikj-overview-height);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.wikj-journey-stage[data-compact='true'] .wikj-surface-canvas {
+  width: max(52rem, var(--wikj-canvas-width));
+  transform: translateY(var(--wikj-crop-offset, 0px)) scale(var(--wikj-surface-scale, 1));
+  transform-origin: top left;
+}
+
+.wikj-journey-stage[data-compact='true'] .wiki-product {
+  box-shadow: none;
+}
+
+.wikj-journey-stage[data-compact='true'] .wiki-product .product-hotspot {
+  transform: none;
+}
+
+.wikj-journey-stage[data-compact='true'] .wiki-product[data-has-active='true'] .product-hotspot,
+.wikj-journey-stage[data-compact='true'] .wiki-product[data-has-active='true'] .wiki-primary-navigation,
+.wikj-journey-stage[data-compact='true'] .wiki-product[data-has-active='true'] .wiki-content-heading,
+.wikj-journey-stage[data-compact='true'] .wiki-product[data-has-active='true'] .wiki-create-entry,
+.wikj-journey-stage[data-compact='true'] .wiki-product[data-has-active='true'] .wiki-sidebar-footer,
+.wikj-journey-stage[data-compact='true'] .wiki-product[data-has-active='true'] .wiki-surface-note {
+  opacity: 0.65;
+}
+
+.wikj-journey-stage[data-compact='true'] .wiki-product[data-has-active='true'] .product-hotspot[data-active='true'] {
+  z-index: 2;
+  opacity: 1;
+  outline: 3px solid var(--jade);
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.wikj-journey-stage[data-compact='true'] .wiki-product .product-hotspot::after {
+  content: none;
+}
+
+.wikj-journey-stage[data-compact='true'] .wiki-product[data-has-active='true'] .product-hotspot[data-active='true'] {
+  opacity: 1;
+}
+
+.wikj-surface-marker {
+  position: absolute;
+  z-index: 4;
+  top: var(--wikj-marker-y, 4px);
+  left: var(--wikj-marker-x, 4px);
+  display: grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  place-items: center;
+  color: var(--paper);
+  background: var(--jade);
+  border: 1px solid var(--paper);
+  border-radius: 50%;
+  font: 0.65rem var(--utility);
+  pointer-events: none;
+}
+
+.wikj-surface-caption:not([hidden]) {
+  display: block;
+  padding-block: 0.8rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.wikj-surface-caption > span {
+  color: var(--jade);
+  font: 0.64rem var(--utility);
+  letter-spacing: 0.06em;
+}
+
+.wikj-reading-column {
+  grid-area: 1 / 2 / 2 / 3;
+  min-width: 0;
+  padding-top: calc(var(--wikj-expanded-height) + 7rem);
+}
+
+.wikj-reading-heading {
+  display: grid;
+  gap: 1.3rem;
+  margin-bottom: 3rem;
+}
+
+.wikj-reading-heading > p {
+  margin: 0;
+  color: var(--jade);
+  font: 0.65rem var(--utility);
+  letter-spacing: 0.12em;
+}
+
+.wikj-reading-heading h2 {
+  max-width: 14ch;
+  margin: 0;
+  font-family: var(--grotesk);
+  font-size: clamp(2rem, 3.5vw, 3.8rem);
+  font-weight: 670;
+  letter-spacing: -0.055em;
+  line-height: 1.12;
+  word-break: keep-all;
+}
+
+.wikj-reading-heading > span {
+  max-width: 34rem;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.wikj-workflow-rail {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.wikj-workflow-rail > li {
+  --wikj-node-center-y: calc(1.75rem + 2.25rem);
+  position: relative;
+  min-height: 48svh;
+  padding: 1.75rem 0 4rem 3.25rem;
+  border-top: 1px solid transparent;
+  scroll-margin-top: 25svh;
+}
+
+.wikj-workflow-rail > li::before {
+  position: absolute;
+  top: var(--wikj-node-center-y);
+  bottom: calc(-1 * var(--wikj-node-center-y));
+  left: calc(1.125rem - 0.5px);
+  width: 1px;
+  background: var(--document-jade-line);
+  content: '';
+}
+
+.wikj-workflow-rail > li[data-active='true']::before {
+  background: var(--jade);
+}
+
+.wikj-workflow-rail > li:last-child::before {
+  content: none;
+}
+
+.wikj-workflow-rail h3 {
+  margin: 0;
+}
+
+.wikj-workflow-rail button {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: calc(100% + 3.25rem);
+  height: 4.5rem;
+  padding: 0.35rem 0;
+  margin-left: -3.25rem;
+  color: var(--ink-soft);
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  scroll-margin-block: 5rem;
+}
+
+.wikj-workflow-rail button:focus-visible {
+  outline: 2px solid var(--jade);
+  outline-offset: 5px;
+}
+
+.wikj-rail-marker {
+  display: grid;
+  flex: 0 0 2.25rem;
+  width: 2.25rem;
+  min-height: 2.25rem;
+  place-items: center;
+  color: var(--ink-soft);
+  border: 1px solid var(--document-jade-line);
+  border-radius: 50%;
+  background: var(--paper);
+  font: 0.7rem var(--utility);
+}
+
+.wikj-rail-label {
+  font-family: var(--cover-condensed);
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.wikj-rail-indicator {
+  visibility: hidden;
+  margin-left: auto;
+  font-size: 1.3rem;
+}
+
+.wikj-workflow-rail [data-active='true'] .wikj-rail-indicator {
+  visibility: visible;
+}
+
+.wikj-workflow-rail [data-active='true'] .wikj-rail-label {
+  color: var(--jade);
+  font-size: clamp(1.7rem, 3vw, 3.15rem);
+  font-weight: 750;
+}
+
+.wikj-workflow-rail [data-active='true'] .wikj-rail-marker {
+  color: var(--paper);
+  border-color: var(--jade);
+  background: var(--jade);
+}
+
+.wikj-rail-summary {
+  margin: 0.85rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  font-weight: 500;
+  line-height: 1.55;
+  word-break: keep-all;
+  text-wrap: pretty;
+}
+
+.wikj-rail-detail {
+  max-width: 34rem;
+  margin: 0.85rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.wikj-workflow-rail [data-active='true'] .wikj-rail-summary {
+  margin-top: 1.1rem;
+  color: var(--ink);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.wikj-workflow-rail [data-active='true'] .wikj-rail-detail {
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.85;
+}
+
+@media (max-width: 56rem) {
+  .wikj-journey-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    padding-bottom: 3rem;
+  }
+
+  .wikj-reading-column {
+    grid-area: 1 / 1;
+    padding-top: calc(var(--wikj-expanded-height) + 7rem);
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wikj-following-surface {
+    top: 0;
+    width: 100%;
+    padding-top: 0.5rem;
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wikj-surface-viewport {
+    height: max(12.5rem, 40svh);
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wikj-surface-canvas {
+    width: 100%;
+  }
+
+  .wikj-reading-heading {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .wikj-reading-heading h2 {
+    max-width: 20ch;
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .wikj-workflow-rail > li {
+    --wikj-node-center-y: calc(1.5rem + 2.25rem);
+    min-height: 48svh;
+    padding-block: 1.5rem 3rem;
+    scroll-margin-top: 44svh;
+  }
+
+  .wikj-workflow-rail button {
+    scroll-margin-top: 44svh;
+  }
+
+  .wikj-workflow-rail [data-active='false'] .wikj-rail-label {
+    font-size: 1.4rem;
+  }
+
+  .wikj-workflow-rail [data-active='true'] .wikj-rail-label {
+    font-size: clamp(1.6rem, 6vw, 2.15rem);
+  }
+
+}
+
+.wiki-page .qa-hero-frame {
+  padding-bottom: 0;
+}
+
+.wikj-workflow-boundary {
+  margin: 0;
+  padding-top: 1.5rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+
+
+/* Wiki compact surface keeps the four route anchors readable on touch screens. */
+@media (max-width: 56rem) {
+  .wikj-journey-stage[data-compact='true'] .wiki-product-topbar {
+    min-height: 2.7rem;
+    padding-inline: 0.55rem;
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-product-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-sidebar {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.55rem;
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-collection-entry {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-collection-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.2rem;
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-collection-list > span {
+    display: grid;
+    min-height: 2rem;
+    padding-inline: 0.4rem;
+    background: var(--paper-bright);
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-content-canvas {
+    padding: 0.65rem;
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-document-row {
+    min-height: 3.45rem;
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-search-entry strong,
+  .wikj-journey-stage[data-compact='true'] .wiki-collection-list > span strong,
+  .wikj-journey-stage[data-compact='true'] .wiki-tab-list > span,
+  .wikj-journey-stage[data-compact='true'] .wiki-document-row strong {
+    font-size: 0.75rem;
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-document-row small,
+  .wikj-journey-stage[data-compact='true'] .wiki-surface-note {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .wikj-journey-stage[data-compact='true'] .wiki-surface-note {
+    display: block;
+    max-width: 30ch;
+  }
+}
