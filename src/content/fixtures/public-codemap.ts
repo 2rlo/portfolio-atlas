@@ -5,25 +5,25 @@ export const publicCodemapContent = {
     classification: 'reconstructed-public-example',
     owner: 'Documentation System',
     disclosure:
-      '실제 저장소 구조를 복제하지 않고, 탐색 방식과 유지보수 계약만 공개 목적에 맞게 재구성했습니다.',
+      '코드 탐색 방식과 갱신 규칙을 설명하기 위해 독립적으로 재구성한 예시입니다.',
   },
   hero: {
     eyebrow: 'DOCUMENTATION SYSTEM / ARTIFACT 10',
     titleLines: ['CODE', 'MAP'],
-    thesis: '코드를 기억하지 않고, 다시 찾을 수 있게 만든 지도.',
+    thesis: '코드의 위치와 관계를 다시 찾을 수 있게 만든 지도.',
     summary:
-      '파일 목록에서 멈추지 않고 호출자, 의존성, 테스트와 근거를 한 문맥으로 연결한다.',
+      '호출자·의존성·테스트·근거를 코드 위치와 연결한다.',
   },
   freshness: {
     state: 'FRESH',
-    reviewedAt: 'PUBLIC SAMPLE / REVIEWED',
-    scope: '5 SYNTHETIC MODULES / 2 FLOWS',
+    reviewedAt: '공개 예시 검토됨',
+    scope: '합성 모듈 5개 / 흐름 2개',
     rule: '구조가 바뀌면 코드와 같은 변경에서 다시 생성하고 LOCK을 확인한다.',
   },
   nodes: [
     {
       id: 'workspace', index: '01', label: 'WORKSPACE', kind: 'ENTRY',
-      role: '변경을 시작하고 현재 문맥으로 들어가는 사용자 작업면.',
+      role: '사용자가 변경을 요청하는 진입 화면.',
       callers: ['직접 사용자 동작'], dependencies: ['Interface Route'],
       tests: ['workspace navigation'], evidence: ['route declaration', 'interaction entry'],
     },
@@ -41,7 +41,7 @@ export const publicCodemapContent = {
     },
     {
       id: 'service', index: '04', label: 'DOMAIN SERVICE', kind: 'SERVICE',
-      role: '업무 규칙을 적용하고 저장 변경과 확인 결과를 조율한다.',
+      role: '업무 규칙을 적용하고 저장 변경과 처리 결과를 조율한다.',
       callers: ['Access Gate'], dependencies: ['Record Store'],
       tests: ['rule transition', 'failure isolation'], evidence: ['service boundary', 'state transition'],
     },
@@ -67,12 +67,12 @@ export const publicCodemapContent = {
     },
   ],
   contract: [
-    { format: 'HTML', audience: '사람', responsibility: '관계와 흐름을 선택해 탐색한다.' },
-    { format: 'JSON', audience: 'Coding agent', responsibility: '역할, 진입점, 테스트와 근거를 구조적으로 읽는다.' },
-    { format: 'LOCK', audience: '변경 검토자', responsibility: '생성 기준, 범위와 fingerprint로 최신성을 확인한다.' },
+    { format: 'HTML', audience: '사람', responsibility: '모듈의 관계와 처리 흐름을 탐색한다.' },
+    { format: 'JSON', audience: '개발 에이전트', responsibility: '역할, 진입점, 테스트와 근거를 구조적으로 읽는다.' },
+    { format: 'LOCK', audience: '변경 검토자', responsibility: '생성 기준·스캔 범위·모듈 지문으로 코드와 지도의 일치 여부를 확인한다.' },
   ],
   boundary: [
-    '실제 저장소명, 경로, commit, endpoint와 내부 topology를 포함하지 않는다.',
-    'Codemap은 코드 탐색 맥락이며 배포, runtime 상태 또는 adoption의 증거가 아니다.',
+    '모듈과 관계는 공개 목적에 맞게 독립적으로 재구성했다. 실제 저장소 식별정보와 내부 구조는 담지 않았다.',
+    'Codemap은 코드의 위치와 관계를 찾는 자료다. 배포·실행 상태·반복 사용은 각각의 운영 근거로 확인한다.',
   ],
 } as const satisfies PublicCodemapContent

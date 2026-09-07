@@ -12,18 +12,20 @@ function WorkInProgressPage({
   backHref = '/',
   eyebrow = 'WORK IN PROGRESS',
   primaryCopy = 'The squirrel crew is still building this page.',
-  secondaryCopy = '들켜버렸지만 조금만 기다려 주세요.',
+  secondaryCopy = '',
 }: WorkInProgressPageProps) {
   return (
     <main className="wip-page" id="main-content">
       <div className="wip-page__copy">
         <p className="wip-page__eyebrow">{eyebrow}</p>
         <h1>{primaryCopy}</h1>
-        <p className="wip-page__secondary" lang="ko">
-          {secondaryCopy}
-        </p>
+        {secondaryCopy ? (
+          <p className="wip-page__secondary" lang="ko">
+            {secondaryCopy}
+          </p>
+        ) : null}
         <Link className="wip-page__back-link" to={backHref}>
-          <span aria-hidden="true">←</span> BACK HOME
+          <span aria-hidden="true">←</span> 홈으로
         </Link>
       </div>
 

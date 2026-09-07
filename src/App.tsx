@@ -1,11 +1,12 @@
 import { Link, Outlet } from 'react-router'
+import RouteScrollRestoration from './app/RouteScrollRestoration.tsx'
 import './App.css'
 
 function App() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        본문으로 건너뛰기
       </a>
 
       <div className="page-shell" id="top">
@@ -20,6 +21,7 @@ function App() {
         </header>
 
         <Outlet />
+        <RouteScrollRestoration />
       </div>
     </>
   )

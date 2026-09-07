@@ -97,15 +97,15 @@ function KnowledgeAnnotationFields({ node }: KnowledgeAnnotationFieldsProps) {
   return (
     <dl className="knowledge-annotation-fields">
       <div>
-        <dt>QUESTION</dt>
+        <dt>답하는 질문</dt>
         <dd>{node.question}</dd>
       </div>
       <div>
-        <dt>AUTHORITY</dt>
+        <dt>담당 범위</dt>
         <dd>{node.authority}</dd>
       </div>
       <div>
-        <dt>UPDATE WHEN</dt>
+        <dt>갱신 시점</dt>
         <dd>{node.updateWhen}</dd>
       </div>
     </dl>

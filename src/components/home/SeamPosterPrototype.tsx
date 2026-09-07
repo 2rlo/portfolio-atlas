@@ -30,10 +30,10 @@ function SeamPosterPrototype({
         data-treatment={treatment}
         data-display-treatment={displayTreatment}
         data-interactive={interactive}
-        aria-label="Portfolio Atlas, WHAT I BUILT and HOW I BUILD"
+        aria-label="Portfolio Atlas, 만든 제품과 만드는 방식"
       >
         <h1 className="visually-hidden">
-          WHAT I BUILT and HOW I BUILD, Portfolio Atlas
+          만든 제품과 만드는 방식, Portfolio Atlas
         </h1>
 
         {tracks.map((track) => (
@@ -48,7 +48,7 @@ function SeamPosterPrototype({
           >
             {interactive && track.href ? (
               <Link
-                aria-label={`Open ${track.items[0]?.name ?? track.label}`}
+                aria-label={`${track.items[0]?.name ?? track.label} 열기`}
                 className="poster-field-background-link"
                 to={track.href}
               />
@@ -70,7 +70,7 @@ function SeamPosterPrototype({
             {track.items.length > 0 ? (
               <ol
                 className="poster-index-list"
-                aria-label={`${track.label} index`}
+                aria-label={`${track.label} 목록`}
               >
                 {track.items.map((item, itemIndex) => (
                   <li key={item.id}>

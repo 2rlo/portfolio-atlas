@@ -16,14 +16,14 @@ export const documentationSystemContent = {
   hero: {
     eyebrow: 'HOW I BUILD / 01',
     titleLines: ['DOCUMENTATION', 'SYSTEM'],
-    supportingLabel: 'EXTERNALIZING PROJECT CONTEXT',
+    supportingLabel: '프로젝트 맥락을 문서로',
     thesis: '코드 작성자만 알던 프로젝트 맥락을, 다시 찾아갈 수 있는 구조로 만들었다.',
     summary:
       '현재 상태, 결정의 이유, 운영 절차, 코드 위치를 질문별로 나눴다. 실제 상태는 다시 확인하고, 구조가 바뀌면 설명도 함께 바꾼다.',
     scope: {
-      eyebrow: 'SCOPE / DEVELOPMENT & OPERATIONS',
+      eyebrow: '개발·운영 문서의 범위',
       statement: '개발자와 운영자, 미래의 내가 시스템을 이해하고 변경·배포·복구할 때 쓰는 맥락.',
-      boundary: 'AI가 대화에 쓰는 런타임 지식과 기억은 별도 체계다.',
+      boundary: 'AI가 답변에 사용하는 지식과 대화 기억은 별도 체계에서 관리한다.',
       artifacts: [
         'ERD',
         'Architecture',
@@ -135,14 +135,14 @@ export const documentationSystemContent = {
   artifacts: {
     eyebrow: '02 / ARTIFACTS',
     title: '문서 아카이브',
-    introduction: '진입, 구조, 복구를 대표하는 세 문서로 역할의 차이를 보여준다.',
+    introduction: '질문에 맞는 문서를 찾는 PROJECT MAP, 현재 구조를 설명하는 ARCHITECTURE, 복구 순서를 정한 RECOVERY.',
     primaryItems: [
       {
         id: 'project-map', index: '01', title: 'PROJECT MAP', responsibility: '탐색 안내 / 진입 경로',
         summary: '질문에 맞는 문서로 들어가는 첫 경로.',
-        why: '저장소 전체를 역추적하기 전에, 어디서 읽을지 먼저 찾는다.',
+        why: '필요한 문서를 찾으려고 저장소 전체를 역추적해야 하는 일을 줄이기 위한 진입점.',
         audience: ['유지보수 담당자', '새 개발자', '개발 에이전트', '미래의 나'],
-        boundary: '구현의 정본이 아니라, 정본으로 가는 색인.',
+        boundary: '구현과 운영의 기준 문서로 연결하는 색인이다.',
         maintenance: '기준 문서나 진입 경로가 바뀔 때.',
         evidence: [
           { label: 'ENTRY PATH', statement: '', sequence: ['README', 'Project Map', 'Domain docs', 'Architecture / Operations', 'Codemap'] },
@@ -153,7 +153,7 @@ export const documentationSystemContent = {
       {
         id: 'architecture', index: '02', title: 'ARCHITECTURE', responsibility: '구조 / 경계',
         summary: '현재 구현을 설명하고, 질문에 따라 보는 깊이를 나눈다.',
-        why: '시스템 흐름, 데이터 관계, 실제 스키마, 코드 영향을 한 장에 억지로 담지 않는다.',
+        why: '시스템 흐름과 실제 스키마를 한 장에 담으면, 관계를 찾는 일과 전체 흐름을 읽는 일이 충돌한다.',
         audience: ['개발자', '검토자', '개발 에이전트'],
         boundary: '현재 구현만 설명한다. LikeC4는 버전 관리하지만 자동 최신성 검증은 없다. 코드, 실제 상태, Codemap의 revision·fingerprint와 다시 대조한다.',
         maintenance: '경계·의존성·스키마·주요 데이터 흐름이 바뀔 때.',
@@ -167,39 +167,39 @@ export const documentationSystemContent = {
       },
       {
         id: 'recovery', index: '03', title: 'RECOVERY', responsibility: '운영 위험 / 대응',
-        summary: '안전한 점검과 고위험 복구를 다른 깊이에 둔다.',
-        why: '찾기 쉬워야 하지만, 바로 복사해 실행하기 쉬워서는 안 된다.',
+        summary: '일상 점검과 고위험 복구를 구분해 배치한다.',
+        why: '고위험 명령을 실행하기 전에 대상 환경과 되돌릴 조건을 읽어야 했다.',
         audience: ['운영자', '개발자', '장애 검토자'],
         boundary: '절차를 기록했지만 백업·복구 훈련 완료나 자동 복구를 뜻하지 않는다.',
         maintenance: '절차·위험도·환경·dry-run·rollback 조건이 바뀔 때.',
         evidence: [
           { label: 'ROUTINE', statement: '읽기 전용·멱등 명령은 입구에.' },
-          { label: 'HIGH RISK', statement: 'replay·reset·대량 backfill은 경고가 있는 Runbook에.' },
-          { label: 'BEFORE RUN', statement: '환경·범위·비용·dry-run·rollback 확인.' },
+          { label: 'HIGH RISK', statement: '재처리·초기화·대량 소급 반영은 경고가 있는 Runbook에.' },
+          { label: 'BEFORE RUN', statement: '환경·범위·비용·사전 모의 실행·원복 조건 확인.' },
         ],
         excerpt: ['# Recovery', '', '## Before a high-risk command', '- confirm environment and scope', '- check idempotency and cost', '- use dry-run where supported', '- record rollback impact', '', '> A runbook is guidance, not a completed drill.'],
       },
     ],
     libraryItems: [
       {
-        id: 'data-pipeline', index: '04', title: 'DATA PIPELINE', responsibility: '데이터 흐름 / 신뢰 경계', summary: '입력부터 검토·확정 상태까지 책임을 따라간다.',
-        why: '원본, 변환 결과, AI 후보, 확정 데이터를 섞지 않는다.', audience: ['개발자', '데이터 검토자'], boundary: '실제 레코드·저장소 식별자·운영 데이터는 포함하지 않는다.', maintenance: '입력 계약·변환·소유권이 바뀔 때.', evidence: [{ label: 'STATE BOUNDARY', statement: 'Source → Validate → Transform → Review → Confirmed' }], excerpt: ['# Data Pipeline', '', 'source', '  → validate', '  → transform', '  → review', '  → confirmed'],
+        id: 'data-pipeline', index: '04', title: 'DATA PIPELINE', responsibility: '데이터 흐름 / 검토 상태', summary: '입력부터 검토·확정 상태까지 책임을 따라간다.',
+        why: '원본에서 변환 결과, AI 후보, 확정 데이터로 이어지는 상태를 구분한다.', audience: ['개발자', '데이터 검토자'], boundary: '실제 레코드·저장소 식별자·운영 데이터는 포함하지 않는다.', maintenance: '입력 계약·변환·소유권이 바뀔 때.', evidence: [{ label: 'STATE BOUNDARY', statement: 'Source → Validate → Transform → Review → Confirmed' }], excerpt: ['# Data Pipeline', '', 'source', '  → validate', '  → transform', '  → review', '  → confirmed'],
       },
       {
         id: 'api-map', index: '05', title: 'API MAP', responsibility: '인터페이스 계약', summary: '인터페이스와 인가 조건을 함께 찾는다.',
-        why: '요청 형식만 알고 실행 권한을 놓치지 않게 한다.', audience: ['개발자', '연동 담당자'], boundary: '실제 엔드포인트·도메인·계정 식별자는 포함하지 않는다.', maintenance: '라우트·요청 형식·인가 경계가 바뀔 때.', evidence: [{ label: 'CONTRACT', statement: 'Request + access condition' }], excerpt: ['# Interface Map', '', '## Read', '- authenticated role required', '', '## Write', '- validate scope before mutation'],
+        why: '요청 형식과 함께, 누가 실행할 수 있는지 확인해야 한다.', audience: ['개발자', '연동 담당자'], boundary: '실제 엔드포인트·도메인·계정 식별자는 포함하지 않는다.', maintenance: '라우트·요청 형식·인가 경계가 바뀔 때.', evidence: [{ label: 'CONTRACT', statement: '요청 형식 + 실행 권한' }], excerpt: ['# Interface Map', '', '## Read', '- authenticated role required', '', '## Write', '- validate scope before mutation'],
       },
       {
         id: 'deployment', index: '06', title: 'DEPLOYMENT', responsibility: '배포 운영', summary: '반영 전제, 검증 순서, rollback 기준.',
-        why: '배포 순서를 기억이 아닌 Runbook에 둔다.', audience: ['운영자', '배포 담당자'], boundary: '문서가 성공을 증명하지 않는다. readiness·smoke test·실행 상태로 확인한다.', maintenance: '배포 순서·검증 관문·rollback 경로가 바뀔 때.', evidence: [{ label: 'SEQUENCE', statement: 'Readiness → Switch → Public smoke → Keep / Rollback' }], excerpt: ['# Deployment', '', '## Before switch', '- confirm target and scope', '- check readiness', '', '## After switch', '- run focused smoke test', '- keep or rollback'],
+        why: '배포 순서와 단계별 확인 조건을 Runbook에 남긴다.', audience: ['운영자', '배포 담당자'], boundary: '배포 결과는 준비 상태 점검·기본 동작 검사·실행 기록으로 확인한다.', maintenance: '배포 순서·검증 관문·rollback 경로가 바뀔 때.', evidence: [{ label: 'SEQUENCE', statement: 'Readiness → Switch → Public smoke → Keep / Rollback' }], excerpt: ['# Deployment', '', '## Before switch', '- confirm target and scope', '- check readiness', '', '## After switch', '- run focused smoke test', '- keep or rollback'],
       },
       {
         id: 'current-state', index: '07', title: 'CURRENT-STATE', responsibility: '구현 상태', summary: '완료·부분 완료·임시·위험을 나눈 현재 상태.',
-        why: '지금과 다음을 한 문장에 섞지 않는다.', audience: ['유지보수 담당자', '검토자'], boundary: '남은 범위와 시작 조건은 Roadmap에서 다룬다.', maintenance: '구현 상태나 확인된 위험이 달라질 때.', evidence: [{ label: 'STATUS', statement: 'Complete / Partial / Temporary / Risk' }], excerpt: ['# Current State', '', '- Complete → verified current path', '- Partial → implemented scope + remaining scope', '- Temporary → replacement condition', '- Risk → unresolved boundary'],
+        why: '현재 구현된 범위와 남은 작업을 구분해 기록한다.', audience: ['유지보수 담당자', '검토자'], boundary: '남은 범위와 시작 조건은 Roadmap에서 다룬다.', maintenance: '구현 상태나 확인된 위험이 달라질 때.', evidence: [{ label: 'STATUS', statement: 'Complete / Partial / Temporary / Risk' }], excerpt: ['# Current State', '', '- Complete → verified current path', '- Partial → implemented scope + remaining scope', '- Temporary → replacement condition', '- Risk → unresolved boundary'],
       },
       {
         id: 'roadmap', index: '08', title: 'ROADMAP', responsibility: '향후 범위', summary: '남은 범위와 시작 조건.',
-        why: '계획을 이미 있는 구조처럼 보이지 않게 한다.', audience: ['유지보수 담당자', '기획자'], boundary: '계획은 구현이나 배포 사실이 아니다.', maintenance: '범위·전제·우선순위가 바뀔 때.', evidence: [{ label: 'FUTURE', statement: 'Remaining scope + activation condition' }], excerpt: ['# Roadmap', '', '## Remaining scope', '- condition before implementation', '- verification before promotion'],
+        why: '남은 범위와 시작 조건을 현재 구조와 분리해 기록한다.', audience: ['유지보수 담당자', '기획자'], boundary: '계획은 구현이나 배포 사실이 아니다.', maintenance: '범위·전제·우선순위가 바뀔 때.', evidence: [{ label: 'FUTURE', statement: '남은 범위 + 시작 조건' }], excerpt: ['# Roadmap', '', '## Remaining scope', '- condition before implementation', '- verification before promotion'],
       },
       {
         id: 'adr', index: '09', title: 'ADR', responsibility: '결정 이력', summary: '선택 이유와 바뀐 판단의 연결.',
@@ -207,7 +207,7 @@ export const documentationSystemContent = {
       },
       {
         id: 'codemap', index: '10', title: 'CODEMAP', responsibility: '코드 수준 맥락', summary: '호출자, 영향, 테스트, 제약, 근거를 코드 위치와 함께 찾는다.',
-        why: '파일을 열기 전에 변경의 영향 범위를 묻는다.', audience: ['개발자', '개발 에이전트'], boundary: 'HTML·JSON·LOCK으로 구성한 저장소 Codemap이 정본. 날짜별 외부 사본은 백업이고, AI-native Engineering은 이 지도를 사용한다.', maintenance: '모듈·라우트·의존성·진입점·fingerprint가 바뀔 때.', evidence: [{ label: 'HTML', statement: '관계 탐색' }, { label: 'JSON', statement: 'role / entrypoint / tests / constraints / evidence' }, { label: 'LOCK', statement: 'revision / generated time / scan scope / fingerprint' }], excerpt: ['# Codemap', '', 'HTML → explore relationships', 'JSON → role / entrypoint / tests / constraints / evidence', 'LOCK → revision / generated time / scan scope / fingerprint'], href: '/how/documentation-system/artifacts/codemap',
+        why: '파일을 열기 전에 변경의 영향 범위를 묻는다.', audience: ['개발자', '개발 에이전트'], boundary: 'HTML·JSON·LOCK으로 구성한 저장소 Codemap이 정본. 날짜별 외부 사본은 당시 상태를 보존한 point-in-time snapshot이며, AI-native Engineering은 저장소 Codemap을 사용한다.', maintenance: '모듈·라우트·의존성·진입점·fingerprint가 바뀔 때.', evidence: [{ label: 'HTML', statement: '관계 탐색' }, { label: 'JSON', statement: 'role / entrypoint / tests / constraints / evidence' }, { label: 'LOCK', statement: 'revision / generated time / scan scope / fingerprint' }], excerpt: ['# Codemap', '', 'HTML → explore relationships', 'JSON → role / entrypoint / tests / constraints / evidence', 'LOCK → revision / generated time / scan scope / fingerprint'], href: '/how/documentation-system/artifacts/codemap',
       },
     ],
   },
@@ -219,24 +219,24 @@ export const documentationSystemContent = {
     scenes: [
       {
         id: 'initial-erd', index: '01', time: '2026.06', title: 'INITIAL ERD', pressureLines: ['PRODUCT DIRECTION', 'STORAGE CHANGE'],
-        takeaway: '첫 ERD는 이후 구조 안에서, 당시 데이터 경계를 설명하는 지도로 남았다.',
-        change: '제품 방향과 저장 구조가 바뀌며 첫 스냅샷은 history artifact가 됐다.',
+        takeaway: '첫 ERD는 당시 데이터 구조를 확인하는 과거 기록으로 남겼다.',
+        change: '제품 방향과 저장 구조가 바뀌며 첫 스냅샷을 과거 구조의 기록으로 보존했다.',
         evidence: { label: 'EVIDENCE', statement: '11 TABLES · HUMAN AUTHORING / REVIEW ↔ POSTGRESQL AGGREGATION / QUERY' },
         boundary: '완성본이 아니라, 당시 데이터 경계를 담은 첫 스냅샷.',
-        accessibleVisualSummary: '첫 ERD는 사람의 작성·검토와 PostgreSQL 집계·조회를 나눈 11개 테이블의 관계를 보여준다. 이후 제품 방향과 저장 구조가 바뀌며 과거 상태를 설명하는 artifact로 남는다.',
+        accessibleVisualSummary: '첫 ERD에는 사람의 작성·검토와 PostgreSQL 집계·조회를 나눈 11개 테이블 관계가 담겼다. 이후 제품 방향과 저장 구조가 바뀌어 과거 상태의 기록으로 남는다.',
         visual: { kind: 'boundary', artifact: 'INITIAL ERD / 11 TABLES', status: 'FIRST SNAPSHOT', boundaries: [{ label: 'HUMAN', responsibility: 'AUTHORING / REVIEW' }, { label: 'POSTGRESQL', responsibility: 'AGGREGATION / QUERY' }] },
       },
       {
         id: 'taxonomy', index: '02', time: '2026.07.13', title: 'RESPONSIBILITY SEPARATION', pressureLines: ['CURRENT ≠ FUTURE', 'FUTURE ≠ DECISION'],
         takeaway: '현재, 미래, 결정 기록을 서로 다른 문서 책임으로 나눴다.',
-        change: 'CURRENT ≠ FUTURE ≠ DECISION',
+        change: '현재 상태·향후 범위·결정 이력을 문서별로 분리.',
         evidence: { label: 'EVIDENCE', statement: 'CURRENT ≠ FUTURE ≠ DECISION' },
         accessibleVisualSummary: 'Architecture는 현재 구현, Current-state는 상태, Roadmap은 남은 범위, ADR은 선택 이유와 바뀐 결정을 맡는다.',
         visual: { kind: 'taxonomy', responsibilities: [{ label: 'ARCHITECTURE', answer: 'CURRENT ONLY' }, { label: 'CURRENT', answer: 'COMPLETE / PARTIAL / TEMPORARY / RISK' }, { label: 'ROADMAP', answer: 'REMAINING SCOPE' }, { label: 'DECISIONS', answer: 'WHY' }, { label: 'ADR', answer: 'DECISION / SUPERSEDED / FOLLOW-UP' }] },
       },
       {
         id: 'levels-of-detail', index: '03', time: '2026.07.23–27', title: 'MULTIPLE LEVELS OF DETAIL', pressureLines: ['READABILITY', 'LEVEL OF DETAIL'],
-        takeaway: '하나의 지도로 모든 질문에 답하려 하지 않았다.', change: 'System Map → Domain ERD → Physical ERD',
+        takeaway: '하나의 지도로 모든 질문에 답하려 하지 않았다.', change: '시스템 흐름·도메인 관계·물리 스키마를 서로 다른 깊이로 분리.',
         evidence: { label: 'EVIDENCE', statement: 'System Map → Domain ERD → Physical ERD' },
         boundary: '물리 ERD 한 장은 관계 확인에는 유용했지만, 흐름을 읽기엔 너무 복잡했다.',
         accessibleVisualSummary: '기존 책임 구조 아래에 System Map, Domain ERD, Physical ERD의 세 탐색 깊이가 생긴다. LikeC4는 system, container, component 관점을 맡는다.',
@@ -245,7 +245,7 @@ export const documentationSystemContent = {
       {
         id: 'operations', index: '04', time: '2026.07.31–08.11', title: 'OPERATIONS + CODE LEVEL', pressureLines: ['OPERATIONAL SAFETY', 'CODEBASE COMPLEXITY'],
         takeaway: '이해하는 것만으로는 부족했다. 배포·복구 절차를 찾고, 실제 코드를 추적할 수 있어야 했다.',
-        change: 'README / RUNBOOK / PRODUCTION SNAPSHOT / CODEMAP',
+        change: '배포·복구 절차, 운영 스키마, 코드 탐색 근거를 문서 체계에 연결.',
         evidence: { label: 'EVIDENCE', statement: 'README / RUNBOOK / PRODUCTION SNAPSHOT / CODEMAP' },
         boundary: 'Runbook은 절차이지, 완료된 복구 훈련의 증거가 아니다.',
         accessibleVisualSummary: 'README에서 운영 문서로 들어가고, 실제 스키마는 운영 스냅샷으로 다시 확인한다. Codemap은 호출 관계, 영향 범위, 테스트를 HTML·JSON·LOCK으로 연결한다.',
@@ -255,19 +255,19 @@ export const documentationSystemContent = {
         id: 'staleness', index: '05', time: '2026.08', title: 'THE PROBLEM BECAME STALENESS.', pressureLines: ['STALE CONTEXT'],
         takeaway: '문서를 더 만드는 것보다, 낡지 않게 유지하는 일이 다음 문제가 됐다.',
         change: 'CHANGE → CONTEXT → VERIFY',
-        evidence: { label: 'EVIDENCE', statement: '코드와 지도가 어긋난 뒤, LOCK에 revision·생성 시각·스캔 범위·모듈 fingerprint를 남겼다.' },
+        evidence: { label: 'EVIDENCE', statement: '코드와 지도가 어긋난 뒤, LOCK에 기준 리비전·생성 시각·스캔 범위·모듈 지문을 남겼다.' },
         boundary: '같은 변경에서 갱신한다는 규칙은 생겼지만, 최신성 CI와 스키마 변경 자동 탐지는 아직 없다.',
-        accessibleVisualSummary: '기존 문서 구조 위에 Change, Context, Verify 흐름이 더해진다. 구조 변경은 관련 Architecture·Domain docs·Codemap 갱신과 코드·테스트·실제 상태 확인으로 이어진다.',
+        accessibleVisualSummary: '기존 문서 구조에 변경·문서 갱신·검증의 흐름이 더해진다. 구조를 바꾸면 관련 Architecture·도메인 문서·Codemap을 갱신하고 코드·테스트·실제 상태를 확인한다.',
         visual: { kind: 'staleness', backlog: ['CHANGE', 'CONTEXT', 'VERIFY'], triggers: ['BOUNDARY', 'ROUTE', 'DEPENDENCY', 'SCHEMA', 'QUEUE', 'MAJOR DATA FLOW'], context: ['ARCHITECTURE', 'DOMAIN DOCS', 'CODEMAP'] },
       },
     ],
     currentRule: {
       eyebrow: 'CURRENT RULE', title: 'SAME CHANGE.',
-      statement: '경계, 라우트, 의존성, 스키마, 큐, 주요 데이터 흐름이 바뀌면 관련 맥락도 같은 변경에서 갱신하고 검증한다.',
+      statement: '경계·라우트·의존성·스키마·큐·주요 데이터 흐름을 바꿀 때 관련 문서도 같은 변경에서 갱신하고 검증한다.',
       flow: [
-        { label: 'CHANGE', items: ['Boundary', 'Route', 'Dependency', 'Schema', 'Queue', 'Major data flow'] },
-        { label: 'CONTEXT', items: ['Architecture', 'Domain docs', 'Codemap'] },
-        { label: 'VERIFY', items: ['Code', 'Test', 'Actual system / schema'] },
+        { label: 'CHANGE', items: ['경계', '라우트', '의존성', '스키마', '큐', '주요 데이터 흐름'] },
+        { label: 'CONTEXT', items: ['Architecture', '도메인 문서', 'Codemap'] },
+        { label: 'VERIFY', items: ['코드', '테스트', '실제 시스템·스키마'] },
       ],
     },
   },
@@ -278,6 +278,6 @@ export const documentationSystemContent = {
     notVerified: ['문서 최신성 CI', '스키마 변경 자동 탐지', 'Production migration-as-code', '백업·복구 훈련'],
   },
   nextPage: {
-    eyebrow: 'NEXT / 02', title: 'AI-NATIVE ENGINEERING', summary: '프로젝트 맥락을 개발 흐름이 어떻게 읽고, 검증하고, 다시 정본에 반영하는지.', href: '/how/ai-native-engineering', available: true,
+    eyebrow: 'NEXT / 02', title: 'AI-NATIVE ENGINEERING', summary: '개발 과정에서 문서를 참고하고, 검증한 변경을 다시 기준 문서에 반영하는 흐름.', href: '/how/ai-native-engineering', available: true,
   },
 } as const satisfies DocumentationSystemContent

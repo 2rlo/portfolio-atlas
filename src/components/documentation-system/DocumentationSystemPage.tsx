@@ -76,7 +76,7 @@ function DocumentationSystemPage({ content }: DocumentationSystemPageProps) {
       />
 
       <section className="documentation-principle" aria-labelledby="principle-title">
-        <p className="section-eyebrow">BOUNDARY / CURRENT PRACTICE</p>
+        <p className="section-eyebrow">문서의 역할과 확인 범위</p>
         <h2 id="principle-title">{content.principle.statement}</h2>
         <p className="documentation-principle-boundary">
           {content.principle.boundary.map((line) => (
@@ -85,7 +85,7 @@ function DocumentationSystemPage({ content }: DocumentationSystemPageProps) {
         </p>
         <p className="documentation-principle-claim">{content.principle.claimBoundary}</p>
         <details className="documentation-principle-unverified">
-          <summary>아직 자동화·검증되지 않은 범위</summary>
+          <summary>자동화·검증의 남은 범위</summary>
           <ul>
             {content.principle.notVerified.map((item) => (
               <li key={item}>{item}</li>

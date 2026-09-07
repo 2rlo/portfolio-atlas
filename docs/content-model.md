@@ -6,7 +6,7 @@ private source를 해석하지 않고, `src/content`에서 정규화되고 타�
 
 ## Layers
 
-1. `content-types.ts`: Home, public fixture, Documentation System의 계약
+1. `content-types.ts`: Home, HOW, WHAT, public fixture의 계약
 2. `home.ts`: Home의 두 track과 공개 navigation 데이터
 3. `fixtures/`: 독립 작성한 synthetic 또는 reconstructed public-safe 콘텐츠
 4. `routes/`와 `components/`: 콘텐츠의 표현과 interaction
@@ -20,3 +20,7 @@ summary를 함께 가진다.
 
 콘텐츠를 확장할 때는 타입을 먼저 갱신하고, private source runtime dependency가
 생기지 않았는지 확인한다.
+
+다른 HOW / WHAT 페이지도 같은 원칙을 따른다. route는 private evidence를 직접 읽지
+않고, `src/content`의 public-safe 값만 소비한다. 현재 route inventory는
+`src/app/router.tsx`를 기준으로 확인한다.

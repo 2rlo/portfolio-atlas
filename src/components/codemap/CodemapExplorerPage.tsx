@@ -32,22 +32,22 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
             <small>{content.meta.disclosure}</small>
           </div>
         </div>
-        <dl className="codemap-ledger" aria-label="Codemap artifact 상태">
-          <div><dt>OWNER</dt><dd>{content.meta.owner}</dd></div>
+        <dl className="codemap-ledger" aria-label="Codemap 상태">
+          <div><dt>관리 주체</dt><dd>{content.meta.owner}</dd></div>
           <div><dt>STATE</dt><dd data-state={content.freshness.state}>{content.freshness.state}</dd></div>
-          <div><dt>SCOPE</dt><dd>{content.freshness.scope}</dd></div>
-          <div><dt>REVIEW</dt><dd>{content.freshness.reviewedAt}</dd></div>
+          <div><dt>예시 범위</dt><dd>{content.freshness.scope}</dd></div>
+          <div><dt>검토 상태</dt><dd>{content.freshness.reviewedAt}</dd></div>
         </dl>
       </section>
 
       <section className="codemap-explorer" aria-labelledby="codemap-explorer-title">
         <header className="codemap-section-heading">
-          <p>INTERACTIVE / PUBLIC RECONSTRUCTION</p>
-          <h2 id="codemap-explorer-title">한 모듈에서 영향 문맥까지.</h2>
+          <p>공개용 재구성 지도</p>
+          <h2 id="codemap-explorer-title">한 모듈에서 호출 관계와 검증 근거까지.</h2>
           <span>{content.freshness.rule}</span>
         </header>
 
-        <div className="codemap-flow-controls" aria-label="살펴볼 흐름">
+        <div className="codemap-flow-controls" aria-label="탐색 흐름">
           {content.flows.map((flow) => (
             <button
               type="button"
@@ -66,12 +66,12 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
 
         {activeFlow ? (
           <div className="codemap-flow-note" aria-live="polite">
-            <p><span>TRIGGER</span>{activeFlow.trigger}</p>
-            <p><span>OUTCOME</span>{activeFlow.outcome}</p>
+            <p><span>시작 조건</span>{activeFlow.trigger}</p>
+            <p><span>처리 결과</span>{activeFlow.outcome}</p>
           </div>
         ) : null}
 
-        <ol className="codemap-node-rail" aria-label="Synthetic module path">
+        <ol className="codemap-node-rail" aria-label="합성 모듈 경로">
           {content.nodes.map((node) => {
             const isInFlow = activeSteps.has(node.id)
             const isSelected = node.id === activeNode?.id
@@ -95,16 +95,16 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
         {activeNode ? (
           <article className="codemap-inspection" aria-live="polite">
             <header>
-              <p>{activeNode.kind} / SELECTED MODULE</p>
+              <p>{activeNode.kind} / 선택한 모듈</p>
               <h3>{activeNode.label}</h3>
               <span>{activeNode.role}</span>
             </header>
             <div className="codemap-relation-grid">
               {[
-                ['CALLERS', activeNode.callers],
-                ['DEPENDENCIES', activeNode.dependencies],
-                ['TESTS', activeNode.tests],
-                ['EVIDENCE', activeNode.evidence],
+                ['호출자', activeNode.callers],
+                ['의존성', activeNode.dependencies],
+                ['테스트', activeNode.tests],
+                ['근거', activeNode.evidence],
               ].map(([label, items]) => (
                 <section key={label as string}>
                   <h4>{label as string}</h4>
@@ -118,8 +118,8 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
 
       <section className="codemap-contract" aria-labelledby="codemap-contract-title">
         <header>
-          <p>ONE ARTIFACT / THREE SURFACES</p>
-          <h2 id="codemap-contract-title">사람이 보고, 도구가 읽고, 변경이 최신성을 증명한다.</h2>
+          <p>하나의 코드 지도, 세 가지 형식</p>
+          <h2 id="codemap-contract-title">HTML로 탐색하고, JSON으로 읽고, LOCK으로 생성 기준을 확인한다.</h2>
         </header>
         <ol>
           {content.contract.map((item, index) => (
@@ -134,9 +134,9 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
       </section>
 
       <footer className="codemap-boundary">
-        <p>BOUNDARY / PUBLIC ARTIFACT</p>
+        <p>공개 예시의 범위</p>
         <ul>{content.boundary.map((item) => <li key={item}>{item}</li>)}</ul>
-        <Link to="/how/ai-native-engineering">AI-native workflow에서 사용되는 장면 보기 <span aria-hidden="true">→</span></Link>
+        <Link to="/how/ai-native-engineering">AI 개발 흐름에서의 활용 <span aria-hidden="true">→</span></Link>
       </footer>
     </main>
   )

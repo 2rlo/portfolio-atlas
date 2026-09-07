@@ -25,7 +25,7 @@ function WorkflowDetail({ step }: WorkflowDetailProps) {
     >
       <header className="ai-native-step-heading">
         <p>
-          CURRENT STEP <span>/ {step.state}</span>
+          현재 단계 <span>/ {step.state}</span>
         </p>
         <h3>{step.label}</h3>
         <strong>{step.summary}</strong>
@@ -33,15 +33,15 @@ function WorkflowDetail({ step }: WorkflowDetailProps) {
 
       <div className="ai-native-step-evidence">
         <section>
-          <h4>ACTION</h4>
+          <h4>수행하는 일</h4>
           <p>{step.action}</p>
         </section>
         <section>
-          <h4>PROOF</h4>
+          <h4>확인 결과</h4>
           <p>{step.proof}</p>
         </section>
         <section>
-          <h4>EXIT RULE</h4>
+          <h4>다음 단계로 넘어가는 조건</h4>
           <p>{step.exitRule}</p>
         </section>
       </div>
@@ -49,21 +49,14 @@ function WorkflowDetail({ step }: WorkflowDetailProps) {
       {step.codemapUse ? (
         <aside className="ai-native-step-context">
           <div>
-            <small>CODEMAP IN THIS STEP</small>
+            <small>이 단계에서 쓰는 CODEMAP</small>
             <p>{step.codemapUse}</p>
           </div>
           <Link to="/how/documentation-system/artifacts/codemap">
-            공개 Codemap 살펴보기 <span aria-hidden="true">↗</span>
+            공개 Codemap <span aria-hidden="true">↗</span>
           </Link>
         </aside>
-      ) : (
-        <aside className="ai-native-step-context">
-          <div>
-            <small>STATE BOUNDARY</small>
-            <p>다음 검증 또는 사람의 판단을 통과하기 전까지 이 결과는 기준 맥락이 아니다.</p>
-          </div>
-        </aside>
-      )}
+      ) : null}
     </article>
   )
 }
@@ -98,7 +91,7 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
             </div>
           </header>
 
-          <aside className="ai-native-manifest" aria-label="AI 작업 전 context manifest">
+          <aside className="ai-native-manifest" aria-label="AI 작업 전 준비 항목">
             <header>
               <p>{content.hero.manifest.eyebrow}</p>
               <h2>{content.hero.manifest.title}</h2>
@@ -136,7 +129,7 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
         </header>
 
         <aside className="ai-native-tool-rule">
-          <p>TOOL SELECTION / TASK FIRST</p>
+          <p>작업에 맞는 도구 선택</p>
           <strong>{content.scene.toolRule}</strong>
         </aside>
 
@@ -149,7 +142,7 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
         </div>
 
         <div className="ai-native-workbench">
-          <ol className="ai-native-steps" aria-label="AI-native engineering workflow">
+          <ol className="ai-native-steps" aria-label="AI를 활용한 개발 흐름">
             {content.scene.steps.map((step, index) => (
               <li data-state={step.state} key={step.id}>
                 <button
@@ -181,9 +174,9 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
 
           <div className="ai-native-incident-record">
             <section className="ai-native-hypotheses" aria-labelledby="incident-symptom-title">
-              <p id="incident-symptom-title">SYMPTOM</p>
+              <p id="incident-symptom-title">증상</p>
               <strong>{content.incident.symptom}</strong>
-              <p>COMPETING HYPOTHESES</p>
+              <p>검토한 원인</p>
               <ol>
                 {content.incident.hypotheses.map((hypothesis, index) => (
                   <li key={hypothesis}>
@@ -194,7 +187,7 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
               </ol>
             </section>
 
-            <div className="ai-native-baseline-comparison" aria-label="격리 worktree와 clean baseline 비교">
+            <div className="ai-native-baseline-comparison" aria-label="작업용 worktree와 변경 전 기준 비교">
               {content.incident.comparison.map((item) => (
                 <article data-baseline={item.id} key={item.id}>
                   <header>
@@ -208,11 +201,11 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
 
             <dl className="ai-native-incident-findings">
               <div>
-                <dt>EVIDENCE</dt>
+                <dt>관찰한 근거</dt>
                 <dd>{content.incident.evidence}</dd>
               </div>
               <div>
-                <dt>DECISION</dt>
+                <dt>판단</dt>
                 <dd>{content.incident.decision}</dd>
               </div>
             </dl>
@@ -253,11 +246,11 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
                 ) : null}
               </div>
               <div className="ai-native-artifact-maintenance">
-                <small>UPDATE WHEN</small>
+                <small>갱신 시점</small>
                 <p>{artifact.maintenance}</p>
                 {artifact.href ? (
                   <Link to={artifact.href}>
-                    Artifact 열기 <span aria-hidden="true">↗</span>
+                    자료 열기 <span aria-hidden="true">↗</span>
                   </Link>
                 ) : null}
               </div>
@@ -286,7 +279,7 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
         </ul>
 
         <div className="ai-native-applied-boundary">
-          <p>APPLIED IN / ROUTE BOUNDARY</p>
+          <p>연결된 제품 사례</p>
           <span>{content.principle.appliedIn}</span>
         </div>
 
@@ -295,7 +288,7 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
             <span aria-hidden="true">←</span> Documentation System
           </Link>
           <Link to="/how/documentation-system/artifacts/codemap">
-            Codemap artifact <span aria-hidden="true">↗</span>
+            Codemap <span aria-hidden="true">↗</span>
           </Link>
         </nav>
       </footer>
