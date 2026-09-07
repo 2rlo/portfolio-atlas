@@ -255,20 +255,7 @@ export const projectSettingContent = {
     title: '공통 프로젝트 목록에 연결된 데이터의 범위.',
     snapshot:
       '읽기 전용 production snapshot의 registry와 계획 범위입니다. 효율·정확도·반복 사용량 지표가 아닙니다.',
-    items: [
-      {
-        value: '4',
-        label: 'TRACKED PROJECTS',
-        meaning: '현재 schedule과 product surface가 참조하는 project registry',
-        boundary: '조직 전체 프로젝트 수나 성과 비교 수치가 아님',
-      },
-      {
-        value: '80',
-        label: 'PLAN ITEMS',
-        meaning: 'tracked project에 연결된 canonical 계획 범위',
-        boundary: '일정 품질·완료율·조직 전체 계획 수가 아님',
-      },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / CONSUMED',
@@ -279,15 +266,14 @@ export const projectSettingContent = {
       'AI 분류 선택지·기타 분류 조건·기존 후보 연결 보완',
     ],
     runtime:
-      '2026.09.04 production snapshot에서 4개 project와 80개 plan의 current 범위를 확인했다. 복원 실행 횟수와 관리 동작별 반복 사용은 측정하지 않았다.',
+      "2026.09.04 production snapshot에서 공통 프로젝트 목록과 연결된 계획 항목을 확인했다.",
   },
   boundary: {
     eyebrow: 'BOUNDARY / IDENTITY IS NOT OUTCOME',
     statement: '공통 ID의 적용 범위와, 연결된 내용의 타당성은 따로 확인한다.',
     items: [
-      '추적 상태는 현재 목록에 노출되는 범위를 뜻합니다. 프로젝트의 성공이나 활성 사용을 나타내지는 않습니다.',
+      "추적 상태는 현재 목록에 노출되는 범위를 뜻합니다.",
       '기존 후보의 연결 보완 작업은 완료됐습니다. 과거 후보마다 프로젝트가 의미상 맞게 연결됐는지는 별도 검증이 필요합니다.',
-      '구현과 배포를 확인한 범위입니다. 관리 기능의 반복 사용량과 운영 효율은 측정하지 않았습니다.',
     ],
   },
   relatedSystems: [

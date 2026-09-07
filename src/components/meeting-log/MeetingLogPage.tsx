@@ -90,7 +90,7 @@ function MeetingLogPage({ content }: { readonly content: MeetingLogPageContent }
       ) : null}
 
       <section className="qa-evidence" aria-labelledby={`${titleId}-evidence`}>
-        <header className="qa-evidence-heading">
+        {content.evidence.items.length > 0 ? <><header className="qa-evidence-heading">
           <p>{content.evidence.eyebrow}</p>
           <h2 id={`${titleId}-evidence`}>{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
@@ -104,7 +104,7 @@ function MeetingLogPage({ content }: { readonly content: MeetingLogPageContent }
               <small>{item.boundary}</small>
             </div>
           ))}
-        </dl>
+        </dl></> : <h2 className="visually-hidden" id={`${titleId}-evidence`}>구현·운영 상태</h2>}
         <div className="qa-status">
           <header>
             <span>구현·운영 상태</span>

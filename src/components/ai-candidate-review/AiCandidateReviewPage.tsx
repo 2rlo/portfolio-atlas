@@ -159,7 +159,7 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
       </section>
 
       <section className="acr-evidence" aria-labelledby="acr-evidence-title">
-        <header className="acr-evidence-heading">
+        {content.evidence.items.length > 0 ? <><header className="acr-evidence-heading">
           <p>{content.evidence.eyebrow}</p>
           <h2 id="acr-evidence-title">{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
@@ -171,7 +171,7 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
               <p>{item.meaning}</p><small>{item.boundary}</small>
             </div>
           ))}
-        </dl>
+        </dl></> : <h2 className="visually-hidden" id="acr-evidence-title">구현·운영 상태</h2>}
         <div className="acr-status">
           <header><span>CURRENT STATUS</span><strong>{content.implementationStatus.state}</strong></header>
           <ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul>

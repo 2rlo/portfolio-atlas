@@ -1543,6 +1543,11 @@
   background: var(--cover-jade);
 }
 
+.so-boundary-columns > section:only-child {
+  grid-column: 1 / -1;
+  border-right: 0;
+}
+
 .so-boundary-columns header {
   display: flex;
   gap: 1.2rem;

@@ -91,15 +91,11 @@ export const qaContent = {
       label: 'RETEST HISTORY',
       title: '최신 값으로 덮기보다, 판정이 바뀐 순서를 남겼다.',
       sections: [
-        {
+      {
           label: 'WHY',
           body: '재테스트 뒤 결과만 교체하면 이전 실패와 수정 확인의 연결이 사라집니다. 각 실행을 이력으로 남겨 판정이 바뀐 순서를 보존했습니다.',
         },
-        {
-          label: 'EVIDENCE',
-          body: '운영 데이터 조회에서 29개 테스트 케이스의 재실행과 케이스당 최대 6회 실행 이력을 확인했습니다.',
-        },
-      ],
+    ],
       evolution: { label: 'RETEST HISTORY SHIPPED', date: '2026.07.30' },
     },
     {
@@ -137,7 +133,7 @@ export const qaContent = {
       { id: 'qa-flow-assist', hotspotId: 'ai-boundary', index: '05', label: 'ASSIST', summary: '요청할 때만 AI 결과 갱신' },
     ],
     boundary:
-      '추적 범위는 실행 조건·관찰·판정·재실행 이력입니다. 기록과 첨부 건수는 제품 품질을 측정한 수치가 아닙니다.',
+      '추적 범위는 실행 조건·관찰·판정·재실행 이력입니다. ',
   },
   decisions: {
     eyebrow: 'DESIGN DECISIONS',
@@ -215,12 +211,7 @@ export const qaContent = {
     title: '운영 기록의 규모이지, 품질 성과 지표가 아니다.',
     snapshot:
       '읽기 전용 production snapshot의 QA 저장 범위입니다. 정확도·생산성·조직 adoption으로 해석하지 않습니다.',
-    items: [
-      { value: '51', label: 'ACTIVE REPORTS', meaning: '보관되지 않은 테스트 보고서', boundary: '보고서 수는 테스트 품질을 뜻하지 않음' },
-      { value: '3', label: 'ARCHIVE', meaning: '보관 상태의 테스트 보고서', boundary: '삭제 수나 품질 실패 수가 아님' },
-      { value: '177', label: 'TEST CASES', meaning: '보고서에 연결된 테스트 케이스', boundary: '고유 결함 수나 자동화 수가 아님' },
-      { value: '222', label: 'TEST RUNS', meaning: '케이스에 연결된 실행 기록', boundary: '성공률이나 품질 향상률이 아님' },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / OPERATING DATA',
@@ -231,14 +222,13 @@ export const qaContent = {
       '보기·편집·삭제를 나눈 effective permission 경계',
     ],
     runtime:
-      '2026.09.04 production snapshot에서 QA 저장 범위와 제품 데이터베이스 authority를 확인했다. 반복 사용량·성공률·품질 변화는 측정하지 않았다.',
+      "2026.09.04 production snapshot에서 QA 기록과 제품 데이터베이스 authority를 확인했다.",
   },
   boundary: {
-    eyebrow: 'BOUNDARY / RECORD, NOT OUTCOME',
-    statement: 'More records do not automatically mean better quality.',
+    eyebrow: "BOUNDARY / RECORD & TEST",
+    statement: "첨부와 수정 이력은 관찰을, 테스트 결과는 결함 수정 여부를 남긴다.",
     items: [
       '첨부와 수정 이력은 관찰과 변경 순서를 남깁니다. 결함 수정 완료 여부는 별도 테스트 결과로 확인해야 합니다.',
-      '기록의 존재를 반복 사용이나 조직 전체 adoption으로 확대 해석하지 않습니다.',
     ],
   },
   relatedSystems: [

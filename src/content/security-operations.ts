@@ -164,9 +164,9 @@ export const securityOperationsContent = {
     evolution: [
       {
         index: '01',
-        label: 'SHARED GATE',
-        title: '공용 접근 제한',
-        summary: '서비스 앞에서 접근을 막았지만 사람별 책임과 행동 차이를 표현하지 못했다.',
+        label: "USER LOGIN",
+        title: "사용자별 로그인",
+        summary: "사용자별 ID와 비밀번호로 로그인하고, 역할별 업무 접근은 이후에 분리했다.",
         state: 'historical',
       },
       {
@@ -385,14 +385,13 @@ export const securityOperationsContent = {
     knownBoundary: [
       '실패 종류에 따라 적용하는 복구 경로가 다르다.',
       'Runbook은 복구 절차를 안내한다. 실행·검증 결과는 별도로 확인한다.',
-      '복구율과 평균 복구 시간은 측정하지 않았다.',
     ],
   },
   boundary: {
     eyebrow: '05 / CURRENT BOUNDARY',
     title: '구현한 안전장치와 적용 범위',
     summary:
-      '작은 팀의 제품에서 권한 관리·배포 검증·제한된 재시도를 구현했다. 자동으로 처리하는 범위와 사람이 판단할 조건을 구분해 남겼다.',
+      "사내 업무 시스템에 권한 관리·배포 검증·제한된 재시도를 구현했다. 자동으로 처리하는 범위와 사람이 판단할 조건을 구분해 남겼다.",
     built: [
       '조직 로그인과 제품 업무 권한의 분리',
       '역할 템플릿·개인별 예외를 조정하는 권한 관리 화면',

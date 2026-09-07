@@ -173,7 +173,7 @@ export const permissionContent = {
   },
   evolution: {
     eyebrow: 'PRODUCT EVOLUTION',
-    title: '공용 비밀번호에서, 비개발자도 위임 범위 안에서 관리하는 권한 체계로.',
+    title: "사용자별 로그인에서, 비개발자도 위임 범위 안에서 관리하는 권한 체계로.",
     introduction: '일정 조회 권한에서 시작해 계정 연결·권한표·개인 예외·관리자 보호로 확장했습니다.',
     scenes: [
       {
@@ -181,7 +181,7 @@ export const permissionContent = {
         label: 'READ-ONLY NEED',
         visual: 'read-only-need',
         decision: '영업 담당자에게는 일정 조회 권한이 필요했다.',
-        trigger: '공용 인증으로는 사람별 업무 범위를 나눌 수 없음',
+        trigger: '로그인만으로는 역할별 업무 범위를 나눌 수 없음',
         change: '역할별 접근 경로와 행동, 일정 조회 전용 범위 정의',
         currentEffect: '권한표에서 조회·편집·삭제를 각각 계산',
       },
@@ -189,7 +189,7 @@ export const permissionContent = {
         date: '2026.07.20',
         label: 'OIDC + ROLE',
         visual: 'oidc-role',
-        decision: '공용 Basic Auth를 회사 계정 인증과 서버 세션으로 교체했다.',
+        decision: '사용자별 Basic Auth를 회사 계정 인증과 서버 세션으로 교체했다.',
         trigger: '개인별 회수·감사·최소 권한을 적용할 수 없음',
         change: 'Entra OIDC, Redis 세션, CSRF, 초기 역할 매핑',
         currentEffect: '사용자를 식별한 뒤 제품의 업무 권한 계산',
@@ -227,10 +227,7 @@ export const permissionContent = {
     eyebrow: 'EVIDENCE / OPERATING DB 2026.09.04',
     title: '2026년 8월 26일, 운영 DB의 권한 구성.',
     snapshot: '읽기 전용 production snapshot에서 확인한 현재 authorization contract입니다.',
-    items: [
-      { value: '31', label: 'PERMISSION CATALOG', meaning: '현재 resource × action 정의', boundary: '보안 인증이나 최소권한 달성률이 아님' },
-      { value: '6', label: 'PERMISSION TEMPLATES', meaning: '운영 DB에 정의된 역할 기본값', boundary: '모든 팀원이 같은 template만 사용한다는 뜻이 아님' },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'DEPLOYED / CURRENT DB AUTHORIZATION',
@@ -240,18 +237,12 @@ export const permissionContent = {
       '관리자 초대·권한 편집·감사·위임 관리',
       'self·owner·관리 권한 재위임과 invite 생성·취소 guard',
     ],
-    runtime: '2026.09.04 production DB의 31개 catalog와 6개 template, effective permission contract를 확인했다. Azure Portal 구성과 interactive OIDC login smoke는 같은 시점에 재검증하지 않았다.',
+    runtime: "2026.09.04 production DB에서 effective permission contract를 확인했다.",
   },
   boundary: {
-    eyebrow: 'BOUNDARY / ACCESS CONTROL, NOT SECURITY COMPLETION',
-    statement: '확인된 범위는 접근 제어의 구성과 제한된 실제 계정 시나리오까지.',
-    items: [
-      '31개 catalog와 6개 template은 구성 규모이며 최소권한 달성률이 아닙니다.',
-      'production developer template에 포함된 permission 28개와 repository seed의 26개 차이는 deployment divergence로 남아 있습니다.',
-      'Azure Portal 설정과 interactive OIDC login smoke는 9월 4일 current evidence로 확인하지 않았습니다.',
-      '권한 화면은 배포됐습니다. 관리자의 반복 사용과 조직 전체 활용 여부는 별도 확인이 필요합니다.',
-      '정식 침투 테스트와 외부 보안 감사는 이 사례의 확인 범위에 포함되지 않습니다.',
-    ],
+    eyebrow: "BOUNDARY / ACCESS CONTROL",
+    statement: "로그인 자격과 제품 안에서 가능한 행동을 나눠 관리한다.",
+    items: [],
   },
   relatedSystems: [
     { title: 'SCHEDULE', relation: '일정 조회와 변경에 서로 다른 권한을 적용한 제품 사례', href: '/what/schedule', status: 'available' },

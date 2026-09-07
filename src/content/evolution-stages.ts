@@ -58,7 +58,7 @@ export const evolutionNodes: readonly EvolutionNode[] = [
     stage: { 1: { role: 'secondary', x: 73, y: 24 }, 2: hidden(29, 20), 3: hidden(29, 20), 4: hidden(29, 20), 5: hidden(29, 20) },
   },
   {
-    id: 'initial-erd', label: 'INITIAL ERD', detail: '11 TABLES', introducedAt: 1, kind: 'representation',
+    id: 'initial-erd', label: 'INITIAL ERD', detail: 'FIRST SNAPSHOT', introducedAt: 1, kind: 'representation',
     stage: {
       1: { role: 'primary', x: 56, y: 58, parent: 'human', note: 'FIRST SYSTEM SNAPSHOT' },
       2: { role: 'history', x: 10, y: 21, scale: 0.68, opacity: 0.82, note: 'PREVIOUS REPRESENTATION' },

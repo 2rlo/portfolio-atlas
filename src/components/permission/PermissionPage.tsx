@@ -61,14 +61,14 @@ function PermissionPage({ content }: { readonly content: PermissionPageContent }
       ) : null}
 
       <section className="qa-evidence" aria-labelledby={`${titleId}-evidence`}>
-        <header className="qa-evidence-heading"><p>{content.evidence.eyebrow}</p><h2 id={`${titleId}-evidence`}>{content.evidence.title}</h2><span>{content.evidence.snapshot}</span></header>
-        <dl className="qa-evidence-register">{content.evidence.items.map((item) => <div key={item.label}><dd>{item.value}</dd><dt>{item.label}</dt><p>{item.meaning}</p><small>{item.boundary}</small></div>)}</dl>
+        {content.evidence.items.length > 0 ? <><header className="qa-evidence-heading"><p>{content.evidence.eyebrow}</p><h2 id={`${titleId}-evidence`}>{content.evidence.title}</h2><span>{content.evidence.snapshot}</span></header>
+        <dl className="qa-evidence-register">{content.evidence.items.map((item) => <div key={item.label}><dd>{item.value}</dd><dt>{item.label}</dt><p>{item.meaning}</p><small>{item.boundary}</small></div>)}</dl></> : <h2 className="visually-hidden" id={`${titleId}-evidence`}>구현·운영 상태</h2>}
         <div className="qa-status"><header><span>구현·운영 상태</span><strong>{content.implementationStatus.state}</strong></header><ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul><p><span>확인한 운영 범위</span>{content.implementationStatus.runtime}</p>{content.implementationStatus.feedback ? <p><span>{content.implementationStatus.feedback.label}</span>{content.implementationStatus.feedback.text}</p> : null}</div>
       </section>
 
       <footer className="qa-boundary">
         <div className="qa-boundary-heading"><p>{content.boundary.eyebrow}</p><h2>{content.boundary.statement}</h2></div>
-        <ul className="qa-boundary-list">{content.boundary.items.map((item) => <li key={item}>{item}</li>)}</ul>
+        {content.boundary.items.length > 0 ? <ul className="qa-boundary-list">{content.boundary.items.map((item) => <li key={item}>{item}</li>)}</ul> : null}
         <nav className="qa-related" aria-label={relatedLabel}>
           <p>연결된 설계 방식</p>
           {content.relatedSystems.map((system) => system.href ? (

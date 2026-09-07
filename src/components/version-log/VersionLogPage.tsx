@@ -102,7 +102,7 @@ function VersionLogPage({ content }: { readonly content: VersionLogPageContent }
               <dd>{item.value}</dd>
               <dt>{item.label}</dt>
               <p>{item.meaning}</p>
-              <small>{item.boundary}</small>
+              {item.boundary ? <small>{item.boundary}</small> : null}
             </div>
           ))}
         </dl>

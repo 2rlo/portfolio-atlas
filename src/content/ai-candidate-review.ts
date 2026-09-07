@@ -262,32 +262,7 @@ export const aiCandidateReviewContent = {
     eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
     title: '후보의 저장 상태이지, AI 정확도 점수가 아니다.',
     snapshot: '읽기 전용 production snapshot의 후보 상태이며 네 값은 하나의 저장 범위를 설명합니다.',
-    items: [
-      {
-        value: '371',
-        label: 'AI CANDIDATES',
-        meaning: '사람 검토 상태와 함께 저장된 전체 후보',
-        boundary: '모델 정확도·자동 승인·반복 사용량이 아님',
-      },
-      {
-        value: '119',
-        label: 'APPROVED',
-        meaning: '사람이 승인한 후보 상태',
-        boundary: '제품 구현 완료나 배포 증명이 아님',
-      },
-      {
-        value: '154',
-        label: 'PENDING',
-        meaning: '공식 기록으로 승격되지 않은 검토 대기 상태',
-        boundary: 'canonical data나 기본 RAG 근거가 아님',
-      },
-      {
-        value: '98',
-        label: 'REJECTED',
-        meaning: '사람이 승격하지 않기로 결정한 후보 상태',
-        boundary: '모두 모델 오류였다는 뜻이 아님',
-      },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / ACTIVE',
@@ -299,16 +274,15 @@ export const aiCandidateReviewContent = {
       '공통 프로젝트 목록 연동과 기존 후보의 기준 보완',
     ],
     runtime:
-      '운영 배포와 후보 상태 저장은 확인됐다. 회의 transcript upstream은 blocked이며, 후보 정확도·검토 시간·반복 이용량은 측정하지 않았다.',
+      "운영 배포와 후보 상태 저장은 확인됐다. 회의 transcript upstream은 blocked 상태다.",
   },
   boundary: {
     eyebrow: 'BOUNDARY / RECORD AUTHORITY',
     statement: '공식 기록으로 보내기 전, 사람이 확인할 범위를 남긴다.',
     items: [
-      '371개 후보는 저장 범위이며 pending 후보는 공식 기록도 기본 RAG 근거도 아니다.',
+      "pending 후보는 공식 기록도 기본 RAG 근거도 아니다.",
       '의미 유사도는 후보 비교에 사용하며, 병합이나 승인 결정을 대신하지 않는다.',
-      '사람의 승인은 기록 승격 결정이며 제품 완료·배포를 증명하지 않는다.',
-      '운영 배포는 확인됐으며, 정확도 향상·시간 절감·조직 내 정착 정도는 측정하지 않았다.',
+      "사람의 승인은 해당 후보를 공식 기록으로 저장할지 정하는 결정이다.",
     ],
   },
   relatedSystems: [

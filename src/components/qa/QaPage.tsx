@@ -53,8 +53,8 @@ function QaPage({ content }: QaPageProps) {
       </section>
 
       <section className="qa-evidence" aria-labelledby="qa-evidence-title">
-        <header className="qa-evidence-heading"><p>{content.evidence.eyebrow}</p><h2 id="qa-evidence-title">{content.evidence.title}</h2><span>{content.evidence.snapshot}</span></header>
-        <dl className="qa-evidence-register">{content.evidence.items.map((item) => <div key={item.label}><dd>{item.value}</dd><dt>{item.label}</dt><p>{item.meaning}</p><small>{item.boundary}</small></div>)}</dl>
+        {content.evidence.items.length > 0 ? <><header className="qa-evidence-heading"><p>{content.evidence.eyebrow}</p><h2 id="qa-evidence-title">{content.evidence.title}</h2><span>{content.evidence.snapshot}</span></header>
+        <dl className="qa-evidence-register">{content.evidence.items.map((item) => <div key={item.label}><dd>{item.value}</dd><dt>{item.label}</dt><p>{item.meaning}</p><small>{item.boundary}</small></div>)}</dl></> : <h2 className="visually-hidden" id="qa-evidence-title">구현·운영 상태</h2>}
         <div className="qa-status"><header><span>CURRENT STATUS</span><strong>{content.implementationStatus.state}</strong></header><ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul><p><span>RUNTIME / USE BOUNDARY</span>{content.implementationStatus.runtime}</p></div>
       </section>
 

@@ -249,20 +249,7 @@ export const featureValidationContent = {
     eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
     title: '등록한 기능과 검토한 연결의 범위',
     snapshot: '읽기 전용 production snapshot의 저장·분석 범위이며 현재 실시간 수치가 아닙니다.',
-    items: [
-      {
-        value: '40',
-        label: 'FEATURES',
-        meaning: '기능 검증에 저장된 분석 대상 feature',
-        boundary: '기능 완료 수나 배포 완료가 아님',
-      },
-      {
-        value: '12,543',
-        label: 'IMPLEMENTATION CLAIMS',
-        meaning: 'GitHub evidence corpus에 저장된 구현 주장 record',
-        boundary: '사람이 확정한 verdict나 개인 성과가 아님',
-      },
-    ],
+    items: [],
   },
   implementationStatus: {
     implemented: {

@@ -134,7 +134,7 @@ export const versionLogContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '일일 동기화와 누락 색인 보완 경로는 운영 중입니다. 데이터 최신성 SLA와 원본 누락률은 측정하지 않았습니다.',
+          body: '일일 동기화와 누락 색인 보완 경로는 운영 중입니다.',
         },
       ],
       evolution: { label: 'SEARCH + SOURCE', date: '2026.07.07' },
@@ -226,25 +226,19 @@ export const versionLogContent = {
   evidence: {
     eyebrow: 'EVIDENCE / VERIFIED CONDITIONS',
     title: '운영 동기화 일정과 실제 DB로 검증한 조회 조건.',
-    snapshot: '운영 일정과 실제 DB 기반 평가에서 확인한 대표 조건만 사용했습니다.',
+    snapshot: "같은 날짜의 복수 빌드와 조건별 조회를 실제 DB로 확인했습니다.",
     items: [
-      {
-        value: '07:00',
-        label: 'DAILY SYNC / KST',
-        meaning: '외부 버전 기록을 구조화된 데이터로 갱신하는 운영 일정',
-        boundary: '데이터 최신성 SLA나 모든 실행의 성공률을 뜻하지 않음',
-      },
       {
         value: '2',
         label: 'SAME-DATE BUILD ROLES',
         meaning: '동일 날짜의 목적이 다른 빌드를 함께 답한 평가 조건',
-        boundary: '전체 버전 수나 제품군 규모를 나타내는 수치가 아님',
+        boundary: "",
       },
       {
         value: '2',
         label: 'RETRIEVAL MODES',
         meaning: '조건별 DB 조회와 보조 의미 검색',
-        boundary: '서로 다른 조회 경로의 수이며 정확도나 자동 검증 점수는 아닙니다.',
+        boundary: "",
       },
     ],
   },
@@ -256,13 +250,12 @@ export const versionLogContent = {
       '검색 색인과 출처를 남기는 답변 연결',
       '누락 속성 처리와 검색 색인 보완 경로',
     ],
-    runtime: '동기화·검색 경로는 운영에서 활성화됐고, 실제 DB로 같은 날짜의 복수 버전 등 모호한 조건을 확인했습니다. 반복 조회 사용자 수, 조직 표준으로의 정착, 데이터 최신성 SLA는 미확인입니다.',
+    runtime: '동기화·검색 경로는 운영에서 활성화됐고, 실제 DB로 같은 날짜의 복수 버전 등 모호한 조건을 확인했습니다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / RELEASE RECORD, NOT FEATURE COMPLETION',
     statement: '버전 기록이 설명하는 범위는 릴리스 상태와 적용 조건까지.',
     items: [
-      '반복 사용량·출처별 누락률·데이터 최신성 SLA는 측정하지 않았습니다.',
       '채널 메시지에서 버전을 자동 추출하는 방안은 검토 단계이며 현재 운영 경로에 포함되지 않습니다.',
     ],
   },

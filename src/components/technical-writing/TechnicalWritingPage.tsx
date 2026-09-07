@@ -310,14 +310,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
                 ))}
               </dl>
 
-              <details className="tw-not-formalized">
-                <summary>표준화의 남은 범위</summary>
-                <ul>
-                  {content.implementation.notFormalized.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </details>
+
             </aside>
           </div>
         </div>
@@ -427,14 +420,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
                 <li key={statement}>{statement}</li>
               ))}
             </ul>
-            <aside>
-              <p>측정·검증하지 않은 범위</p>
-              <ul>
-                {content.boundary.notClaimed.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </aside>
+
           </section>
         </div>
       </section>

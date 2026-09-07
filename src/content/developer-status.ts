@@ -51,10 +51,9 @@ export const developerStatusContent = {
     {
       id: 'grouped-evidence', index: '03', label: 'GROUPED CHANGE SET', title: '커밋 수보다, 어떤 변경이 어떤 주장에 연결되는지를 보여준다.',
       sections: [
-        { label: 'WHY', body: 'PR 제목이나 커밋 개수만으로는 구현 범위·공동 작업·배포 상태를 알 수 없습니다.' },
-        { label: 'DECISION', body: '코드 차이와 심벌을 변경 묶음으로 정리하고 근거 ID를 유지했습니다. 6건씩 중간 요약한 뒤 최근 7일 현황으로 합칩니다.' },
-        { label: 'EVIDENCE', body: '기반 수집·처리 경로의 데이터 조회에서 변경 묶음 1,052개와 파일 변경 23,866개를 확인했습니다.' },
-      ],
+      { label: 'WHY', body: 'PR 제목이나 커밋 개수만으로는 구현 범위·공동 작업·배포 상태를 알 수 없습니다.' },
+      { label: 'DECISION', body: '코드 차이와 심벌을 변경 묶음으로 정리하고 근거 ID를 유지했습니다. 중간 요약한 뒤 최근 7일 현황으로 합칩니다.' },
+    ],
       evolution: { label: 'HIERARCHICAL ROLLUP', date: '2026.07.14' },
     },
     {
@@ -107,21 +106,18 @@ export const developerStatusContent = {
   },
   evidence: {
     eyebrow: 'EVIDENCE / SNAPSHOT 2026.09.04', title: '연결된 evidence corpus이지, 개인 개발량이 아니다.', snapshot: '읽기 전용 production snapshot에 저장된 GitHub evidence corpus입니다.',
-    items: [
-      { value: '25', label: 'REPOSITORIES', meaning: 'evidence corpus에 연결된 repository record', boundary: '조직 전체 저장소나 개인 소유 수가 아님' },
-      { value: '3,401', label: 'COMMIT RECORDS', meaning: 'corpus에 저장된 commit record', boundary: '개인 생산성이나 배포 횟수가 아님' },
-      { value: '707', label: 'PR RECORDS', meaning: 'corpus에 저장된 pull request record', boundary: '한 사람의 성과나 merge 성공률이 아님' },
-      { value: '12,543', label: 'IMPLEMENTATION CLAIMS', meaning: 'change evidence에서 추출해 저장한 구현 주장', boundary: '사람이 확정한 완료 verdict가 아님' },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / SCHEDULED',
     items: ['활성 구성원과 Git 계정의 명시적 연결', 'web-reviewed worklog·all-branch change evidence', '단계별 요약·캐시·Message Batch', '부분 결과·오래된 결과·대체 요약·재시도 상태'],
-    runtime: '예약·worker 코드와 production evidence corpus는 확인했다. worker heartbeat와 job별 success rate, 실제 열람·의사결정 변화·생산성 향상은 측정하지 않았다.',
+    runtime: '예약·worker 코드와 production evidence corpus는 확인했다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / STATUS, NOT PERFORMANCE', statement: '확인된 운영 범위는 최근 업무의 근거 연결과 정기 생성까지.',
-    items: ['커밋·PR·코드 차이의 수는 연결된 근거의 규모이며 개인 생산성 점수가 아닙니다.',   '반복 생성은 확인했지만 실제 열람과 조직 전체 활용 여부는 미확인입니다.'],
+    items: [
+      '커밋·PR·코드 차이의 수는 연결된 근거의 규모이며 개인 생산성 점수가 아닙니다.',
+    ],
   },
   relatedSystems: [
     { title: 'WORKLOG REVIEW', relation: '날짜별 검토 완료 기록과 AI 초안의 사용 규칙', href: '/what/worklog-review', status: 'available' },
