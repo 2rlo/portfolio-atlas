@@ -243,6 +243,10 @@ export const ragAssistantContent = {
       '사용자별 Conversation Memory와 검토 후 지식 반영',
     ],
     runtime: 'deterministic lookup과 provenance-aware RAG 경로는 운영 구성에 있다. 채널은 Graph, 선택 채팅은 Power Automate로 수집하며 검색 정확도·응답시간·반복 사용·조직 정착은 측정하지 않았다.',
+    feedback: {
+      label: '사용자 인터뷰',
+      text: '필요한 정보를 허브에서 찾는 데 약 3분이 걸린다고 답했다. 담당자에게 직접 묻는 빈도는 주 3회 이상에서 약 1회로 줄었다고 회고했다.',
+    },
   },
   boundary: {
     eyebrow: 'BOUNDARY / RETRIEVAL, NOT TRUTH ENGINE',

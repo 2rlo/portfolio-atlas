@@ -1024,6 +1024,10 @@ export interface WorklogReviewPageContent {
     readonly state: string
     readonly items: readonly string[]
     readonly runtime: string
+    readonly feedback?: {
+      readonly label: '사용자 인터뷰'
+      readonly text: string
+    }
   }
   readonly boundary: {
     readonly eyebrow: string
@@ -1245,6 +1249,10 @@ export interface ReusableWhatCaseContent<
     readonly state: string
     readonly items: readonly string[]
     readonly runtime: string
+    readonly feedback?: {
+      readonly label: '사용자 인터뷰'
+      readonly text: string
+    }
   }
   readonly boundary: {
     readonly eyebrow: string

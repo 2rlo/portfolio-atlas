@@ -241,6 +241,10 @@ export const reportContent = {
       '권한 기반 수동 생성과 자동 월요일 생성',
     ],
     runtime: '주간보고 생성 경로는 production에 있고 현재 업무일지 authority는 web이다. Notion은 명시적 rollback mode이며, 열람·의사결정 효과와 번역 품질은 이 snapshot으로 주장하지 않는다.',
+    feedback: {
+      label: '사용자 인터뷰',
+      text: '이전에 정기적으로 하지 않던 주간 업무 정리를 보고 흐름으로 이어가게 됐다는 응답이 있었다. 번역·자료 취합·문서 초안 작성에 드는 시간은 이전의 절반 정도로 줄었다고 회고했다.',
+    },
   },
   boundary: {
     eyebrow: 'BOUNDARY / REPORT, NOT BUSINESS OUTCOME',

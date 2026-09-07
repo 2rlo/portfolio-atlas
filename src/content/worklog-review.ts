@@ -294,6 +294,10 @@ export const worklogReviewContent = {
     ],
     runtime:
       '2026.09.04 현재 업무일지 authority는 web이며 Notion은 자동 fallback이 아닌 명시적 rollback 경로다. 공개 화면은 원문 대신 상태 관계만 재구성했고, 검토 시간·정확도·반복 이용량은 측정하지 않았다.',
+    feedback: {
+      label: '사용자 인터뷰',
+      text: '업무일지 한 건을 검토하는 데 걸리는 시간이 약 7분에서 4분으로 줄었다는 응답이 있었다.',
+    },
   },
   boundary: {
     eyebrow: 'BOUNDARY / REVIEWED-FIRST, NOT AI-FIRST',

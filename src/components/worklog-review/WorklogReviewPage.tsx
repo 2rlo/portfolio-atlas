@@ -111,6 +111,7 @@ function WorklogReviewPage({ content }: WorklogReviewPageProps) {
           <header><span>CURRENT STATUS</span><strong>{content.implementationStatus.state}</strong></header>
           <ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul>
           <p><span>RUNTIME / USE BOUNDARY</span>{content.implementationStatus.runtime}</p>
+          {content.implementationStatus.feedback ? <p><span>{content.implementationStatus.feedback.label}</span>{content.implementationStatus.feedback.text}</p> : null}
         </div>
       </section>
 
