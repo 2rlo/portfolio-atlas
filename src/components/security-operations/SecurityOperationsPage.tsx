@@ -106,7 +106,7 @@ function PermissionAnnotationPanel({ annotation }: PermissionAnnotationPanelProp
     >
       <div>
         <span>{annotation.index}</span>
-        <p>WHY THIS CONTROL</p>
+        <p>설계 이유</p>
       </div>
       <strong>{annotation.title}</strong>
       <p>{annotation.body}</p>
@@ -162,11 +162,11 @@ function DeployAnnotationPanel({ step }: DeployAnnotationPanelProps) {
       </div>
       <dl>
         <div>
-          <dt>PROVES</dt>
+          <dt>확인한 범위</dt>
           <dd>{step.proves}</dd>
         </div>
         <div>
-          <dt>DOES NOT PROVE</dt>
+          <dt>별도 확인이 필요한 범위</dt>
           <dd>{step.doesNotProve}</dd>
         </div>
       </dl>
@@ -250,16 +250,16 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
           <article className="so-permission-product" aria-labelledby="so-product-title">
             <header className="so-product-header">
               <div>
-                <span>RECONSTRUCTED PRODUCT VIEW</span>
+                <span>공개용 재구성 화면</span>
                 <strong id="so-product-title">{content.authorization.productLabel}</strong>
               </div>
-              <p>PUBLIC-SAFE / SYNTHETIC DATA</p>
+              <p>공개용 합성 데이터</p>
             </header>
 
             <div className="so-product-grid">
               <aside className="so-member-panel" aria-labelledby="so-members-title">
                 <header>
-                  <p id="so-members-title">TEAM MEMBERS</p>
+                  <p id="so-members-title">팀원</p>
                   <span>03</span>
                 </header>
                 <ul>
@@ -280,7 +280,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
                 <header>
                   <span>01</span>
                   <div>
-                    <p>ROLE TEMPLATE</p>
+                    <p>권한 템플릿</p>
                     <h3 id="so-template-title">권한 기본값</h3>
                   </div>
                 </header>
@@ -299,8 +299,8 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
 
                 <div className="so-delegated-permissions">
                   <header>
-                    <p>DELEGATED ADMIN</p>
-                    <span>별도 경계</span>
+                    <p>위임 관리 권한</p>
+                    <span>별도 권한</span>
                   </header>
                   <ul>
                     {content.authorization.delegated.map((permission) => (
@@ -310,7 +310,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
                           <strong>{permission.label}</strong>
                           <small>{permission.description}</small>
                         </div>
-                        <em>{permission.enabled ? 'ON' : 'LOCKED'}</em>
+                        <em>{permission.enabled ? 'ON' : '제한됨'}</em>
                       </li>
                     ))}
                   </ul>
@@ -321,7 +321,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
                 <header>
                   <span>02</span>
                   <div>
-                    <p>RESOURCE × ACTION</p>
+                    <p>업무 대상 × 행동</p>
                     <h3 id="so-matrix-title">개인별 예외와 실제 권한</h3>
                   </div>
                 </header>
@@ -342,13 +342,13 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
 
                 <div className="so-matrix-scroll">
                   <table>
-                    <caption>선택한 구성원의 업무 리소스별 행동 권한</caption>
+                    <caption>선택한 구성원의 업무별 행동 권한</caption>
                     <thead>
                       <tr>
-                        <th scope="col">RESOURCE</th>
-                        <th scope="col">VIEW</th>
-                        <th scope="col">EDIT</th>
-                        <th scope="col">MANAGE</th>
+                        <th scope="col">업무 대상</th>
+                        <th scope="col">조회</th>
+                        <th scope="col">편집</th>
+                        <th scope="col">관리</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -394,7 +394,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
             </div>
 
             <div className="so-permission-editorial">
-              <div className="so-annotation-controls" aria-label="권한 설계 주석 선택">
+              <div className="so-annotation-controls" aria-label="권한 설계 설명">
                 {content.authorization.annotations.map((annotation) => (
                   <PermissionAnnotationControl
                     active={annotation.id === activePermissionAnnotation}
@@ -410,7 +410,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
 
           <section className="so-authorization-evolution" aria-labelledby="so-evolution-title">
             <header>
-              <p>PERMISSION MODEL / EVOLUTION</p>
+              <p>권한 모델의 변화</p>
               <h3 id="so-evolution-title">접근 제한에서, 운영 가능한 권한 모델로.</h3>
             </header>
             <ol>
@@ -443,17 +443,17 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
               <li key={decision.index}>
                 <span className="so-decision-index">{decision.index}</span>
                 <div data-step="risk">
-                  <p>RISK</p>
+                  <p>문제</p>
                   <strong>{decision.risk}</strong>
                 </div>
                 <i aria-hidden="true">→</i>
                 <div data-step="decision">
-                  <p>DECISION</p>
+                  <p>설계</p>
                   <strong>{decision.decision}</strong>
                 </div>
                 <i aria-hidden="true">→</i>
                 <div data-step="boundary">
-                  <p>BOUNDARY</p>
+                  <p>적용 범위</p>
                   <strong>{decision.boundary}</strong>
                 </div>
                 <em>{decision.evidence}</em>
@@ -491,8 +491,8 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
 
           <section className="so-component-boundary" aria-labelledby="so-component-title">
             <header>
-              <p>COMPONENT BOUNDARY</p>
-              <h3 id="so-component-title">같이 배포되더라도, 같은 방식으로 돌아가지는 않는다.</h3>
+              <p>구성요소별 복구 범위</p>
+              <h3 id="so-component-title">API·작업 프로세스·데이터의 복구 범위를 나눴다.</h3>
             </header>
             <dl>
               {content.deployment.components.map((component) => (
@@ -549,7 +549,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
           </div>
 
           <aside className="so-known-boundary">
-            <p>KNOWN BOUNDARY</p>
+            <p>복구 방식의 적용 범위</p>
             <ul>
               {content.recovery.knownBoundary.map((boundary) => (
                 <li key={boundary}>{boundary}</li>
@@ -573,7 +573,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
             <section>
               <header>
                 <span>01</span>
-                <h3>BUILT</h3>
+                <h3>구현한 범위</h3>
               </header>
               <ul>
                 {content.boundary.built.map((item) => (
@@ -584,7 +584,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
             <section>
               <header>
                 <span>02</span>
-                <h3>NOT CLAIMED</h3>
+                <h3>이 경험에 포함하지 않는 범위</h3>
               </header>
               <ul>
                 {content.boundary.notClaimed.map((item) => (
@@ -595,7 +595,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
           </div>
 
           <p className="so-maintenance-rule">
-            <span>MAINTENANCE RULE</span>
+            <span>다시 확인하는 시점</span>
             {content.boundary.maintenanceRule}
           </p>
         </div>

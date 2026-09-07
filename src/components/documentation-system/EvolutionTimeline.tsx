@@ -57,7 +57,7 @@ function EvolutionArchitectureMap({ stage, time }: EvolutionMapProps) {
   return (
     <div className="evolution-architecture-map" data-stage={stage}>
       <header className="evolution-map-header">
-        <span>PROGRESSIVE ARCHITECTURE MAP</span>
+        <span>문서 구조의 변화</span>
         <strong>{time}</strong>
       </header>
 
@@ -67,7 +67,7 @@ function EvolutionArchitectureMap({ stage, time }: EvolutionMapProps) {
       </aside>
 
       <div className="evolution-active-field">
-        <span>CURRENT ACTIVE STRUCTURE</span>
+        <span>이 시점의 문서 구조</span>
       </div>
 
       <svg className="evolution-map-edges" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -197,7 +197,7 @@ function StaticArchitectureKeyframe({ stage, time }: EvolutionMapProps) {
   return (
     <figure className="evolution-static-keyframe" aria-hidden="true" data-stage={stage}>
       <figcaption>
-        <span>STATIC KEYFRAME / {time}</span>
+        <span>시점별 구조 / {time}</span>
         <span className="evolution-static-contract"><EvolutionContract contract={contract} /></span>
       </figcaption>
 
@@ -246,14 +246,14 @@ function EvolutionStep({ scene, stage, isActive, setStepRef }: EvolutionStepProp
           <p>{scene.takeaway}</p>
         </div>
 
-        <dl className="evolution-scene-change"><div><dt>STRUCTURE CHANGE</dt><dd>{scene.change}</dd></div></dl>
+        <dl className="evolution-scene-change"><div><dt>구조 변경</dt><dd>{scene.change}</dd></div></dl>
 
         <StaticArchitectureKeyframe stage={stage} time={scene.time} />
         <p className="visually-hidden">{scene.accessibleVisualSummary}</p>
 
         <dl className="evolution-scene-evidence"><div><dt>{scene.evidence.label}</dt><dd>{scene.evidence.statement}</dd></div></dl>
 
-        {scene.boundary ? <p className="evolution-scene-boundary"><span>BOUNDARY</span>{scene.boundary}</p> : null}
+        {scene.boundary ? <p className="evolution-scene-boundary"><span>적용 범위</span>{scene.boundary}</p> : null}
       </article>
     </li>
   )

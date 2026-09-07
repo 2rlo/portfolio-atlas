@@ -20,10 +20,10 @@ function ArtifactExcerpt({ artifact }: ArtifactExcerptProps) {
     <article className="artifact-excerpt" aria-labelledby="artifact-excerpt-title">
       <header className="artifact-excerpt-header">
         <div>
-          <span>{artifact.index} / SELECTED EXCERPT</span>
+          <span>{artifact.index} / 문서 발췌</span>
           <h3 id="artifact-excerpt-title">{artifact.title}</h3>
         </div>
-        <p>RECONSTRUCTED / PUBLIC-SAFE</p>
+        <p>공개용 재구성본</p>
       </header>
 
       <pre aria-label={`${artifact.title}의 공개용 재구성 예시`}>
@@ -31,7 +31,7 @@ function ArtifactExcerpt({ artifact }: ArtifactExcerptProps) {
       </pre>
 
       <footer className="artifact-excerpt-boundary">
-        <span>BOUNDARY</span>
+        <span>적용 범위</span>
         <p>{artifact.boundary}</p>
       </footer>
     </article>
@@ -72,33 +72,33 @@ function ArtifactDetail({ artifact, onClose }: ArtifactDetailProps) {
           <header className="artifact-detail-header">
             <p>{artifact.index}</p>
             <button type="button" onClick={onClose} aria-label="문서 상세 닫기">
-              CLOSE <span aria-hidden="true">×</span>
+              닫기 <span aria-hidden="true">×</span>
             </button>
             <h2 id="artifact-detail-title">{artifact.title}</h2>
-            <p>RECONSTRUCTED / PUBLIC-SAFE</p>
+            <p>공개용 재구성본</p>
           </header>
 
           <div className="artifact-detail-notes">
             <section>
-              <h3>WHY</h3>
+              <h3>필요한 이유</h3>
               <p>{artifact.why}</p>
             </section>
             <section>
-              <h3>FOR</h3>
+              <h3>독자</h3>
               <p>{artifact.audience.join(' / ')}</p>
             </section>
             <section>
-              <h3>BOUNDARY</h3>
+              <h3>적용 범위</h3>
               <p>{artifact.boundary}</p>
             </section>
             <section>
-              <h3>UPDATE</h3>
+              <h3>갱신 시점</h3>
               <p>{artifact.maintenance}</p>
             </section>
           </div>
 
           <section className="artifact-detail-evidence" aria-labelledby="artifact-evidence-title">
-            <h3 id="artifact-evidence-title">RESPONSIBILITY / EVIDENCE</h3>
+            <h3 id="artifact-evidence-title">문서의 역할과 구성</h3>
             <ol>
               {artifact.evidence.map((evidence) => (
                 <li key={evidence.label}>
@@ -129,7 +129,7 @@ function ArtifactDetail({ artifact, onClose }: ArtifactDetailProps) {
           </section>
 
           <section className="artifact-detail-sample">
-            <h3>SAMPLE / SANITIZED EXCERPT</h3>
+            <h3>공개용 재구성 발췌</h3>
             <pre>
               <code>{artifact.excerpt.join('\n')}</code>
             </pre>

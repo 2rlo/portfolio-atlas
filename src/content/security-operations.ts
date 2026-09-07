@@ -4,7 +4,7 @@ export const securityOperationsContent = {
   meta: {
     classification: 'reconstructed-public-example',
     disclosure:
-      '실제 제품과 운영 문서에서 확인한 구조만 남기고, 화면·이름·식별자는 공개 목적에 맞게 다시 구성했습니다.',
+      '제품과 운영 문서에서 확인한 설계를 바탕으로 공개용 화면과 예시를 독립적으로 재구성했습니다.',
     boundary: {
       dataOrigin: 'independently-authored-synthetic',
       privateSourceRuntimeDependency: false,
@@ -16,20 +16,20 @@ export const securityOperationsContent = {
     eyebrow: 'HOW I BUILD / 04',
     titleLines: ['SECURITY &', 'OPERATIONS'],
     thesis: [
-      '제품이 동작하는 것만으로는 충분하지 않았다.',
-      '누가 바꿀 수 있는지, 변경을 어떻게 검증할지,',
-      '실패 뒤 어디부터 사람이 판단할지까지 함께 설계했다.',
+      '변경 권한과 배포·복구 조건을 함께 설계했다.',
+      '권한은 요청 시점에 확인하고,',
+      '실패가 이어지면 자동화를 멈추고 사람이 판단한다.',
     ],
     coordinates: [
       { label: 'BOUNDARY', value: '누가 무엇을 바꾸는가' },
       { label: 'CHANGE', value: '어디에서 먼저 검증하는가' },
-      { label: 'VERIFY', value: '각 신호가 무엇을 증명하는가' },
+      { label: 'VERIFY', value: '각 신호로 어디까지 확인하는가' },
       { label: 'RECOVER', value: '어디서 자동화를 멈추는가' },
     ],
   },
   authorization: {
     eyebrow: '01 / AUTHORIZATION AS A PRODUCT',
-    title: '권한을 설정이 아니라 제품으로 만들었다.',
+    title: '권한을 화면에서 조정하고, 요청마다 적용한다.',
     question: '로그인한 사람이 실제로 할 수 있는 일은 어디에서 결정되는가?',
     summary:
       '조직 계정은 신원을 확인한다. 역할의 기본값과 개인별 예외를 합친 실제 행동 권한은 제품 안에서 보고 바꾼다.',
@@ -131,7 +131,7 @@ export const securityOperationsContent = {
         index: '01',
         label: 'PERMISSION TEMPLATE',
         title: '반복되는 기본값부터 시작한다.',
-        body: '역할은 매번 같은 체크박스를 다시 고르는 일을 줄이는 출발점이다. 템플릿이 없는 상태도 허용해 역할이 곧 전체 권한이라는 오해를 막았다.',
+        body: '반복되는 권한 묶음을 템플릿으로 제공한다. 템플릿 없이 개별 권한만 부여하는 경우도 허용한다.',
       },
       {
         id: 'override',
@@ -144,8 +144,8 @@ export const securityOperationsContent = {
         id: 'effective',
         index: '03',
         label: 'EFFECTIVE PERMISSION',
-        title: '보이는 설정보다 실제 결과를 확인한다.',
-        body: '서버는 로그인 역할 문자열을 그대로 믿지 않는다. 활성 사용자 연결, 역할 기본값, 개인 예외를 요청마다 합쳐 실제 행동 허용을 계산한다.',
+        title: '설정값을 합쳐 실제 행동 권한을 계산한다.',
+        body: '서버는 요청마다 활성 사용자 연결, 역할 기본값, 개인별 예외를 확인해 행동 권한을 계산한다.',
       },
       {
         id: 'guard',
@@ -185,13 +185,13 @@ export const securityOperationsContent = {
       },
     ],
     takeaway:
-      '조직과 제품 요구가 바뀌자, 권한도 고정된 역할표에서 운영 가능한 제품 surface로 바뀌었다.',
+      '고정된 역할표에서 시작해, 기본값과 개인별 예외를 화면에서 관리하는 구조로 바꿨다.',
   },
   security: {
     eyebrow: '02 / SECURITY BOUNDARIES',
-    title: '인증됐다는 사실만으로, 행동을 허용하지 않는다.',
+    title: '신원 확인과 행동 허용을 별도로 판단한다.',
     summary:
-      '보안 기술의 개수보다 “어떤 실패를 허용으로 바꾸지 않을 것인가”를 먼저 정했다.',
+      '사용자 연결이 없거나 현재 권한을 확인할 수 없는 경우, 접근을 허용하지 않도록 기준을 정했다.',
     decisions: [
       {
         index: '01',
@@ -203,26 +203,26 @@ export const securityOperationsContent = {
       {
         index: '02',
         risk: '메뉴와 버튼을 숨긴 것을 보안으로 간주',
-        decision: '화면과 서버 요청이 같은 resource × action 경계를 확인',
+        decision: '화면과 서버 요청에서 같은 업무 대상·행동 권한을 확인',
         boundary: '직접 요청해도 허용되지 않은 변경은 같은 지점에서 거부된다.',
         evidence: 'UI + SERVER',
       },
       {
         index: '03',
         risk: '세션이나 권한 저장소 오류를 오래된 허용으로 대체',
-        decision: '현재 값을 확인할 수 없으면 일반화된 오류로 닫음',
+        decision: '현재 값을 확인할 수 없으면 공통 오류를 반환하고 요청을 차단',
         boundary: '가용성 비용을 감수하되 저장소 장애가 권한 우회가 되지 않게 한다.',
         evidence: 'FAIL CLOSED',
       },
     ],
     currentRule:
-      '허용 여부를 추측해야 하는 순간에는, 진행보다 차단이 안전한 경계를 선택했다.',
+      '현재 권한을 확인할 수 없으면 요청을 차단한다.',
   },
   deployment: {
     eyebrow: '03 / DEPLOY WITH A WAY BACK',
     title: '새 버전을 띄우는 일과, 넘겨도 되는지 판단하는 일을 분리했다.',
     summary:
-      '비활성 API를 먼저 검증하고 트래픽을 넘긴다. worker는 따로 갱신하며, 데이터 계층은 같은 rollback 범위로 묶지 않는다.',
+      '비활성 API를 먼저 검증하고 트래픽을 넘긴다. 작업 프로세스는 따로 갱신하며 데이터 복구도 별도로 판단한다.',
     steps: [
       {
         id: 'checks',
@@ -231,7 +231,7 @@ export const securityOperationsContent = {
         title: '변경과 복구 조건 확인',
         summary: '코드·권한·데이터 호환 경계를 먼저 본다.',
         proves: '배포 대상으로 삼을 변경과 사전 조건이 식별됨',
-        doesNotProve: '새 버전의 runtime 정상',
+        doesNotProve: '새 버전의 실제 실행 상태',
         tone: 'prepare',
       },
       {
@@ -240,7 +240,7 @@ export const securityOperationsContent = {
         label: 'INACTIVE API',
         title: '비활성 대상만 기동',
         summary: '현재 트래픽을 받는 API는 그대로 둔다.',
-        proves: '새 application process를 분리해 시작함',
+        proves: '새 애플리케이션 프로세스를 분리해 시작함',
         doesNotProve: '의존성 접근과 사용자 경로',
         tone: 'prepare',
       },
@@ -249,9 +249,9 @@ export const securityOperationsContent = {
         index: '03',
         label: 'READINESS',
         title: 'DB 접근 확인',
-        summary: '전환 전에 새 API의 내부 DB query를 확인한다.',
-        proves: '애플리케이션이 DB query를 수행할 수 있음',
-        doesNotProve: 'Redis·worker·외부 연동·실제 권한',
+        summary: '전환 전에 새 API가 내부 DB를 조회할 수 있는지 확인한다.',
+        proves: '애플리케이션이 DB 조회를 수행할 수 있음',
+        doesNotProve: 'Redis·작업 프로세스·외부 연동·실제 권한',
         tone: 'verify',
       },
       {
@@ -259,7 +259,7 @@ export const securityOperationsContent = {
         index: '04',
         label: 'TRAFFIC SWITCH',
         title: '검증된 대상으로 전환',
-        summary: 'proxy 설정을 검사한 뒤 새 API로 넘긴다.',
+        summary: '프록시 설정을 검사한 뒤 새 API로 넘긴다.',
         proves: '전환 설정이 유효하고 적용됨',
         doesNotProve: '공개 경로가 새 대상을 응답함',
         tone: 'switch',
@@ -279,8 +279,8 @@ export const securityOperationsContent = {
         index: '06',
         label: 'WORKER',
         title: '별도 재생성과 안정성 확인',
-        summary: 'API 전환과 다른 lifecycle로 갱신한다.',
-        proves: '새 worker image가 실행되고 재시작이 반복되지 않음',
+        summary: 'API 전환과 별도 절차로 갱신한다.',
+        proves: '새 작업 프로세스 이미지가 실행되고 재시작이 반복되지 않음',
         doesNotProve: '모든 예약 작업의 최근 성공',
         tone: 'separate',
       },
@@ -290,8 +290,8 @@ export const securityOperationsContent = {
         label: 'KEEP / ROLLBACK',
         title: '기존 대상을 멈추거나 되돌림',
         summary: '검증을 모두 통과하기 전에는 이전 API를 보존한다.',
-        proves: 'application traffic의 이전 경로가 남아 있음',
-        doesNotProve: 'DB schema·data·Redis 상태의 rollback',
+        proves: '애플리케이션 트래픽을 이전 대상으로 되돌릴 경로가 남아 있음',
+        doesNotProve: 'DB 스키마·데이터·Redis 상태의 복원',
         tone: 'decision',
       },
     ],
@@ -305,13 +305,13 @@ export const securityOperationsContent = {
       {
         label: 'WORKER',
         mode: 'SEPARATE RECREATE',
-        boundary: '별도 build·재생성·안정성 확인. 짧은 실행 공백 가능.',
+        boundary: '별도로 빌드·재생성하고 안정성을 확인한다. 짧은 실행 공백이 생길 수 있다.',
         state: 'separate',
       },
       {
         label: 'POSTGRESQL / REDIS',
         mode: 'SHARED STATE',
-        boundary: 'API traffic 전환의 rollback 대상이 아님. 호환성과 복구를 따로 판단.',
+        boundary: 'API 트래픽을 되돌려도 데이터 상태는 복원되지 않는다. 호환성과 복구를 별도로 판단한다.',
         state: 'shared',
       },
     ],
@@ -347,7 +347,7 @@ export const securityOperationsContent = {
         index: '04',
         label: 'TERMINAL',
         title: '자동 재시도 종료',
-        detail: '계속 실패하면 terminal state로 격리.',
+        detail: '계속 실패하면 재시도를 종료한 상태로 격리.',
         state: 'terminal',
       },
       {
@@ -369,46 +369,46 @@ export const securityOperationsContent = {
       {
         label: 'AUTOMATED',
         title: '복구 가능한 실패를 좁게 처리',
-        items: ['원본과 실패 단계 보존', '항목별 격리', '제한된 backoff와 terminal state'],
+        items: ['원본과 실패 단계 보존', '항목별 격리', '간격을 둔 제한 재시도와 종료 상태'],
       },
       {
         label: 'ASSISTED',
         title: '도구는 실행하고, 사람은 범위를 결정',
-        items: ['read-only 상태 확인', '원인 수정 뒤 단일 항목 replay', '코드 rollback 전 데이터 호환성 판단'],
+        items: ['상태를 바꾸지 않는 확인', '원인 수정 뒤 단일 항목 재실행', '코드를 되돌리기 전 데이터 호환성 판단'],
       },
       {
         label: 'MANUAL / NOT VERIFIED',
-        title: '자동이라고 말하지 않는 영역',
-        items: ['격리 DB에서 restore 검증 뒤 전환 판단', 'full backup / restore drill', '통합 worker heartbeat·failure alert'],
+        title: '수동 판단과 별도 검증이 필요한 복구',
+        items: ['격리된 DB에서 복원을 검증한 뒤 전환 판단', '전체 백업·복원 훈련', '작업 프로세스 통합 상태 신호·실패 알림'],
       },
     ],
     knownBoundary: [
-      '모든 실패가 같은 recovery path를 갖지 않는다.',
-      'runbook은 선택지를 남기지만, 실행·검증 완료의 증거를 대신하지 않는다.',
+      '실패 종류에 따라 적용하는 복구 경로가 다르다.',
+      'Runbook은 복구 절차를 안내한다. 실행·검증 결과는 별도로 확인한다.',
       '복구율과 평균 복구 시간은 측정하지 않았다.',
     ],
   },
   boundary: {
     eyebrow: '05 / CURRENT BOUNDARY',
-    title: '구현한 경계와, 아직 주장하지 않는 것.',
+    title: '구현한 안전장치와 적용 범위',
     summary:
-      '작은 팀의 실제 제품·운영 흐름 안에서 만든 안전장치다. 이를 완성된 보안 체계나 대규모 SRE 운영으로 확대하지 않는다.',
+      '작은 팀의 제품에서 권한 관리·배포 검증·제한된 재시도를 구현했다. 자동으로 처리하는 범위와 사람이 판단할 조건을 구분해 남겼다.',
     built: [
       '조직 로그인과 제품 업무 권한의 분리',
-      '역할 템플릿 + 개인 예외 기반 권한 관리 surface',
-      '요청 시점 authorization과 fail-closed 처리',
-      '비활성 API 검증·전환·application rollback',
-      'worker의 별도 recreate와 복원 시도',
-      'bounded retry·terminal state·수동 replay',
-      '구성요소별 recovery runbook',
+      '역할 템플릿·개인별 예외를 조정하는 권한 관리 화면',
+      '요청 시점 권한 확인·확인 실패 시 차단',
+      '비활성 API 검증·전환·이전 애플리케이션으로 원복',
+      '작업 프로세스의 별도 재생성과 복원 시도',
+      '제한된 재시도·종료 상태·수동 재실행',
+      '구성요소별 복구 절차서',
     ],
     notClaimed: [
-      'Terraform / CDK 기반 full IaC',
-      '고가용성 또는 automatic DR',
-      '검증 완료된 full database restore drill',
-      '통합 observability와 24/7 on-call',
+      'Terraform / CDK 기반 전체 인프라 코드화',
+      '고가용성·자동 재해 복구',
+      '검증이 끝난 전체 DB 복원 훈련',
+      '통합 관측 체계·24시간 상시 장애 대응',
       '침투 테스트·보안 인증·전사 IAM 책임',
-      'zero-downtime guarantee 또는 대규모 트래픽 운영',
+      '무중단 보장·대규모 트래픽 운영',
     ],
     maintenanceRule:
       '권한 모델, 배포 구성요소, 검증 신호, 자동 복구 범위가 바뀌면 이 경계도 같은 변경에서 다시 확인한다.',
@@ -416,7 +416,7 @@ export const securityOperationsContent = {
   nextPage: {
     eyebrow: 'NEXT / HOW THE BOUNDARY STAYS FINDABLE',
     title: 'DOCUMENTATION SYSTEM',
-    summary: '결정과 운영 경계를 어디에 두고, 무엇이 바뀌면 함께 갱신하는가.',
+    summary: '권한과 운영의 판단을 문서에 남기고, 변경에 맞춰 갱신하는 체계.',
     href: '/how/documentation-system',
   },
 } as const satisfies SecurityOperationsContent

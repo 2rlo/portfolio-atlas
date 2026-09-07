@@ -18,7 +18,7 @@ function EditorialAnnotation({ annotation }: EditorialAnnotationProps) {
     <details className="tw-annotation">
       <summary>
         <span aria-hidden="true">{annotation.marker}</span>
-        <strong>WHY THIS LINE</strong>
+        <strong>이렇게 쓴 이유</strong>
       </summary>
       <aside className="tw-annotation-panel">
         <p>{annotation.label}</p>
@@ -71,7 +71,7 @@ function ReaderGuide({ guide }: ReaderGuideProps) {
       </ol>
 
       <footer>
-        <span>HAND-OFF</span>
+        <span>다음 행동</span>
         <p>{guide.handoff}</p>
       </footer>
     </article>
@@ -148,7 +148,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
               <h2 id="tw-reader-title">{content.reader.title}</h2>
             </div>
             <div>
-              <span>{content.reader.question}</span>
+              {content.reader.question ? <span>{content.reader.question}</span> : null}
               <strong>{content.reader.decision}</strong>
             </div>
           </header>
@@ -168,7 +168,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
           </div>
 
           <aside className="tw-action-structure" aria-label="행동 중심 사용자 시나리오 구조">
-            <p>SECONDARY PATTERN / ACTION SCENARIO</p>
+            <p>행동 중심 안내의 구성</p>
             <ol>
               {content.reader.actionStructure.map((item, index) => (
                 <li key={item}>
@@ -184,7 +184,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
             <header>
               <p>AUDIENCE MODEL / EVOLUTION</p>
               <h3 id="tw-evolution-title">
-                제품의 권한 모델이 바뀌자, 문서의 독자 모델도 다시 설계했다.
+                역할별 안내에서 실제 권한에 맞춘 통합 안내로.
               </h3>
             </header>
 
@@ -236,7 +236,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
             <article className="tw-api-document" aria-labelledby="tw-api-title">
               <header>
                 <p>{content.implementation.artifact.label}</p>
-                <span>RECONSTRUCTED / PUBLIC-SAFE</span>
+                <span>공개용 재구성 예시</span>
               </header>
 
               <div className="tw-api-endpoint">
@@ -247,11 +247,11 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
 
               <dl className="tw-api-purpose">
                 <div>
-                  <dt>PURPOSE</dt>
+                  <dt>용도</dt>
                   <dd>{content.implementation.artifact.purpose}</dd>
                 </div>
                 <div>
-                  <dt>AUTHORIZATION</dt>
+                  <dt>요청 권한</dt>
                   <dd>{content.implementation.artifact.authorization}</dd>
                 </div>
               </dl>
@@ -261,19 +261,19 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
                 <table>
                   <thead>
                     <tr>
-                      <th scope="col">Field</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Required</th>
-                      <th scope="col">Description</th>
+                      <th scope="col">필드</th>
+                      <th scope="col">형식</th>
+                      <th scope="col">필수 여부</th>
+                      <th scope="col">설명</th>
                     </tr>
                   </thead>
                   <tbody>
                     {content.implementation.artifact.request.map((field) => (
                       <tr key={field.field}>
                         <th scope="row">{field.field}</th>
-                        <td data-label="Type">{field.type}</td>
-                        <td data-label="Required">{field.required}</td>
-                        <td data-label="Description">{field.description}</td>
+                        <td data-label="형식">{field.type}</td>
+                        <td data-label="필수 여부">{field.required}</td>
+                        <td data-label="설명">{field.description}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -300,7 +300,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
               </section>
             </article>
 
-            <aside className="tw-api-notes" aria-label="Internal API Reference 작성 판단">
+            <aside className="tw-api-notes" aria-label="내부 API 문서의 작성 판단">
               <dl>
                 {content.implementation.notes.map((note) => (
                   <div key={note.label}>
@@ -311,7 +311,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
               </dl>
 
               <details className="tw-not-formalized">
-                <summary>NOT FORMALIZED</summary>
+                <summary>표준화의 남은 범위</summary>
                 <ul>
                   {content.implementation.notFormalized.map((item) => (
                     <li key={item}>{item}</li>
@@ -359,27 +359,27 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
 
           <section className="tw-verification" aria-labelledby="tw-verification-title">
             <header>
-              <p>VERIFICATION MEANING</p>
+              <p>검증 신호의 의미</p>
               <h3 id="tw-verification-title">
-                신호가 말하는 것과, 말하지 않는 것.
+                한 신호로 확인할 수 있는 범위
               </h3>
             </header>
 
             <div className="tw-verification-head" aria-hidden="true">
-              <span>SIGNAL</span>
-              <span>증명하는 것</span>
-              <span>증명하지 않는 것</span>
+              <span>신호</span>
+              <span>확인한 범위</span>
+              <span>별도 확인이 필요한 범위</span>
             </div>
             <dl>
               {content.operations.verification.map((item) => (
                 <div key={item.signal}>
                   <dt>{item.signal}</dt>
                   <dd>
-                    <span>증명</span>
+                    <span>확인</span>
                     {item.proves}
                   </dd>
                   <dd>
-                    <span>보장하지 않음</span>
+                    <span>별도 확인</span>
                     {item.doesNotProve}
                   </dd>
                 </div>
@@ -388,7 +388,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
           </section>
 
           <aside className="tw-rollback-boundary">
-            <p>BOUNDARY / STOP RULE</p>
+            <p>원복 범위와 중단 조건</p>
             <h3>{content.operations.rollbackBoundary.title}</h3>
             <strong>{content.operations.rollbackBoundary.statement}</strong>
             <span>{content.operations.rollbackBoundary.stopRule}</span>
@@ -428,7 +428,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
               ))}
             </ul>
             <aside>
-              <p>NOT CLAIMED</p>
+              <p>측정·검증하지 않은 범위</p>
               <ul>
                 {content.boundary.notClaimed.map((item) => (
                   <li key={item}>{item}</li>
@@ -443,7 +443,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
         <p>{content.nextPage.eyebrow}</p>
         <h2>{content.nextPage.title}</h2>
         <span>{content.nextPage.summary}</span>
-        <strong>PAGE OPEN <span aria-hidden="true">→</span></strong>
+        <strong>페이지 열기 <span aria-hidden="true">→</span></strong>
       </Link>
     </main>
   )

@@ -4,7 +4,7 @@ export const technicalWritingContent = {
   meta: {
     classification: 'reconstructed-public-example',
     disclosure:
-      '실제 문서의 작성 판단과 구조만 남기고, 식별정보와 원문은 공개 목적에 맞게 다시 구성했습니다.',
+      '문서의 작성 판단과 구조를 바탕으로 공개용 예시를 독립적으로 재구성했습니다.',
     boundary: {
       dataOrigin: 'independently-authored-synthetic',
       privateSourceRuntimeDependency: false,
@@ -16,23 +16,23 @@ export const technicalWritingContent = {
     eyebrow: 'HOW I BUILD / 03',
     titleLines: ['TECHNICAL', 'WRITING'],
     thesis: [
-      '독자와 목적이 달라지면,',
-      '같은 시스템도 같은 방식으로 설명하지 않았다.',
+      '독자와 목적에 맞춰,',
+      '같은 시스템의 설명을 달리 썼다.',
     ],
     coordinates: [
       { label: 'AUDIENCE', value: '누가 읽는가' },
       { label: 'PURPOSE', value: '무엇을 판단하는가' },
       { label: 'ACTION', value: '다음에 무엇을 하는가' },
-      { label: 'BOUNDARY', value: '어디까지 믿을 수 있는가' },
+      { label: 'BOUNDARY', value: '어떤 판단의 근거가 되는가' },
     ],
   },
   reader: {
     eyebrow: '01 / WRITING FOR THE READER',
     title: '같은 화면, 다른 다음 행동.',
-    question: '같은 기능을 권한이 다른 사람에게 어떻게 설명했는가?',
+    question: '',
     commonContext: 'QUALITY RECORD / HISTORICAL ROLE SNAPSHOT (2026.08)',
     decision:
-      '같은 화면을 보더라도 할 수 있는 일이 다르면, 필요한 설명도 달랐다.',
+      '작성자에게는 수정·재생성을, 열람자에게는 확인·변경 요청을 중심으로 설명했다.',
     guides: [
       {
         id: 'writer',
@@ -55,12 +55,12 @@ export const technicalWritingContent = {
           {
             index: '03',
             action: '보조 결과를 다시 생성한다.',
-            detail: '기존 기록 수정 뒤에는 명시적으로 실행.',
+            detail: '기존 기록을 수정한 뒤 별도로 실행.',
             annotation: {
               marker: '1',
               label: 'MARGIN NOTE 01',
               title: '자동으로 일어나지 않는 일을 행동 옆에 썼다.',
-              body: '기존 내용을 바꿔도 보조 결과는 자동 갱신되지 않았다. 그래서 “수정”과 “다시 생성”을 한 단계처럼 뭉개지 않고, 독자가 직접 실행해야 할 다음 행동으로 분리했다.',
+              body: '기록을 수정해도 보조 결과는 자동으로 갱신되지 않았다. ‘수정’ 다음에 ‘다시 생성’을 별도 단계로 두어 실행 시점을 분명히 했다.',
             },
           },
           {
@@ -70,7 +70,7 @@ export const technicalWritingContent = {
           },
         ],
         handoff:
-          '변경 행동의 끝은 저장이 아니라, 다시 생성된 결과를 원본과 비교하는 확인.',
+          '저장 뒤에는 보조 결과를 다시 생성하고 원본과 대조한다.',
       },
       {
         id: 'viewer',
@@ -87,18 +87,18 @@ export const technicalWritingContent = {
           },
           {
             index: '02',
-            action: '관련 맥락을 함께 본다.',
+            action: '관련 일정과 시점을 대조한다.',
             detail: '읽을 수 있는 일정과 시점을 대조.',
           },
           {
             index: '03',
-            action: '편집 제어가 없는 상태를 이해한다.',
+            action: '변경 권한을 확인한다.',
             detail: '숨겨진 버튼은 오류가 아니라 정상 권한 범위.',
             annotation: {
               marker: '2',
               label: 'MARGIN NOTE 02',
-              title: '없는 기능도 설명의 대상이었다.',
-              body: '열람자는 작성자와 같은 화면을 보지만 변경 제어를 사용할 수 없다. 버튼이 보이지 않는 상태를 오류로 오해하지 않도록, 할 수 없는 일과 그 이유를 먼저 닫았다.',
+              title: '보이지 않는 버튼의 이유도 적었다.',
+              body: '열람자에게는 편집 버튼이 표시되지 않는다. 오류로 오해하지 않도록 권한에 따른 정상 상태와 변경 요청 방법을 함께 설명했다.',
             },
           },
           {
@@ -108,7 +108,7 @@ export const technicalWritingContent = {
           },
         ],
         handoff:
-          '직접 바꿀 수 없을 때 필요한 것은 우회가 아니라, 근거를 갖춘 요청 경로.',
+          '열람자는 직접 수정하는 대신 대상과 근거를 갖춰 변경을 요청한다.',
       },
     ],
     actionStructure: ['GOAL', 'STEPS', 'CONTROL', 'EXCEPTION'],
@@ -131,16 +131,16 @@ export const technicalWritingContent = {
           '공통 흐름을 한 문서에 두고, 템플릿 범위와 개인별 차이를 함께 설명했다.',
       },
       takeaway:
-        '제품의 권한 모델이 바뀌자, 문서도 고정된 역할명이 아니라 실제 가능한 행동을 기준으로 독자를 다시 나눴다.',
+        '고정된 역할명보다 실제 가능한 행동을 기준으로 안내를 통합했다.',
     },
   },
   implementation: {
     eyebrow: '02 / WRITING FOR IMPLEMENTATION',
     title: '호출법 뒤에, 결과의 의미까지.',
     summary:
-      '전체 route 범위를 먼저 남기고, 복잡한 호출은 인증·요청·응답·예외를 이어서 읽을 수 있게 풀었다.',
+      '전체 API 경로를 먼저 정리하고, 복잡한 호출은 인증·요청·응답·예외를 이어 읽을 수 있게 풀었다.',
     artifact: {
-      label: 'INTERNAL API REFERENCE / FOR A FUTURE MAINTAINER',
+      label: '내부 유지보수자를 위한 API 문서',
       title: 'EVENT INTAKE',
       method: 'POST',
       path: '/events/intake',
@@ -190,27 +190,27 @@ export const technicalWritingContent = {
         },
       ],
       behavior:
-        '응답을 받았다는 사실과 기록이 바뀌었다는 사실을 분리해 읽는다. changed가 false이면 호출 성공만으로 후속 상태를 단정하지 않는다.',
+        '응답 수신과 기록 변경을 구분한다. changed: false는 후속 상태가 바뀌었다는 뜻이 아니다.',
       annotation: {
         marker: '3',
         label: 'MARGIN NOTE 03',
         title: '“응답 성공”과 “상태 변경”을 같은 뜻으로 쓰지 않았다.',
-        body: '호출자가 status 하나만 보고 처리를 완료했다고 오해하지 않도록, route 분류와 changed 값을 함께 설명했다. 중복과 지원하지 않는 입력, 후속 저장 미완료는 같은 성공 문장으로 닫지 않았다.',
+        body: 'status와 changed를 함께 설명해 요청 처리 결과와 저장 여부를 구분했다. 중복 수신·지원하지 않는 유형·저장 미완료는 각각의 상태 의미로 남겼다.',
       },
     },
     notes: [
-      { label: 'AUDIENCE', value: '현재 구현을 이어받는 내부 개발자' },
+      { label: '독자', value: '현재 구현을 이어받는 내부 개발자' },
       {
-        label: 'WRITING DECISION',
-        value: '호출 조건과 결과 상태, 예외의 의미를 같은 맥락에서 기록',
+        label: '작성 판단',
+        value: '호출 조건·결과 상태·예외의 의미를 함께 기록',
       },
       {
-        label: 'BOUNDARY',
-        value: '외부 파트너나 SDK 사용자를 위해 검증한 문서는 아님',
+        label: '적용 범위',
+        value: '내부 유지보수용 문서이며 외부 파트너·SDK 사용자용 검증은 별도 범위',
       },
       {
-        label: 'MAINTENANCE',
-        value: 'route, request shape, authorization boundary가 바뀔 때',
+        label: '갱신 시점',
+        value: 'API 경로·요청 형식·접근 권한이 바뀔 때',
       },
     ],
     notFormalized: [
@@ -223,7 +223,7 @@ export const technicalWritingContent = {
     eyebrow: '03 / WRITING FOR SAFE ACTION',
     title: '명령보다 먼저, 멈춰야 할 경계.',
     summary:
-      'Deployment와 Recovery를 성과 기록이 아니라 위험한 절차의 읽기 순서로 구성했다.',
+      'Deployment와 Recovery에 명령의 전제, 검증 순서, 실패 시 중단 조건을 먼저 배치했다.',
     artifacts: [
       {
         label: 'NORMAL CHANGE',
@@ -262,7 +262,7 @@ export const technicalWritingContent = {
         index: '04',
         label: 'VERIFY',
         title: '신호를 분리해 확인',
-        description: 'process, DB readiness, 공개 트래픽과 별도 worker·권한을 각각 검사.',
+        description: '프로세스 응답·DB 접근·공개 트래픽·별도 작업 프로세스·권한을 각각 검사.',
         tone: 'act',
       },
       {
@@ -277,30 +277,30 @@ export const technicalWritingContent = {
       {
         signal: 'PROCESS HEALTH',
         proves: '애플리케이션 프로세스가 응답 중',
-        doesNotProve: 'DB, Redis, worker, 외부 source, 사용자 권한',
+        doesNotProve: 'DB·Redis·작업 프로세스·외부 연동·사용자 권한',
       },
       {
         signal: 'READINESS',
-        proves: '새 API가 DB query를 수행할 수 있음',
-        doesNotProve: 'Redis, worker, 외부 연동, migration·backfill 결과',
+        proves: '새 API가 DB 조회를 수행할 수 있음',
+        doesNotProve: 'Redis·작업 프로세스·외부 연동·데이터 이전·소급 반영 결과',
       },
       {
         signal: 'PUBLIC TARGET',
         proves: '공개 요청이 의도한 새 대상으로 전환됨',
-        doesNotProve: '데이터 변경 성공, worker 상태, 실제 사용자 경로 전체',
+        doesNotProve: '데이터 변경 성공·작업 프로세스 상태·전체 사용자 경로',
       },
     ],
     rollbackBoundary: {
       title: 'APPLICATION ROLLBACK ≠ DATA ROLLBACK',
       statement:
-        '애플리케이션 대상을 되돌려도 schema, data, 권한, flag와 backfill이 자동으로 돌아가지는 않는다.',
+        '애플리케이션을 이전 대상으로 되돌려도 스키마·데이터·권한·기능 플래그·소급 반영 결과는 자동으로 복원되지 않는다.',
       stopRule:
         '이전 대상 복원까지 실패하면 자동 진행을 멈추고, 관측한 상태를 보존한 채 수동 복구로 전환한다.',
     },
   },
   principles: {
     eyebrow: '04 / WRITING PRINCIPLES',
-    title: '앞의 문서에서 반복된 네 가지 판단.',
+    title: '문서마다 지킨 네 가지 작성 기준',
     items: [
       {
         index: '01',
@@ -318,9 +318,9 @@ export const technicalWritingContent = {
       },
       {
         index: '03',
-        title: '결과가 증명하는 범위를 적는다.',
+        title: '결과로 확인할 수 있는 범위를 적는다.',
         statement:
-          '상태값과 검증 신호가 뜻하는 것, 뜻하지 않는 것을 한 문맥에서 닫는다.',
+          '상태값과 검증 신호로 확인한 범위, 별도 확인이 필요한 범위를 함께 적는다.',
         evidence: 'CHANGED STATE / HEALTH SIGNAL',
       },
       {
@@ -333,26 +333,25 @@ export const technicalWritingContent = {
     ],
   },
   boundary: {
-    eyebrow: 'BOUNDARY / WHAT THIS PAGE PROVES',
-    title: '문서는 행동을 돕지만, 결과를 대신 증명하지 않는다.',
+    eyebrow: '작성 경험과 검증 범위',
+    title: '작성한 문서와 검증한 결과를 구분한다.',
     statements: [
-      '공개 sample은 private 원문이 아니라 작성 구조와 판단을 독립적으로 재구성한 예시다.',
-      '역할별 안내, 내부 API reference와 운영 runbook을 실제 제품 변화에 맞춰 작성·갱신했다.',
-      'API sample은 내부 유지보수 문맥이며 외부 developer portal이나 SDK 문서 경험으로 확장하지 않는다.',
-      '운영 문서는 draft runbook이다. 명령이 적혀 있다는 사실을 반복 실행·복구 검증 완료로 바꾸지 않는다.',
+      '역할별 안내·내부 API 문서·운영 절차서를 제품 변화에 맞춰 작성하고 갱신했다.',
+      'API 예시는 내부 유지보수용이다. 외부 개발자 포털·SDK 문서는 별도 범위다.',
+      '운영 문서는 절차를 정리한 초안이다. 반복 실행과 복구 검증 결과는 포함하지 않는다.',
     ],
     notClaimed: [
       '온보딩 시간 단축',
       '문의 감소 또는 이해도 향상',
       '반복 검증된 전체 배포·자동 복구',
-      '완료된 full restore drill',
+      '완료된 전체 복원 훈련',
     ],
   },
   nextPage: {
     eyebrow: 'NEXT / HOW I BUILD',
     title: 'AI-NATIVE ENGINEERING',
     summary:
-      '문서화된 맥락을 AI 개발 workflow가 어떻게 읽고, 검증하고, 다시 기준으로 남기는가.',
+      'AI 개발 과정에서 문서를 참고하고, 검증한 변경을 다시 기준으로 남기는 흐름.',
     href: '/how/ai-native-engineering',
   },
 } as const satisfies TechnicalWritingContent
