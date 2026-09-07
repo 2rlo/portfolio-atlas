@@ -19,7 +19,7 @@ function PermissionProductView({ fixture, activeId, onActivate }: PermissionProd
     <section
       className="permission-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.productName} effective permission 공개 재구성 화면`}
+      aria-label={`${fixture.productName} 최종 권한 공개 재구성 화면`}
     >
       <header className="permission-topbar" aria-hidden="true">
         <span>J</span>
@@ -50,7 +50,7 @@ function PermissionProductView({ fixture, activeId, onActivate }: PermissionProd
             <ProductHotspot
               id="identity-link"
               activeId={activeId}
-              label="Authenticated identity and application access linkage"
+              label="로그인 계정과 제품 접근 권한의 연결"
               className="permission-identity"
               onActivate={onActivate}
             >
@@ -62,11 +62,11 @@ function PermissionProductView({ fixture, activeId, onActivate }: PermissionProd
               <span className="permission-identity-meta"><small>LAST CHECKED</small><strong>{fixture.selected.lastChecked}</strong></span>
             </ProductHotspot>
 
-            <section className="permission-equation" aria-label="Role default and personal override composition">
+            <section className="permission-equation" aria-label="역할 기본값과 개인 예외를 반영한 권한 계산">
               <ProductHotspot
                 id="role-default"
                 activeId={activeId}
-                label="Reusable role permission defaults including no-template state"
+                label="역할 기본 권한과 템플릿 없음 상태"
                 className="permission-role-card"
                 onActivate={onActivate}
               >
@@ -77,7 +77,7 @@ function PermissionProductView({ fixture, activeId, onActivate }: PermissionProd
               <ProductHotspot
                 id="personal-override"
                 activeId={activeId}
-                label="Difference-only personal permission override"
+                label="기본값과의 차이만 기록한 개인 예외"
                 className="permission-override-card"
                 onActivate={onActivate}
               >
@@ -93,7 +93,7 @@ function PermissionProductView({ fixture, activeId, onActivate }: PermissionProd
             <ProductHotspot
               id="effective-permission"
               activeId={activeId}
-              label="Resource by action effective permission matrix shared by UI and API"
+              label="UI와 API가 공유하는 자원·행동별 최종 권한표"
               className="permission-matrix"
               onActivate={onActivate}
             >
@@ -112,7 +112,7 @@ function PermissionProductView({ fixture, activeId, onActivate }: PermissionProd
             <ProductHotspot
               id="protected-change"
               activeId={activeId}
-              label="Transactional lockout and delegated escalation guard"
+              label="마지막 관리자 보호와 위임자의 자기 권한 상승 차단"
               className="permission-guard"
               onActivate={onActivate}
             >

@@ -19,7 +19,7 @@ function ProjectSettingProductView({
     <section
       className="ps-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.productName} project registry 공개 재구성 화면`}
+      aria-label={`${fixture.productName} 프로젝트 목록 공개 재구성 화면`}
     >
       <header className="ps-product-topbar" aria-hidden="true">
         <span className="ps-product-brand">J</span>
@@ -47,7 +47,7 @@ function ProjectSettingProductView({
             <div>
               <small>OPERATIONS DESK</small>
               <strong>관리자 페이지</strong>
-              <span>팀 접근과 product registry를 서로 다른 lifecycle로 관리합니다.</span>
+              <span>팀 접근 권한과 프로젝트 데이터를 별도 기준으로 관리합니다.</span>
             </div>
             <span>REGISTRY STATUS · TRACKED</span>
           </header>
@@ -67,7 +67,7 @@ function ProjectSettingProductView({
             <ProductHotspot
               id="existing-row"
               activeId={activeId}
-              label="Existing project row resolution"
+              label="이미 등록된 프로젝트 확인"
               className="ps-register-panel"
               onActivate={onActivate}
             >
@@ -83,7 +83,7 @@ function ProjectSettingProductView({
               </span>
             </ProductHotspot>
 
-            <section className="ps-tracked-list" aria-label="합성 tracked project 목록">
+            <section className="ps-tracked-list" aria-label="공개 예시의 추적 프로젝트 목록">
               <header aria-hidden="true">
                 <div><strong>추적 중인 프로젝트</strong><span>{fixture.trackedProjects.length} items</span></div>
                 <small>ORDER SHARED ACROSS SURFACES</small>
@@ -98,7 +98,7 @@ function ProjectSettingProductView({
                     <ProductHotspot
                       id="shared-order"
                       activeId={activeId}
-                      label="Shared project ordering"
+                      label="여러 화면이 공유하는 프로젝트 순서"
                       className="ps-order-control"
                       onActivate={onActivate}
                     >
@@ -112,7 +112,7 @@ function ProjectSettingProductView({
                     <ProductHotspot
                       id="stable-identity"
                       activeId={activeId}
-                      label="Stable project identity and editable label"
+                      label="고정 프로젝트 ID와 편집 가능한 표시명"
                       className="ps-identity-control"
                       onActivate={onActivate}
                     >
@@ -128,7 +128,7 @@ function ProjectSettingProductView({
               ))}
             </section>
 
-            <section className="ps-archive-list" aria-label="합성 archived project 상태">
+            <section className="ps-archive-list" aria-label="공개 예시의 보관 프로젝트 상태">
               <header aria-hidden="true">
                 <div><strong>보관된 프로젝트</strong><span>past references retained</span></div>
                 <small>NOT EVERY UNTRACKED ROW</small>
@@ -137,7 +137,7 @@ function ProjectSettingProductView({
                 <ProductHotspot
                   id="archive-provenance"
                   activeId={activeId}
-                  label="Archive event provenance"
+                  label="프로젝트 보관의 감사 기록"
                   className="ps-archive-record"
                   onActivate={onActivate}
                 >
@@ -149,12 +149,12 @@ function ProjectSettingProductView({
                 <ProductHotspot
                   id="restore-guard"
                   activeId={activeId}
-                  label="Project restore revalidation"
+                  label="프로젝트 복원 전 재검사"
                   className="ps-restore-guard"
                   onActivate={onActivate}
                 >
                   <span>05</span>
-                  <span><small>RESTORE CHECK</small><strong>provenance · conflict · dependency</strong></span>
+                  <span><small>RESTORE CHECK</small><strong>보관 이력 · 충돌 · 의존 관계</strong></span>
                   <em>{fixture.archivedProject.dependencyState}</em>
                   <b aria-hidden="true">복원 검토 →</b>
                 </ProductHotspot>

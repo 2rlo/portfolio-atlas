@@ -24,10 +24,10 @@ function VersionLogPage({ content }: { readonly content: VersionLogPageContent }
       content={content}
       pageClassName="version-log-page"
       titleId="version-log-title"
-      surfaceLabel="Version and release record inspection"
-      workflowLabel="Version source normalization retrieval and evidence workflow"
+      surfaceLabel="버전·릴리스 기록의 공개 재구성 예시"
+      workflowLabel="버전 기록 수집·구조화·검색·근거 연결 흐름"
       evolutionTargetId="version-log-evolution"
-      relatedLabel="Version log related systems"
+      relatedLabel="버전 기록과 연결된 사례와 시스템"
       renderProduct={({ fixture, activeId, onActivate }) => (
         <VersionLogProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />
       )}

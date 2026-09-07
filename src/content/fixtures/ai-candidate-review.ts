@@ -49,9 +49,9 @@ export const aiCandidateReviewProductFixture = {
     risk: '낮음',
     createdAt: '2026.08.27 · 16:48',
     source: {
-      type: 'Teams channel message',
+      type: 'Teams 채널 메시지',
       author: jadebellPublicWorld.people.danielLee.name,
-      context: 'Atlas · release readiness thread',
+      context: 'Atlas · 릴리스 준비 대화',
       excerpt:
         '요청 크기가 커질 때 응답 지연을 다시 확인했습니다. 재시도 횟수와 요청 조건을 다음 검증 전에 구체화해야 합니다.',
     },

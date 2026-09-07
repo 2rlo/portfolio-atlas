@@ -11,10 +11,10 @@ function DeveloperStatusProductView({ fixture, activeId, onActivate }: Developer
   const selected = fixture.selected
 
   return (
-    <section className="dev-status-product" data-has-active={activeId ? 'true' : 'false'} aria-label={`${fixture.productName} developer status 공개 재구성 화면`}>
+    <section className="dev-status-product" data-has-active={activeId ? 'true' : 'false'} aria-label={`${fixture.productName} 개발자 현황 공개 재구성 화면`}>
       <header className="dev-status-topbar" aria-hidden="true"><span>J</span><strong>{fixture.productName}</strong><em>{fixture.workspaceLabel}</em><b>{fixture.window}</b></header>
       <div className="dev-status-layout">
-        <ProductHotspot id="identity-scope" activeId={activeId} label="Explicit person and account scope" className="dev-roster" onActivate={onActivate}>
+        <ProductHotspot id="identity-scope" activeId={activeId} label="명시적으로 연결한 사람과 계정 범위" className="dev-roster" onActivate={onActivate}>
           <span className="dev-panel-head"><span><small>01 / ACTIVE PEOPLE</small><strong>RECENT 7 DAYS</strong></span><em>IDENTITY MAP</em></span>
           <span className="dev-roster-list">
             {fixture.people.map((item) => (
@@ -34,7 +34,7 @@ function DeveloperStatusProductView({ fixture, activeId, onActivate }: Developer
           </header>
           <p className="dev-summary">{selected.summary}</p>
 
-          <ProductHotspot id="partial-state" activeId={activeId} label="Visible partial and human-check state" className="dev-warning" onActivate={onActivate}>
+          <ProductHotspot id="partial-state" activeId={activeId} label="부분 결과와 사람의 확인이 필요한 상태" className="dev-warning" onActivate={onActivate}>
             <span>04</span><span><small>{selected.state}</small>{selected.warnings.map((warning) => <strong key={warning}>{warning}</strong>)}</span><em>HUMAN CHECK</em>
           </ProductHotspot>
 
@@ -45,7 +45,7 @@ function DeveloperStatusProductView({ fixture, activeId, onActivate }: Developer
               <div><span><small>{selected.project.name}</small><strong>{selected.projectProgress.feature}</strong></span><em>{selected.projectProgress.status}</em><p>{selected.projectProgress.summary}</p><span className="dev-progress"><i style={{ width: selected.projectProgress.verified }} /><b>{selected.projectProgress.verified}</b></span></div>
             </section>
 
-            <ProductHotspot id="grouped-evidence" activeId={activeId} label="Grouped diff and symbol evidence" className="dev-changes" onActivate={onActivate}>
+            <ProductHotspot id="grouped-evidence" activeId={activeId} label="묶음으로 정리한 코드 차이와 심벌 근거" className="dev-changes" onActivate={onActivate}>
               <span className="dev-panel-head"><span><small>03 / CODE EVIDENCE</small><strong>GROUPED CHANGE SETS</strong></span><em>{selected.changes.length}</em></span>
               {selected.changes.map((change) => (
                 <span className="dev-change" key={change.title}><span><strong>{change.title}</strong><small>{change.date}</small></span><em>{change.state}</em><span>{change.symbols.map((symbol) => <b key={symbol}>{symbol}</b>)}</span></span>
@@ -53,12 +53,12 @@ function DeveloperStatusProductView({ fixture, activeId, onActivate }: Developer
             </ProductHotspot>
           </div>
 
-          <ProductHotspot id="source-hierarchy" activeId={activeId} label="Reviewed draft and change-set source hierarchy" className="dev-sources" onActivate={onActivate}>
+          <ProductHotspot id="source-hierarchy" activeId={activeId} label="검토본·AI 초안·코드 변경의 출처와 검토 상태" className="dev-sources" onActivate={onActivate}>
             <span className="dev-panel-head"><span><small>02 / SOURCE RECORDS</small><strong>TRACE BACK TO EVIDENCE</strong></span><em>3 TYPES</em></span>
             <span className="dev-source-list">{selected.sources.map((source) => <span data-type={source.type} key={source.title}><em>{source.type.toUpperCase()}</em><strong>{source.title}</strong><small>{source.meta}</small></span>)}</span>
           </ProductHotspot>
 
-          <ProductHotspot id="refresh-cadence" activeId={activeId} label="Predictable snapshot refresh cadence" className="dev-cadence" onActivate={onActivate}>
+          <ProductHotspot id="refresh-cadence" activeId={activeId} label="현황의 정기 갱신 주기" className="dev-cadence" onActivate={onActivate}>
             <span>05</span><span><small>SNAPSHOT CADENCE</small><strong>{fixture.cadence.schedule}</strong></span><span><small>WINDOW</small><strong>{fixture.cadence.window}</strong></span><span><small>RECOVERY</small><strong>{fixture.cadence.recovery}</strong></span>
           </ProductHotspot>
         </article>

@@ -13,9 +13,9 @@ export const permissionContent = {
     eyebrow: 'WHAT I BUILT / 11',
     titleLines: ['PERMISSION', 'CONTROL'],
     thesis:
-      '로그인 가능 여부와 업무 권한을 분리하고, 역할 기본값과 개인 예외를 합성한 effective permission을 UI와 API가 함께 사용하게 했다.',
+      '로그인과 업무 권한을 분리하고, 역할 기본값과 개인 예외를 합산한 최종 권한을 UI와 API가 함께 사용하게 했다.',
     summary:
-      '공용 인증에서 사용자 identity로, 고정 역할에서 resource × action과 안전한 위임이 가능한 application authorization으로 발전시켰습니다.',
+      '공용 인증을 개인별 인증으로 바꾸고, 고정 역할을 자원·행동별 권한과 위임 관리로 확장했습니다.',
     problemLabel: 'PROBLEM / AUTHENTICATED DOES NOT MEAN AUTHORIZED',
     problem:
       '공용 계정과 화면 숨김만으로는 누가 무엇을 바꿀 수 있는지 강제·회수·감사하기 어려웠고, 역할별 예외를 두 곳에서 관리하면 결과가 쉽게 어긋났습니다.',
@@ -24,12 +24,12 @@ export const permissionContent = {
     eyebrow: 'PRODUCT SURFACE / EFFECTIVE ACCESS',
     title: 'One actor. One computed result. Every consuming surface.',
     instruction:
-      'identity link, role default, personal override, effective matrix, protected change를 선택해 권한 계산과 운영 경계를 확인하세요.',
+      '계정 연결 · 역할 기본값 · 개인 예외 · 최종 권한 · 변경 보호 규칙',
     defaultAnnotation: {
       index: '00',
       label: 'ACCESS GUIDE',
-      title: 'checkbox 목록이 아니라, 현재 이 사람이 할 수 있는 action의 계산 결과를 본다.',
-      body: 'Identity와 role default, personal override가 하나의 effective matrix로 합쳐지고 protected change에 적용되는 흐름을 따라갑니다.',
+      title: '역할과 개인 예외를 합산하면, 이 사람이 할 수 있는 일이 정해진다.',
+      body: '계정 연결을 확인한 뒤 역할 기본값에 개인 예외를 적용합니다. 권한 변경은 관리자 보호 규칙까지 통과해야 저장됩니다.',
     },
   },
   product: permissionProductFixture,
@@ -42,15 +42,15 @@ export const permissionContent = {
       sections: [
         {
           label: 'WHY',
-          body: '허용된 sign-in group 구성원이어도 application 팀원과 연결되지 않았거나 권한이 없을 수 있습니다.',
+          body: '로그인을 허용한 그룹의 구성원이어도 제품의 팀원으로 연결되지 않았거나 업무 권한이 없을 수 있습니다.',
         },
         {
           label: 'DECISION',
-          body: 'Entra는 로그인 gate만 판단하고, 연결된 팀원·역할·override는 PostgreSQL이 authorization source로 계산합니다.',
+          body: 'Entra는 로그인 허용 여부를 판단하고, 제품은 PostgreSQL의 팀원·역할·개인 예외를 기준으로 업무 권한을 계산합니다.',
         },
         {
           label: 'BOUNDARY',
-          body: '미연결 로그인은 오류나 자동 권한 부여 대신 permission 0개의 Access not granted 상태로 둡니다.',
+          body: '팀원으로 연결되지 않은 로그인은 업무 권한 0개의 Access not granted 상태로 둡니다.',
         },
       ],
       evolution: { label: 'AUTHENTICATION GATE SPLIT', date: '2026.08.26' },
@@ -63,15 +63,15 @@ export const permissionContent = {
       sections: [
         {
           label: 'WHY',
-          body: '역할만으로는 같은 직무 안의 제한된 예외를 표현하기 어렵고, 개인 checkbox만으로는 운영 비용이 커집니다.',
+          body: '같은 직무에도 개인별 예외가 생깁니다. 역할만으로는 이를 표현하기 어렵고, 모든 권한을 사람마다 설정하면 관리 항목이 늘어납니다.',
         },
         {
           label: 'DECISION',
-          body: '역할 템플릿은 기본 permission set을 제공하되 템플릿 없음도 유효한 상태로 지원했습니다.',
+          body: '역할 템플릿으로 기본 권한을 제공하고, 템플릿을 지정하지 않는 상태도 지원했습니다.',
         },
         {
           label: 'BOUNDARY',
-          body: '템플릿 없음은 전체 접근이 아닙니다. 기본 permission은 비어 있고 허용 가능한 override만 계산됩니다.',
+          body: '템플릿이 없으면 기본 권한도 없습니다. 보호 규칙이 허용하는 개인 예외만 적용됩니다.',
         },
       ],
       evolution: { label: 'ROLE + OVERRIDE MODEL', date: '2026.08.24' },
@@ -80,19 +80,19 @@ export const permissionContent = {
       id: 'personal-override',
       index: '03',
       label: 'PERSONAL OVERRIDE',
-      title: '개인 예외는 전체 role 복사본이 아니라, 달라진 resource와 action만 기록한다.',
+      title: '개인 예외에는 역할 기본값에서 달라진 자원과 행동만 기록한다.',
       sections: [
         {
           label: 'WHY',
-          body: '전체 permission을 사람마다 저장하면 역할 기본값 변경 뒤 누가 왜 달라졌는지 추적하기 어렵습니다.',
+          body: '사람마다 전체 권한을 저장하면 역할 기본값이 바뀐 뒤 누가 어떤 이유로 다른 권한을 갖는지 추적하기 어렵습니다.',
         },
         {
           label: 'DECISION',
-          body: 'role default 위에 grant/revoke 차이만 합성하고, matrix에 그 출처를 role·override·guard로 표시했습니다.',
+          body: '역할 기본값에 추가·회수한 권한만 합산하고, 권한표에는 역할·개인 예외·보호 규칙 중 어디에서 나온 결과인지 표시했습니다.',
         },
         {
           label: 'BOUNDARY',
-          body: '보호된 role-locked permission과 위임 범위는 개인 override로 우회 부여할 수 없습니다.',
+          body: '역할에 고정된 보호 권한과 위임 범위는 개인 예외로 우회할 수 없습니다.',
         },
       ],
       evolution: { label: 'DIFFERENCE-ONLY EDITING', date: '2026.08.25' },
@@ -101,15 +101,15 @@ export const permissionContent = {
       id: 'effective-permission',
       index: '04',
       label: 'EFFECTIVE PERMISSION',
-      title: '메뉴·버튼·직접 URL·API가 같은 effective permission을 소비하게 했다.',
+      title: '메뉴·버튼·직접 URL·API에 같은 최종 권한을 적용했다.',
       sections: [
         {
           label: 'WHY',
-          body: 'frontend만 숨기면 직접 API 호출이 열릴 수 있고, route마다 계산이 다르면 회수 결과가 어긋납니다.',
+          body: '화면에서만 숨기면 직접 API 호출이 허용될 수 있습니다. 경로마다 계산이 달라도 권한 회수 결과가 어긋납니다.',
         },
         {
           label: 'DECISION',
-          body: 'resource × action의 최종 계산을 한 server 함수로 모으고 frontend surface와 backend dependency를 같은 matrix로 검증했습니다.',
+          body: '자원·행동별 권한 계산을 서버 함수 하나로 모으고, 같은 권한표로 화면과 API의 허용 결과를 검증했습니다.',
         },
         {
           label: 'BOUNDARY',
@@ -126,11 +126,11 @@ export const permissionContent = {
       sections: [
         {
           label: 'WHY',
-          body: '동시 권한 변경이나 위임자의 자기 승격으로 마지막 관리자가 사라지면 UI에서 되돌릴 경로도 잃습니다.',
+          body: '동시 변경으로 마지막 관리자가 사라지면 제품 안에서 복구할 권한도 잃습니다. 위임받은 관리자가 자기 권한을 높이는 경로도 막아야 합니다.',
         },
         {
           label: 'DECISION',
-          body: 'advisory lock과 row lock 안에서 role·override를 바꾸고 effective admin을 다시 센 뒤 audit와 함께 한 transaction으로 확정했습니다.',
+          body: 'advisory lock과 행 잠금 안에서 역할·개인 예외를 바꾼 뒤 유효한 관리자 수를 다시 셌습니다. 변경과 감사 기록은 하나의 트랜잭션으로 확정했습니다.',
         },
         {
           label: 'BOUNDARY',
@@ -142,16 +142,16 @@ export const permissionContent = {
   ],
   workflow: {
     eyebrow: 'AUTHORIZATION WORKFLOW',
-    title: 'Actor를 확인하고, 차이를 합성하고, 보호 규칙을 통과한 결과만 적용한다.',
-    introduction: '각 단계는 위 access surface의 identity·template·override·effective state와 연결됩니다.',
+    title: '사용자를 확인하고, 개인 예외와 보호 규칙을 반영한 권한을 적용한다.',
+    introduction: '계정 연결에서 시작해 UI와 API의 권한 적용으로 이어지는 다섯 단계.',
     steps: [
-      { id: 'permission-flow-identify', hotspotId: 'identity-link', index: '01', label: 'IDENTIFY', summary: '로그인 identity와 team member 연결' },
-      { id: 'permission-flow-default', hotspotId: 'role-default', index: '02', label: 'DEFAULT', summary: 'role의 resource × action 기본값' },
-      { id: 'permission-flow-diff', hotspotId: 'personal-override', index: '03', label: 'OVERRIDE', summary: '개인 grant·revoke 차이만 적용' },
-      { id: 'permission-flow-guard', hotspotId: 'protected-change', index: '04', label: 'GUARD', summary: 'lockout·escalation·위임 범위 차단' },
+      { id: 'permission-flow-identify', hotspotId: 'identity-link', index: '01', label: 'IDENTIFY', summary: '로그인 계정과 제품 팀원 연결' },
+      { id: 'permission-flow-default', hotspotId: 'role-default', index: '02', label: 'DEFAULT', summary: '역할의 자원·행동별 기본 권한' },
+      { id: 'permission-flow-diff', hotspotId: 'personal-override', index: '03', label: 'OVERRIDE', summary: '개인의 추가·회수 권한 반영' },
+      { id: 'permission-flow-guard', hotspotId: 'protected-change', index: '04', label: 'GUARD', summary: '관리자 잠금·권한 상승·위임 범위 검사' },
       { id: 'permission-flow-enforce', hotspotId: 'effective-permission', index: '05', label: 'ENFORCE', summary: 'UI와 API가 같은 결과 사용' },
     ],
-    boundary: '인증 성공은 계산의 시작일 뿐입니다. 연결 상태·활성 여부·role·override·system guard를 통과해야 업무 action이 허용됩니다.',
+    boundary: '계정 연결 상태, 활성 여부, 역할, 개인 예외, 보호 규칙을 확인한 뒤 업무 행동을 허용합니다.',
   },
   decisions: {
     eyebrow: 'DESIGN DECISIONS',
@@ -159,73 +159,73 @@ export const permissionContent = {
     items: [
       {
         statement: 'LOGIN GATE ≠ BUSINESS ACCESS.',
-        explanation: '외부 identity provider는 사용자를 확인하고, 제품 resource 권한은 application DB가 판단합니다.',
+        explanation: '외부 인증 서비스는 사용자를 확인하고, 제품은 자체 DB의 정책을 기준으로 업무 권한을 판단합니다.',
       },
       {
         statement: 'STORE DIFFERENCES, SHOW RESULTS.',
-        explanation: '관리자는 role과 개인 차이를 편집하지만 사용 화면은 최종 effective permission만 소비합니다.',
+        explanation: '관리자는 역할과 개인별 차이를 편집하고, 사용 화면은 계산된 최종 권한을 적용합니다.',
       },
       {
         statement: 'NO LAST-ADMIN WRITE.',
-        explanation: '저장 후 복구 가능성을 transaction 안에서 재계산하고 위험한 변경은 전부 되돌립니다.',
+        explanation: '변경 후에도 관리자가 남는지 트랜잭션 안에서 다시 확인하고, 보호 규칙을 위반한 변경은 모두 되돌립니다.',
       },
     ],
   },
   evolution: {
     eyebrow: 'PRODUCT EVOLUTION',
-    title: '공용 비밀번호에서, 비개발자가 안전하게 운영하는 access surface로.',
-    introduction: '현재 identity card·matrix·override·protected guard에 직접 남은 변화입니다.',
+    title: '공용 비밀번호에서, 비개발자도 위임 범위 안에서 관리하는 권한 체계로.',
+    introduction: '일정 조회 권한에서 시작해 계정 연결·권한표·개인 예외·관리자 보호로 확장했습니다.',
     scenes: [
       {
         date: '2026.07.16',
         label: 'READ-ONLY NEED',
         visual: 'read-only-need',
-        decision: 'Sales에는 전체 시스템이 아니라 일정 보기만 필요했다.',
+        decision: '영업 담당자에게는 일정 조회 권한이 필요했다.',
         trigger: '공용 인증으로는 사람별 업무 범위를 나눌 수 없음',
-        change: 'role별 route·action 요구와 일정 read-only 정의',
-        currentEffect: 'matrix에서 VIEW와 EDIT·DELETE를 별도 action으로 계산',
+        change: '역할별 접근 경로와 행동, 일정 조회 전용 범위 정의',
+        currentEffect: '권한표에서 조회·편집·삭제를 각각 계산',
       },
       {
         date: '2026.07.20',
         label: 'OIDC + ROLE',
         visual: 'oidc-role',
-        decision: '공용 Basic Auth를 회사 identity와 server-side session으로 교체했다.',
+        decision: '공용 Basic Auth를 회사 계정 인증과 서버 세션으로 교체했다.',
         trigger: '개인별 회수·감사·최소 권한을 적용할 수 없음',
-        change: 'Entra OIDC, Redis session, CSRF, 초기 role mapping',
-        currentEffect: 'actor가 식별된 뒤에만 application permission 계산 시작',
+        change: 'Entra OIDC, Redis 세션, CSRF, 초기 역할 매핑',
+        currentEffect: '사용자를 식별한 뒤 제품의 업무 권한 계산',
       },
       {
         date: '2026.08.24',
         label: 'RESOURCE × ACTION',
         visual: 'resource-action',
-        decision: '화면 이름 중심 role을 domain action 중심 permission으로 바꿨다.',
+        decision: '화면별 역할을 업무 자원·행동별 권한으로 바꿨다.',
         trigger: '보기·편집·삭제·관리 경계와 개인 예외를 세밀하게 표현해야 함',
-        change: 'PostgreSQL role default ± grant/revoke override',
-        currentEffect: 'effective matrix가 모든 route와 control의 기준',
+        change: 'PostgreSQL의 역할 기본값에 개인별 추가·회수 권한 반영',
+        currentEffect: '계산된 최종 권한을 접근 경로와 조작의 공통 기준으로 사용',
       },
       {
         date: '2026.08.25',
         label: 'ADMIN SURFACE',
         visual: 'admin-surface',
-        decision: 'identity provider 설정 없이 제품 안에서 권한을 운영하게 했다.',
-        trigger: '신규 인원마다 두 권한 source를 개발자가 직접 수정함',
-        change: '사전 invite·role·override·history 관리 UI',
+        decision: '외부 인증 서비스의 설정을 바꾸지 않고 제품 안에서 권한을 관리하게 했다.',
+        trigger: '신규 인원마다 개발자가 두 곳의 권한 설정을 직접 수정',
+        change: '사전 초대·역할·개인 예외·변경 이력 관리 UI',
         currentEffect: '비개발자도 허용된 위임 범위 안에서 팀 접근을 관리',
       },
       {
         date: '2026.08.26',
         label: 'AUTHORITY SPLIT',
         visual: 'authority-split',
-        decision: 'Entra는 로그인 gate, PostgreSQL은 authorization SSOT로 책임을 나눴다.',
-        trigger: 'App Role과 DB 권한의 이중 관리·결과 drift',
-        change: 'security group gate, delegated admin guard, App Role 제거',
-        currentEffect: 'identity 상태와 effective permission을 별도 축으로 표시',
+        decision: 'Entra는 로그인 허용 여부를, PostgreSQL은 업무 권한의 기준을 맡게 했다.',
+        trigger: 'App Role과 DB의 권한을 중복 관리하면서 결과가 어긋남',
+        change: '보안 그룹의 로그인 제어, 위임 관리자 보호, App Role 제거',
+        currentEffect: '계정 인증 상태와 최종 업무 권한을 각각 표시',
       },
     ],
   },
   evidence: {
     eyebrow: 'EVIDENCE / OPERATING DB 2026.09.04',
-    title: '권한 구성의 규모이지, 보안 수준의 점수가 아니다.',
+    title: '2026년 8월 26일, 운영 DB의 권한 구성.',
     snapshot: '읽기 전용 production snapshot에서 확인한 현재 authorization contract입니다.',
     items: [
       { value: '31', label: 'PERMISSION CATALOG', meaning: '현재 resource × action 정의', boundary: '보안 인증이나 최소권한 달성률이 아님' },
@@ -237,25 +237,25 @@ export const permissionContent = {
     items: [
       'Entra OIDC·server-side session·CSRF 코드 경계',
       'PostgreSQL catalog·template·개인 override 기반 effective permission',
-      '관리자 invite·권한 편집·감사·위임 control',
+      '관리자 초대·권한 편집·감사·위임 관리',
       'self·owner·관리 권한 재위임과 invite 생성·취소 guard',
     ],
     runtime: '2026.09.04 production DB의 31개 catalog와 6개 template, effective permission contract를 확인했다. Azure Portal 구성과 interactive OIDC login smoke는 같은 시점에 재검증하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / ACCESS CONTROL, NOT SECURITY COMPLETION',
-    statement: 'A permission matrix narrows authority. It does not prove security is complete.',
+    statement: '확인된 범위는 접근 제어의 구성과 제한된 실제 계정 시나리오까지.',
     items: [
       '31개 catalog와 6개 template은 구성 규모이며 최소권한 달성률이 아닙니다.',
       'production developer template에 포함된 permission 28개와 repository seed의 26개 차이는 deployment divergence로 남아 있습니다.',
       'Azure Portal 설정과 interactive OIDC login smoke는 9월 4일 current evidence로 확인하지 않았습니다.',
-      '권한 화면의 배포와 반복적인 관리자 사용·조직 adoption을 같은 상태로 보지 않습니다.',
-      '정식 침투 테스트·외부 보안 감사·Zero Trust 완성을 수행했다고 주장하지 않습니다.',
+      '권한 화면은 배포됐습니다. 관리자의 반복 사용과 조직 전체 활용 여부는 별도 확인이 필요합니다.',
+      '정식 침투 테스트와 외부 보안 감사는 이 사례의 확인 범위에 포함되지 않습니다.',
     ],
   },
   relatedSystems: [
-    { title: 'SCHEDULE', relation: 'read-only actor와 변경 권한이 실제로 소비되는 product surface', href: '/what/schedule', status: 'available' },
-    { title: 'QA', relation: 'writer와 viewer의 action boundary가 적용되는 기록 surface', href: '/what/qa', status: 'available' },
+    { title: 'SCHEDULE', relation: '일정 조회와 변경에 서로 다른 권한을 적용한 제품 사례', href: '/what/schedule', status: 'available' },
+    { title: 'QA', relation: '기록 작성자와 조회자의 행동 범위를 나눈 제품 사례', href: '/what/qa', status: 'available' },
     { title: 'SECURITY & OPERATIONS', relation: 'OIDC·session·권한·배포 access의 더 넓은 위험 경계', href: '/how/security-operations', status: 'available' },
   ],
 } as const satisfies PermissionPageContent

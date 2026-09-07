@@ -81,7 +81,7 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
               activeAnnotation={activeAnnotation}
               defaultAnnotation={content.inspection.defaultAnnotation}
               disclosure={content.meta.disclosure}
-              surfaceLabel="AI Candidate Review 재구성 제품 화면과 editorial annotation"
+              surfaceLabel="AI Candidate Review 재구성 화면과 설계 해설"
               evolutionTargetId="ai-candidate-review-evolution"
               interactionMode={interactionMode}
               onPointerPreviewEnd={clearPointerPreview}
@@ -116,7 +116,7 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
       <section className="acr-rules" aria-labelledby="acr-rules-title">
         <header>
           <p>{content.rules.eyebrow}</p>
-          <h2 id="acr-rules-title">자동화가 강해질수록, 후보의 지위는 더 명확해야 한다.</h2>
+          <h2 id="acr-rules-title">후보 생성과 공식 기록 확정의 규칙</h2>
         </header>
         <ol>
           {content.rules.items.map((rule) => (
@@ -193,7 +193,7 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
           ) : (
             <div key={system.title}>
               <span><strong>{system.title}</strong><small>{system.relation}</small></span>
-              <b>PAGE IN DEVELOPMENT</b>
+              <b>페이지 준비 중</b>
             </div>
           ))}
         </nav>

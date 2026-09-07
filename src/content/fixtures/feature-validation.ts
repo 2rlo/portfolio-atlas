@@ -13,28 +13,28 @@ export const featureValidationProductFixture = {
     {
       id: 'partner-notification-retry',
       name: 'Partner notification retry policy',
-      meta: 'Requirement 3 · change set 3',
+      meta: '요구사항 3 · 변경 묶음 3',
       status: '확인 필요',
       tone: 'unknown',
     },
     {
       id: 'release-failure-visibility',
       name: 'Release failure state visibility',
-      meta: 'Requirement 4 · change set 2',
+      meta: '요구사항 4 · 변경 묶음 2',
       status: '근거 연결됨',
       tone: 'linked',
     },
     {
       id: 'duplicate-request-protection',
       name: 'Duplicate request protection',
-      meta: 'Requirement 2 · candidate 2',
+      meta: '요구사항 2 · 후보 2',
       status: '일부 연결',
       tone: 'unknown',
     },
     {
       id: 'delivery-status-timeline',
       name: 'Delivery status timeline',
-      meta: 'Requirement 3 · change set 2',
+      meta: '요구사항 3 · 변경 묶음 2',
       status: '사람 확인 완료',
       tone: 'confirmed',
     },
@@ -44,12 +44,12 @@ export const featureValidationProductFixture = {
     summary:
       '파트너 알림 실패 뒤 재시도 범위와 사용자에게 보이는 최종 상태를 명세와 변경 근거로 함께 검토합니다.',
     status: '확인 필요',
-    lastReviewed: '8월 28일 16:20 · synthetic',
+    lastReviewed: '8월 28일 16:20 · 가상 예시',
     requirements: [
       {
         id: 'R1',
         statement: '실패 요청은 최대 3회까지만 재시도한다.',
-        sourceLabel: 'Confirmed specification snapshot',
+        sourceLabel: '사람이 확정한 당시 명세',
         state: 'confirmed',
         statusLabel: '사람 확인 완료',
         statementHotspotId: 'requirement',
@@ -76,7 +76,7 @@ export const featureValidationProductFixture = {
       {
         id: 'R2',
         statement: '재시도 이후 최종 실패와 다음 행동을 구분해 보여준다.',
-        sourceLabel: 'Draft specification snapshot',
+        sourceLabel: '검토 중인 명세 초안',
         state: 'linked',
         statusLabel: '근거 연결됨',
         evidenceHotspotId: 'ai-assessment',
@@ -92,7 +92,7 @@ export const featureValidationProductFixture = {
       {
         id: 'R3',
         statement: '동일 요청을 중복 실행하지 않는다.',
-        sourceLabel: 'Confirmed specification snapshot',
+        sourceLabel: '사람이 확정한 당시 명세',
         state: 'unknown',
         statusLabel: 'UNKNOWN',
         evidenceHotspotId: 'unknown',
@@ -107,7 +107,7 @@ export const featureValidationProductFixture = {
             body: '재시도 흐름과 별도 처리 경로가 같은 변경 묶음에 있어 중복 실행 방지 범위를 사람이 확인해야 합니다.',
           },
         },
-        signal: 'INSUFFICIENT EVIDENCE · 사람 확인 전',
+        signal: '근거 부족 · 사람 확인 전',
       },
     ],
     unlinkedCandidate: {

@@ -9,7 +9,7 @@ export const projectSettingProductFixture = {
     codePlaceholder: '예: JB-NW',
     labelPlaceholder: '예: New workspace',
     resolutionHint:
-      '같은 code의 기존 row가 있으면 새로 만들기 전에 연결 보존형 승격을 확인합니다.',
+      '같은 코드의 프로젝트가 있으면 기존 연결을 유지한 채 추적 목록에 올릴 수 있는지 확인합니다.',
   },
   trackedProjects: [
     {

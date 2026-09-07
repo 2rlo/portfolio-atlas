@@ -17,8 +17,8 @@ export const reportProductFixture = {
     generatedAt: '생성 2026. 8. 28. 오후 5:40',
   },
   sourceState: {
-    label: '검토완료 기록 기반',
-    detail: 'reviewed worklogs · QA records · confirmed meetings',
+    label: '검토 완료 기록 기반',
+    detail: '검토 완료 업무일지 · QA 기록 · 확정 회의록',
     fallbackLabel: '8월 3주 · 미검토 초안 포함',
   },
   generation: {
@@ -59,7 +59,7 @@ export const reportProductFixture = {
           body: '세 번째 재시도 뒤 timeout이 발생하는 조건을 확인하고 다음 검증 기준을 확정했습니다.',
           source: {
             record: 'JB-WL-ATLAS-042',
-            status: '검토 완료 source',
+            status: '검토 완료 기록',
             lineage: 'Daniel Lee → Mina Kim',
           },
         },

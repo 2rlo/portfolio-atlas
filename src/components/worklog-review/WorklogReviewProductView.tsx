@@ -19,7 +19,7 @@ function WorklogReviewProductView({
     <section
       className="wl-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.productName} worklog review 공개 재구성 화면`}
+      aria-label={`${fixture.productName} 업무일지 검토 공개 재구성 화면`}
     >
       <header className="wl-product-topbar" aria-hidden="true">
         <span className="wl-product-brand">J</span>
@@ -42,8 +42,8 @@ function WorklogReviewProductView({
 
         <div className="wl-product-canvas">
           <header className="wl-page-head" aria-hidden="true">
-            <div><small>JADEBELL HUB</small><strong>업무일지 검토</strong><span>AI 정규화 초안을 원문과 비교해 report source 상태를 결정합니다.</span></div>
-            <span>ACTUAL REVIEW SURFACE / EXTERNAL WORKSPACE</span>
+            <div><small>JADEBELL HUB</small><strong>업무일지 검토</strong><span>AI 정규화 초안을 원문과 비교해 보고에 사용할 기록을 확정합니다.</span></div>
+            <span>RECONSTRUCTED REVIEW / EXTERNAL WORKSPACE</span>
           </header>
 
           <div className="wl-review-workspace">
@@ -57,7 +57,7 @@ function WorklogReviewProductView({
                   </div>
                 ))}
               </div>
-              <footer aria-hidden="true"><span>REVIEW PRIORITY</span><strong>oldest pending first</strong></footer>
+              <footer aria-hidden="true"><span>REVIEW PRIORITY</span><strong>대기 시간이 긴 기록부터</strong></footer>
             </aside>
 
             <article className="wl-review-detail">
@@ -69,7 +69,7 @@ function WorklogReviewProductView({
               <ProductHotspot
                 id="source-continuity"
                 activeId={activeId}
-                label="Original worklog source continuity"
+                label="업무일지 원문과 검토 이력"
                 className="wl-source-ribbon"
                 onActivate={onActivate}
               >
@@ -84,11 +84,11 @@ function WorklogReviewProductView({
                   <ProductHotspot
                     id="structured-draft"
                     activeId={activeId}
-                    label="L3 structured AI draft"
+                    label="L3 형식의 AI 초안"
                     className="wl-draft-panel"
                     onActivate={onActivate}
                   >
-                    <span className="wl-panel-heading"><span><small>02 / AI NORMALIZED DRAFT</small><strong>L3 review shape</strong></span><em>AI DRAFT</em></span>
+                    <span className="wl-panel-heading"><span><small>02 / AI NORMALIZED DRAFT</small><strong>L3 검토 형식</strong></span><em>AI DRAFT</em></span>
                     <span className="wl-draft-field"><small>작업 내용</small><b>{fixture.draft.work}</b></span>
                     <span className="wl-draft-field"><small>결과</small><b>{fixture.draft.result}</b></span>
                   </ProductHotspot>
@@ -96,7 +96,7 @@ function WorklogReviewProductView({
                   <ProductHotspot
                     id="ambiguity-level"
                     activeId={activeId}
-                    label="Explicit ambiguity and review question"
+                    label="불명확한 조건과 확인 질문"
                     className="wl-ambiguity-panel"
                     onActivate={onActivate}
                   >
@@ -109,7 +109,7 @@ function WorklogReviewProductView({
                 <ProductHotspot
                   id="human-correction"
                   activeId={activeId}
-                  label="Human-corrected worklog record"
+                  label="사람이 수정한 업무일지"
                   className="wl-human-panel"
                   onActivate={onActivate}
                 >
@@ -124,12 +124,12 @@ function WorklogReviewProductView({
               <ProductHotspot
                 id="report-boundary"
                 activeId={activeId}
-                label="Weekly report source eligibility boundary"
+                label="주간보고 자료의 사용 조건"
                 className="wl-report-gate"
                 onActivate={onActivate}
               >
                 <span>05</span>
-                <span><small>REPORT-SOURCE RULE</small><strong>REVIEWED RECORD FIRST</strong><em>eligible after human correction</em></span>
+                <span><small>REPORT-SOURCE RULE</small><strong>REVIEWED RECORD FIRST</strong><em>사람이 수정·검토한 뒤 보고에 사용</em></span>
                 <span><small>ONLY WHEN</small><b>{fixture.fallback.condition}</b><em>{fixture.fallback.label}</em></span>
                 <b aria-hidden="true">→</b>
               </ProductHotspot>

@@ -12,7 +12,7 @@ function MeetingLogProductView({ fixture, activeId, onActivate }: MeetingLogProd
     <section
       className="meeting-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.productName} meeting record to human review 공개 재구성 화면`}
+      aria-label={`${fixture.productName} 회의록에서 사람 검토까지의 공개 재구성 화면`}
     >
       <header className="meeting-product-topbar" aria-hidden="true">
         <span>J</span>
@@ -32,7 +32,7 @@ function MeetingLogProductView({ fixture, activeId, onActivate }: MeetingLogProd
           <ProductHotspot
             id="source-record"
             activeId={activeId}
-            label="Synced meeting record and source sections"
+            label="동기화한 회의록과 원문 구간"
             className="meeting-source-record"
             onActivate={onActivate}
           >
@@ -55,11 +55,11 @@ function MeetingLogProductView({ fixture, activeId, onActivate }: MeetingLogProd
 
           <span className="meeting-flow-arrow" aria-hidden="true">→</span>
 
-          <section className="meeting-candidate-column" aria-label="AI candidate queue">
+          <section className="meeting-candidate-column" aria-label="AI 후보 대기열">
             <ProductHotspot
               id="change-guard"
               activeId={activeId}
-              label="Meeting source change check before candidate extraction"
+              label="후보 추출 전 회의록 변경 여부 확인"
               className="meeting-change-guard"
               onActivate={onActivate}
             >
@@ -71,7 +71,7 @@ function MeetingLogProductView({ fixture, activeId, onActivate }: MeetingLogProd
             <ProductHotspot
               id="candidate-group"
               activeId={activeId}
-              label="Pending AI candidates grouped by the same meeting source"
+              label="같은 회의록에서 추출한 대기 후보 묶음"
               className="meeting-candidate-group"
               onActivate={onActivate}
             >
@@ -94,11 +94,11 @@ function MeetingLogProductView({ fixture, activeId, onActivate }: MeetingLogProd
           <ProductHotspot
             id="human-review"
             activeId={activeId}
-            label="Editable candidate with source evidence and human review actions"
+            label="원문 근거와 후보 수정·승인·반려"
             className="meeting-review-panel"
             onActivate={onActivate}
           >
-            <span className="meeting-panel-index"><small>04 / HUMAN REVIEW</small><em>{fixture.review.reviewer.initials} · REVIEWER</em></span>
+            <span className="meeting-panel-index"><small>04 / HUMAN REVIEW</small><em>{fixture.review.reviewer.initials} · 검토자</em></span>
             <span className="meeting-review-state"><small>{fixture.selectedCandidate.category}</small><b>검토 필요</b></span>
             <span className="meeting-field"><small>TITLE</small><strong>{fixture.selectedCandidate.title}</strong></span>
             <span className="meeting-field"><small>BODY</small><strong>{fixture.selectedCandidate.body}</strong></span>
@@ -118,7 +118,7 @@ function MeetingLogProductView({ fixture, activeId, onActivate }: MeetingLogProd
         <ProductHotspot
           id="capture-boundary"
           activeId={activeId}
-          label="Implemented meeting input separated from unresolved automated capture"
+          label="현재 회의록 입력과 미완료 자동 수집의 구분"
           className="meeting-capture-boundary"
           onActivate={onActivate}
         >

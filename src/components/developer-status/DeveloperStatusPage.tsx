@@ -11,7 +11,7 @@ function DeveloperStatusEvolutionFragment({ visual }: { readonly visual: Develop
 }
 
 function DeveloperStatusPage({ content }: { readonly content: DeveloperStatusPageContent }) {
-  return <ReusableWhatCasePage content={content} pageClassName="developer-status-page" titleId="developer-status-title" surfaceLabel="Developer status 재구성 제품 화면과 editorial annotation" workflowLabel="Developer status rollup workflow" evolutionTargetId="developer-status-evolution" relatedLabel="Developer Status와 연결된 시스템" renderProduct={({ fixture, activeId, onActivate }) => <DeveloperStatusProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />} renderEvolutionFragment={(visual) => <DeveloperStatusEvolutionFragment visual={visual} />} />
+  return <ReusableWhatCasePage content={content} pageClassName="developer-status-page" titleId="developer-status-title" surfaceLabel="개발자 현황의 공개 재구성 화면과 설계 설명" workflowLabel="개발자 현황 집계 흐름" evolutionTargetId="developer-status-evolution" relatedLabel="개발자 현황과 연결된 시스템" renderProduct={({ fixture, activeId, onActivate }) => <DeveloperStatusProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />} renderEvolutionFragment={(visual) => <DeveloperStatusEvolutionFragment visual={visual} />} />
 }
 
 export default DeveloperStatusPage

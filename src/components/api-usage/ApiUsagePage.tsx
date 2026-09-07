@@ -11,7 +11,7 @@ function ApiUsageEvolutionFragment({ visual }: { readonly visual: ApiUsageEvolut
 }
 
 function ApiUsagePage({ content }: { readonly content: ApiUsagePageContent }) {
-  return <ReusableWhatCasePage content={content} pageClassName="api-usage-page" titleId="api-usage-title" surfaceLabel="API usage cost ledger 재구성 화면과 editorial annotation" workflowLabel="AI usage observability workflow" evolutionTargetId="api-usage-evolution" relatedLabel="API Usage와 연결된 시스템" renderProduct={({ fixture, activeId, onActivate }) => <ApiUsageProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />} renderEvolutionFragment={(visual) => <ApiUsageEvolutionFragment visual={visual} />} />
+  return <ReusableWhatCasePage content={content} pageClassName="api-usage-page" titleId="api-usage-title" surfaceLabel="API 사용량·비용 원장의 공개 재구성 화면과 설계 설명" workflowLabel="AI 사용량 기록·비용 계산·예산 제어 흐름" evolutionTargetId="api-usage-evolution" relatedLabel="API 사용량과 연결된 시스템" renderProduct={({ fixture, activeId, onActivate }) => <ApiUsageProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />} renderEvolutionFragment={(visual) => <ApiUsageEvolutionFragment visual={visual} />} />
 }
 
 export default ApiUsagePage

@@ -13,23 +13,23 @@ export const worklogReviewContent = {
     eyebrow: 'WHAT I BUILT / 04',
     titleLines: ['WORKLOG', 'REVIEW'],
     thesis:
-      'AI는 자유 형식을 정리하고 모호함을 드러낸다. 보고 source가 되는 문장은 사람이 확정한다.',
+      'AI는 자유 형식을 정리하고 모호함을 드러낸다. 보고에 쓸 문장은 사람이 확정한다.',
     summary:
-      'Teams 원문과 구조화 초안, 사람의 수정, 주간보고 eligibility를 하나의 continuity record로 연결했다.',
+      'Teams 원문에 AI 초안과 사람의 수정 이력을 연결하고, 검토 상태에 따라 주간보고 사용 여부를 구분했다.',
     problemLabel: 'PROBLEM / NORMALIZED DOES NOT MEAN UNDERSTOOD',
     problem:
       '사람마다 다른 표현과 생략된 맥락 때문에 AI 정규화만으로는 업무 기록을 안정적으로 해석할 수 없었다.',
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / REVIEW CONTINUITY',
-    title: '문장을 다듬는 화면보다, source의 지위가 바뀌는 경계를 살펴보세요.',
+    title: '원문에서 보고 자료가 되기까지',
     instruction:
-      '다섯 지점에 hover, focus 또는 tap하면 원문·초안·모호함·사람 수정·보고 반영의 설계 이유가 오른쪽 여백에 표시됩니다.',
+      '다섯 검토 지점의 설계 이유 · 포인터, 키보드, 터치 지원',
     defaultAnnotation: {
       index: '00',
       label: 'REVIEW GUIDE',
-      title: '같은 기록을 따라가되, 각 상태의 권한은 섞지 않는다.',
-      body: 'Raw message, L3 draft, ambiguity, human correction, report-source boundary를 따라가면 AI가 정리한 문장과 사람이 확정한 기록이 분리되는 방식을 볼 수 있습니다.',
+      title: '원문·AI 초안·사람 수정의 연결',
+      body: '원문과 L3 초안을 비교해 빠진 조건을 질문으로 남긴다. 사람의 수정 이력과 보고 사용 상태를 같은 기록에 연결한다.',
     },
   },
   product: worklogReviewProductFixture,
@@ -46,7 +46,7 @@ export const worklogReviewContent = {
         },
         {
           label: 'DECISION',
-          body: '하나의 continuity record로 Teams 원문, AI draft, reviewer, 보고 source 상태를 연결했다.',
+          body: '하나의 기록에 Teams 원문, AI 초안, 검토자와 보고 사용 상태를 연결했다.',
         },
         {
           label: 'BOUNDARY',
@@ -58,7 +58,7 @@ export const worklogReviewContent = {
       id: 'structured-draft',
       index: '02',
       label: 'L3 STRUCTURED DRAFT',
-      title: 'AI의 역할을 완성 문장보다 검토 가능한 구조에 뒀다.',
+      title: '작업·결과·확인할 조건을 나눠 검토하게 했다.',
       sections: [
         {
           label: 'WHY',
@@ -70,7 +70,7 @@ export const worklogReviewContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '구조화 draft는 검토를 돕는 임시 상태이며 공식 업무일지가 아니다.',
+          body: '구조화 초안은 검토를 돕는 임시 상태이며 공식 업무일지가 아니다.',
         },
       ],
       evolution: { label: 'L3 SELECTED', date: '2026.06.05' },
@@ -87,7 +87,7 @@ export const worklogReviewContent = {
         },
         {
           label: 'DECISION',
-          body: 'AI가 부족한 조건을 임의로 채우는 대신 ambiguity와 review question으로 별도 표시한다.',
+          body: 'AI가 찾은 불명확한 표현과 확인 질문을 별도로 표시한다. 부족한 조건은 임의로 채우지 않는다.',
         },
         {
           label: 'EVIDENCE',
@@ -100,7 +100,7 @@ export const worklogReviewContent = {
       id: 'human-correction',
       index: '04',
       label: 'HUMAN CORRECTION',
-      title: '사람 검토는 실패 뒤 붙인 절차가 아니라 최초 workflow의 authority였다.',
+      title: '처음부터 사람이 보고에 쓸 기록을 확정하게 했다.',
       sections: [
         {
           label: 'WHY',
@@ -140,9 +140,9 @@ export const worklogReviewContent = {
   ],
   workflow: {
     eyebrow: 'REVIEW WORKFLOW',
-    title: '수집과 정규화는 자동화하고, 보고에 쓸 문장은 사람이 닫는다.',
+    title: '수집·정규화 뒤, 사람이 보고에 쓸 기록을 확정한다.',
     introduction:
-      '각 단계에 focus하거나 pointer를 올리면 제품 surface의 대응 지점도 함께 강조됩니다.',
+      '각 단계와 연결된 검토 영역을 함께 강조',
     steps: [
       {
         id: 'workflow-source',
@@ -177,7 +177,7 @@ export const worklogReviewContent = {
         hotspotId: 'report-boundary',
         index: '05',
         label: 'REPORT SOURCE',
-        summary: '검토 상태를 보존해 주간 입력',
+        summary: '검토 상태를 보존해 주간보고에 입력',
       },
     ],
     boundary:
@@ -190,7 +190,7 @@ export const worklogReviewContent = {
       {
         statement: 'AI NORMALIZES. PEOPLE CONFIRM.',
         explanation:
-          '모델은 자유 형식을 정리하고 확인할 지점을 제안한다. 업무 맥락을 확정하는 authority는 사람에게 남긴다.',
+          '모델은 자유 형식을 정리하고 확인할 지점을 제안한다. 업무 맥락은 사람이 확정한다.',
       },
       {
         statement: 'FALLBACK MUST BE VISIBLE.',
@@ -200,15 +200,15 @@ export const worklogReviewContent = {
       {
         statement: 'FIXING THE PARSER ≠ FIXING OLD ROWS.',
         explanation:
-          '발생 원인 수정, 이미 저장된 초안 교정, canonical 데이터 비오염, 재발 방지는 서로 다른 확인 상태다.',
+          '발생 원인 수정, 저장된 초안 교정, 확정 데이터의 영향 여부, 재발 방지는 각각 확인한다.',
       },
     ],
   },
   evolution: {
     eyebrow: 'PRODUCT EVOLUTION',
-    title: '더 자연스러운 요약보다, 더 확인하기 쉬운 기록으로.',
+    title: '요약 형식에서 보고 사용 규칙까지 바뀐 과정',
     introduction:
-      '현재 review component와 source boundary에 직접 남은 변화만 다섯 장면으로 정리했습니다.',
+      'L3 형식 선택, 본문 배치 변경, 미검토 예외 표시, 용어집 보완, 날짜 오류 정리.',
     scenes: [
       {
         date: '2026.06.05',
@@ -217,25 +217,25 @@ export const worklogReviewContent = {
         decision: 'L1·L2·L3 중 모호함을 가장 구체적으로 드러내는 L3 선택',
         trigger: '자유 형식 원문을 한 문단으로 요약하면 검토할 조건이 묻힘',
         change: '작업·결과·불명확 사항과 사람 검토 상태를 분리',
-        currentEffect: 'AI draft는 검토 재료로만 남고 reviewed record가 우선 source가 된다.',
+        currentEffect: 'AI 초안과 검토 완료 기록을 구분하고, 검토본을 보고 자료로 우선 사용한다.',
       },
       {
         date: '2026.06.25',
         label: 'READABLE REVIEW',
         visual: 'readable-body',
-        decision: '정규화 본문을 속성 묶음보다 읽기 쉬운 body로 이동',
+        decision: '여러 속성에 흩어진 정규화 내용을 문서 본문으로 이동',
         trigger: '검토자가 여러 속성을 오가며 읽는 불편을 제기',
-        change: '본문 렌더링 경로를 검증하고 review surface의 읽기 흐름 개선',
+        change: '본문 렌더링을 검증하고 검토 화면의 읽기 순서 정리',
         currentEffect: '구조는 유지하면서 사람이 읽는 순서에 맞춰 내용을 배치한다.',
       },
       {
         date: '2026.07.03',
         label: 'VISIBLE FALLBACK',
         visual: 'fallback',
-        decision: '검토 완료 0건일 때만 draft fallback과 명시적 label 허용',
+        decision: '검토 완료 0건일 때만 미검토 표시와 함께 초안 사용',
         trigger: '검토가 월요일까지 끝나지 않으면 주간보고 생성이 멈춤',
-        change: 'reviewed-first 규칙과 unreviewed included 표시 추가',
-        currentEffect: '생성 가능성과 source 신뢰 수준을 같은 상태로 숨기지 않는다.',
+        change: '검토본 우선 규칙과 미검토 자료 포함 표시 추가',
+        currentEffect: '보고가 생성돼도 입력 자료의 미검토 상태를 알 수 있다.',
       },
       {
         date: '2026.07.31',
@@ -243,23 +243,23 @@ export const worklogReviewContent = {
         visual: 'glossary',
         decision: '반복되는 고유명사와 용어를 정규화 참고 목록으로 제공',
         trigger: '사람이 같은 사내 용어를 매번 다시 설명해야 함',
-        change: '용어집 context를 draft 생성 경로에 추가',
-        currentEffect: '검토 질문을 줄이려는 보조 장치지만 정확도 향상은 주장하지 않는다.',
+        change: 'AI 초안 생성 시 참고할 용어집 추가',
+        currentEffect: '용어 해석을 보조하며, 사람의 검토는 계속 필요하다.',
       },
       {
         date: '2026.08.26–27',
         label: 'ANOMALY SEPARATION',
         visual: 'anomaly',
         decision: '원인 수정과 기존 미래 날짜 초안 교정을 서로 다른 완료로 기록',
-        trigger: '원인 수정 뒤에도 기존 draft 두 행이 남아 있음',
-        change: '사용자 날짜 교정 후 draft 재조회, reviewed canonical 비오염 별도 확인',
-        currentEffect: '수정·데이터 정리·재발 방지를 하나의 완료 claim으로 합치지 않는다.',
+        trigger: '원인 수정 뒤에도 미래 날짜의 기존 초안 2건이 남음',
+        change: '사용자 날짜 교정 뒤 초안을 재조회하고, 확정 데이터의 영향 여부를 별도로 확인',
+        currentEffect: '원인 수정·기존 데이터 정리·재발 방지 상태를 따로 기록한다.',
       },
     ],
   },
   evidence: {
     eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
-    title: '검토 상태의 규모를 세되, 생산성으로 바꾸지 않는다.',
+    title: '검토 완료 기록과 AI 초안의 관측 규모',
     snapshot:
       '서로 다른 테이블과 상태를 읽은 snapshot입니다. 같은 cohort의 funnel이나 검토율로 합산하지 않습니다.',
     items: [
@@ -286,22 +286,22 @@ export const worklogReviewContent = {
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / WEB AUTHORITY',
     items: [
-      'Teams 원문 수집과 AI L3 정규화 draft',
+      'Teams 원문 수집과 AI L3 정규화 초안',
       'web에서 불명확 사항을 수정하고 source ID로 검토 완료',
       '같은 원문의 검토본 우선과 표시가 있는 draft 보완',
       'Notion으로 돌아가는 명시적 rollback mode',
-      '날짜·편집 중복 보정과 용어집 context',
+      '날짜·편집 중복 보정과 용어집 참고',
     ],
     runtime:
       '2026.09.04 현재 업무일지 authority는 web이며 Notion은 자동 fallback이 아닌 명시적 rollback 경로다. 공개 화면은 원문 대신 상태 관계만 재구성했고, 검토 시간·정확도·반복 이용량은 측정하지 않았다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / REVIEWED-FIRST, NOT AI-FIRST',
-    statement: 'A clean sentence is still a draft until its missing context is answered.',
+    statement: '빠진 맥락을 확인한 뒤, 보고에 쓸 기록으로 확정한다.',
     items: [
-      'AI 정규화 결과를 바로 공식 업무일지나 확정 보고 source로 사용하지 않는다.',
+      'AI 정규화 초안은 사람 검토를 거쳐 공식 업무일지와 보고 자료로 확정한다.',
       '검토본이 없는 원문의 draft 보완은 명시적 예외이며 reviewed record와 같은 지위가 아니다.',
-      '미래 날짜 draft 0건 재조회는 전체 데이터 정확도나 재발 방지 효과를 뜻하지 않는다.',
+      '미래 날짜 초안 0건은 같은 조건으로 재조회한 결과다. 전체 날짜 정확도와 재발 방지는 별도 확인 대상이다.',
       '데이터 누적은 확인했지만 보고 준비 시간 단축·읽은 사용자 수·의사결정 효과는 미측정이다.',
     ],
   },
@@ -314,7 +314,7 @@ export const worklogReviewContent = {
     },
     {
       title: 'DOCUMENTATION SYSTEM',
-      relation: 'source authority와 현재 상태를 다시 찾는 방식',
+      relation: '자료의 역할과 현재 상태를 다시 찾는 방식',
       href: '/how/documentation-system',
       status: 'available',
     },

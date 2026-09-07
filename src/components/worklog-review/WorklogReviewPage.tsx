@@ -65,7 +65,7 @@ function WorklogReviewPage({ content }: WorklogReviewPageProps) {
               activeAnnotation={activeAnnotation}
               defaultAnnotation={content.inspection.defaultAnnotation}
               disclosure={content.meta.disclosure}
-              surfaceLabel="Worklog Review 재구성 제품 화면과 editorial annotation"
+              surfaceLabel="Worklog Review 재구성 화면과 설계 해설"
               evolutionTargetId="worklog-review-evolution"
               interactionMode={interactionMode}
               onPointerPreviewEnd={clearPointerPreview}

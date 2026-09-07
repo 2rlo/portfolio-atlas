@@ -15,7 +15,7 @@ export const qaContent = {
     thesis:
       '테스트 결과를 한 번의 문서가 아니라, 다시 실행하고 근거를 되짚을 수 있는 기록으로 만들었다.',
     summary:
-      '목적과 환경, 기대·실제 결과, 첨부, 수정 이력을 한 surface에 연결해 QA 판단이 바뀐 맥락까지 남겼습니다.',
+      '목적과 환경, 기대·실제 결과, 첨부, 수정 이력을 한 화면에 연결해 QA 판단이 바뀐 맥락까지 남겼습니다.',
     problemLabel: 'PROBLEM / RESULT WITHOUT HISTORY',
     problem:
       '문서 버전과 언어가 나뉘면 같은 테스트의 수정·재실행·첨부를 함께 추적하기 어렵고, 최신 판정이 무엇인지 다시 확인하는 비용이 커졌습니다.',
@@ -24,12 +24,12 @@ export const qaContent = {
     eyebrow: 'PRODUCT SURFACE / TEST DETAIL',
     title: '판정만 보여주지 않고, 판정이 만들어진 기록을 남긴다.',
     instruction:
-      '강조된 영역을 hover, focus 또는 tap하면 기능 사용법이 아니라 그 구조를 선택한 이유가 열립니다.',
+      '실행 조건 · QA 판정 · 첨부 근거 · 재실행 이력 · AI 재생성',
     defaultAnnotation: {
       index: '00',
       label: 'INSPECTION GUIDE',
       title: '한 테스트 기록 안에서 근거와 변화가 이어집니다.',
-      body: 'Test context에서 사람의 판정, 첨부 근거, 수정 이력, AI boundary까지 한 기록 안에서 이어집니다. 현재 결과만이 아니라 왜 다시 실행했는지까지 되짚는 화면입니다.',
+      body: '기대·실제 결과에 실행 조건과 첨부를 연결하고, 다시 테스트한 이력을 남깁니다. AI 요약과 번역은 사람이 요청한 시점에 따로 갱신됩니다.',
     },
   },
   product: qaProductFixture,
@@ -42,7 +42,7 @@ export const qaContent = {
       sections: [
         {
           label: 'WHY',
-          body: 'PASS와 FAIL만 남으면 어떤 환경과 목적에서 나온 결과인지 분리됩니다. 재실행할 사람이 조건을 먼저 읽을 수 있게 했습니다.',
+          body: 'PASS와 FAIL만으로는 어떤 목적과 환경에서 나온 결과인지 알기 어렵습니다. 같은 조건을 다시 만들려면 두 정보가 함께 필요합니다.',
         },
         {
           label: 'DECISION',
@@ -59,11 +59,11 @@ export const qaContent = {
       sections: [
         {
           label: 'WHY',
-          body: '실제 화면과 기대 결과의 차이는 실행 맥락을 본 QA가 판단해야 합니다. 보조 생성물이 결과 상태를 바꾸지 않도록 권한을 나눴습니다.',
+          body: '기대 결과와 실제 화면이 얼마나 다른지는 실행 맥락을 본 QA가 판단해야 합니다. AI 요약과 번역은 이 판단을 대신할 수 없습니다.',
         },
         {
           label: 'BOUNDARY',
-          body: 'PASS·FAIL·HOLD와 수정 필요 여부는 QA의 값입니다. AI assessment나 번역은 이 상태를 덮어쓰지 않습니다.',
+          body: 'PASS·FAIL·HOLD와 수정 필요 여부는 QA가 입력합니다. AI 평가나 번역을 갱신해도 이 상태는 유지됩니다.',
         },
       ],
       evolution: { label: 'QA-OWNED STATE', date: '2026.08.07' },
@@ -76,11 +76,11 @@ export const qaContent = {
       sections: [
         {
           label: 'WHY',
-          body: '오류 순서나 일시적인 화면 상태는 텍스트만으로 재현하기 어렵습니다. 실행 단위에 이미지·영상·파일을 붙여 논의의 출발점을 보존했습니다.',
+          body: '오류가 발생한 순서나 잠깐 나타난 화면 상태는 텍스트만으로 재현하기 어렵습니다.',
         },
         {
           label: 'BOUNDARY',
-          body: '첨부가 있다는 사실은 결함이 수정됐다는 증명이 아닙니다. 당시 관찰을 다시 확인하기 위한 evidence입니다.',
+          body: '이미지·영상·파일은 해당 실행에서 관찰한 근거입니다. 결함 수정 여부는 이후 테스트 결과로 따로 확인합니다.',
         },
       ],
       evolution: { label: 'ATTACHMENT UX REFINED', date: '2026.08.04' },
@@ -93,11 +93,11 @@ export const qaContent = {
       sections: [
         {
           label: 'WHY',
-          body: '재테스트 뒤 결과만 교체하면 이전 실패와 수정 확인의 연결이 사라집니다. revision을 실행 기록으로 남겨 변화 순서를 보존했습니다.',
+          body: '재테스트 뒤 결과만 교체하면 이전 실패와 수정 확인의 연결이 사라집니다. 각 실행을 이력으로 남겨 판정이 바뀐 순서를 보존했습니다.',
         },
         {
           label: 'EVIDENCE',
-          body: '운영 snapshot에는 29개 테스트 케이스의 재실행과 최대 6회 실행 이력이 기록돼 있었습니다.',
+          body: '운영 데이터 조회에서 29개 테스트 케이스의 재실행과 케이스당 최대 6회 실행 이력을 확인했습니다.',
         },
       ],
       evolution: { label: 'RETEST HISTORY SHIPPED', date: '2026.07.30' },
@@ -110,15 +110,15 @@ export const qaContent = {
       sections: [
         {
           label: 'WHY',
-          body: '원문을 고칠 때마다 assessment와 번역이 자동으로 바뀌면 사람이 이미 검토한 문장과 경계가 흐려집니다.',
+          body: '원문을 고칠 때 AI 평가와 번역도 자동으로 바뀌면, 사람이 검토한 문장과 새로 생성된 문장을 구분하기 어렵습니다.',
         },
         {
           label: 'DECISION',
-          body: 'AI 결과는 명시적인 regenerate로만 갱신하고, source text와 QA 판정은 별도 권한으로 유지했습니다.',
+          body: 'AI 결과는 명시적인 재생성 요청으로만 갱신합니다. 원문과 QA 판정의 수정 권한은 별도로 유지했습니다.',
         },
         {
           label: 'BOUNDARY',
-          body: 'AI 문장은 테스트 통과 여부의 증거가 아니며, 사람이 입력한 source를 수정하지 않습니다.',
+          body: 'AI 문장은 읽기 보조로 남습니다. 테스트 통과 상태와 사람이 입력한 원문을 변경하지 않습니다.',
         },
       ],
       evolution: { label: 'EXPLICIT REGENERATE', date: '2026.08.19' },
@@ -126,9 +126,9 @@ export const qaContent = {
   ],
   workflow: {
     eyebrow: 'PRODUCT WORKFLOW',
-    title: '작성보다 중요한 것은, 같은 판단을 다시 따라갈 수 있는 흐름.',
+    title: '실행 조건에서 재테스트까지, 판단의 순서가 남는 흐름.',
     introduction:
-      'workflow step에 focus하면 위 제품 화면의 해당 기록이 함께 강조됩니다.',
+      '각 단계는 위 제품 화면의 해당 기록과 연결됩니다.',
     steps: [
       { id: 'qa-flow-context', hotspotId: 'test-context', index: '01', label: 'CONTEXT', summary: '목적과 환경을 분리해 기록' },
       { id: 'qa-flow-execute', hotspotId: 'human-result', index: '02', label: 'EXECUTE', summary: '기대와 실제를 비교해 판정' },
@@ -137,7 +137,7 @@ export const qaContent = {
       { id: 'qa-flow-assist', hotspotId: 'ai-boundary', index: '05', label: 'ASSIST', summary: '요청할 때만 AI 결과 갱신' },
     ],
     boundary:
-      '이 흐름은 기록의 추적 가능성을 높이지만, 테스트 수나 첨부 수만으로 제품 품질 향상을 증명하지 않습니다.',
+      '추적 범위는 실행 조건·관찰·판정·재실행 이력입니다. 기록과 첨부 건수는 제품 품질을 측정한 수치가 아닙니다.',
   },
   decisions: {
     eyebrow: 'DESIGN DECISIONS',
@@ -145,11 +145,11 @@ export const qaContent = {
     items: [
       {
         statement: 'KEEP EVERY RUN.',
-        explanation: '최신 결과만 남기지 않고 재실행마다 판정과 관찰을 새 revision으로 보존했습니다.',
+        explanation: '재실행마다 판정과 관찰을 새 이력으로 보존해 이전 결과를 다시 읽을 수 있게 했습니다.',
       },
       {
         statement: 'QA OWNS THE VERDICT.',
-        explanation: 'AI assessment와 번역은 읽기 보조이며 PASS·FAIL·수정 필요 상태의 authority가 아닙니다.',
+        explanation: 'AI 평가와 번역은 읽기를 돕습니다. PASS·FAIL과 수정 필요 상태는 QA가 결정합니다.',
       },
       {
         statement: 'ATTACH TO THE OBSERVATION.',
@@ -161,7 +161,7 @@ export const qaContent = {
     eyebrow: 'PRODUCT EVOLUTION',
     title: '문서 복제에서, 실행 이력이 남는 운영 기록으로.',
     introduction:
-      '화면과 상태에 직접 남아 있는 변화만 선택했습니다. 프로젝트 전체 commit history는 포함하지 않았습니다.',
+      '문서 구조를 실행 기록으로 옮기고, 조회 권한·AI 갱신 시점·현재 기록의 저장 기준을 나눴습니다.',
     scenes: [
       {
         date: '2026.05.29',
@@ -169,43 +169,43 @@ export const qaContent = {
         visual: 'source-shape',
         decision: '기존 테스트 문서의 구조와 반복 패턴부터 분리했다.',
         trigger: '여러 문서 버전과 언어에서 같은 기록을 유지하기 어려웠음',
-        change: '보고서·테스트 케이스·실행 근거의 기본 shape 정의',
-        currentEffect: '현재 detail 화면의 context와 case 단위 구조로 남음',
+        change: '보고서·테스트 케이스·실행 근거의 기본 구조 정의',
+        currentEffect: '상세 화면에서 실행 조건과 테스트 케이스를 구분',
       },
       {
         date: '2026.07.30',
         label: 'RETEST + ATTACHMENT',
         visual: 'history',
-        decision: '결과 교체 대신 실행 이력과 첨부를 제품 surface에 넣었다.',
+        decision: '결과를 교체하던 방식에 실행 이력과 첨부를 더했다.',
         trigger: '수정 전후 판정과 파일을 함께 추적할 필요',
-        change: 'report CRUD, retest history, image·video attachment 구현',
-        currentEffect: 'revision과 실행별 evidence를 한 detail에서 확인',
+        change: '보고서 생성·조회·수정·삭제, 재테스트 이력, 이미지·영상 첨부 구현',
+        currentEffect: '한 상세 화면에서 수정 이력과 실행별 근거 확인',
       },
       {
         date: '2026.08.12',
         label: 'READ-ONLY ROLE',
         visual: 'role',
         decision: '보는 권한과 판정을 바꾸는 권한을 나눴다.',
-        trigger: 'QA 기록은 공유하되 수정 authority는 제한할 필요',
-        change: 'QAViewer read-only 접근 추가',
-        currentEffect: '열람 범위와 write action이 역할별로 분리됨',
+        trigger: 'QA 기록은 공유하면서 수정 권한은 제한할 필요',
+        change: 'QAViewer의 조회 전용 접근 추가',
+        currentEffect: '열람 범위와 수정 행동을 역할별로 구분',
       },
       {
         date: '2026.08.19',
         label: 'EXPLICIT REGENERATE',
         visual: 'regenerate',
-        decision: '자동 AI 갱신을 명시적 regenerate로 바꿨다.',
-        trigger: 'source 수정과 생성 결과의 변경 시점이 섞이는 문제',
-        change: 'assessment·translation을 사용자 요청에서만 재생성',
-        currentEffect: '사람이 검토한 source와 AI 결과의 경계를 유지',
+        decision: 'AI 결과의 자동 갱신을 명시적인 재생성 요청으로 바꿨다.',
+        trigger: '원문 수정과 생성 결과의 변경 시점이 섞이는 문제',
+        change: 'AI 평가·번역을 사용자 요청 시에만 재생성',
+        currentEffect: '사람이 검토한 원문과 AI 결과를 각각 유지',
       },
       {
         date: '2026.08.20',
         label: 'OPERATING SOURCE',
         visual: 'database-source',
-        decision: '제품 데이터베이스를 현재 기록의 운영 source로 전환했다.',
+        decision: '현재 QA 기록의 기준을 제품 데이터베이스로 옮겼다.',
         trigger: '두 저장소를 지속 동기화할 때 생기는 최신성 모호함',
-        change: '주기적 외부 문서 polling 중단, 수동 recovery 경로 유지',
+        change: '외부 문서의 주기적 조회 중단, 수동 복구 경로 유지',
         currentEffect: '현재 상태와 복구 경로의 역할이 분리됨',
       },
     ],
@@ -225,9 +225,9 @@ export const qaContent = {
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / OPERATING DATA',
     items: [
-      '보고서와 테스트 케이스 CRUD·archive',
-      '재실행 history와 이미지·영상 attachment',
-      '한국어·영어 translation과 explicit regenerate',
+      '보고서·테스트 케이스의 생성·조회·수정·삭제·보관',
+      '재실행 이력과 이미지·영상 첨부',
+      '한국어·영어 번역과 명시적인 재생성',
       '보기·편집·삭제를 나눈 effective permission 경계',
     ],
     runtime:
@@ -237,15 +237,13 @@ export const qaContent = {
     eyebrow: 'BOUNDARY / RECORD, NOT OUTCOME',
     statement: 'More records do not automatically mean better quality.',
     items: [
-      'AI assessment와 번역은 QA의 PASS·FAIL·HOLD 판정을 변경하지 않습니다.',
-      '첨부와 revision은 관찰과 변경 순서를 보존하지만 수정 완료를 증명하지 않습니다.',
-      '기록 수와 write 수를 생산성·정확도·품질 향상 지표로 사용하지 않습니다.',
+      '첨부와 수정 이력은 관찰과 변경 순서를 남깁니다. 결함 수정 완료 여부는 별도 테스트 결과로 확인해야 합니다.',
       '기록의 존재를 반복 사용이나 조직 전체 adoption으로 확대 해석하지 않습니다.',
     ],
   },
   relatedSystems: [
-    { title: 'FEATURE VALIDATION', relation: '요구사항과 구현 evidence를 사람이 다시 확인하는 검토 경계', href: '/what/feature-validation', status: 'available' },
-    { title: 'DOCUMENTATION SYSTEM', relation: '여러 source의 authority와 recovery 맥락을 구분하는 방식', href: '/how/documentation-system', status: 'available' },
-    { title: 'SECURITY & OPERATIONS', relation: '운영 source 전환과 수동 recovery boundary', href: '/how/security-operations', status: 'available' },
+    { title: 'FEATURE VALIDATION', relation: '요구사항과 구현 근거를 사람이 대조하는 검토 경계', href: '/what/feature-validation', status: 'available' },
+    { title: 'DOCUMENTATION SYSTEM', relation: '현재 기록의 기준과 복구용 문서의 역할을 구분하는 방식', href: '/how/documentation-system', status: 'available' },
+    { title: 'SECURITY & OPERATIONS', relation: '현재 기록의 저장 기준 전환과 수동 복구 범위', href: '/how/security-operations', status: 'available' },
   ],
 } as const satisfies QaPageContent

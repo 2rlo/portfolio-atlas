@@ -14,7 +14,7 @@ export const qaProductFixture = {
       '큰 요청이 일시적으로 실패할 때 재시도 횟수, 최종 실패 상태, 중복 실행 여부를 함께 확인합니다.',
     environment: ['Staging mirror', 'Atlas 08-28', 'Large payload'],
     assessment:
-      '제한 안의 재시도는 완료됐지만 timeout 이후 목록과 상세의 상태가 어긋납니다. 이 문장은 검토 보조 요약이며 QA 판정이 아닙니다.',
+      '허용 횟수 안의 재시도는 완료됐지만, 시간 초과 후 목록과 상세의 상태가 어긋납니다. 검토 보조 요약이며 QA 판정은 별도로 유지됩니다.',
     resultSummary: [
       { label: 'PASS', value: '01' },
       { label: 'FAIL', value: '01' },
@@ -39,7 +39,7 @@ export const qaProductFixture = {
       id: 'TC-002',
       title: 'Timeout leaves a clear final failure state',
       result: 'FAIL',
-      precondition: '16 MB 요청 · 강제 timeout',
+      precondition: '16 MB 요청 · 강제 시간 초과',
       expected: '목록과 상세가 같은 최종 실패 상태를 표시함',
       actual: '상세는 실패로 바뀌지만 목록은 처리 중 상태를 유지함',
       discussion: '목록 갱신 시점과 재실행 버튼 노출 조건을 다시 확인해야 합니다.',

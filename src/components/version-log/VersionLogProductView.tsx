@@ -14,7 +14,7 @@ function VersionLogProductView({ fixture, activeId, onActivate }: VersionLogProd
     <section
       className="version-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.productName} version and release ledger 공개 재구성 화면`}
+      aria-label={`${fixture.productName} 버전·릴리스 목록 공개 재구성 화면`}
     >
       <header className="version-product-topbar" aria-hidden="true">
         <span>J</span>
@@ -32,7 +32,7 @@ function VersionLogProductView({ fixture, activeId, onActivate }: VersionLogProd
         <ProductHotspot
           id="release-status"
           activeId={activeId}
-          label="Explicit release status filter instead of version name inference"
+          label="명시적인 릴리스 상태 필터"
           className="version-query-bar"
           onActivate={onActivate}
         >
@@ -44,14 +44,14 @@ function VersionLogProductView({ fixture, activeId, onActivate }: VersionLogProd
         </ProductHotspot>
 
         <div className="version-product-layout">
-          <section className="version-ledger" aria-label="Version records grouped by date">
+          <section className="version-ledger" aria-label="날짜별 버전 기록">
             <header aria-hidden="true"><small>RELEASE LEDGER</small><span>PRODUCT</span><span>VERSION</span><span>STATUS</span><span>COMPATIBILITY</span></header>
 
             {latestGroup && (
               <ProductHotspot
                 id="same-date-builds"
                 activeId={activeId}
-                label="Multiple purpose-specific builds on the same release date"
+                label="같은 날짜에 기록된 목적별 빌드"
                 className="version-date-group version-date-group--latest"
                 onActivate={onActivate}
               >
@@ -84,7 +84,7 @@ function VersionLogProductView({ fixture, activeId, onActivate }: VersionLogProd
             </div>
           </section>
 
-          <aside className="version-detail" aria-label="Selected release record">
+          <aside className="version-detail" aria-label="선택한 릴리스 기록">
             <header aria-hidden="true">
               <span><small>SELECTED RELEASE</small><strong>{fixture.selected.product}</strong></span>
               <em>{fixture.selected.releaseStatus}</em>
@@ -95,7 +95,7 @@ function VersionLogProductView({ fixture, activeId, onActivate }: VersionLogProd
             <ProductHotspot
               id="compatibility-scope"
               activeId={activeId}
-              label="Product and compatibility scope used to resolve the latest release"
+              label="최신 릴리스 조회에 사용하는 제품과 호환 범위"
               className="version-compatibility"
               onActivate={onActivate}
             >
@@ -103,7 +103,7 @@ function VersionLogProductView({ fixture, activeId, onActivate }: VersionLogProd
               <span>{fixture.selected.compatibility.map((item) => <b key={item}>{item}</b>)}</span>
             </ProductHotspot>
 
-            <section className="version-change-detail" aria-label="Release updates and fixes">
+            <section className="version-change-detail" aria-label="릴리스 업데이트와 수정 내역">
               <span><small>UPDATES</small>{fixture.selected.updates.map((item) => <strong key={item}>{item}</strong>)}</span>
               <span><small>FIXES</small>{fixture.selected.fixes.map((item) => <strong key={item}>{item}</strong>)}</span>
             </section>
@@ -111,7 +111,7 @@ function VersionLogProductView({ fixture, activeId, onActivate }: VersionLogProd
             <ProductHotspot
               id="deployment-note"
               activeId={activeId}
-              label="Deployment caution kept separate from updates and implementation evidence"
+              label="업데이트와 구분한 배포 주의사항"
               className="version-deployment-note"
               onActivate={onActivate}
             >
@@ -126,7 +126,7 @@ function VersionLogProductView({ fixture, activeId, onActivate }: VersionLogProd
         <ProductHotspot
           id="source-trace"
           activeId={activeId}
-          label="Daily synchronized version source with structured and semantic retrieval state"
+          label="매일 동기화하는 버전 기록과 정형·의미 검색 상태"
           className="version-source-trace"
           onActivate={onActivate}
         >

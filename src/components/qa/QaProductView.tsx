@@ -18,7 +18,7 @@ function QaProductView({ fixture, activeId, onActivate }: QaProductViewProps) {
     <section
       className="qa-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.productName} QA test detail 공개 재구성 화면`}
+      aria-label={`${fixture.productName} QA 테스트 상세 공개 재구성 화면`}
     >
       <header className="qa-product-topbar" aria-hidden="true">
         <span className="qa-product-brand">J</span>
@@ -61,7 +61,7 @@ function QaProductView({ fixture, activeId, onActivate }: QaProductViewProps) {
           <ProductHotspot
             id="ai-boundary"
             activeId={activeId}
-            label="AI assessment regeneration boundary"
+            label="AI 평가의 재생성 범위"
             className="qa-ai-assessment"
             onActivate={onActivate}
           >
@@ -78,7 +78,7 @@ function QaProductView({ fixture, activeId, onActivate }: QaProductViewProps) {
               <ProductHotspot
                 id="test-context"
                 activeId={activeId}
-                label="Separated test purpose and environment"
+                label="구분해서 기록한 테스트 목적과 실행 환경"
                 className="qa-context"
                 onActivate={onActivate}
               >
@@ -98,7 +98,7 @@ function QaProductView({ fixture, activeId, onActivate }: QaProductViewProps) {
               <ProductHotspot
                 id="human-result"
                 activeId={activeId}
-                label="QA-owned expected and actual result"
+                label="QA가 작성한 기대 결과와 실제 결과"
                 className="qa-case-stack"
                 onActivate={onActivate}
               >
@@ -124,7 +124,7 @@ function QaProductView({ fixture, activeId, onActivate }: QaProductViewProps) {
               <ProductHotspot
                 id="attachments"
                 activeId={activeId}
-                label="Execution-linked attachments"
+                label="테스트 실행에 연결한 첨부"
                 className="qa-attachments"
                 onActivate={onActivate}
               >
@@ -146,7 +146,7 @@ function QaProductView({ fixture, activeId, onActivate }: QaProductViewProps) {
             <ProductHotspot
               id="revision-history"
               activeId={activeId}
-              label="Retest and revision history"
+              label="재테스트와 수정 이력"
               className="qa-revisions"
               onActivate={onActivate}
             >
@@ -159,7 +159,7 @@ function QaProductView({ fixture, activeId, onActivate }: QaProductViewProps) {
                   </span>
                 ))}
               </span>
-              <span className="qa-revision-rule"><small>RETENTION RULE</small><strong>Previous runs remain readable</strong></span>
+              <span className="qa-revision-rule"><small>RETENTION RULE</small><strong>이전 실행 기록 보존</strong></span>
             </ProductHotspot>
           </div>
         </article>

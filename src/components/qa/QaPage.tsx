@@ -53,7 +53,7 @@ function QaPage({ content }: QaPageProps) {
               activeAnnotation={activeAnnotation}
               defaultAnnotation={content.inspection.defaultAnnotation}
               disclosure={content.meta.disclosure}
-              surfaceLabel="QA test detail 재구성 제품 화면과 editorial annotation"
+              surfaceLabel="QA 테스트 상세의 공개 재구성 화면과 설계 설명"
               evolutionTargetId="qa-evolution"
               interactionMode={interactionMode}
               onPointerPreviewEnd={clearPointerPreview}
@@ -67,7 +67,7 @@ function QaPage({ content }: QaPageProps) {
 
       <section className="qa-workflow-section" aria-labelledby="qa-workflow-title">
         <header className="qa-section-heading"><p>{content.workflow.eyebrow}</p><h2 id="qa-workflow-title">{content.workflow.title}</h2><span>{content.workflow.introduction}</span></header>
-        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} ariaLabel="QA 기록 workflow" onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
+        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} ariaLabel="QA 기록 흐름" onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
         <p className="qa-workflow-boundary">{content.workflow.boundary}</p>
       </section>
 

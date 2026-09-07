@@ -12,7 +12,7 @@ function RagAssistantProductView({ fixture, activeId, onActivate }: RagAssistant
     <section
       className="rag-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.assistantName} retrieval and source 공개 재구성 화면`}
+      aria-label={`${fixture.assistantName} 검색과 출처 공개 재구성 화면`}
     >
       <header className="rag-product-topbar" aria-hidden="true">
         <span>J</span>
@@ -43,7 +43,7 @@ function RagAssistantProductView({ fixture, activeId, onActivate }: RagAssistant
             <ProductHotspot
               id="context-entry"
               activeId={activeId}
-              label="Intent-based context scope and server-side access boundary"
+              label="질문에 따른 조회 범위와 서버 접근 제한"
               className="rag-context-entry"
               onActivate={onActivate}
             >
@@ -64,7 +64,7 @@ function RagAssistantProductView({ fixture, activeId, onActivate }: RagAssistant
               <ProductHotspot
                 id="deterministic-first"
                 activeId={activeId}
-                label="Deterministic status lookup before vector retrieval"
+                label="의미 검색에 앞선 정형 상태 조회"
                 className="rag-deterministic-state"
                 onActivate={onActivate}
               >
@@ -81,7 +81,7 @@ function RagAssistantProductView({ fixture, activeId, onActivate }: RagAssistant
               <ProductHotspot
                 id="source-hierarchy"
                 activeId={activeId}
-                label="Retrieved sources labeled by authority rather than similarity alone"
+                label="검색한 자료의 출처와 검토 상태"
                 className="rag-source-receipt"
                 onActivate={onActivate}
               >
@@ -106,7 +106,7 @@ function RagAssistantProductView({ fixture, activeId, onActivate }: RagAssistant
             <ProductHotspot
               id="insufficient-evidence"
               activeId={activeId}
-              label="Insufficient relationship evidence answer state"
+              label="관계 근거가 부족한 답변 상태"
               className="rag-limited-answer"
               onActivate={onActivate}
             >
@@ -119,7 +119,7 @@ function RagAssistantProductView({ fixture, activeId, onActivate }: RagAssistant
             <ProductHotspot
               id="review-boundary"
               activeId={activeId}
-              label="AI answer handoff to human-reviewed official write"
+              label="공식 기록 변경을 위한 사람 검토 연결"
               className="rag-review-handoff"
               onActivate={onActivate}
             >
@@ -132,7 +132,7 @@ function RagAssistantProductView({ fixture, activeId, onActivate }: RagAssistant
 
           <footer className="rag-composer" aria-hidden="true">
             <span className="rag-suggestions">{fixture.suggestions.map((suggestion) => <b key={suggestion}>{suggestion}</b>)}</span>
-            <span className="rag-input">Jadebell Hub 업무에 대해 질문하세요 <b>→</b></span>
+            <span className="rag-input">Jadebell Hub 업무 질문 <b>→</b></span>
           </footer>
         </section>
       </div>

@@ -24,10 +24,10 @@ function PermissionPage({ content }: { readonly content: PermissionPageContent }
       content={content}
       pageClassName="permission-page"
       titleId="permission-title"
-      surfaceLabel="Effective permission calculation inspection"
-      workflowLabel="Identity to effective permission authorization workflow"
+      surfaceLabel="최종 권한 계산의 공개 재구성 예시"
+      workflowLabel="계정 확인부터 최종 권한 적용까지"
       evolutionTargetId="permission-evolution"
-      relatedLabel="Permission related systems"
+      relatedLabel="권한 관리와 연결된 사례와 시스템"
       renderProduct={({ fixture, activeId, onActivate }) => (
         <PermissionProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />
       )}

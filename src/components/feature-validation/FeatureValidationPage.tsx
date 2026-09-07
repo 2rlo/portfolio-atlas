@@ -114,7 +114,7 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
               activeAnnotation={activeAnnotation}
               defaultAnnotation={content.inspection.defaultAnnotation}
               disclosure={content.meta.disclosure}
-              surfaceLabel="Feature Validation 재구성 제품 화면과 editorial annotation"
+              surfaceLabel="Feature Validation 재구성 화면과 설계 해설"
               evolutionTargetId="feature-validation-evolution"
               interactionMode={interactionMode}
               onPointerPreviewEnd={clearPointerPreview}
@@ -151,7 +151,7 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
       <section className="fv-decisions" aria-labelledby="fv-decisions-title">
         <div className="fv-decisions-heading">
           <p>{content.decisions.eyebrow}</p>
-          <h2 id="fv-decisions-title">판정을 늘리는 대신, 판정할 수 있는 조건을 좁혔다.</h2>
+          <h2 id="fv-decisions-title">판정 전에, 근거가 충분한지 확인한다.</h2>
         </div>
 
         <ol>
@@ -278,7 +278,7 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
                   <strong>{system.title}</strong>
                   <small>{system.relation}</small>
                 </span>
-                <b>PAGE IN DEVELOPMENT</b>
+                <b>페이지 준비 중</b>
               </div>
             ),
           )}

@@ -13,7 +13,7 @@ export const ragAssistantProductFixture = {
   ],
   scope: {
     label: '개발 운영 현황',
-    detail: 'project · schedule · report · QA · meeting',
+    detail: '프로젝트 · 일정 · 보고 · QA · 회의',
   },
   question: '이번 주 릴리스의 주요 리스크는 무엇이야?',
   deterministicContext: {
@@ -32,7 +32,7 @@ export const ragAssistantProductFixture = {
   sources: [
     { type: 'SCHEDULE', title: 'Atlas · 배포 점검', trust: 'canonical', state: 'CONFIRMED' },
     { type: 'REPORT', title: '8월 4주 주간보고', trust: 'reviewed', state: 'REVIEWED' },
-    { type: 'TEAMS', title: '릴리스 discussion thread', trust: 'unreviewed', state: 'UNREVIEWED RAW' },
+    { type: 'TEAMS', title: '릴리스 준비 대화', trust: 'unreviewed', state: 'UNREVIEWED RAW' },
   ],
   followup: {
     question: '그럼 배포 영향도와 우선순위도 확정해줘.',

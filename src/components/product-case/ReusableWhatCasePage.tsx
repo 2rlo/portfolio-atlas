@@ -79,7 +79,7 @@ function ReusableWhatCasePage<Id extends string, Product, Visual extends string>
                 <header><time>{scene.date}</time><span>{scene.label}</span></header>
                 {renderEvolutionFragment(scene.visual)}
                 <strong>{scene.decision}</strong>
-                <dl><div><dt>TRIGGER</dt><dd>{scene.trigger}</dd></div><div><dt>CHANGE</dt><dd>{scene.change}</dd></div><div><dt>CURRENT EFFECT</dt><dd>{scene.currentEffect}</dd></div></dl>
+                <dl><div><dt>변경 계기</dt><dd>{scene.trigger}</dd></div><div><dt>바꾼 점</dt><dd>{scene.change}</dd></div><div><dt>현재 구조</dt><dd>{scene.currentEffect}</dd></div></dl>
               </li>
             ))}
           </ol>
@@ -89,14 +89,14 @@ function ReusableWhatCasePage<Id extends string, Product, Visual extends string>
       <section className="qa-evidence" aria-labelledby={`${titleId}-evidence`}>
         <header className="qa-evidence-heading"><p>{content.evidence.eyebrow}</p><h2 id={`${titleId}-evidence`}>{content.evidence.title}</h2><span>{content.evidence.snapshot}</span></header>
         <dl className="qa-evidence-register">{content.evidence.items.map((item) => <div key={item.label}><dd>{item.value}</dd><dt>{item.label}</dt><p>{item.meaning}</p><small>{item.boundary}</small></div>)}</dl>
-        <div className="qa-status"><header><span>CURRENT STATUS</span><strong>{content.implementationStatus.state}</strong></header><ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul><p><span>RUNTIME / USE BOUNDARY</span>{content.implementationStatus.runtime}</p></div>
+        <div className="qa-status"><header><span>구현·운영 상태</span><strong>{content.implementationStatus.state}</strong></header><ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul><p><span>확인한 운영 범위</span>{content.implementationStatus.runtime}</p></div>
       </section>
 
       <footer className="qa-boundary">
         <div className="qa-boundary-heading"><p>{content.boundary.eyebrow}</p><h2>{content.boundary.statement}</h2></div>
         <ul className="qa-boundary-list">{content.boundary.items.map((item) => <li key={item}>{item}</li>)}</ul>
         <nav className="qa-related" aria-label={relatedLabel}>
-          <p>RELATED SYSTEMS</p>
+          <p>연결된 설계 방식</p>
           {content.relatedSystems.map((system) => system.href ? (
             <Link to={system.href} key={system.title}><span><strong>{system.title}</strong><small>{system.relation}</small></span><b aria-hidden="true">↗</b></Link>
           ) : (

@@ -74,7 +74,7 @@ function ProjectSettingPage({ content }: ProjectSettingPageProps) {
               activeAnnotation={activeAnnotation}
               defaultAnnotation={content.inspection.defaultAnnotation}
               disclosure={content.meta.disclosure}
-              surfaceLabel="Project Setting 재구성 제품 화면과 editorial annotation"
+              surfaceLabel="프로젝트 설정의 공개 재구성 화면과 설계 설명"
               evolutionTargetId="project-setting-evolution"
               interactionMode={interactionMode}
               onPointerPreviewEnd={clearPointerPreview}
@@ -152,7 +152,7 @@ function ProjectSettingPage({ content }: ProjectSettingPageProps) {
       <footer className="ps-boundary">
         <div className="ps-boundary-heading"><p>{content.boundary.eyebrow}</p><h2>{content.boundary.statement}</h2></div>
         <ul className="ps-boundary-list">{content.boundary.items.map((item) => <li key={item}>{item}</li>)}</ul>
-        <nav className="ps-related" aria-label="Project Setting과 연결된 시스템">
+        <nav className="ps-related" aria-label="프로젝트 설정과 연결된 시스템">
           <p>RELATED SYSTEMS</p>
           {content.relatedSystems.map((system) => system.href ? (
             <Link to={system.href} key={system.title}>

@@ -24,10 +24,10 @@ function RagAssistantPage({ content }: { readonly content: RagAssistantPageConte
       content={content}
       pageClassName="rag-assistant-page"
       titleId="rag-assistant-title"
-      surfaceLabel="RAG assistant answer and source inspection"
-      workflowLabel="RAG assistant retrieval and review workflow"
+      surfaceLabel="RAG 어시스턴트 답변과 출처 검토"
+      workflowLabel="RAG 어시스턴트 조회·검색·검토 흐름"
       evolutionTargetId="rag-assistant-evolution"
-      relatedLabel="RAG assistant related systems"
+      relatedLabel="RAG 어시스턴트와 연결된 시스템"
       renderProduct={({ fixture, activeId, onActivate }) => (
         <RagAssistantProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />
       )}

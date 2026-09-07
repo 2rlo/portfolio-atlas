@@ -31,7 +31,7 @@ function AiCandidateReviewProductView({
     <section
       className="acr-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.productName} AI candidate review 공개 재구성 화면`}
+      aria-label={`${fixture.productName} AI 후보 검토 공개 재구성 화면`}
     >
       <header className="acr-product-topbar" aria-hidden="true">
         <span className="acr-product-brand">J</span>
@@ -102,7 +102,7 @@ function AiCandidateReviewProductView({
                     <ProductHotspot
                       id="review-queue"
                       activeId={activeId}
-                      label="Pending review queue"
+                      label="검토 대기 후보 목록"
                       className="acr-queue-item is-selected"
                       onActivate={onActivate}
                       key={item.id}
@@ -138,7 +138,7 @@ function AiCandidateReviewProductView({
                 <ProductHotspot
                   id="source-provenance"
                   activeId={activeId}
-                  label="Candidate source provenance"
+                  label="후보의 출처와 원문"
                   className="acr-spine-block acr-source-block"
                   onActivate={onActivate}
                 >
@@ -148,14 +148,14 @@ function AiCandidateReviewProductView({
                     <strong>{candidate.source.type}</strong>
                     <span>{candidate.source.context}</span>
                     <q>{candidate.source.excerpt}</q>
-                    <em>{candidate.source.author} · public synthetic source</em>
+                    <em>{candidate.source.author} · 공개용 가상 원문</em>
                   </span>
                 </ProductHotspot>
 
                 <ProductHotspot
                   id="editable-draft"
                   activeId={activeId}
-                  label="Editable AI candidate draft"
+                  label="수정 가능한 AI 후보 초안"
                   className="acr-spine-block acr-draft-block"
                   onActivate={onActivate}
                 >
@@ -179,7 +179,7 @@ function AiCandidateReviewProductView({
                 <ProductHotspot
                   id="human-decision"
                   activeId={activeId}
-                  label="Human approval decision"
+                  label="사람의 승인·수정·반려 결정"
                   className="acr-spine-block acr-decision-block"
                   onActivate={onActivate}
                 >
@@ -187,12 +187,12 @@ function AiCandidateReviewProductView({
                   <span className="acr-spine-copy">
                     <span className="acr-duplicate-check">
                       <span><small>{candidate.duplicateCheck.label}</small><strong>{candidate.duplicateCheck.result}</strong></span>
-                      <b>CHECKED AGAIN ON APPROVE</b>
+                      <b>승인 시 다시 확인</b>
                     </span>
                     <span className="acr-decision-row">
                       <span>
                         <b>{fixture.reviewer.initials}</b>
-                        <span><strong>Human decision</strong><small>{fixture.reviewer.name} · reviewer</small></span>
+                        <span><strong>사람의 결정</strong><small>{fixture.reviewer.name} · 검토자</small></span>
                       </span>
                       <span aria-hidden="true">
                         <em>반려</em>
@@ -207,7 +207,7 @@ function AiCandidateReviewProductView({
               <ProductHotspot
                 id="trust-boundary"
                 activeId={activeId}
-                label="Canonical record boundary"
+                label="승인 후 공식 기록 저장"
                 className="acr-canonical-gate"
                 onActivate={onActivate}
               >
@@ -215,7 +215,7 @@ function AiCandidateReviewProductView({
                 <span>
                   <small>ONLY AFTER HUMAN DECISION</small>
                   <strong>CANONICAL RECORD</strong>
-                  <em>{candidate.destination} · eligible for trusted retrieval</em>
+                  <em>{candidate.destination} · 승인된 기록을 답변 근거로 사용</em>
                 </span>
                 <b aria-hidden="true">→</b>
               </ProductHotspot>

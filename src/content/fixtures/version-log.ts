@@ -12,7 +12,7 @@ export const versionLogProductFixture = {
   ],
   query: {
     label: 'LATEST RELEASE / ATLAS BENCH',
-    value: '날짜만이 아니라 release status와 호환 대상을 함께 확인',
+    value: '릴리스 상태와 호환 대상을 정한 뒤 날짜 비교',
     result: '1 MATCH · SOURCE AVAILABLE',
   },
   groups: [

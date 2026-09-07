@@ -44,7 +44,7 @@ export const scheduleProductFixture = {
     title: 'Canopy walkthrough owner updated',
     actor: 'Mina Kim · 15:12',
     state: 'REVERT AVAILABLE',
-    rule: 'Only while no newer apply touches the same plan',
+    rule: '같은 계획에 더 최신 적용이 없을 때 되돌리기 가능',
   },
   readOnlyScope: {
     label: 'SHARED SCHEDULE / READ-ONLY',

@@ -24,10 +24,10 @@ function ReportPage({ content }: { readonly content: ReportPageContent }) {
       content={content}
       pageClassName="report-page"
       titleId="report-title"
-      surfaceLabel="Weekly report source inspection"
-      workflowLabel="Weekly report source authority workflow"
+      surfaceLabel="주간보고 입력 자료 검토"
+      workflowLabel="주간보고 수집·검토·입력 선택·저장 흐름"
       evolutionTargetId="report-evolution"
-      relatedLabel="Report related systems"
+      relatedLabel="주간보고와 연결된 시스템"
       renderProduct={({ fixture, activeId, onActivate }) => (
         <ReportProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />
       )}

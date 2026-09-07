@@ -20,18 +20,18 @@ export const permissionProductFixture = {
   },
   roleDefault: {
     label: 'Partner Manager',
-    detail: '공유 업무 surface의 기본 접근',
+    detail: '공유 업무 화면의 기본 접근 권한',
     permissions: ['Shared Schedule · View', 'Project summary · View'],
   },
   override: {
     label: 'Shared Schedule only',
-    detail: '달라진 surface와 action만 기록',
+    detail: '자원·행동별로 기본값과 달라진 권한만 기록',
     grants: [],
     revokes: ['Weekly Report · View', 'Executive QA · View'],
   },
   effective: {
     label: 'Schedule read-only',
-    detail: 'role default와 override, protected guard를 합성한 현재 결과',
+    detail: '역할 기본값·개인 예외·보호 규칙을 반영한 현재 권한',
   },
   matrix: [
     {
@@ -81,7 +81,7 @@ export const permissionProductFixture = {
   ],
   guard: {
     label: 'Protected action guard',
-    detail: '권한 변경은 저장 직전 현재 effective admin을 다시 계산합니다.',
+    detail: '권한 변경을 저장하기 직전, 변경 후 유효한 관리자 수를 다시 계산합니다.',
     blocked: ['last admin removal', 'delegated self-escalation', 'protected role reassignment'],
     audit: 'actor · before · after · result',
   },

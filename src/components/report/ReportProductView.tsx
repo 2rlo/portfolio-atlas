@@ -12,7 +12,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
     <section
       className="report-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.productName} weekly report 공개 재구성 화면`}
+      aria-label={`${fixture.productName} 주간보고 공개 재구성 화면`}
     >
       <header className="report-topbar" aria-hidden="true">
         <span>J</span>
@@ -31,7 +31,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
           <ProductHotspot
             id="generation-gate"
             activeId={activeId}
-            label="Permissioned generation and locale quality gate"
+            label="생성 권한과 영문 품질 확인 조건"
             className="report-generation"
             onActivate={onActivate}
           >
@@ -46,7 +46,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
         <ProductHotspot
           id="week-window"
           activeId={activeId}
-          label="Canonical report week and generation metadata"
+          label="보고서 주차와 생성 시각"
           className="report-week-window"
           onActivate={onActivate}
         >
@@ -65,7 +65,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
         <ProductHotspot
           id="reviewed-source"
           activeId={activeId}
-          label="Reviewed-first report source state and visible fallback"
+          label="검토본 우선 입력과 미검토 예외 표시"
           className="report-source-state"
           onActivate={onActivate}
         >
@@ -81,7 +81,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
         <ProductHotspot
           id="structured-metrics"
           activeId={activeId}
-          label="Structured weekly report metrics"
+          label="별도로 저장하는 주간보고 지표"
           className="report-metrics"
           onActivate={onActivate}
         >
@@ -97,7 +97,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
           <ProductHotspot
             id="qa-evidence"
             activeId={activeId}
-            label="Same-week QA evidence separated from narrative"
+            label="서술과 분리한 같은 주차의 QA 결과"
             className="report-test-panel"
             onActivate={onActivate}
           >
@@ -115,7 +115,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
                 </span>
               ))}
             </span>
-            <small>같은 주차의 확인된 test record만 집계</small>
+            <small>같은 주차의 확인된 테스트 기록만 집계</small>
           </ProductHotspot>
 
           <article className="report-document" aria-hidden="true">

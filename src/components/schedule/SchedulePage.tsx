@@ -16,10 +16,10 @@ function SchedulePage({ content }: { readonly content: SchedulePageContent }) {
       content={content}
       pageClassName="schedule-page"
       titleId="schedule-title"
-      surfaceLabel="Schedule overview 재구성 제품 화면과 editorial annotation"
-      workflowLabel="Schedule change workflow"
+      surfaceLabel="일정 조망의 공개 재구성 화면과 설계 설명"
+      workflowLabel="일정 변경 흐름"
       evolutionTargetId="schedule-evolution"
-      relatedLabel="Schedule과 연결된 시스템"
+      relatedLabel="일정 조망과 연결된 시스템"
       renderProduct={({ fixture, activeId, onActivate }) => <ScheduleProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />}
       renderEvolutionFragment={(visual) => <ScheduleEvolutionFragment visual={visual} />}
     />

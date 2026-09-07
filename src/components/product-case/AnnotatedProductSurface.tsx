@@ -125,10 +125,10 @@ function EditorialAnnotation({
       ) : null}
 
       <p className="product-editorial-interaction">
-        <span>{interactionMode === 'pinned' ? 'PINNED' : 'INTERACTION'}</span>
+        <span>{interactionMode === 'pinned' ? '설명 고정 중' : '설명 보기'}</span>
         {interactionMode === 'pinned'
-          ? '같은 요소를 다시 선택하거나 Esc를 누르면 전체 보기로 돌아갑니다.'
-          : 'Hover 또는 focus로 살펴보고, click이나 tap으로 설명을 고정합니다.'}
+          ? '같은 지점 재선택 또는 Esc로 고정 해제'
+          : '마우스·키보드 초점으로 미리보기 · 클릭·탭으로 설명 고정'}
       </p>
     </aside>
   )
@@ -177,7 +177,7 @@ function ProductWorkflow<Id extends string>({
   steps,
   activeId,
   onActivate,
-  ariaLabel = '제품 검토 workflow',
+  ariaLabel = '제품 검토 흐름',
   onPointerPreviewEnd,
   onFocusPreviewEnd,
 }: ProductWorkflowProps<Id>) {

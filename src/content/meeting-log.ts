@@ -22,13 +22,13 @@ export const meetingLogContent = {
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / SOURCE TO REVIEW',
-    title: 'Meeting record → AI candidate → Human Review.',
+    title: '회의록 → AI 후보 → 사람 검토',
     instruction:
-      'source record, change guard, candidate group, human review, capture boundary를 선택해 기록이 공식 상태가 되는 경계를 확인하세요.',
+      '원문·변경 감지·후보 묶음·사람 검토·수집 범위의 설계 이유',
     defaultAnnotation: {
       index: '00',
       label: 'REVIEW GUIDE',
-      title: '회의록과 후보와 검토를 한 source context 안에서 읽는다.',
+      title: '같은 회의의 원문과 후보를 함께 검토',
       body: '동기화된 회의 메모를 source로 두고 change guard, AI candidate group, human review를 따라갑니다. 이 화면은 자동 녹화·전사가 연결됐다는 뜻이 아닙니다.',
     },
   },
@@ -38,7 +38,7 @@ export const meetingLogContent = {
       id: 'source-record',
       index: '01',
       label: 'MEETING RECORD',
-      title: 'AI가 다시 쓰기 전에, 무엇을 읽었는지 돌아갈 수 있는 회의 기록을 남긴다.',
+      title: '후보를 만든 회의 구간으로 돌아갈 수 있게 했다.',
       sections: [
         {
           label: 'WHY',
@@ -50,7 +50,7 @@ export const meetingLogContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '회의록 원문은 사실 입력이지만 그 자체를 승인된 기능 명세나 공식 결정으로 취급하지 않습니다.',
+          body: '회의록은 후보를 추출하고 검토할 원문이다. 승인된 기능 명세나 공식 결정과는 구분한다.',
         },
       ],
       evolution: { label: 'SOURCE PATH', date: '2026.06.04' },
@@ -59,7 +59,7 @@ export const meetingLogContent = {
       id: 'change-guard',
       index: '02',
       label: 'CHANGE GUARD',
-      title: '매일 읽더라도, 바뀌지 않은 회의록을 매일 다시 해석하지 않는다.',
+      title: '바뀐 회의록에서만 후보를 다시 추출한다.',
       sections: [
         {
           label: 'WHY',
@@ -71,7 +71,7 @@ export const meetingLogContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '변경 감지는 중복 실행을 막는 장치입니다. 추출 내용의 의미 정확성을 보증하는 점수는 아닙니다.',
+          body: '변경 감지는 같은 본문의 재추출을 막는다. 추출한 후보의 내용은 별도 검토 대상이다.',
         },
       ],
       evolution: { label: 'IDEMPOTENT EXTRACTION', date: '2026.08.13' },
@@ -80,7 +80,7 @@ export const meetingLogContent = {
       id: 'candidate-group',
       index: '03',
       label: 'AI CANDIDATE',
-      title: '같은 회의에서 나온 후보는 함께 보되, 각각은 pending 상태로 분리한다.',
+      title: '같은 회의의 후보를 묶고, 각 항목의 대기 상태는 유지한다.',
       sections: [
         {
           label: 'WHY',
@@ -88,11 +88,11 @@ export const meetingLogContent = {
         },
         {
           label: 'DECISION',
-          body: '같은 source의 후보를 묶고 짧은 제목·분류·근거 위치를 먼저 보여준 뒤 필요한 항목만 상세 검토하게 했습니다.',
+          body: '같은 회의의 후보를 묶어 제목·분류·근거 위치를 먼저 표시하고, 필요한 항목을 상세 검토하게 했다.',
         },
         {
           label: 'BOUNDARY',
-          body: 'pending 후보는 공식 기록도, 기본 RAG 답변의 우선 근거도 아닙니다.',
+          body: '대기 후보는 공식 기록과 기본 RAG 답변 근거에서 제외한다.',
         },
       ],
       evolution: { label: 'MEETING SOURCE EXPANSION', date: '2026.08.13' },
@@ -101,7 +101,7 @@ export const meetingLogContent = {
       id: 'human-review',
       index: '04',
       label: 'HUMAN REVIEW',
-      title: 'AI 초안을 바로 쓰지 않고, 근거를 보며 수정·승인·반려할 수 있게 했다.',
+      title: '원문 근거 옆에서 후보를 수정·승인·반려한다.',
       sections: [
         {
           label: 'WHY',
@@ -113,7 +113,7 @@ export const meetingLogContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '승인된 항목만 category별 공식 데이터로 이동합니다. AI의 제안 자체는 evidence가 아닙니다.',
+          body: '승인한 항목만 유형별 공식 기록으로 저장한다. AI 제안은 승인 전까지 검토 후보로 남는다.',
         },
       ],
       evolution: { label: 'SHARED REVIEW GATE', date: '2026.08.14' },
@@ -122,7 +122,7 @@ export const meetingLogContent = {
       id: 'capture-boundary',
       index: '05',
       label: 'CAPTURE BOUNDARY',
-      title: '구현된 downstream과 막힌 upstream을 한 개의 완료 상태로 포장하지 않는다.',
+      title: '회의록 검토는 구현했고, 자동 수집 방식은 결정이 남았다.',
       sections: [
         {
           label: 'WHY',
@@ -134,7 +134,7 @@ export const meetingLogContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '현재 동작하는 입력은 동기화된 회의 메모입니다. 자동 녹화·전사부터 반영까지의 end-to-end 운영은 완료되지 않았습니다.',
+          body: '현재 입력은 동기화된 회의 메모다. 자동 녹화·전사에서 기록 반영까지 이어지는 전체 운영 경로는 완료되지 않았다.',
         },
       ],
       evolution: { label: 'UPSTREAM PAUSED', date: '2026.08.19' },
@@ -142,14 +142,14 @@ export const meetingLogContent = {
   ],
   workflow: {
     eyebrow: 'MEETING TRUST WORKFLOW',
-    title: '회의록에서 후보를 만들고, Human Review를 통과한 것만 공식 기록으로 남긴다.',
+    title: '회의록에서 후보를 만들고, 사람이 승인한 항목만 공식 기록으로 남긴다.',
     introduction: '구현된 downstream의 세 단계가 위 source·candidate·review 영역과 연결됩니다.',
     steps: [
       { id: 'meeting-flow-record', hotspotId: 'source-record', index: '01', label: '회의록', summary: '원문과 의미 단위 근거 보존' },
-      { id: 'meeting-flow-candidate', hotspotId: 'candidate-group', index: '02', label: 'AI 후보', summary: '결정·이슈·기능 요구를 pending으로 분리' },
-      { id: 'meeting-flow-review', hotspotId: 'human-review', index: '03', label: 'HUMAN REVIEW', summary: '수정·승인·반려 뒤 공식 기록 반영' },
+      { id: 'meeting-flow-candidate', hotspotId: 'candidate-group', index: '02', label: 'AI 후보', summary: '결정·이슈·기능 요구를 대기 후보로 분리' },
+      { id: 'meeting-flow-review', hotspotId: 'human-review', index: '03', label: 'HUMAN REVIEW', summary: '수정·승인·반려 결정, 승인 항목만 반영' },
     ],
-    boundary: '변경 감지는 회의록 단계 앞의 반복 실행 guard이고, 자동 녹화·전사는 아직 이 세 단계에 연결되지 않은 upstream입니다.',
+    boundary: '회의록 변경 감지는 같은 본문의 재추출을 막는다. 자동 녹화·전사는 아직 이 검토 흐름에 연결되지 않았다.',
   },
   decisions: {
     eyebrow: 'DESIGN DECISIONS',
@@ -161,7 +161,7 @@ export const meetingLogContent = {
       },
       {
         statement: 'PENDING MEANS NOT OFFICIAL.',
-        explanation: 'AI 후보는 검색 가능한 대기 상태로 남되 승인 전 canonical data와 기본 답변 근거에서 제외됩니다.',
+        explanation: 'AI 후보는 검토 대기열에서 찾을 수 있지만, 승인 전에는 공식 기록과 기본 답변 근거에서 제외한다.',
       },
       {
         statement: 'A BLOCKER IS A PRODUCT STATE.',
@@ -171,8 +171,8 @@ export const meetingLogContent = {
   },
   evolution: {
     eyebrow: 'PRODUCT EVOLUTION',
-    title: '요약 연결에서, 검토 가능한 기록 흐름과 명시적인 upstream 경계로.',
-    introduction: '회의 source·candidate gate·capture status에 직접 남은 날짜별 변화만 추렸습니다.',
+    title: '회의록 요약에서 후보 검토로, 자동 수집은 별도 과제로',
+    introduction: '초기 요약 경로, 후보 검토 도입, 수집 제약 확인, 일일 동기화 유지.',
     scenes: [
       {
         date: '2026.06.04',
@@ -180,14 +180,14 @@ export const meetingLogContent = {
         visual: 'transcript-path',
         decision: '회의 대본을 읽고 주간보고의 회의 섹션으로 연결하는 초기 경로를 만들었다.',
         trigger: '회의 결정과 후속 업무가 대화·녹화물 안에만 남음',
-        change: 'transcript 읽기 코드와 LLM 요약 연결 설계',
-        currentEffect: '회의 source를 downstream 기록으로 넘기는 최초 입력 경로',
+        change: '회의 대본 읽기 코드와 LLM 요약 연결 설계',
+        currentEffect: '회의 대본을 요약과 보고에 연결하는 초기 입력 경로',
       },
       {
         date: '2026.08.13',
         label: 'CANDIDATE GATE',
         visual: 'candidate-gate',
-        decision: '회의록에서 후보를 만들되 같은 Human Review 대기열을 통과하게 했다.',
+        decision: '회의록에서 추출한 후보를 공통 사람 검토 대기열로 연결했다.',
         trigger: '회의록을 동기화해도 공식 결정·이슈로 안전하게 승격할 경로가 없음',
         change: '결정·이슈·기능 요구 후보 추출과 미변경 회의록 재추출 방지',
         currentEffect: 'source record → pending candidate → review가 현재 downstream의 중심',
@@ -196,7 +196,7 @@ export const meetingLogContent = {
         date: '2026.08.19',
         label: 'CAPTURE PAUSED',
         visual: 'capture-paused',
-        decision: '회사 회의를 가져오지 못하는 계정 제약을 발견하고 upstream을 완료 처리하지 않았다.',
+        decision: '회사 회의를 가져올 수 없는 계정 제약을 확인하고 자동 수집을 미완료로 남겼다.',
         trigger: '선택한 도구의 개인용 플랜이 회사 Microsoft 365 회의를 수집하지 못함',
         change: '유료 플랜 유지안과 다른 수집·전사 방식 재설계안을 분리해 제시',
         currentEffect: 'current evidence에서는 transcript automation을 PLANNED / BLOCKED로 분류',
@@ -207,7 +207,7 @@ export const meetingLogContent = {
         visual: 'current-sync',
         decision: '자동 수집 결정을 기다리는 동안, 구현된 일일 회의록 동기화는 별도 경로로 유지했다.',
         trigger: '부분 구현과 전체 자동화 계획을 같은 상태로 말할 위험',
-        change: '매일 07:00 KST meeting sync와 upstream 남은 범위를 구분',
+        change: '매일 07:00 KST 회의록 동기화와 미완료 자동 수집 범위 구분',
         currentEffect: '현재 downstream 입력과 upstream blocker를 서로 다른 상태로 보존',
       },
     ],
@@ -220,19 +220,19 @@ export const meetingLogContent = {
       {
         value: '20',
         label: 'OFFICIAL MEETINGS',
-        meaning: '읽기 전용 운영 snapshot의 meetings 데이터 규모',
+        meaning: '읽기 전용 운영 조회에서 확인한 회의록 데이터 규모',
         boundary: '자동 녹화·전사 경로로 생성된 수나 반복 이용자 수가 아님',
       },
       {
         value: '07:00',
         label: 'DAILY SYNC / KST',
-        meaning: '동기화된 회의록을 meetings와 검색 데이터로 보내는 실행 시각',
-        boundary: '실행 스케줄은 end-to-end 수집 성공을 의미하지 않음',
+        meaning: '회의록을 회의 데이터와 검색 데이터에 반영하는 실행 시각',
+        boundary: '일정 등록이 자동 수집 전체의 성공을 뜻하지 않음',
       },
       {
         value: '3',
         label: 'MEETING CANDIDATE TYPES',
-        meaning: '회의 source에서 분리하는 결정·이슈·기능 요구 범주',
+        meaning: '회의록에서 추출하는 결정·이슈·기능 요구의 세 범주',
         boundary: '후보 정확도·승인율·자동화 효과 점수가 아님',
       },
     ],
@@ -252,14 +252,14 @@ export const meetingLogContent = {
     statement: 'The downstream design exists. The capture path is blocked.',
     items: [
       '20건은 8월 26일 historical snapshot이며 9월 4일 current 자동 수집량이나 adoption이 아닙니다.',
-      '자동 녹화·전사·참석자 수집·외부 API 연결의 end-to-end 운영 검증은 완료되지 않았습니다.',
+      '자동 녹화·전사·참석자 수집·외부 API 연결을 잇는 전체 운영 검증은 완료되지 않았다.',
       '후보 정확도·승인율·회의 정리 시간 절감·반복 열람 사용자는 측정하지 않았습니다.',
       '수집 도구·비용·관리자 권한의 최종 선택은 구현자가 단독으로 결정한 범위가 아닙니다.',
     ],
   },
   relatedSystems: [
-    { title: 'AI CANDIDATE REVIEW', relation: '회의 source에서 나온 pending 후보를 공식 기록으로 승격하는 gate', href: '/what/ai-candidate-review', status: 'available' },
+    { title: 'AI CANDIDATE REVIEW', relation: '회의록의 대기 후보를 검토해 공식 기록으로 저장하는 흐름', href: '/what/ai-candidate-review', status: 'available' },
     { title: 'REPORT', relation: 'historical meeting source와 current report authority를 구분하는 product surface', href: '/what/report', status: 'available' },
-    { title: 'RAG ASSISTANT', relation: '검토된 기록과 낮은 신뢰의 raw source를 구분해 검색하는 surface', href: '/what/rag-assistant', status: 'available' },
+    { title: 'RAG ASSISTANT', relation: '검토된 기록과 미검토 원문을 구분해 검색하는 방식', href: '/what/rag-assistant', status: 'available' },
   ],
 } as const satisfies MeetingLogPageContent

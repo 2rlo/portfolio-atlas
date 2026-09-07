@@ -17,25 +17,25 @@ export const developerStatusProductFixture = {
     refreshedAt: 'AUG 28 · 17:42 KST',
     state: 'PARTIAL / HUMAN CHECK NEEDED',
     summary:
-      '큰 요청의 timeout 재현 조건과 retry 경계를 정리했고 grouped change set을 연결했습니다. UI 실패 상태는 구현 후보가 확인됐지만 최종 반영 여부를 다시 확인해야 합니다.',
+      '큰 요청의 시간 초과 재현 조건과 재시도 범위를 정리하고 코드 변경 묶음을 연결했습니다. UI 실패 상태는 구현 후보가 있지만 최종 반영 여부는 추가 확인이 필요합니다.',
     counts: [
       { label: 'REVIEWED WORKLOGS', value: '04' },
       { label: 'CODE EVIDENCE', value: '03' },
       { label: 'NEEDS CHECK', value: '02' },
     ],
     warnings: [
-      'AI draft 업무일지 1건이 포함돼 검토 전 내용이 섞일 수 있습니다.',
-      '화면 상태 근거와 code evidence의 최종 연결을 확인해야 합니다.',
+      '검토 전 AI 업무일지 초안 1건이 포함돼 있습니다.',
+      '화면 상태와 코드 근거가 최종적으로 연결됐는지 확인이 필요합니다.',
     ],
     focus: [
-      'API timeout 재현 기준 · 요청 크기와 retry 횟수',
-      'Retry policy evidence · 요구사항과 change set 연결',
-      'Failure state · 최종 실패와 중간 UI 상태 차이',
+      'API 시간 초과 재현 기준 · 요청 크기와 재시도 횟수',
+      '재시도 정책 근거 · 요구사항과 코드 변경 연결',
+      '실패 상태 · 최종 실패와 중간 UI 상태 차이',
     ],
     projectProgress: {
       feature: 'Partner notification retry policy',
       status: '2 / 3 REQUIREMENTS HAVE EVIDENCE',
-      summary: 'R1은 사람 확인 완료, R2는 구현 근거 연결, R3은 code candidate 확인이 남아 있습니다.',
+      summary: 'R1은 사람 확인 완료, R2는 구현 근거 연결, R3은 코드 후보 확인이 남아 있습니다.',
       verified: '66%',
     },
     changes: [

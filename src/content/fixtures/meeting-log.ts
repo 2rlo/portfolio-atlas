@@ -74,7 +74,7 @@ export const meetingLogProductFixture = {
   review: {
     reviewer: jadebellPublicWorld.people.minaKim,
     actions: ['승인', '수정 후 승인', '반려'],
-    notice: '승인된 항목만 공식 기록과 우선 검색 근거로 이동합니다.',
+    notice: '승인한 항목만 공식 기록에 저장하고 답변 근거로 사용합니다.',
   },
   captureBoundary: {
     label: 'AUTOMATED CAPTURE',

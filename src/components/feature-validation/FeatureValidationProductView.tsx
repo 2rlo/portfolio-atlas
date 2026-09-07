@@ -46,7 +46,7 @@ function RequirementHeading({
     <ProductHotspot
       id={requirement.statementHotspotId}
       activeId={activeId}
-      label={`${requirement.id} Requirement`}
+      label={`${requirement.id} 요구사항`}
       className="fv-product-requirement-heading"
       onActivate={onActivate}
     >
@@ -165,7 +165,7 @@ function FeatureValidationProductView({
             <div>
               <small>JADEBELL HUB</small>
               <strong>기능 검증</strong>
-              <span>Requirement와 구현 근거를 검토하고 사람이 연결 상태를 확정합니다.</span>
+              <span>요구사항과 구현 근거를 검토하고 사람이 연결을 확정합니다.</span>
             </div>
             <span>검증 이력</span>
           </header>
@@ -214,7 +214,7 @@ function FeatureValidationProductView({
               <section className="fv-product-requirements" aria-label="주요 설계 판단 지점">
                 <header aria-hidden="true">
                   <div>
-                    <strong>Requirement와 구현 근거</strong>
+                    <strong>요구사항과 구현 근거</strong>
                     <span>AI 추천과 사람이 확정한 연결을 구분합니다.</span>
                   </div>
                   <span>3 REQUIREMENTS</span>
@@ -247,15 +247,15 @@ function FeatureValidationProductView({
               <ProductHotspot
                 id="human-review"
                 activeId={activeId}
-                label="Human review controls"
+                label="사람 검토와 연결 확정"
                 className="fv-product-confirmation"
                 onActivate={onActivate}
               >
                 <span className="fv-product-confirmation-person">
                   <b>{fixture.reviewer.initials}</b>
                   <span>
-                    <strong>Human confirmation</strong>
-                    <small>3개 Requirement 중 2개 확인 · 후보 1개 남음</small>
+                    <strong>사람 확인</strong>
+                    <small>요구사항 3개 중 2개 확인 · 후보 1개 남음</small>
                   </span>
                 </span>
                 <span className="fv-product-confirmation-actions" aria-hidden="true">

@@ -15,21 +15,21 @@ export const featureValidationContent = {
     thesis:
       '요구사항과 코드 근거를 연결하고, 사람이 확인한 뒤에만 판정을 갱신한다.',
     summary:
-      'PR 메시지와 AI claim은 탐색 신호다. 구현 완료의 최종 사실로 사용하지 않는다.',
+      'PR 메시지와 AI가 추출한 구현 설명으로 후보를 찾고, 실제 변경 근거와 대조한다.',
     problemLabel: 'PROBLEM / SCATTERED EVIDENCE',
     problem:
       '명세·계획·QA·업무 기록과 코드 변경이 흩어져 있어, 비개발자가 기능 단위로 구현 여부를 다시 확인하기 어려웠다.',
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / INSPECTION',
-    title: '화면을 보는 대신, 판단 지점을 살펴보세요.',
+    title: '명세부터 판정까지, 다섯 판단 지점',
     instruction:
-      '강조된 요소에 hover, focus 또는 tap하면 제품 옆의 검토 여백이 설계 이유로 바뀝니다.',
+      '강조 영역의 설계 이유 · 포인터, 키보드, 터치 지원',
     defaultAnnotation: {
       index: '00',
       label: 'INSPECTION GUIDE',
       title: '다섯 개의 판단 지점',
-      body: 'Requirement가 질문을 만들고 Evidence와 AI candidate가 검토 재료를 모읍니다. Unknown과 Human review는 근거가 최종 판정으로 넘어가는 경계를 지킵니다.',
+      body: '요구사항을 기준으로 변경 근거와 AI 추천을 대조한다. 근거가 부족하면 UNKNOWN으로 남기고, 사람이 연결을 확정한 뒤 재분석한다.',
     },
   },
   product: featureValidationProductFixture,
@@ -50,7 +50,7 @@ export const featureValidationContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '확정된 Requirement는 판정 기준일 뿐 구현 완료를 뜻하지 않는다.',
+          body: '확정된 요구사항은 판정 기준이며, 구현 완료 상태와는 별개다.',
         },
       ],
       evolution: { label: 'EVOLVED FROM', date: '2026.08.10' },
@@ -63,11 +63,11 @@ export const featureValidationContent = {
       sections: [
         {
           label: 'WHY',
-          body: 'PR·commit 메시지는 의도를 찾는 데 유용하지만 실제로 무엇이 바뀌었는지를 충분히 증명하지 못한다.',
+          body: 'PR·커밋 메시지만으로는 실제 변경 내용을 충분히 확인하기 어렵다.',
         },
         {
           label: 'DECISION',
-          body: '변경 범위와 source·symbol 근거를 묶고 기능과의 연결을 따로 확정해, 사람이 실제 변경으로 돌아갈 수 있게 했다.',
+          body: '변경 범위에 소스·심벌 근거를 묶고 기능과의 연결을 별도로 확정했다. 검토자는 연결된 실제 변경으로 돌아갈 수 있다.',
         },
         {
           label: 'BOUNDARY',
@@ -80,19 +80,19 @@ export const featureValidationContent = {
       id: 'ai-assessment',
       index: '03',
       label: 'AI CANDIDATE',
-      title: 'AI는 찾고, 판정하지 않는다.',
+      title: 'AI는 관련 변경을 후보로 제안한다.',
       sections: [
         {
           label: 'WHY',
-          body: 'embedding 유사도와 implementation claim은 후보 순위를 만들 수 있지만 요구사항 충족을 증명하지 않는다.',
+          body: '임베딩 유사도와 AI가 추출한 구현 설명만으로는 요구사항 충족 여부를 판단할 수 없다.',
         },
         {
           label: 'DECISION',
-          body: 'claim은 한 번 추출해 탐색 자료로 재사용하되, 사람이 확정한 연결만 명시적 재분석의 입력으로 사용했다.',
+          body: 'AI가 추출한 구현 설명은 탐색 자료로 재사용하고, 사람이 확정한 연결만 명시적 재분석에 넣었다.',
         },
         {
           label: 'BOUNDARY',
-          body: 'AI 답변 자체는 Evidence도 공식 상태도 아니다.',
+          body: 'AI 답변만으로 근거 연결이나 공식 상태를 확정하지 않는다.',
         },
       ],
       evolution: { label: 'REUSED SINCE', date: '2026.08.11' },
@@ -105,7 +105,7 @@ export const featureValidationContent = {
       sections: [
         {
           label: 'WHY',
-          body: 'diff가 잘렸거나 source가 아직 연결되지 않았을 수 있다. 근거가 보이지 않는다는 이유만으로 MISSING을 만들면 거짓 음성이 된다.',
+          body: '잘린 diff나 아직 연결되지 않은 소스 때문에 근거가 빠질 수 있다. 이를 MISSING으로 처리하면 구현된 기능도 미구현으로 판정할 수 있다.',
         },
         {
           label: 'DECISION',
@@ -130,7 +130,7 @@ export const featureValidationContent = {
         },
         {
           label: 'DECISION',
-          body: '후보를 confirm 또는 reject하고, 명시적으로 재분석한 뒤 verdict를 갱신하는 순서를 유지했다.',
+          body: '사람이 후보 연결을 확정하거나 제외한 뒤, 명시적으로 재분석해 판정을 갱신하게 했다.',
         },
         {
           label: 'BOUNDARY',
@@ -142,16 +142,16 @@ export const featureValidationContent = {
   ],
   workflow: {
     eyebrow: 'PRODUCT WORKFLOW',
-    title: '후보와 사실 사이에, 명시적인 결정 지점을 둔다.',
+    title: '근거 연결을 확정한 뒤, 판정을 다시 계산한다.',
     introduction:
-      '단계에 focus하거나 pointer를 올리면 위 제품 화면의 대응 요소가 같은 상태로 강조됩니다.',
+      '각 단계와 연결된 화면 요소를 함께 강조',
     steps: [
       {
         id: 'workflow-requirement',
         hotspotId: 'requirement',
         index: '01',
         label: 'REQUIREMENT',
-        summary: '사람이 확정한 문구와 snapshot',
+        summary: '사람이 확정한 문구와 당시 명세',
       },
       {
         id: 'workflow-evidence',
@@ -183,7 +183,7 @@ export const featureValidationContent = {
       },
     ],
     boundary:
-      '각 source는 다른 사실을 설명한다. 링크 수나 AI 점수 하나로 완료를 계산하지 않는다.',
+      '명세·QA·코드 변경은 서로 다른 사실의 근거다. 링크 수나 AI 점수로 기능 완료를 계산하지 않는다.',
   },
   decisions: {
     eyebrow: 'DESIGN DECISIONS',
@@ -196,20 +196,20 @@ export const featureValidationContent = {
       {
         statement: 'INSUFFICIENT EVIDENCE IS A STATE.',
         explanation:
-          '부족한 근거를 Yes 또는 No로 압축하지 않는다. 확인할 수 없으면 UNKNOWN으로 남긴다.',
+          '확인할 근거가 부족하면 UNKNOWN으로 남긴다.',
       },
       {
         statement: 'EVIDENCE MUST BE REVISITABLE.',
         explanation:
-          '판정만 남기지 않고 당시 Requirement와 연결한 변경 근거를 다시 살펴볼 수 있게 한다.',
+          '판정 당시의 요구사항과 연결한 변경 근거를 함께 보존한다.',
       },
     ],
   },
   evolution: {
     eyebrow: 'PRODUCT EVOLUTION',
-    title: '검증 화면은 더 많은 판정이 아니라, 더 안전한 멈춤으로 발전했다.',
+    title: '읽기 중심 조회에서, 화면 안의 사람 검토까지.',
     introduction:
-      'Feature Validation의 UI·상태·검토 흐름과 직접 연결된 변화만 네 장면으로 좁혔습니다.',
+      '근거 누락에 대응한 UNKNOWN, AI 추천과 사람 확정의 분리, 검토 UI의 추가.',
     scenes: [
       {
         date: '2026.08.07',
@@ -217,15 +217,15 @@ export const featureValidationContent = {
         visual: 'read-only',
         decision: 'AI가 공식 상태를 직접 수정하지 않는 읽기 중심 화면',
         trigger: '명세와 구현 근거가 흩어져 기능 단위 검토가 어려움',
-        change: '기능·명세 snapshot·Requirement·기존 근거를 한 화면에서 조회',
+        change: '기능·명세 이력·요구사항·기존 근거를 한 화면에서 조회',
       },
       {
         date: '2026.08.10',
         label: 'SAFE UNKNOWN',
         visual: 'unknown',
         decision: '근거 완전성이 불명확하면 MISSING 대신 UNKNOWN',
-        trigger: '잘린 diff와 미연결 source가 미구현으로 오판됨',
-        change: '보수적 상태와 사람 확정 Requirement 문구 보존',
+        trigger: '잘린 diff와 미연결 소스로 미구현 오판 발생',
+        change: '근거 부족은 UNKNOWN으로 남기고, 사람이 확정한 요구사항 문구는 보존',
       },
       {
         date: '2026.08.10–12',
@@ -233,21 +233,21 @@ export const featureValidationContent = {
         visual: 'human-link',
         decision: 'AI 추천과 사람이 확정한 근거 연결을 분리',
         trigger: '유사도 기반 자동 연결이 잘못된 근거를 반복 사용할 위험',
-        change: '계획·QA·결정·업무 기록·change set의 confirm/reject 흐름 추가',
+        change: '계획·QA·결정·업무 기록·변경 묶음의 연결 확정·제외 흐름 추가',
       },
       {
         date: '2026.08.19',
         label: 'REVIEW IN PRODUCT',
         visual: 'review-ui',
         decision: '검토자가 화면을 떠나지 않고 연결을 끝내는 UI',
-        trigger: 'CLI 확정 과정과 branch별 중복 표시가 검토 흐름을 끊음',
+        trigger: 'CLI에서의 확정과 브랜치별 중복 표시로 검토 흐름 단절',
         change: '직접 검색·연결, 중복 변경 묶기, 준비·수정·확정 UI',
       },
     ],
   },
   evidence: {
     eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
-    title: '성과가 아니라, 연결하고 검토한 범위.',
+    title: '등록한 기능과 검토한 연결의 범위',
     snapshot: '읽기 전용 production snapshot의 저장·분석 범위이며 현재 실시간 수치가 아닙니다.',
     items: [
       {
@@ -269,9 +269,9 @@ export const featureValidationContent = {
       label: 'IMPLEMENTED',
       phase: 'PHASE 1–2',
       items: [
-        '읽기 중심 기능·명세·Requirement 검증 화면',
-        '다중 source 추적 링크와 change set confirm/reject',
-        '사람 확정 Requirement·연결·판정 이력 보존',
+        '기능·명세·요구사항을 조회하는 읽기 중심 검증 화면',
+        '여러 출처의 추적 링크와 변경 묶음 연결 확정·제외',
+        '사람이 확정한 요구사항과 연결·판정 이력 보존',
       ],
     },
     remaining: {
@@ -288,24 +288,24 @@ export const featureValidationContent = {
   },
   boundary: {
     eyebrow: 'BOUNDARY / CURRENT SCOPE',
-    statement: 'A traceable relation is not a finished feature.',
+    statement: '근거 연결이 확인된 범위와, 아직 남은 검증.',
     items: [
       'AI는 구현 완료를 단독 확정하지 않는다.',
       '근거 부족을 완료 또는 미구현으로 추측하지 않는다.',
-      'Requirement와 코드 변경의 연결은 품질·QA·배포·사용자·사업 결과를 증명하지 않는다.',
+      '요구사항과 코드 변경을 연결해도 품질·QA·배포·사용자·사업 결과는 각각 확인해야 한다.',
       '현재 권한은 조회·편집의 coarse gate이며 actor·domain별 세분화는 planned다.',
     ],
   },
   relatedSystems: [
     {
       title: 'DOCUMENTATION SYSTEM',
-      relation: 'Requirement와 근거의 맥락을 다시 찾는 구조',
+      relation: '요구사항과 근거의 맥락을 다시 찾는 구조',
       href: '/how/documentation-system',
       status: 'available',
     },
     {
       title: 'AI-NATIVE ENGINEERING',
-      relation: 'AI candidate를 검증하고 사람이 변경을 확정하는 방식',
+      relation: 'AI 후보를 검증하고 사람이 변경을 확정하는 방식',
       href: '/how/ai-native-engineering',
       status: 'available',
     },

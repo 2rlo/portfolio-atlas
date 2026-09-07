@@ -8,9 +8,9 @@ function WikiPage({ content }: { readonly content: WikiPageContent }) {
       content={content}
       pageClassName="wiki-page"
       titleId="wiki-title"
-      surfaceLabel="Outline knowledge workspace home inspection"
-      workflowLabel="Browse search return and open Wiki workflow"
-      relatedLabel="Wiki related systems"
+      surfaceLabel="Outline 지식 공간 홈의 탐색 구조"
+      workflowLabel="Wiki 컬렉션·검색·최근 문서에서 본문으로 가는 흐름"
+      relatedLabel="Wiki와 연결된 시스템"
       renderProduct={({ fixture, activeId, onActivate }) => (
         <WikiProductView
           fixture={fixture}

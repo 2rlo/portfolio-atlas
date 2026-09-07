@@ -31,7 +31,7 @@ export const worklogReviewProductFixture = {
     },
   ],
   source: {
-    type: 'Teams worklog message',
+    type: 'Teams 업무일지 메시지',
     date: '2026.08.27 · 16:30',
     message:
       '대용량 요청에서 간헐 timeout을 재현했습니다. retry 횟수와 요청 크기 조건을 다시 확인해야 합니다.',

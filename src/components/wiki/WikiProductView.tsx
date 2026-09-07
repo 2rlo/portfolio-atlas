@@ -19,7 +19,7 @@ function WikiProductView({
     <section
       className="wiki-product"
       data-has-active={activeId ? 'true' : 'false'}
-      aria-label={`${fixture.productName} Outline home 공개 재구성 화면`}
+      aria-label={`${fixture.productName} Outline 홈 공개 재구성 화면`}
     >
       <header className="wiki-product-topbar">
         <span className="wiki-product-brand" aria-hidden="true">
@@ -31,7 +31,7 @@ function WikiProductView({
         <ProductHotspot
           id="search-entry"
           activeId={activeId}
-          label="Global document search entry"
+          label="전체 문서 검색"
           className="wiki-search-entry"
           onActivate={onActivate}
         >
@@ -68,7 +68,7 @@ function WikiProductView({
           <ProductHotspot
             id="collection-structure"
             activeId={activeId}
-            label="Collections grouped as reader entry routes"
+            label="읽는 목적에 따른 컬렉션"
             className="wiki-collection-entry"
             onActivate={onActivate}
           >
@@ -83,8 +83,8 @@ function WikiProductView({
           </ProductHotspot>
 
           <span className="wiki-sidebar-footer" aria-hidden="true">
-            <span>＋ NEW COLLECTION</span>
-            <span>▣ ARCHIVE</span>
+            <span>＋ 새 컬렉션</span>
+            <span>▣ 보관함</span>
           </span>
         </aside>
 
@@ -100,7 +100,7 @@ function WikiProductView({
           <ProductHotspot
             id="return-views"
             activeId={activeId}
-            label="Recent popular updated and authored return views"
+            label="최근 본 문서·인기·업데이트·내 문서 보기"
             className="wiki-return-views"
             onActivate={onActivate}
           >
@@ -116,7 +116,7 @@ function WikiProductView({
           <ProductHotspot
             id="document-metadata"
             activeId={activeId}
-            label="Recent documents with editor collection and recency context"
+            label="최근 문서의 수정자·컬렉션·수정 및 조회 시점"
             className="wiki-document-context"
             onActivate={onActivate}
           >
@@ -138,7 +138,7 @@ function WikiProductView({
           </ProductHotspot>
 
           <span className="wiki-surface-note" aria-hidden="true">
-            BROWSEABLE HOME · CONTENT REMAINS IN SOURCE DOCUMENTS
+            문서 탐색 홈 · 본문은 각 문서에서 열람
           </span>
         </section>
       </div>

@@ -23,10 +23,10 @@ function MeetingLogPage({ content }: { readonly content: MeetingLogPageContent }
       content={content}
       pageClassName="meeting-log-page"
       titleId="meeting-log-title"
-      surfaceLabel="Meeting record to AI candidate and human review inspection"
-      workflowLabel="Meeting record to AI candidate to human review workflow"
+      surfaceLabel="회의록·AI 후보·사람 검토의 연결"
+      workflowLabel="회의록에서 AI 후보와 사람 검토로 이어지는 흐름"
       evolutionTargetId="meeting-log-evolution"
-      relatedLabel="Meeting log related systems"
+      relatedLabel="회의록과 연결된 시스템"
       renderProduct={({ fixture, activeId, onActivate }) => (
         <MeetingLogProductView fixture={fixture} activeId={activeId} onActivate={onActivate} />
       )}
