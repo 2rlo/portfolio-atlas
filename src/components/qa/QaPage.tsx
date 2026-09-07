@@ -1,11 +1,6 @@
 import { Link } from 'react-router'
-import type { QaHotspotId, QaPageContent } from '../../content/content-types.ts'
-import {
-  ProductInspectionFrame,
-  ProductWorkflow,
-} from '../product-case/AnnotatedProductSurface.tsx'
-import useProductInspectionState from '../product-case/useProductInspectionState.ts'
-import QaProductView from './QaProductView.tsx'
+import type { QaPageContent } from '../../content/content-types.ts'
+import QaSurfaceWorkflow from './QaSurfaceWorkflow.tsx'
 
 interface QaPageProps {
   readonly content: QaPageContent
@@ -20,17 +15,8 @@ function EvolutionFragment({ visual }: { readonly visual: QaPageContent['evoluti
 }
 
 function QaPage({ content }: QaPageProps) {
-  const {
-    activeHotspotId,
-    interactionMode,
-    activateHotspot,
-    clearPointerPreview,
-    clearFocusPreview,
-  } = useProductInspectionState<QaHotspotId>()
-  const activeAnnotation = content.annotations.find((annotation) => annotation.id === activeHotspotId)
-
   return (
-    <main className="qa-page" id="main-content">
+    <main className="qa-page qa-case-page" id="main-content">
       <section className="qa-hero" aria-labelledby="qa-title">
         <div className="qa-hero-frame">
           <Link className="qa-back" to="/"><span aria-hidden="true">←</span> WHAT I BUILT</Link>
@@ -42,34 +28,10 @@ function QaPage({ content }: QaPageProps) {
               <aside><small>{content.hero.problemLabel}</small><span>{content.hero.problem}</span></aside>
             </div>
           </header>
-
-          <section className="qa-inspection" aria-labelledby="qa-inspection-title">
-            <header className="qa-inspection-heading">
-              <p>{content.inspection.eyebrow}</p>
-              <h2 id="qa-inspection-title">{content.inspection.title}</h2>
-              <span>{content.inspection.instruction}</span>
-            </header>
-            <ProductInspectionFrame
-              activeAnnotation={activeAnnotation}
-              defaultAnnotation={content.inspection.defaultAnnotation}
-              disclosure={content.meta.disclosure}
-              surfaceLabel="QA 테스트 상세의 공개 재구성 화면과 설계 설명"
-              evolutionTargetId="qa-evolution"
-              interactionMode={interactionMode}
-              onPointerPreviewEnd={clearPointerPreview}
-              onFocusPreviewEnd={clearFocusPreview}
-            >
-              <QaProductView fixture={content.product} activeId={activeHotspotId} onActivate={activateHotspot} />
-            </ProductInspectionFrame>
-          </section>
         </div>
       </section>
 
-      <section className="qa-workflow-section" aria-labelledby="qa-workflow-title">
-        <header className="qa-section-heading"><p>{content.workflow.eyebrow}</p><h2 id="qa-workflow-title">{content.workflow.title}</h2><span>{content.workflow.introduction}</span></header>
-        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} ariaLabel="QA 기록 흐름" onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
-        <p className="qa-workflow-boundary">{content.workflow.boundary}</p>
-      </section>
+      <QaSurfaceWorkflow content={content} />
 
       <section className="qa-decisions" aria-labelledby="qa-decisions-title">
         <header><p>{content.decisions.eyebrow}</p><h2 id="qa-decisions-title">{content.decisions.title}</h2></header>
