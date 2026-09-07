@@ -1,14 +1,6 @@
 import { Link } from 'react-router'
-import type {
-  ProjectSettingHotspotId,
-  ProjectSettingPageContent,
-} from '../../content/content-types.ts'
-import {
-  ProductInspectionFrame,
-  ProductWorkflow,
-} from '../product-case/AnnotatedProductSurface.tsx'
-import useProductInspectionState from '../product-case/useProductInspectionState.ts'
-import ProjectSettingProductView from './ProjectSettingProductView.tsx'
+import type { ProjectSettingPageContent } from '../../content/content-types.ts'
+import ProjectSettingSurfaceWorkflow from './ProjectSettingSurfaceWorkflow.tsx'
 
 interface ProjectSettingPageProps {
   readonly content: ProjectSettingPageContent
@@ -34,17 +26,6 @@ function EvolutionFragment({
 }
 
 function ProjectSettingPage({ content }: ProjectSettingPageProps) {
-  const {
-    activeHotspotId,
-    interactionMode,
-    activateHotspot,
-    clearPointerPreview,
-    clearFocusPreview,
-  } = useProductInspectionState<ProjectSettingHotspotId>()
-  const activeAnnotation = content.annotations.find(
-    (annotation) => annotation.id === activeHotspotId,
-  )
-
   return (
     <main className="project-setting-page" id="main-content">
       <section className="ps-hero" aria-labelledby="project-setting-title">
@@ -64,41 +45,10 @@ function ProjectSettingPage({ content }: ProjectSettingPageProps) {
             </div>
           </header>
 
-          <section className="ps-inspection" aria-labelledby="ps-inspection-title">
-            <header className="ps-inspection-heading">
-              <p>{content.inspection.eyebrow}</p>
-              <h2 id="ps-inspection-title">{content.inspection.title}</h2>
-              <span>{content.inspection.instruction}</span>
-            </header>
-            <ProductInspectionFrame
-              activeAnnotation={activeAnnotation}
-              defaultAnnotation={content.inspection.defaultAnnotation}
-              disclosure={content.meta.disclosure}
-              surfaceLabel="프로젝트 설정의 공개 재구성 화면과 설계 설명"
-              evolutionTargetId="project-setting-evolution"
-              interactionMode={interactionMode}
-              onPointerPreviewEnd={clearPointerPreview}
-              onFocusPreviewEnd={clearFocusPreview}
-            >
-              <ProjectSettingProductView
-                fixture={content.product}
-                activeId={activeHotspotId}
-                onActivate={activateHotspot}
-              />
-            </ProductInspectionFrame>
-          </section>
         </div>
       </section>
 
-      <section className="ps-workflow-section" aria-labelledby="ps-workflow-title">
-        <header className="ps-section-heading">
-          <p>{content.workflow.eyebrow}</p>
-          <h2 id="ps-workflow-title">{content.workflow.title}</h2>
-          <span>{content.workflow.introduction}</span>
-        </header>
-        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
-        <p className="ps-workflow-boundary">{content.workflow.boundary}</p>
-      </section>
+      <ProjectSettingSurfaceWorkflow content={content} />
 
       <section className="ps-rules" aria-labelledby="ps-rules-title">
         <header><p>{content.rules.eyebrow}</p><h2 id="ps-rules-title">{content.rules.title}</h2></header>
