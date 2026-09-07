@@ -65,10 +65,10 @@ function WorklogReviewPage({ content }: WorklogReviewPageProps) {
       </section>
 
       <section className="wl-evidence" aria-labelledby="wl-evidence-title">
-        <header className="wl-evidence-heading"><p>{content.evidence.eyebrow}</p><h2 id="wl-evidence-title">{content.evidence.title}</h2><span>{content.evidence.snapshot}</span></header>
+        {content.evidence.items.length > 0 ? <><header className="wl-evidence-heading"><p>{content.evidence.eyebrow}</p><h2 id="wl-evidence-title">{content.evidence.title}</h2><span>{content.evidence.snapshot}</span></header>
         <dl className="wl-evidence-register">
           {content.evidence.items.map((item) => <div key={item.label}><dd>{item.value}</dd><dt>{item.label}</dt><p>{item.meaning}</p><small>{item.boundary}</small></div>)}
-        </dl>
+        </dl></> : <h2 className="visually-hidden" id="wl-evidence-title">구현·운영 상태</h2>}
         <div className="wl-status">
           <header><span>CURRENT STATUS</span><strong>{content.implementationStatus.state}</strong></header>
           <ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul>

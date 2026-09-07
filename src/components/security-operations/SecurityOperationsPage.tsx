@@ -581,17 +581,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
                 ))}
               </ul>
             </section>
-            <section>
-              <header>
-                <span>02</span>
-                <h3>이 경험에 포함하지 않는 범위</h3>
-              </header>
-              <ul>
-                {content.boundary.notClaimed.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </section>
+
           </div>
 
           <p className="so-maintenance-rule">

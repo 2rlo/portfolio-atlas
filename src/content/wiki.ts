@@ -167,19 +167,7 @@ export const wikiContent = {
         value: 'OUTLINE',
         label: 'PRODUCT SURFACE',
         meaning: '공유 Wiki로 Outline을 사용한 사실',
-        boundary: 'Outline 자체 UI를 직접 설계·구현했다는 의미가 아니다.',
-      },
-      {
-        value: '08',
-        label: 'VISIBLE COLLECTIONS',
-        meaning: '원본 홈 화면에서 확인한 컬렉션 진입점 8개',
-        boundary: '전체 문서 수, 활성 컬렉션 수, 정보 품질을 뜻하지 않는다.',
-      },
-      {
-        value: 'N/M',
-        label: 'ADOPTION OUTCOME',
-        meaning: '조직 사용량이나 검색 성공률은 측정 근거가 없다.',
-        boundary: '화면 존재와 반복 사용·조직 정착을 동일시하지 않는다.',
+        boundary: "공유 Wiki 도구로 도입한 Outline.",
       },
     ],
   },
@@ -191,7 +179,7 @@ export const wikiContent = {
       '공개 화면은 Jadebell 합성 데이터로 독립 재구성',
     ],
     runtime:
-      '현재 근거로는 호스팅·인증 연동·세부 권한·문서 구성·편집 내용 저장·검색 품질·반복 사용량을 확정할 수 없다.',
+      "공유 Wiki로 Outline을 도입하고, 검색·컬렉션·최근 문서·새 문서 진입이 있는 홈 화면을 공개용으로 재구성했다.",
   },
   boundary: {
     eyebrow: 'BOUNDARY',
@@ -199,8 +187,6 @@ export const wikiContent = {
     items: [
       '공개 예시에는 원본 화면과 실제 조직·문서·사용자 이름을 포함하지 않았다.',
       '검색 순위·편집기·보관·복원 동작은 홈 화면만으로 확인하지 않았다.',
-      '컬렉션 구조가 문서의 최신성·정확성·승인 상태를 보증한다고 주장하지 않는다.',
-      'Wiki 화면의 존재만으로 조직 내 정착이나 신규 구성원 적응 효과를 판단할 수 없다.',
     ],
   },
   relatedSystems: [

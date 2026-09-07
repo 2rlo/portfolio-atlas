@@ -216,26 +216,7 @@ export const meetingLogContent = {
     eyebrow: 'EVIDENCE / READ-ONLY SNAPSHOT 2026.08.26',
     title: '과거 downstream snapshot이지, 9월 4일 자동화 완료 근거가 아니다.',
     snapshot: '2026.08.26에 확인한 historical snapshot이며 current 수치로 합치지 않습니다.',
-    items: [
-      {
-        value: '20',
-        label: 'OFFICIAL MEETINGS',
-        meaning: '읽기 전용 운영 조회에서 확인한 회의록 데이터 규모',
-        boundary: '자동 녹화·전사 경로로 생성된 수나 반복 이용자 수가 아님',
-      },
-      {
-        value: '07:00',
-        label: 'DAILY SYNC / KST',
-        meaning: '회의록을 회의 데이터와 검색 데이터에 반영하는 실행 시각',
-        boundary: '일정 등록이 자동 수집 전체의 성공을 뜻하지 않음',
-      },
-      {
-        value: '3',
-        label: 'MEETING CANDIDATE TYPES',
-        meaning: '회의록에서 추출하는 결정·이슈·기능 요구의 세 범주',
-        boundary: '후보 정확도·승인율·자동화 효과 점수가 아님',
-      },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'PARTIAL / DOWNSTREAM IMPLEMENTED — TRANSCRIPT UPSTREAM BLOCKED',
@@ -245,15 +226,13 @@ export const meetingLogContent = {
       '회사 회의 transcript upstream blocker',
       '자동 녹화·전사·원문 확보의 end-to-end 검증 미완료',
     ],
-    runtime: 'downstream review 구조는 구현되어 있다. 2026.09.04에는 회사 회의 transcript upstream이 막혀 있어 production end-to-end 자동화로 주장하지 않는다.',
+    runtime: "downstream review 구조는 구현되어 있다. 2026.09.04 현재 회사 회의 transcript upstream은 blocked 상태다.",
   },
   boundary: {
-    eyebrow: 'BOUNDARY / A REVIEW PIPELINE, NOT AN E2E CAPTURE CLAIM',
+    eyebrow: "BOUNDARY / CAPTURE & REVIEW",
     statement: 'The downstream design exists. The capture path is blocked.',
     items: [
-      '20건은 8월 26일 historical snapshot이며 9월 4일 current 자동 수집량이나 adoption이 아닙니다.',
       '자동 녹화·전사·참석자 수집·외부 API 연결을 잇는 전체 운영 검증은 완료되지 않았다.',
-      '후보 정확도·승인율·회의 정리 시간 절감·반복 열람 사용자는 측정하지 않았습니다.',
       '수집 도구·비용·관리자 권한의 최종 선택은 구현자가 단독으로 결정한 범위가 아닙니다.',
     ],
   },

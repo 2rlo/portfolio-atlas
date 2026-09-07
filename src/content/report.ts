@@ -92,7 +92,7 @@ export const reportContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '주차별 누적값은 고유 사건 수나 생산성 향상률이 아닙니다.',
+          body: '주차별 누적값은 고유 사건 수가 아닙니다.',
         },
       ],
       evolution: { label: 'REPORT METRICS SHAPED', date: '2026.06.05' },
@@ -113,7 +113,7 @@ export const reportContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '테스트 건수는 품질 개선률이 아니며, 세 상태 밖의 기록도 있을 수 있습니다.',
+          body: '세 상태 밖의 기록도 있을 수 있습니다.',
         },
       ],
       evolution: { label: 'QA SOURCE INCLUDED', date: '2026.05.29' },
@@ -227,10 +227,7 @@ export const reportContent = {
     eyebrow: 'EVIDENCE / SNAPSHOT 2026.09.04',
     title: '저장된 보고서와 주차별 누적 기록의 범위',
     snapshot: '읽기 전용 production snapshot에서 확인한 서로 다른 저장 상태입니다.',
-    items: [
-      { value: '24', label: 'WEEKLY REPORTS', meaning: '저장된 주간보고 문서', boundary: '열람·의사결정 활용 횟수가 아님' },
-      { value: '141', label: 'REVIEWED-SOURCE LINKS', meaning: 'source ID로 검토 기록과 연결된 업무 원문', boundary: '보고서 24건과 같은 분모가 아니며 전환율이 아님' },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'AUTOMATIC + MANUAL GENERATION ACTIVE',
@@ -240,7 +237,7 @@ export const reportContent = {
       '보고서 본문과 구조화 지표 저장',
       '권한 기반 수동 생성과 자동 월요일 생성',
     ],
-    runtime: '주간보고 생성 경로는 production에 있고 현재 업무일지 authority는 web이다. Notion은 명시적 rollback mode이며, 열람·의사결정 효과와 번역 품질은 이 snapshot으로 주장하지 않는다.',
+    runtime: '주간보고 생성 경로는 production에 있고 현재 업무일지 authority는 web이다. Notion은 명시적 rollback mode다.',
     feedback: {
       label: '사용자 인터뷰',
       text: '이전에 정기적으로 하지 않던 주간 업무 정리를 보고 흐름으로 이어가게 됐다는 응답이 있었다. 번역·자료 취합·문서 초안 작성에 드는 시간은 이전의 절반 정도로 줄었다고 회고했다.',
@@ -252,7 +249,6 @@ export const reportContent = {
     items: [
       'AI 정규화 초안과 사람 검토 완료 기록은 별도 상태로 보존한다.',
       '검토본이 없는 원문의 draft fallback은 availability 규칙이며 검토를 대체하지 않습니다.',
-      '보고서와 누적 지표가 있어도 준비 시간 절감·열람·의사결정 효과는 미측정입니다.',
       '영문 구조의 배포는 화면 활성화나 반복 사용을 의미하지 않습니다.',
     ],
   },

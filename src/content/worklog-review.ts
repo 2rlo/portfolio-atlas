@@ -91,7 +91,7 @@ export const worklogReviewContent = {
         },
         {
           label: 'EVIDENCE',
-          body: '반복되는 고유명사 문제는 2026.07.31 용어집을 추가해 보완했지만 정확도 향상률은 측정하지 않았다.',
+          body: '반복되는 고유명사 문제는 2026.07.31 용어집을 추가해 보완했다.',
         },
       ],
       evolution: { label: 'GLOSSARY SUPPORT', date: '2026.07.31' },
@@ -112,7 +112,7 @@ export const worklogReviewContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '승인은 기록의 보고 사용 가능 상태를 정한다. 기능 완료나 업무 효과를 자동 증명하지 않는다.',
+          body: '승인은 기록의 보고 사용 가능 상태를 정한다.',
         },
       ],
     },
@@ -262,26 +262,7 @@ export const worklogReviewContent = {
     title: '검토 완료 기록과 AI 초안의 관측 규모',
     snapshot:
       '서로 다른 테이블과 상태를 읽은 snapshot입니다. 같은 cohort의 funnel이나 검토율로 합산하지 않습니다.',
-    items: [
-      {
-        value: '295',
-        label: 'RAW RECORDS',
-        meaning: '원문 상태로 보존된 worklog row',
-        boundary: '검토 대기·완료 건수와 같은 분모가 아님',
-      },
-      {
-        value: '199',
-        label: 'WEB QUEUE / UNREVIEWED',
-        meaning: 'web 검토 queue에 남은 미검토 draft',
-        boundary: '오류 건수나 미사용 기록 수가 아님',
-      },
-      {
-        value: '141',
-        label: 'REVIEWED-SOURCE LINKS',
-        meaning: 'source ID로 사람 검토 기록과 연결된 원문',
-        boundary: '295건 전체의 전환율이나 반복 사용량이 아님',
-      },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / WEB AUTHORITY',
@@ -293,7 +274,7 @@ export const worklogReviewContent = {
       '날짜·편집 중복 보정과 용어집 참고',
     ],
     runtime:
-      '2026.09.04 현재 업무일지 authority는 web이며 Notion은 자동 fallback이 아닌 명시적 rollback 경로다. 공개 화면은 원문 대신 상태 관계만 재구성했고, 검토 시간·정확도·반복 이용량은 측정하지 않았다.',
+      '2026.09.04 현재 업무일지 authority는 web이며 Notion은 자동 fallback이 아닌 명시적 rollback 경로다. 공개 화면은 원문 대신 상태 관계만 재구성했다.',
     feedback: {
       label: '사용자 인터뷰',
       text: '업무일지 한 건을 검토하는 데 걸리는 시간이 약 7분에서 4분으로 줄었다는 응답이 있었다.',
@@ -305,8 +286,6 @@ export const worklogReviewContent = {
     items: [
       'AI 정규화 초안은 사람 검토를 거쳐 공식 업무일지와 보고 자료로 확정한다.',
       '검토본이 없는 원문의 draft 보완은 명시적 예외이며 reviewed record와 같은 지위가 아니다.',
-      '미래 날짜 초안 0건은 같은 조건으로 재조회한 결과다. 전체 날짜 정확도와 재발 방지는 별도 확인 대상이다.',
-      '데이터 누적은 확인했지만 보고 준비 시간 단축·읽은 사용자 수·의사결정 효과는 미측정이다.',
     ],
   },
   relatedSystems: [

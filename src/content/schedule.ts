@@ -122,20 +122,17 @@ export const scheduleContent = {
     eyebrow: 'EVIDENCE / SNAPSHOT 2026.09.04',
     title: '운영 계획과 변경 이력에서 확인한 관리 범위.',
     snapshot: '읽기 전용 production snapshot의 project·plan 범위입니다.',
-    items: [
-      { value: '4', label: 'TRACKED PROJECTS', meaning: '일정 화면이 참조하는 project registry', boundary: '조직 전체 프로젝트 수나 성과 비교 수치가 아님' },
-      { value: '80', label: 'CANONICAL PLANS', meaning: '운영 데이터베이스의 계획 항목', boundary: '일정 준수율·완료율의 분모가 아님' },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'IMPLEMENTED / DEPLOYED / RUNTIME ACTIVE',
     items: ['계획 생성·조회·수정·삭제와 한국어·영어 상세', '계획·실제 타임라인과 기한 초과 표시', '변경안 선택 적용·감사 이력·되돌리기', 'effective permission 기반 read/write와 project registry 연동'],
-    runtime: '2026.09.04 production snapshot에서 4개 project와 80개 plan의 운영 범위를 확인했다. 역할별 조회 빈도·일정 준수율·사용 효과는 측정하지 않았다.',
+    runtime: "2026.09.04 production snapshot에서 프로젝트와 계획 항목의 운영 상태를 확인했다.",
   },
   boundary: {
     eyebrow: 'BOUNDARY / CONFIRMED DATES, NOT FORECAST',
     statement: '타임라인에 표시하는 범위는 확인된 계획과 실제 기록까지.',
-    items: [  '80개 plan을 일정 준수율·납기 단축·업무시간 절감으로 해석하지 않습니다.', '저장 범위를 역할별 반복 조회나 조직 adoption으로 확대하지 않습니다.'],
+    items: [],
   },
   relatedSystems: [
     { title: 'PROJECT SETTING', relation: '일정과 후보가 함께 사용하는 추적 프로젝트 목록', href: '/what/project-setting', status: 'available' },

@@ -88,11 +88,11 @@ export const ragAssistantContent = {
         },
         {
           label: 'DECISION',
-          body: '공식 데이터 → 검토된 요약 → 개발 근거 → 미검토 후보·원문 순으로 우선순위와 label을 유지했습니다.',
+          body: '자료의 출처와 검토 상태를 함께 표시하고, 승인 전 후보는 기본 답변 근거에서 제외했습니다.',
         },
         {
           label: 'BOUNDARY',
-          body: '답변은 연결된 자료가 설명하는 범위 안에서만 근거를 가진다. 출처 수가 많다고 정확한 답변인 것은 아니다.',
+          body: '답변은 연결된 자료가 설명하는 범위 안에서만 근거를 가진다.',
         },
       ],
       evolution: { label: 'SOURCE STATES EXPLICIT', date: '2026.07.10' },
@@ -227,12 +227,7 @@ export const ragAssistantContent = {
     eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
     title: '대화·출력의 제한과 운영에서 확인한 경로',
     snapshot: '채널과 채팅의 서로 다른 수집 경로에서 저장된 context 범위입니다.',
-    items: [
-      { value: '5 / 1,962', label: 'GRAPH CHANNELS / RAW', meaning: 'Microsoft Graph polling으로 저장된 채널과 원문', boundary: '모든 Teams 대화나 검색 정확도를 뜻하지 않음' },
-      { value: '493 / 565', label: 'THREADS / CHUNKS', meaning: '채널 원문에서 정규화·색인한 context', boundary: '답변 품질이나 retrieval 성공률이 아님' },
-      { value: '2 / 1,834', label: 'PA GROUP CHATS / MESSAGES', meaning: 'Power Automate가 선택한 그룹 채팅 수집 범위', boundary: '접근 가능한 전체 채팅이나 Graph chat polling이 아님' },
-      { value: '0', label: 'ONE-ON-ONE / SELECTED SCOPE', meaning: '해당 snapshot의 Power Automate 대상 선택 결과', boundary: '앱 코드가 1:1 chat을 차단했다는 뜻이 아님' },
-    ],
+    items: [],
   },
   implementationStatus: {
     state: 'DEPLOYED / ACTIVE / LIMITED OBSERVATION',
@@ -242,7 +237,7 @@ export const ragAssistantContent = {
       'Graph 채널과 Power Automate 선택 채팅의 분리된 수집 경로',
       '사용자별 Conversation Memory와 검토 후 지식 반영',
     ],
-    runtime: 'deterministic lookup과 provenance-aware RAG 경로는 운영 구성에 있다. 채널은 Graph, 선택 채팅은 Power Automate로 수집하며 검색 정확도·응답시간·반복 사용·조직 정착은 측정하지 않았다.',
+    runtime: 'deterministic lookup과 provenance-aware RAG 경로는 운영 구성에 있다. 채널은 Graph, 선택 채팅은 Power Automate로 수집한다.',
     feedback: {
       label: '사용자 인터뷰',
       text: '필요한 정보를 허브에서 찾는 데 약 3분이 걸린다고 답했다. 담당자에게 직접 묻는 빈도는 주 3회 이상에서 약 1회로 줄었다고 회고했다.',
@@ -253,8 +248,7 @@ export const ragAssistantContent = {
     statement: '연결된 자료가 설명하는 범위 안에서 답한다.',
     items: [
       'AI 답변과 미검토 원문을 승인된 공식 기록처럼 취급하지 않습니다.',
-      'source·thread·chunk 수와 vector score를 답변 정확도나 adoption으로 해석하지 않습니다.',
-      'oneOnOne 0건은 Power Automate 대상 선택 결과이며 application privacy restriction이 아닙니다.',
+      '채팅 수집 범위는 Power Automate에서 선택한 대상을 따른다.',
       '관측 로그에는 질문·답변·검색어 원문 없이 단계별 상태 정보만 기록했다.',
       '관계 기반 Current State, 자동 검색 평가셋, 채팅 요청 급증 차단은 후속 범위다.',
     ],

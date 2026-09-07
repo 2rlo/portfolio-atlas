@@ -106,18 +106,16 @@ export const apiUsageContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / 2026.07.29 — 08.25', title: '26개 활성일의 호출 기록과 단가표로 계산한 비용.', snapshot: '2026년 7월 29일–8월 25일의 운영 토큰 원장과 저장된 단가를 기준으로 재계산했습니다.',
+    eyebrow: 'EVIDENCE / 2026.07.29 — 08.25', title: "호출 기록과 단가표로 계산한 비용.", snapshot: '2026년 7월 29일–8월 25일의 운영 토큰 원장과 저장된 단가를 기준으로 재계산했습니다.',
     items: [
-      { value: '4,502', label: 'USAGE EVENTS', meaning: '기능·모델·호출 방식이 기록된 사용량 항목', boundary: '사용자 수나 성공 요청 수가 아님' },
       { value: '$113.89', label: 'RECORDED COST', meaning: '원장 단가표로 계산된 분석 기간 비용', boundary: '공급자 청구서와 별도로 계산한 금액입니다.' },
-      { value: '1,624', label: 'BATCH-RATED EVENTS', meaning: '50% 배치 요율 배수가 적용된 사용량 기록', boundary: '모든 배치 요청이 성공했다는 뜻은 아닙니다.' },
       { value: '9.0%', label: 'CACHE READ SHARE', meaning: '대시보드의 정의로 계산한 전체 캐시 적중률', boundary: '기능별 캐시 순절감액과는 다른 지표입니다.' },
     ],
   },
   implementationStatus: {
     state: 'LEDGER + DASHBOARD + GUARD ACTIVE',
     items: ['호출별 사용량·비용 원장', '캐시 쓰기·읽기와 배치 요율 구분', '기능·모델별 비용 화면', '지연 가능한 백그라운드 배치의 예산 제어'],
-    runtime: '원장과 기존 비용 화면·예산 제어는 운영에서 활성화된 상태였습니다. 8월 27일 관리자 탭 통합은 코드에서만 확인했으며, 변경 후 운영 반영과 반복 사용은 미확인입니다. 공급자 서비스 중단으로 8월 26일 캐시 수정 후 효과도 재측정하지 못했습니다.',
+    runtime: '원장과 기존 비용 화면·예산 제어는 운영에서 활성화된 상태였습니다. 8월 27일 관리자 탭 통합은 코드에서만 확인했으며, 변경 후 운영 반영은 미확인입니다. 공급자 서비스 중단으로 8월 26일 캐시 수정 후 효과도 재측정하지 못했습니다.',
   },
   boundary: {
     eyebrow: 'BOUNDARY / LEDGER, NOT INVOICE', statement: '원장 비용과 가정별 계산은 확인했으며, 수정 후 효과는 재측정 전입니다.',

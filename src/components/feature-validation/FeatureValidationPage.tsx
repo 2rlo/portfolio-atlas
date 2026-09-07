@@ -136,7 +136,7 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
       </section>
 
       <section className="fv-evidence" aria-labelledby="fv-evidence-title">
-        <div className="fv-evidence-heading">
+        {content.evidence.items.length > 0 ? <><div className="fv-evidence-heading">
           <p>{content.evidence.eyebrow}</p>
           <h2 id="fv-evidence-title">{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
@@ -151,7 +151,7 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
               <small>{item.boundary}</small>
             </div>
           ))}
-        </dl>
+        </dl></> : <h2 className="visually-hidden" id="fv-evidence-title">구현·운영 상태</h2>}
 
         <div className="fv-status-grid">
           <section>
