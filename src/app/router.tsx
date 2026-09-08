@@ -34,6 +34,10 @@ export const router = createBrowserRouter([
         Component: HomeRoute,
       },
       {
+        path: 'toss',
+        element: <HomeRoute key="toss" tossEntry />,
+      },
+      {
         path: 'how/documentation-system',
         Component: DocumentationSystemRoute,
       },

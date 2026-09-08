@@ -5,24 +5,34 @@ import type {
   HomeTrackContent,
 } from '../../content/content-types.ts'
 import { FeatureRain } from './FeatureRain.tsx'
+import { homeEntryRecommendation } from '../../content/home.ts'
+import type { EntryGuidePhase } from './useTossEntryGuide.ts'
 
 interface MobileDiagonalPosterProps {
   readonly tracks: readonly HomeTrackContent[]
   readonly interactive: boolean
+  readonly guidePhase?: EntryGuidePhase
+  readonly onGuideEnd?: () => void
 }
 
 function MobileDiagonalPoster({
   tracks,
   interactive,
+  guidePhase = 'idle',
+  onGuideEnd,
 }: MobileDiagonalPosterProps) {
   const [activeLane, setActiveLane] = useState<ContentLane | null>(null)
   const navigate = useNavigate()
-  const visibleLane = interactive ? activeLane : null
+  const visibleLane = interactive
+    ? activeLane ?? (guidePhase === 'recommendation' ? 'how-i-build' : null)
+    : null
 
   function activateLane(track: HomeTrackContent) {
     if (!interactive) return
 
-    if (activeLane === track.lane && track.href) {
+    onGuideEnd?.()
+
+    if (visibleLane === track.lane && track.href) {
       void navigate(track.href)
       return
     }
@@ -37,6 +47,7 @@ function MobileDiagonalPoster({
       className="mobile-diagonal-poster"
       data-active-lane={visibleLane ?? 'none'}
       data-interactive={interactive}
+      data-entry-guide={guidePhase === 'idle' ? undefined : guidePhase}
       aria-label="Portfolio Atlas, 만든 제품과 만드는 방식"
     >
       <h1 className="visually-hidden">
@@ -110,8 +121,21 @@ function MobileDiagonalPoster({
                           className="poster-index-link"
                           tabIndex={isActive ? undefined : -1}
                           to={item.href}
+                          onClick={onGuideEnd}
+                          onAuxClick={onGuideEnd}
+                          data-entry-recommended={
+                            guidePhase === 'recommendation' &&
+                            item.id === homeEntryRecommendation.itemId || undefined
+                          }
                         >
                           {item.name}
+                          {guidePhase === 'recommendation' &&
+                          item.id === homeEntryRecommendation.itemId ? (
+                            <small className="poster-recommendation-label">
+                              {' '}
+                              {homeEntryRecommendation.label}
+                            </small>
+                          ) : null}
                         </Link>
                       ) : (
                         <span>{item.name}</span>
