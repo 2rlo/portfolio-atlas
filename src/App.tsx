@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router'
 import RouteScrollRestoration from './app/RouteScrollRestoration.tsx'
+import DesktopNotice from './components/DesktopNotice.tsx'
 import './App.css'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Outlet />
         <RouteScrollRestoration />
       </div>
+      <DesktopNotice />
     </>
   )
 }

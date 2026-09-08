@@ -1,0 +1,65 @@
+.desktop-notice {
+  display: none;
+}
+
+@media (max-width: 820px), (max-width: 1024px) and (pointer: coarse) and (orientation: landscape) {
+  .desktop-notice {
+    position: fixed;
+    z-index: 30;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: max(1rem, env(safe-area-inset-left));
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: auto;
+    max-width: 28rem;
+    padding: 0.875rem 0.625rem 0.875rem 1rem;
+    margin-inline: auto;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    color: var(--ink);
+    background: var(--paper);
+    box-shadow: 0 0.5rem 2rem var(--status-halo);
+  }
+
+  .desktop-notice-copy {
+    flex: 1;
+    min-width: 0;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .desktop-notice-title {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .desktop-notice-description {
+    margin: 0.25rem 0 0;
+    color: var(--ink-soft);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .desktop-notice-dismiss {
+    display: grid;
+    flex: 0 0 2.75rem;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0.25rem;
+    color: var(--jade);
+    background: transparent;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .desktop-notice-dismiss:hover {
+    background: var(--pale-jade);
+  }
+}
