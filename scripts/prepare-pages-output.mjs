@@ -5,7 +5,7 @@ const builtIndex = new URL('index.html', outputRoot)
 
 // GitHub Pages has no rewrite rules, so each public BrowserRouter route needs
 // its own static entry point for direct visits and refreshes.
-const publicRoutes = ['how/documentation-system/']
+const publicRoutes = ['toss/', 'how/documentation-system/']
 
 await copyFile(builtIndex, new URL('404.html', outputRoot))
 

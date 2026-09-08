@@ -1,5 +1,10 @@
 import type { HomePageContent } from './content-types.ts'
 
+export const homeEntryRecommendation = {
+  itemId: 'documentation-system',
+  label: '추천 진입점',
+} as const
+
 export const homeContent = {
   tracks: [
     {

@@ -4,11 +4,12 @@ import SeamPosterPrototype, {
   type DisplayTreatment,
 } from '../components/home/SeamPosterPrototype.tsx'
 import { homeContent } from '../content/home.ts'
+import { useTossEntryGuide } from '../components/home/useTossEntryGuide.ts'
 
 const treatments = new Set<CoverTreatment>(['t1', 't2', 't3'])
 const displayTreatments = new Set<DisplayTreatment>(['t0', 't1', 't2'])
 
-function HomeRoute() {
+function HomeRoute({ tossEntry = false }: { readonly tossEntry?: boolean }) {
   const [searchParams] = useSearchParams()
   const requestedStudy = searchParams.get('study')
   const requestedDisplay = searchParams.get('display')
@@ -16,6 +17,8 @@ function HomeRoute() {
   const isDisplayStudy = displayTreatments.has(
     requestedDisplay as DisplayTreatment,
   )
+  const interactive = !isStaticStudy && !isDisplayStudy
+  const guide = useTossEntryGuide(tossEntry && interactive)
   const displayTreatment = isDisplayStudy
     ? (requestedDisplay as DisplayTreatment)
     : isStaticStudy
@@ -33,7 +36,9 @@ function HomeRoute() {
         tracks={homeContent.tracks}
         treatment={treatment}
         displayTreatment={displayTreatment}
-        interactive={!isStaticStudy && !isDisplayStudy}
+        interactive={interactive}
+        guidePhase={guide.phase}
+        onGuideEnd={guide.dismiss}
       />
     </main>
   )

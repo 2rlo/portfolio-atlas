@@ -615,7 +615,8 @@
 }
 
 .poster-index-link:hover,
-.poster-index-link:focus-visible {
+.poster-index-link:focus-visible,
+.poster-index-link[data-entry-recommended='true'] {
   opacity: 1;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -623,13 +624,48 @@
 }
 
 .poster-index-link:hover::after,
-.poster-index-link:focus-visible::after {
+.poster-index-link:focus-visible::after,
+.poster-index-link[data-entry-recommended='true']::after {
   opacity: 1;
 }
 
 .poster-index-link:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: -2px;
+}
+
+/* The recommendation sits above the existing first row without resizing it. */
+:is(.poster-index-list, .mobile-poster-index) li:has(
+    [data-entry-recommended='true']
+  ) {
+  position: relative;
+  border-top-color: var(--cover-muted-jade);
+}
+
+.poster-recommendation-label {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.55rem);
+  color: var(--cover-cream);
+  font-family: var(--body);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-entry-guide='entrance'] .poster-field--how-i-build .poster-word,
+  [data-entry-guide='entrance'] .mobile-poster-content--how-i-build .mobile-poster-word {
+    animation: poster-entry-emphasis 650ms ease both;
+  }
+
+  @keyframes poster-entry-emphasis {
+    0%, 100% { opacity: 1; }
+    45% { opacity: 0.74; }
+  }
 }
 
 @media (min-width: 821px) {
@@ -670,7 +706,8 @@
 
   .seam-poster[data-interactive='true']:has(
       .poster-field--how-i-build:focus-within
-    ) {
+    ),
+  .seam-poster[data-entry-guide='recommendation'] {
     grid-template-columns: 45% 55%;
   }
 
@@ -683,7 +720,9 @@
       .poster-field--how-i-build:focus-within
     )
     .poster-field--what-i-built
-    .poster-word {
+    .poster-word,
+  .seam-poster[data-entry-guide='recommendation']
+    .poster-field--what-i-built .poster-word {
     opacity: 0.44;
   }
 
@@ -696,13 +735,17 @@
       .poster-field--how-i-build:focus-within
     )
     .poster-field--what-i-built
-    .poster-meta {
+    .poster-meta,
+  .seam-poster[data-entry-guide='recommendation']
+    .poster-field--what-i-built .poster-meta {
     opacity: 0.7;
   }
 
   .seam-poster[data-interactive='true']
     .poster-field:focus-within
-    .poster-index-list {
+    .poster-index-list,
+  .seam-poster[data-entry-guide='recommendation']
+    .poster-field--how-i-build .poster-index-list {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -719,7 +762,9 @@
 
   .seam-poster[data-interactive='true']
     .poster-field--how-i-build:focus-within
-    .poster-word {
+    .poster-word,
+  .seam-poster[data-entry-guide='recommendation']
+    .poster-field--how-i-build .poster-word {
     letter-spacing: var(--focused-word-tracking);
     transform: translate(-4px, -50%);
   }
@@ -835,6 +880,37 @@
     .poster-word {
     letter-spacing: var(--focused-word-tracking);
     transform: translate(-4px, -50%);
+  }
+}
+
+/* Narrow landscape still uses the desktop poster. Reveal its existing index. */
+@media (max-width: 820px) and (orientation: landscape) {
+  .seam-poster[data-entry-guide='recommendation'] .poster-index-list {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+/* Keep the four choices clear of the giant HOW word on short screens. */
+@media (max-height: 500px) and (orientation: landscape) {
+  .seam-poster[data-entry-guide='recommendation']
+    .poster-field--how-i-build .poster-word {
+    top: 6rem;
+    transform: translateX(-4px) scale(0.45);
+    transform-origin: left top;
+  }
+
+  .seam-poster[data-entry-guide='recommendation']
+    .poster-field--how-i-build .poster-meta {
+    opacity: 0;
+  }
+
+  .seam-poster[data-entry-guide='recommendation'] .poster-index-list {
+    right: var(--page-gutter);
+    bottom: 1rem;
+    width: min(21rem, calc(100% - 2 * var(--page-gutter)));
   }
 }
 

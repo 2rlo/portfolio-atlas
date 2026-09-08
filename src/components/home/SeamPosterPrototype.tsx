@@ -1,7 +1,9 @@
 import { Link } from 'react-router'
 import type { HomeTrackContent } from '../../content/content-types.ts'
+import { homeEntryRecommendation } from '../../content/home.ts'
 import { FeatureRain } from './FeatureRain.tsx'
 import MobileDiagonalPoster from './MobileDiagonalPoster.tsx'
+import type { EntryGuidePhase } from './useTossEntryGuide.ts'
 
 export type CoverTreatment = 't1' | 't2' | 't3'
 export type DisplayTreatment = 't0' | 't1' | 't2'
@@ -11,6 +13,8 @@ interface SeamPosterPrototypeProps {
   readonly treatment: CoverTreatment
   readonly displayTreatment?: DisplayTreatment
   readonly interactive: boolean
+  readonly guidePhase?: EntryGuidePhase
+  readonly onGuideEnd?: () => void
 }
 
 function SeamPosterPrototype({
@@ -18,6 +22,8 @@ function SeamPosterPrototype({
   treatment,
   displayTreatment,
   interactive,
+  guidePhase = 'idle',
+  onGuideEnd,
 }: SeamPosterPrototypeProps) {
   const displayClassName = displayTreatment
     ? ` display-treatment--${displayTreatment}`
@@ -30,6 +36,7 @@ function SeamPosterPrototype({
         data-treatment={treatment}
         data-display-treatment={displayTreatment}
         data-interactive={interactive}
+        data-entry-guide={guidePhase === 'idle' ? undefined : guidePhase}
         aria-label="Portfolio Atlas, 만든 제품과 만드는 방식"
       >
         <h1 className="visually-hidden">
@@ -51,6 +58,8 @@ function SeamPosterPrototype({
                 aria-label={`${track.items[0]?.name ?? track.label} 열기`}
                 className="poster-field-background-link"
                 to={track.href}
+                onClick={onGuideEnd}
+                onAuxClick={onGuideEnd}
               />
             ) : null}
 
@@ -76,8 +85,24 @@ function SeamPosterPrototype({
                   <li key={item.id}>
                     <span>{String(itemIndex + 1).padStart(2, '0')}</span>
                     {interactive && item.href ? (
-                      <Link className="poster-index-link" to={item.href}>
+                      <Link
+                        className="poster-index-link"
+                        to={item.href}
+                        onClick={onGuideEnd}
+                        onAuxClick={onGuideEnd}
+                        data-entry-recommended={
+                          guidePhase === 'recommendation' &&
+                          item.id === homeEntryRecommendation.itemId || undefined
+                        }
+                      >
                         {item.name}
+                        {guidePhase === 'recommendation' &&
+                        item.id === homeEntryRecommendation.itemId ? (
+                          <small className="poster-recommendation-label">
+                            {' '}
+                            {homeEntryRecommendation.label}
+                          </small>
+                        ) : null}
                       </Link>
                     ) : (
                       <span>{item.name}</span>
@@ -90,7 +115,12 @@ function SeamPosterPrototype({
         ))}
       </section>
 
-      <MobileDiagonalPoster tracks={tracks} interactive={interactive} />
+      <MobileDiagonalPoster
+        tracks={tracks}
+        interactive={interactive}
+        guidePhase={guidePhase}
+        onGuideEnd={onGuideEnd}
+      />
     </>
   )
 }
