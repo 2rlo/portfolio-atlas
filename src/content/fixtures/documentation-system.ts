@@ -19,11 +19,11 @@ export const documentationSystemContent = {
     supportingLabel: '프로젝트 맥락을 문서로',
     thesis: '코드 작성자만 알던 프로젝트 맥락을, 다시 찾아갈 수 있는 구조로 만들었다.',
     summary:
-      '현재 상태, 결정의 이유, 운영 절차, 코드 위치를 질문별로 나눴다. 실제 상태는 다시 확인하고, 구조가 바뀌면 설명도 함께 바꾼다.',
+      '현재 상태, 결정의 이유, 운영 절차, 코드 위치를 질문별로 나눠 문서로 확인할 수 있게 했다. 실제 상태는 다시 확인하여 갱신하고, 구조가 바뀌면 설명도 함께 바꾼다.',
     scope: {
       eyebrow: '개발·운영 문서의 범위',
       statement: '개발자와 운영자, 미래의 내가 시스템을 이해하고 변경·배포·복구할 때 쓰는 맥락.',
-      boundary: 'AI가 답변에 사용하는 지식과 대화 기억은 별도 체계에서 관리한다.',
+      boundary: '',
       artifacts: [
         'ERD',
         'Architecture',
@@ -146,7 +146,7 @@ export const documentationSystemContent = {
         maintenance: '기준 문서나 진입 경로가 바뀔 때.',
         evidence: [
           { label: 'ENTRY PATH', statement: '', sequence: ['README', 'Project Map', 'Domain docs', 'Architecture / Operations', 'Codemap'] },
-          { label: 'SEPARATION', statement: '', items: ['README에는 진입 정보', '위험한 작업은 Runbook'] },
+          { label: 'SEPARATION', statement: '', items: ['README에는 진입 정보만, 위험한 작업은 Runbook에 기입'] },
         ],
         excerpt: ['# Project Map', '', '## Start here', '- Current status → ./current-state', '- System structure → ./architecture', '- Next scope → ./roadmap', '- Decisions → ./decisions', '- Run / recover → ./operations', '- Code impact → ./codemap'],
       },
@@ -192,11 +192,11 @@ export const documentationSystemContent = {
     libraryItems: [
       {
         id: 'data-pipeline', index: '04', title: 'DATA PIPELINE', responsibility: '데이터 흐름 / 검토 상태', summary: '입력부터 검토·확정 상태까지 책임을 따라간다.',
-        why: '원본에서 변환 결과, AI 후보, 확정 데이터로 이어지는 상태를 구분한다.', audience: ['개발자', '데이터 검토자'], boundary: '실제 레코드·저장소 식별자·운영 데이터는 포함하지 않는다.', maintenance: '입력 계약·변환·소유권이 바뀔 때.', evidence: [{ label: 'STATE BOUNDARY', statement: 'Source → Validate → Transform → Review → Confirmed' }], excerpt: ['# Data Pipeline', '', 'source', '  → validate', '  → transform', '  → review', '  → confirmed'],
+        why: '원본에서 변환 결과, AI 후보, 확정 데이터로 이어지는 상태를 구분한다.', audience: ['개발자', '검토자'], boundary: '실제 레코드·저장소 식별자·운영 데이터는 공개 문서에 포함하지 않는다.', maintenance: '입력 계약·변환·소유권이 바뀔 때.', evidence: [{ label: 'STATE BOUNDARY', statement: 'Source → Validate → Transform → Review → Confirmed' }], excerpt: ['# Data Pipeline', '', 'source', '  → validate', '  → transform', '  → review', '  → confirmed'],
       },
       {
         id: 'api-map', index: '05', title: 'API MAP', responsibility: '인터페이스 계약', summary: '인터페이스와 인가 조건을 함께 찾는다.',
-        why: '요청 형식과 함께, 누가 실행할 수 있는지 확인해야 한다.', audience: ['개발자', '연동 담당자'], boundary: '실제 엔드포인트·도메인·계정 식별자는 포함하지 않는다.', maintenance: '라우트·요청 형식·인가 경계가 바뀔 때.', evidence: [{ label: 'CONTRACT', statement: '요청 형식 + 실행 권한' }], excerpt: ['# Interface Map', '', '## Read', '- authenticated role required', '', '## Write', '- validate scope before mutation'],
+        why: '요청 형식과 함께, 누가 실행할 수 있는지 확인해야 한다.', audience: ['개발자', '유지보수 담당자'], boundary: '실제 엔드포인트·도메인·계정 식별자는 포함하지 않는다.', maintenance: '라우트·요청 형식·인가 경계가 바뀔 때.', evidence: [{ label: 'CONTRACT', statement: '요청 형식 + 실행 권한' }], excerpt: ['# Interface Map', '', '## Read', '- authenticated role required', '', '## Write', '- validate scope before mutation'],
       },
       {
         id: 'deployment', index: '06', title: 'DEPLOYMENT', responsibility: '배포 운영', summary: '반영 전제, 검증 순서, rollback 기준.',
@@ -264,7 +264,7 @@ export const documentationSystemContent = {
         id: 'staleness', index: '05', time: '2026.08', title: 'THE PROBLEM BECAME STALENESS.', pressureLines: ['STALE CONTEXT'],
         takeaway: '문서를 더 만드는 것보다, 낡지 않게 유지하는 일이 다음 문제가 됐다.',
         change: 'CHANGE → CONTEXT → VERIFY',
-        evidence: { label: 'EVIDENCE', statement: '코드와 지도가 어긋난 뒤, LOCK에 기준 리비전·생성 시각·스캔 범위·모듈 지문을 남겼다.' },
+        evidence: { label: 'EVIDENCE', statement: '코드와 지도가 어긋나지 않도록, LOCK에 기준 리비전·생성 시각·스캔 범위·모듈 지문을 남겼다.' },
         boundary: '구조를 바꾸면 관련 문서도 같은 변경에서 갱신하고 검증한다.',
         accessibleVisualSummary: '기존 문서 구조에 변경·문서 갱신·검증의 흐름이 더해진다. 구조를 바꾸면 관련 Architecture·도메인 문서·Codemap을 갱신하고 코드·테스트·실제 상태를 확인한다.',
         visual: { kind: 'staleness', backlog: ['CHANGE', 'CONTEXT', 'VERIFY'], triggers: ['BOUNDARY', 'ROUTE', 'DEPENDENCY', 'SCHEMA', 'QUEUE', 'MAJOR DATA FLOW'], context: ['ARCHITECTURE', 'DOMAIN DOCS', 'CODEMAP'] },

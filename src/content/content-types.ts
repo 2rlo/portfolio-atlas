@@ -2123,7 +2123,7 @@ export interface SecurityOperationsContent {
       readonly state: 'failure' | 'automatic' | 'terminal' | 'human'
     }[]
     readonly modes: readonly {
-      readonly label: 'AUTOMATED' | 'ASSISTED' | 'MANUAL / NOT VERIFIED'
+      readonly label: 'AUTOMATED' | 'ASSISTED' | 'MANUAL'
       readonly title: string
       readonly items: readonly string[]
     }[]
@@ -2133,8 +2133,12 @@ export interface SecurityOperationsContent {
     readonly eyebrow: string
     readonly title: string
     readonly summary: string
-    readonly built: readonly string[]
-    readonly notClaimed: readonly string[]
+    readonly groups: readonly {
+      readonly label: 'ACCESS' | 'DEPLOY' | 'RECOVER'
+      readonly question: string
+      readonly items: readonly string[]
+    }[]
+    readonly rollbackBoundary: string
     readonly maintenanceRule: string
   }
   readonly nextPage: {

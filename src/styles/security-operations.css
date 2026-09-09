@@ -92,6 +92,7 @@
   z-index: 1;
   align-self: center;
   grid-column: 1 / -1;
+  min-width: 0;
 }
 
 .so-hero-copy > p,
@@ -122,7 +123,7 @@
     'wdth' 94,
     'wght' 820;
   font-weight: 820;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.025em;
   line-height: 0.74;
   text-transform: uppercase;
 }
@@ -136,6 +137,9 @@
   align-self: flex-end;
   width: max-content;
   max-width: 100%;
+  margin-top: 0.055em;
+  font-size: 0.92em;
+  white-space: nowrap;
 }
 
 .so-hero-thesis {
@@ -1525,66 +1529,86 @@
   background: var(--cover-black);
 }
 
+.so-current-boundary .so-section-heading h2 {
+  font-size: clamp(2.6rem, 4.6vw, 5.4rem);
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
 .so-boundary-columns {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: clamp(3.5rem, 6vw, 6rem);
   border-top: 1px solid var(--cover-rule);
   border-bottom: 1px solid var(--cover-rule);
+  background: var(--cover-jade);
 }
 
 .so-boundary-columns > section {
   min-width: 0;
-  padding: clamp(1.5rem, 3vw, 3rem);
+  padding: clamp(1.5rem, 2.4vw, 2.5rem);
 }
 
-.so-boundary-columns > section:first-child {
-  border-right: 1px solid var(--cover-rule);
-  background: var(--cover-jade);
-}
-
-.so-boundary-columns > section:only-child {
-  grid-column: 1 / -1;
-  border-right: 0;
+.so-boundary-columns > section + section {
+  border-left: 1px solid var(--cover-rule);
 }
 
 .so-boundary-columns header {
-  display: flex;
-  gap: 1.2rem;
-  align-items: baseline;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--cover-rule);
-}
-
-.so-boundary-columns header span {
-  color: var(--cover-muted-jade);
-  font-family: var(--cover-utility);
-  font-size: 0.6rem;
+  margin-bottom: 2rem;
 }
 
 .so-boundary-columns h3 {
   margin: 0;
-  font-family: var(--cover-condensed);
-  font-size: clamp(1.4rem, 2vw, 2rem);
+  color: var(--cover-cream);
+  font-family: var(--cover-roboto-flex-study);
+  font-size: clamp(2.6rem, 3.8vw, 4rem);
+  font-variation-settings:
+    'opsz' 144,
+    'wdth' 94,
+    'wght' 820;
+  font-weight: 820;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.so-boundary-columns header p {
+  min-height: 2.9em;
+  margin: 1.25rem 0 0;
+  color: var(--cover-cream);
+  font-size: clamp(1.15rem, 1.65vw, 1.55rem);
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.so-boundary-columns ul {
+  display: grid;
+  gap: 1.15rem;
 }
 
 .so-boundary-columns li {
   display: grid;
-  grid-template-columns: 1rem minmax(0, 1fr);
+  grid-template-columns: 0.55rem minmax(0, 1fr);
   gap: 0.75rem;
-  padding-block: 0.78rem;
   color: var(--document-dark-muted);
-  border-bottom: 1px solid var(--cover-rule);
-  font-size: 0.82rem;
-  line-height: 1.6;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  word-break: keep-all;
 }
 
 .so-boundary-columns li::before {
   color: var(--cover-muted-jade);
   font-family: var(--cover-utility);
   content: '—';
+}
+
+.so-rollback-boundary {
+  margin: 1.5rem 0 0;
+  color: var(--cover-cream);
+  font-size: clamp(0.94rem, 1.1vw, 1.1rem);
+  line-height: 1.75;
+  word-break: keep-all;
 }
 
 .so-maintenance-rule {
@@ -1714,6 +1738,29 @@
   .so-section-heading {
     grid-template-columns: 1fr;
     gap: 1.8rem;
+  }
+
+  .so-boundary-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .so-boundary-columns > section {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 2rem;
+  }
+
+  .so-boundary-columns > section + section {
+    border-top: 1px solid var(--cover-rule);
+    border-left: 0;
+  }
+
+  .so-boundary-columns header {
+    margin-bottom: 0;
+  }
+
+  .so-boundary-columns header p {
+    min-height: 0;
   }
 
   .so-product-grid {
@@ -2047,13 +2094,9 @@
     gap: 0.8rem;
   }
 
-  .so-boundary-columns {
+  .so-boundary-columns > section {
     grid-template-columns: 1fr;
-  }
-
-  .so-boundary-columns > section:first-child {
-    border-right: 0;
-    border-bottom: 1px solid var(--cover-rule);
+    gap: 1.75rem;
   }
 
   .so-maintenance-rule {
@@ -2087,7 +2130,7 @@
   }
 
   .so-hero-copy h1 {
-    font-size: clamp(3.45rem, 17.5vw, 5.5rem);
+    font-size: clamp(3.2rem, 16.7vw, 5.2rem);
   }
 
   .so-product-header > p {

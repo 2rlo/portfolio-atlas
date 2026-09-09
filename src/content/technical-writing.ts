@@ -269,7 +269,7 @@ export const technicalWritingContent = {
     rollbackBoundary: {
       title: 'APPLICATION ROLLBACK ≠ DATA ROLLBACK',
       statement:
-        '애플리케이션을 이전 대상으로 되돌려도 스키마·데이터·권한·기능 플래그·소급 반영 결과는 자동으로 복원되지 않는다.',
+        '애플리케이션 롤백은 실행 코드의 버전을 되돌리는 일입니다. 이미 적용된 DB 변경·데이터 갱신·외부 연동 결과는 별도의 복구가 필요할 수 있습니다.',
       stopRule:
         '이전 대상 복원까지 실패하면 자동 진행을 멈추고, 관측한 상태를 보존한 채 수동 복구로 전환한다.',
     },

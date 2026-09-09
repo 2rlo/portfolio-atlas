@@ -443,7 +443,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
               <li key={decision.index}>
                 <span className="so-decision-index">{decision.index}</span>
                 <div data-step="risk">
-                  <p>문제</p>
+                  <p>위험</p>
                   <strong>{decision.risk}</strong>
                 </div>
                 <i aria-hidden="true">→</i>
@@ -570,19 +570,22 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
           />
 
           <div className="so-boundary-columns">
-            <section>
-              <header>
-                <span>01</span>
-                <h3>구현한 범위</h3>
-              </header>
-              <ul>
-                {content.boundary.built.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </section>
-
+            {content.boundary.groups.map((group) => (
+              <section aria-labelledby={`so-boundary-${group.label.toLowerCase()}`} key={group.label}>
+                <header>
+                  <h3 id={`so-boundary-${group.label.toLowerCase()}`}>{group.label}</h3>
+                  <p>{group.question}</p>
+                </header>
+                <ul>
+                  {group.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </section>
+            ))}
           </div>
+
+          <p className="so-rollback-boundary">{content.boundary.rollbackBoundary}</p>
 
           <p className="so-maintenance-rule">
             <span>다시 확인하는 시점</span>
