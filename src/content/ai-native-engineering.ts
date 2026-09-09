@@ -54,19 +54,12 @@ export const aiNativeEngineeringContent = {
       '권한 조건 하나를 바꿀 때 화면·정책·서비스·저장 규칙·테스트를 함께 검토하는 공개 재구성 사례.',
     toolRule:
       '읽을 범위, 변경 권한, 검증 대상을 먼저 정하고 작업에 맞춰 Claude Code 또는 Codex를 사용한다. 두 도구에 같은 프로젝트 지침을 적용한다.',
-    stateLegend: [
-      { state: 'context', label: '작업 기준' },
-      { state: 'candidate', label: 'AI가 만든 후보' },
-      { state: 'evidence', label: '검증 근거' },
-      { state: 'decision', label: '사람이 채택한 변경' },
-      { state: 'canonical', label: '기준에 반영됨' },
-    ],
     steps: [
       {
         id: 'context',
         label: 'CONTEXT',
         summary: '현재 기준부터 읽는다.',
-        action: '원격 기준과 작업 상태를 비교하고, 작업 지침의 순서대로 현재 문서와 알려진 문제를 읽는다.',
+        action: '원격 기준과 작업 상태를 확인하고, 작업 지침의 순서대로 현재 문서와 알려진 문제를 읽는다.',
         proof: '작업 전제, 아직 확인되지 않은 항목과 금지된 변경이 구분된다.',
         exitRule: '기준 브랜치·문서 최신성·작업 제약을 설명할 수 있을 때.',
         codemapUse: 'LOCK에서 생성 범위와 최신성을 먼저 확인한다.',
@@ -77,7 +70,7 @@ export const aiNativeEngineeringContent = {
         label: 'SCOPE',
         summary: '영향 범위를 좁힌다.',
         action: '요청과 연결된 진입점·의존성·제약·테스트를 찾고, 변경하지 않을 영역을 명시한다.',
-        proof: '수정 대상과 함께 건드리면 안 되는 경계가 작은 변경 단위로 남는다.',
+        proof: '수정 대상과 함께 건드리지 않을 경계가 하나의 작은 변경 단의로 정의된다.',
         exitRule: '영향 경로와 검증할 대상이 정해졌을 때.',
         codemapUse: '코드의 역할·진입점·의존성·테스트·제약·근거를 함께 대조한다.',
         state: 'context',
@@ -86,7 +79,7 @@ export const aiNativeEngineeringContent = {
         id: 'isolate',
         label: 'ISOLATE',
         summary: '코드와 환경의 경계를 나눈다.',
-        action: 'Orca/ADE의 독립 worktree에서 브랜치와 변경 상태를 고정한다. 환경 입력은 변경 전 기준과 별도로 비교한다.',
+        action: '확정한 기준으로 독립 worktree와 브랜치를 만들고, 재현 환경과 변경 전 상태를 고정한다.',
         proof: '변경, 기존 상태와 로컬 환경을 서로 다른 원인 후보로 추적할 수 있다.',
         exitRule: '재현 명령과 비교 기준이 같은 조건으로 준비됐을 때.',
         state: 'candidate',
@@ -132,30 +125,43 @@ export const aiNativeEngineeringContent = {
     ],
   },
   incident: {
-    eyebrow: 'FAILURE RECORD / ENVIRONMENT LEAK',
-    title: 'Worktree가 분리돼 있어도, 환경까지 깨끗한 것은 아니었다.',
+    eyebrow: 'FAILURE RECORD / AI PROPOSAL REVIEW',
+    date: '2026-08-14',
+    title: 'AI의 첫 해결책을 바로 구현하지 않았습니다.',
     summary:
-      '격리된 작업에서 테스트가 예상과 다르게 움직였다. 변경 전 기준에서도 같은 검증 명령을 실행해 코드와 환경의 영향을 나눴다.',
-    symptom: '독립 worktree의 테스트 결과가 기존 기준과 다르게 나타남.',
-    hypotheses: ['코드 변경의 회귀', '테스트 데이터 또는 의존성 차이', '상속된 .env 입력의 오염'],
+      '후속 질문에서 AI가 앞서 찾은 근거까지 부정하는 문제가 나타났습니다. 근거를 저장해 다시 주입하는 큰 설계가 제안됐지만, 먼저 더 작은 수정안을 적용하고 실제 대화로 검증했습니다. 코드와 재현 결과를 확인한 뒤, 사람이 구현 범위를 결정했습니다.',
+    symptom: '“아닌데?”라는 짧은 후속 질문에, 앞서 찾은 근거까지 부정했다.',
+    reviewFindings: [
+      '후속 질문에서 자동 RAG가 필요한 검색 맥락을 충분히 확보하지 못하는 경우가 있었다.',
+      '제안된 저장 시점에 구조화된 검색 근거가 충분히 존재하지 않았다.',
+      '모델 출력 → 근거 저장 → 모델 입력으로 이어지는 자기참조 가능성이 있었다.',
+    ],
     comparison: [
       {
-        id: 'working-copy',
-        label: 'ISOLATED WORKTREE',
-        state: 'UNEXPECTED',
-        observation: '변경 브랜치와 로컬 환경 입력이 함께 있는 상태에서 이상 동작이 재현됐다.',
+        id: 'first-proposal',
+        label: 'FIRST PROPOSAL',
+        state: 'HOLD',
+        observation: '이전 답변의 근거를 저장하고 다음 대화에 다시 주입',
+        note: '모델 출력이 다시 사실의 근거가 되는 순환 가능성을 확인',
       },
       {
-        id: 'clean-baseline',
-        label: 'CLEAN BASELINE',
-        state: 'EXPECTED',
-        observation: '깨끗한 기준에서는 같은 검증 명령이 정상 동작했고, 환경 입력 차이가 남았다.',
+        id: 'smaller-test',
+        label: 'SMALLER TEST',
+        state: 'VERIFIED',
+        observation: '후속 질문의 검색 맥락을 보완하고 실제 2턴 대화로 재현',
+        note: '개발 환경의 실제 임베딩 데이터로 검증. 해당 시나리오에서 앞선 근거를 다시 부정하지 않음을 확인',
       },
     ],
     evidence:
-      '브랜치의 코드 차이만으로는 증상을 설명할 수 없었다. 결과는 .env 조건에 따라 달라졌다.',
-    decision: '기능 코드 수정 전에 오염된 환경을 별도 원인으로 분리했다.',
-    rule: ['ISOLATE CODE.', 'VERIFY ENVIRONMENT.'],
+      '직전 질문의 맥락을 연결해 검색하고, 이번 검색에 없다는 이유로 앞서 확인한 근거를 부정하지 않도록 응답 지침을 보완했다.',
+    decision:
+      '작은 수정과 재현 결과를 확인한 뒤, 큰 근거 영속화는 향후 추론·근거 검증 구조와 함께 다시 설계할 항목으로 보류했다.',
+    extension: {
+      workflow: '자동 검색 → 맥락 부족 판단 → 추가 검색 → 답변 계속',
+      description:
+        '추가로 search_company_context를 구현했다. 자동 RAG 이후 맥락이 부족하면 AI가 원본 검색 도구를 호출하고, 검색 결과를 tool_result로 받아 답변을 이어간다.',
+    },
+    rule: ['VERIFY THE PROPOSAL.', 'RETURN TO SOURCE.'],
   },
   artifacts: {
     eyebrow: 'THREE CONTROLS / HUMAN + AI',
@@ -193,19 +199,19 @@ export const aiNativeEngineeringContent = {
   },
   principle: {
     eyebrow: 'BOUNDARY / CURRENT PRACTICE',
-    statement: 'AI-ready는 모델 선택이 아니라, 환경의 상태다.',
+    statement: 'AI-ready는 모델 선택이 아니라, 검증할 수 있는 작업 구조의 상태다.',
     explanation:
-      '작업 시작 전에는 기준과 범위를, 반영 전에는 검증 결과와 사람의 결정을 확인한다.',
+      '이전 AI 답변을 사실처럼 기억시키기보다, 필요할 때 원본 근거를 다시 검색할 수 있게 했다. 제안은 후보로 두고, 코드와 재현 결과를 확인한 뒤 사람이 구현 범위를 정한다.',
     maintenanceRule: {
       label: 'CURRENT RULE',
-      statement: 'CHANGE → CONTEXT → VERIFY',
-      detail: '확인된 구조 변경은 코드와 같은 변경에서 작업 지침과 Codemap에 반영한다. 다음 작업 전에는 최신성을 다시 확인한다.',
+      statement: 'PROPOSAL → EVIDENCE → DECISION',
+      detail: 'AI의 제안은 코드와 재현 결과를 확인한 뒤 사람이 채택·수정·보류를 결정한다. 확인된 구조 변경은 코드와 같은 변경에서 작업 지침과 Codemap에 반영한다.',
     },
     boundary: [
       '문서와 Codemap은 탐색 기준이다. 실제 동작은 코드·데이터·테스트로 확인한다.',
       'AI가 만든 후보·검증 근거·사람의 채택 결정·기준 문서 반영을 구분해 남긴다.',
       '구현·테스트 통과·배포·실제 사용·조직 내 정착은 각각의 근거로 확인한다.',
     ],
-    appliedIn: '제품 사례는 각 공개 페이지에서 확인된 근거와 boundary를 분리해 연결한다.',
+    appliedIn: '',
   },
 } as const satisfies AiNativeEngineeringContent
