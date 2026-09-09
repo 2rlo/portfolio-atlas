@@ -28,90 +28,66 @@ export const technicalWritingContent = {
   },
   reader: {
     eyebrow: '01 / WRITING FOR THE READER',
-    title: '같은 화면, 다른 다음 행동.',
-    question: '',
-    commonContext: 'QUALITY RECORD / HISTORICAL ROLE SNAPSHOT (2026.08)',
-    decision:
-      '작성자에게는 수정·재생성을, 열람자에게는 확인·변경 요청을 중심으로 설명했다.',
+    title: '같은 기능도, 독자에 따라 필요한 정보와 다음 행동이 달랐습니다.',
+    commonContext: '품질 기록 기능 · 2026.08 권한별 안내',
     guides: [
       {
         id: 'writer',
-        index: 'A',
-        label: 'WRITER GUIDE',
         role: '작성 권한',
         purpose: '기록을 바꾸고 결과를 확정하는 사람',
-        permission: 'READ · EDIT · REGENERATE',
+        actions: '수정 · 재생성 · 확정',
         steps: [
           {
             index: '01',
-            action: '대상 기록을 연다.',
-            detail: '현재 결과와 첨부 근거부터 확인.',
+            action: '기록을 연다',
+            detail: '현재 결과와 첨부 근거를 확인',
           },
           {
             index: '02',
-            action: '사실에 맞게 보완한다.',
-            detail: '결과·상세·첨부를 바꾸고 저장.',
+            action: '사실에 맞게 수정한다',
+            detail: '결과·상세·첨부를 수정',
           },
           {
             index: '03',
-            action: '보조 결과를 다시 생성한다.',
-            detail: '기존 기록을 수정한 뒤 별도로 실행.',
-            annotation: {
-              marker: '1',
-              label: 'MARGIN NOTE 01',
-              title: '자동으로 일어나지 않는 일을 행동 옆에 썼다.',
-              body: '기록을 수정해도 보조 결과는 자동으로 갱신되지 않았다. ‘수정’ 다음에 ‘다시 생성’을 별도 단계로 두어 실행 시점을 분명히 했다.',
-            },
-          },
-          {
-            index: '04',
-            action: '원본과 비교해 확정한다.',
-            detail: '생성 결과를 근거와 대조한 뒤 문구를 다듬는다.',
+            action: '다시 생성하고 확정한다',
+            detail: '수정 후 필요한 결과를 다시 생성하고 원문과 대조',
           },
         ],
         handoff:
-          '저장 뒤에는 보조 결과를 다시 생성하고 원본과 대조한다.',
+          '수정 후에는 필요한 결과를 다시 생성하고 원문과 대조합니다.',
       },
       {
         id: 'viewer',
-        index: 'B',
-        label: 'VIEWER GUIDE',
         role: '열람 권한',
         purpose: '결과를 확인하고 변경을 요청하는 사람',
-        permission: 'READ · CHECK · REQUEST',
+        actions: '확인 · 비교 · 변경 요청',
         steps: [
           {
             index: '01',
-            action: '결과와 근거를 읽는다.',
-            detail: '상세 설명·첨부·생성된 보조 내용 확인.',
+            action: '결과와 근거를 읽는다',
+            detail: '상세 설명·첨부·생성된 보조 내용 확인',
           },
           {
             index: '02',
-            action: '관련 일정과 시점을 대조한다.',
-            detail: '읽을 수 있는 일정과 시점을 대조.',
+            action: '관련 일정과 상태를 대조한다',
+            detail: '읽을 수 있는 일정과 시점을 확인',
           },
           {
             index: '03',
-            action: '변경 권한을 확인한다.',
-            detail: '숨겨진 버튼은 오류가 아니라 정상 권한 범위.',
-            annotation: {
-              marker: '2',
-              label: 'MARGIN NOTE 02',
-              title: '보이지 않는 버튼의 이유도 적었다.',
-              body: '열람자에게는 편집 버튼이 표시되지 않는다. 오류로 오해하지 않도록 권한에 따른 정상 상태와 변경 요청 방법을 함께 설명했다.',
-            },
-          },
-          {
-            index: '04',
-            action: '근거와 함께 변경을 요청한다.',
-            detail: '대상·근거·발견 시각을 담당자에게 전달.',
+            action: '변경이 필요하면 요청한다',
+            detail: '직접 수정하지 않고 대상·근거와 함께 담당자에게 전달',
           },
         ],
         handoff:
-          '열람자는 직접 수정하는 대신 대상과 근거를 갖춰 변경을 요청한다.',
+          '직접 수정하는 대신 대상과 근거를 갖춰 변경을 요청합니다.',
       },
     ],
-    actionStructure: ['GOAL', 'STEPS', 'CONTROL', 'EXCEPTION'],
+    reasoning: {
+      statement:
+        '작성자는 직접 바꾸는 사람이므로 실행 순서를 적고, 열람자는 직접 수정할 수 없으므로 확인 기준과 변경 요청 방법을 적었습니다.',
+      note:
+        '자동으로 일어나지 않는 행동과, 권한 때문에 보이지 않는 기능도 명시했습니다.',
+    },
     evolution: {
       before: {
         label: 'BEFORE / ROLE SNAPSHOT',
