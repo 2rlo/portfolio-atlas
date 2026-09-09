@@ -1855,16 +1855,13 @@ export interface TechnicalWritingAnnotation {
 
 export interface TechnicalWritingReaderGuide {
   readonly id: 'writer' | 'viewer'
-  readonly index: string
-  readonly label: string
   readonly role: string
   readonly purpose: string
-  readonly permission: string
+  readonly actions: string
   readonly steps: readonly {
     readonly index: string
     readonly action: string
     readonly detail: string
-    readonly annotation?: TechnicalWritingAnnotation
   }[]
   readonly handoff: string
 }
@@ -1887,11 +1884,12 @@ export interface TechnicalWritingContent {
   readonly reader: {
     readonly eyebrow: string
     readonly title: string
-    readonly question: string
     readonly commonContext: string
-    readonly decision: string
     readonly guides: readonly TechnicalWritingReaderGuide[]
-    readonly actionStructure: readonly string[]
+    readonly reasoning: {
+      readonly statement: string
+      readonly note: string
+    }
     readonly evolution: {
       readonly before: {
         readonly label: string

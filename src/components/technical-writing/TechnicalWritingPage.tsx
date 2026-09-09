@@ -42,36 +42,23 @@ function ReaderGuide({ guide }: ReaderGuideProps) {
       data-reader={guide.id}
       aria-labelledby={titleId}
     >
-      <header className="tw-reader-guide-header">
-        <div className="tw-reader-guide-index" aria-hidden="true">
-          {guide.index}
-        </div>
-        <div>
-          <p>{guide.label}</p>
-          <h3 id={titleId}>{guide.role}</h3>
-          <span>{guide.purpose}</span>
-        </div>
-      </header>
-
-      <p className="tw-reader-permission">{guide.permission}</p>
+      <p className="tw-reader-detail-label" aria-hidden="true">
+        {guide.role} · 핵심 순서
+      </p>
 
       <ol className="tw-reader-steps">
         {guide.steps.map((step) => (
-          <li data-annotated={Boolean(step.annotation)} key={step.index}>
-            <span className="tw-step-index">{step.index}</span>
+          <li key={step.index}>
+            <span className="tw-step-index" aria-hidden="true">{step.index}</span>
             <div className="tw-step-copy">
               <strong>{step.action}</strong>
               <p>{step.detail}</p>
-              {step.annotation ? (
-                <EditorialAnnotation annotation={step.annotation} />
-              ) : null}
             </div>
           </li>
         ))}
       </ol>
 
       <footer>
-        <span>다음 행동</span>
         <p>{guide.handoff}</p>
       </footer>
     </article>
@@ -143,21 +130,20 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
       <section className="tw-reader-section" aria-labelledby="tw-reader-title">
         <div className="tw-section-frame">
           <header className="tw-reader-intro">
-            <div>
-              <p>{content.reader.eyebrow}</p>
-              <h2 id="tw-reader-title">{content.reader.title}</h2>
-            </div>
-            <div>
-              {content.reader.question ? <span>{content.reader.question}</span> : null}
-              <strong>{content.reader.decision}</strong>
-            </div>
+            <p>{content.reader.eyebrow}</p>
+            <h2 id="tw-reader-title">{content.reader.title}</h2>
+            <span>{content.reader.commonContext}</span>
           </header>
 
-          <div className="tw-reader-spread" aria-label="작성 권한과 열람 권한 안내 비교">
-            <div className="tw-shared-context">
-              <span>SAME FEATURE</span>
-              <strong>{content.reader.commonContext}</strong>
-              <span>DIFFERENT ACTION</span>
+          <div className="tw-reader-spread" role="group" aria-label="작성 권한과 열람 권한 안내 비교">
+            <div className="tw-reader-overview">
+              {content.reader.guides.map((guide) => (
+                <div className="tw-reader-role" data-reader={guide.id} key={guide.id}>
+                  <h3 id={`tw-${guide.id}-title`}>{guide.role}</h3>
+                  <p>{guide.purpose}</p>
+                  <strong>{guide.actions}</strong>
+                </div>
+              ))}
             </div>
 
             <div className="tw-reader-guides">
@@ -167,17 +153,12 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
             </div>
           </div>
 
-          <aside className="tw-action-structure" aria-label="행동 중심 사용자 시나리오 구조">
-            <p>행동 중심 안내의 구성</p>
-            <ol>
-              {content.reader.actionStructure.map((item, index) => (
-                <li key={item}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  {item}
-                </li>
-              ))}
-            </ol>
-            <span>독자가 끝내야 할 행동과 예외를 같은 순서 안에 둔다.</span>
+          <aside className="tw-reader-reasoning" aria-labelledby="tw-reader-reasoning-title">
+            <h3 id="tw-reader-reasoning-title">작성 판단</h3>
+            <div>
+              <p>{content.reader.reasoning.statement}</p>
+              <small>{content.reader.reasoning.note}</small>
+            </div>
           </aside>
 
           <section className="tw-reader-evolution" aria-labelledby="tw-evolution-title">
