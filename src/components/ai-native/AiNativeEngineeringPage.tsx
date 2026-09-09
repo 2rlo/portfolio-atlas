@@ -133,14 +133,6 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
           <strong>{content.scene.toolRule}</strong>
         </aside>
 
-        <div className="ai-native-state-legend" aria-label="작업 결과의 상태 구분">
-          {content.scene.stateLegend.map((item) => (
-            <span data-state={item.state} key={item.state}>
-              {item.label}
-            </span>
-          ))}
-        </div>
-
         <div className="ai-native-workbench">
           <ol className="ai-native-steps" aria-label="AI를 활용한 개발 흐름">
             {content.scene.steps.map((step, index) => (
@@ -173,40 +165,52 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
           </header>
 
           <div className="ai-native-incident-record">
-            <section className="ai-native-hypotheses" aria-labelledby="incident-symptom-title">
-              <p id="incident-symptom-title">증상</p>
+            <section className="ai-native-proposal-review" aria-labelledby="incident-symptom-title">
+              <p id="incident-symptom-title">
+                증상 / <time dateTime={content.incident.date}>{content.incident.date}</time>
+              </p>
               <strong>{content.incident.symptom}</strong>
-              <p>검토한 원인</p>
+              <p>코드와 제안 검토</p>
               <ol>
-                {content.incident.hypotheses.map((hypothesis, index) => (
-                  <li key={hypothesis}>
+                {content.incident.reviewFindings.map((finding, index) => (
+                  <li key={finding}>
                     <span>{String.fromCharCode(65 + index)}</span>
-                    {hypothesis}
+                    {finding}
                   </li>
                 ))}
               </ol>
             </section>
 
-            <div className="ai-native-baseline-comparison" aria-label="작업용 worktree와 변경 전 기준 비교">
+            <div className="ai-native-incident-comparison" aria-label="보류한 첫 제안과 해당 시나리오에서 검증한 작은 수정 비교">
               {content.incident.comparison.map((item) => (
-                <article data-baseline={item.id} key={item.id}>
+                <article data-comparison={item.id} key={item.id}>
                   <header>
                     <p>{item.label}</p>
                     <strong>{item.state}</strong>
                   </header>
-                  <p>{item.observation}</p>
+                  <div>
+                    <p>{item.observation}</p>
+                    <small>{item.note}</small>
+                  </div>
                 </article>
               ))}
             </div>
 
             <dl className="ai-native-incident-findings">
               <div>
-                <dt>관찰한 근거</dt>
+                <dt>작은 수정</dt>
                 <dd>{content.incident.evidence}</dd>
               </div>
               <div>
-                <dt>판단</dt>
+                <dt>검증 후 판단</dt>
                 <dd>{content.incident.decision}</dd>
+              </div>
+              <div className="ai-native-search-extension">
+                <dt>이후 확장</dt>
+                <dd>
+                  <p>{content.incident.extension.workflow}</p>
+                  <p>{content.incident.extension.description}</p>
+                </dd>
               </div>
             </dl>
 

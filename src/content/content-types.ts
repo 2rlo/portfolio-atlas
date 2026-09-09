@@ -409,26 +409,28 @@ export interface AiNativeEngineeringContent {
     readonly title: string
     readonly situation: string
     readonly toolRule: string
-    readonly stateLegend: readonly {
-      readonly state: AiNativeWorkflowState
-      readonly label: string
-    }[]
     readonly steps: readonly AiNativeWorkflowStep[]
   }
   readonly incident: {
     readonly eyebrow: string
+    readonly date: string
     readonly title: string
     readonly summary: string
     readonly symptom: string
-    readonly hypotheses: readonly string[]
+    readonly reviewFindings: readonly string[]
     readonly comparison: readonly {
-      readonly id: 'working-copy' | 'clean-baseline'
+      readonly id: 'first-proposal' | 'smaller-test'
       readonly label: string
       readonly state: string
       readonly observation: string
+      readonly note: string
     }[]
     readonly evidence: string
     readonly decision: string
+    readonly extension: {
+      readonly workflow: string
+      readonly description: string
+    }
     readonly rule: readonly string[]
   }
   readonly artifacts: {

@@ -22,16 +22,15 @@
 .ai-native-manifest footer span,
 .ai-native-section-heading > p,
 .ai-native-tool-rule > p,
-.ai-native-state-legend,
 .ai-native-steps button > span,
 .ai-native-step-heading > p,
 .ai-native-step-evidence h4,
 .ai-native-step-context small,
 .ai-native-incident-heading > p,
-.ai-native-hypotheses > p,
-.ai-native-hypotheses li > span,
-.ai-native-baseline-comparison header p,
-.ai-native-baseline-comparison header strong,
+.ai-native-proposal-review > p,
+.ai-native-proposal-review li > span,
+.ai-native-incident-comparison header p,
+.ai-native-incident-comparison header strong,
 .ai-native-incident-findings dt,
 .ai-native-artifacts-heading > p,
 .ai-native-artifact-index,
@@ -296,44 +295,6 @@
   line-height: 1.65;
 }
 
-.ai-native-state-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem 1.6rem;
-  margin-top: 2rem;
-  color: var(--cover-muted-jade);
-}
-
-.ai-native-state-legend span {
-  display: inline-flex;
-  gap: 0.55rem;
-  align-items: center;
-}
-
-.ai-native-state-legend span::before {
-  width: 0.38rem;
-  height: 0.38rem;
-  background: currentColor;
-  border-radius: 50%;
-  content: '';
-}
-
-.ai-native-state-legend span[data-state='candidate'] {
-  opacity: 0.55;
-}
-
-.ai-native-state-legend span[data-state='evidence'] {
-  color: var(--cover-cream);
-}
-
-.ai-native-state-legend span[data-state='decision'] {
-  color: var(--sage);
-}
-
-.ai-native-state-legend span[data-state='canonical'] {
-  color: var(--document-paper);
-}
-
 .ai-native-workbench {
   display: grid;
   grid-template-columns: minmax(21rem, 0.4fr) minmax(0, 0.6fr);
@@ -524,28 +485,28 @@
   min-width: 0;
 }
 
-.ai-native-hypotheses {
+.ai-native-proposal-review {
   padding-top: 1.3rem;
   border-top: 1px solid var(--ink);
 }
 
-.ai-native-hypotheses > p {
+.ai-native-proposal-review > p {
   color: var(--jade);
 }
 
-.ai-native-hypotheses > strong {
+.ai-native-proposal-review > strong {
   display: block;
   margin: 0.8rem 0 clamp(3rem, 5vw, 5rem);
   font-size: clamp(1.25rem, 1.8vw, 1.85rem);
   line-height: 1.42;
 }
 
-.ai-native-hypotheses ol {
+.ai-native-proposal-review ol {
   margin-top: 0.7rem;
   border-top: 1px solid var(--line);
 }
 
-.ai-native-hypotheses li {
+.ai-native-proposal-review li {
   display: grid;
   grid-template-columns: 1.7rem minmax(0, 1fr);
   gap: 0.65rem;
@@ -556,16 +517,16 @@
   border-bottom: 1px solid var(--line);
 }
 
-.ai-native-hypotheses li > span {
+.ai-native-proposal-review li > span {
   color: var(--jade);
 }
 
-.ai-native-baseline-comparison {
+.ai-native-incident-comparison {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.ai-native-baseline-comparison article {
+.ai-native-incident-comparison article {
   display: flex;
   min-height: 24rem;
   flex-direction: column;
@@ -574,15 +535,15 @@
   color: var(--cover-cream);
 }
 
-.ai-native-baseline-comparison article[data-baseline='working-copy'] {
+.ai-native-incident-comparison article[data-comparison='first-proposal'] {
   background: var(--cover-black);
 }
 
-.ai-native-baseline-comparison article[data-baseline='clean-baseline'] {
+.ai-native-incident-comparison article[data-comparison='smaller-test'] {
   background: var(--cover-jade);
 }
 
-.ai-native-baseline-comparison header {
+.ai-native-incident-comparison header {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -590,18 +551,26 @@
   justify-content: space-between;
 }
 
-.ai-native-baseline-comparison header p {
+.ai-native-incident-comparison header p {
   color: var(--cover-muted-jade);
 }
 
-.ai-native-baseline-comparison header strong {
+.ai-native-incident-comparison header strong {
   color: var(--sage);
 }
 
-.ai-native-baseline-comparison article > p {
+.ai-native-incident-comparison article > div > p {
   font-size: clamp(1.05rem, 1.5vw, 1.45rem);
   font-weight: 520;
   line-height: 1.5;
+}
+
+.ai-native-incident-comparison article > div > small {
+  display: block;
+  margin-top: 0.8rem;
+  color: var(--document-dark-muted);
+  font-size: 0.8rem;
+  line-height: 1.58;
 }
 
 .ai-native-incident-findings {
@@ -633,6 +602,20 @@
   color: var(--ink-soft);
   font-size: 0.8rem;
   line-height: 1.58;
+}
+
+.ai-native-incident-findings > .ai-native-search-extension {
+  grid-column: 1 / -1;
+  padding-left: 0;
+  border-left: 0;
+}
+
+.ai-native-search-extension dd > p:first-child {
+  color: var(--jade);
+}
+
+.ai-native-search-extension dd > p + p {
+  margin-top: 0.8rem;
 }
 
 .ai-native-incident-rule {
@@ -991,11 +974,11 @@
     gap: 3rem;
   }
 
-  .ai-native-baseline-comparison {
+  .ai-native-incident-comparison {
     grid-template-columns: 1fr;
   }
 
-  .ai-native-baseline-comparison article {
+  .ai-native-incident-comparison article {
     min-height: 17rem;
   }
 
@@ -1080,11 +1063,6 @@
     padding-bottom: 6.5rem;
   }
 
-  .ai-native-state-legend {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .ai-native-steps button {
     grid-template-columns: 1.7rem minmax(0, 1fr);
     gap: 0.45rem 0.75rem;
@@ -1103,7 +1081,7 @@
     flex-direction: column;
   }
 
-  .ai-native-baseline-comparison article {
+  .ai-native-incident-comparison article {
     min-height: 15rem;
     padding: 1.5rem;
   }
