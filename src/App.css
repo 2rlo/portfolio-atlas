@@ -326,7 +326,7 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+:where([data-feature-motion='rain']) {
   .feature-rain--desktop {
     -webkit-mask-image: linear-gradient(
       to bottom,
@@ -411,10 +411,10 @@
     height: 220%;
   }
 
-  .seam-poster[data-interactive='true']
-    .poster-field--what-i-built:is(:focus-visible, :has(:focus-visible))
+  &.seam-poster[data-interactive='true']
+    .poster-field--what-i-built:is(:focus-visible, :has(.feature-rain-link:focus-visible))
     .feature-rain-track,
-  .mobile-diagonal-poster:has(
+  &.mobile-diagonal-poster:has(
       :is(
           .mobile-poster-control--what-i-built:focus-visible,
           .feature-rain-link:focus-visible

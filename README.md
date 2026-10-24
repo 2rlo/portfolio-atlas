@@ -19,6 +19,16 @@ npm run build
 npm run preview
 ```
 
+Home의 모션 설정, 전환 버튼, 반응형 탐색과 링크는 브라우저 테스트로 확인합니다.
+
+```bash
+npx playwright install chromium
+npm test
+```
+
+설치된 Chrome을 사용할 때는 `PLAYWRIGHT_CHANNEL=chrome` 환경 변수를 설정합니다.
+테스트 실행 시 로컬 서버가 없으면 자동으로 시작합니다.
+
 ## Structure
 
 ```text
