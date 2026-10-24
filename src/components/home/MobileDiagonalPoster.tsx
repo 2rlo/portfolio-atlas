@@ -4,13 +4,15 @@ import type {
   ContentLane,
   HomeTrackContent,
 } from '../../content/content-types.ts'
-import { FeatureRain } from './FeatureRain.tsx'
+import { FeatureNavigation } from './FeatureNavigation.tsx'
 import { homeEntryRecommendation } from '../../content/home.ts'
 import type { EntryGuidePhase } from './useTossEntryGuide.ts'
 
 interface MobileDiagonalPosterProps {
   readonly tracks: readonly HomeTrackContent[]
   readonly interactive: boolean
+  readonly motionEnabled: boolean
+  readonly onMotionToggle: () => void
   readonly guidePhase?: EntryGuidePhase
   readonly onGuideEnd?: () => void
 }
@@ -18,6 +20,8 @@ interface MobileDiagonalPosterProps {
 function MobileDiagonalPoster({
   tracks,
   interactive,
+  motionEnabled,
+  onMotionToggle,
   guidePhase = 'idle',
   onGuideEnd,
 }: MobileDiagonalPosterProps) {
@@ -47,6 +51,7 @@ function MobileDiagonalPoster({
       className="mobile-diagonal-poster"
       data-active-lane={visibleLane ?? 'none'}
       data-interactive={interactive}
+      data-feature-motion={motionEnabled ? 'rain' : 'index'}
       data-entry-guide={guidePhase === 'idle' ? undefined : guidePhase}
       aria-label="Portfolio Atlas, 만든 제품과 만드는 방식"
     >
@@ -59,6 +64,7 @@ function MobileDiagonalPoster({
       {tracks.map((track) => {
         const isActive = visibleLane === track.lane
         const hasIndex = track.items.length > 0
+        const hasFeatures = track.lane === 'what-i-built'
         const indexId = `mobile-poster-index-${track.id}`
         const titleId = `mobile-poster-title-${track.id}`
 
@@ -72,11 +78,13 @@ function MobileDiagonalPoster({
               <button
                 className={`mobile-poster-control mobile-poster-control--${track.lane}`}
                 type="button"
-                aria-controls={hasIndex ? indexId : undefined}
-                aria-expanded={hasIndex ? isActive : undefined}
-                aria-pressed={hasIndex ? undefined : isActive}
+                aria-controls={hasFeatures ? 'feature-navigation-mobile' : hasIndex ? indexId : undefined}
+                aria-expanded={hasIndex || hasFeatures ? isActive : undefined}
+                aria-pressed={hasIndex || hasFeatures ? undefined : isActive}
                 aria-label={
-                  hasIndex
+                  hasFeatures
+                    ? `만든 제품 목록 ${isActive ? '접기' : '펼치기'}`
+                    : hasIndex
                     ? isActive && track.href
                       ? `${primaryDestination} 열기`
                       : `${track.label} 목록 ${isActive ? '접기' : '펼치기'}`
@@ -87,9 +95,11 @@ function MobileDiagonalPoster({
             ) : null}
 
             {track.lane === 'what-i-built' ? (
-              <FeatureRain
+              <FeatureNavigation
                 interactive={interactive && isActive}
                 variant="mobile"
+                motionEnabled={motionEnabled}
+                onMotionToggle={onMotionToggle}
               />
             ) : null}
 

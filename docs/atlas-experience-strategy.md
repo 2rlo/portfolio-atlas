@@ -275,6 +275,13 @@ Home cover의 현재 visual decision:
   Security & Operations를 실제 index에 연결한다. 존재하지 않는 HOW route는 연결하지 않는다.
 - 현재는 Home cover 목업이며 실제 사례, 성과, adoption을 암시하지 않는다.
 
+### Reduced-motion navigation (2026-10-24)
+
+- 움직임 줄이기 환경에서는 WHAT을 펼치면 기존 제품 링크 14개를 읽기 쉬운 2열 인덱스로 보여준다. 제목과 링크는 겹치지 않는다.
+- WHAT의 `움직임 켜기 / 움직임 끄기` 컨트롤로 인덱스와 Feature Rain을 전환한다. 이 선택은 Feature Rain에만 적용하며 다른 reduced-motion 규칙은 유지한다.
+- 데스크톱과 모바일은 같은 선택을 사용한다. 새로 접속하거나 OS 모션 설정이 바뀌면 시스템 선호를 다시 따른다.
+- 모바일에서 정적 인덱스를 펼치면 목록에 필요한 직사각형 영역을 확보하고 HOW 진입점을 하단 대각선 영역에 유지한다. 작은 높이에서는 목록을 스크롤해 모든 링크에 접근한다.
+
 Typography study와 선택안 snapshot은 `docs/mockups/README.md`에서 관리한다.
 
 ## 14. Non-goals

@@ -1,7 +1,8 @@
 import { Link } from 'react-router'
 import type { HomeTrackContent } from '../../content/content-types.ts'
 import { homeEntryRecommendation } from '../../content/home.ts'
-import { FeatureRain } from './FeatureRain.tsx'
+import { FeatureNavigation } from './FeatureNavigation.tsx'
+import { useFeatureMotion } from './useFeatureMotion.ts'
 import MobileDiagonalPoster from './MobileDiagonalPoster.tsx'
 import type { EntryGuidePhase } from './useTossEntryGuide.ts'
 
@@ -25,6 +26,7 @@ function SeamPosterPrototype({
   guidePhase = 'idle',
   onGuideEnd,
 }: SeamPosterPrototypeProps) {
+  const { motionEnabled, toggleMotion } = useFeatureMotion()
   const displayClassName = displayTreatment
     ? ` display-treatment--${displayTreatment}`
     : ''
@@ -36,6 +38,7 @@ function SeamPosterPrototype({
         data-treatment={treatment}
         data-display-treatment={displayTreatment}
         data-interactive={interactive}
+        data-feature-motion={motionEnabled ? 'rain' : 'index'}
         data-entry-guide={guidePhase === 'idle' ? undefined : guidePhase}
         aria-label="Portfolio Atlas, 만든 제품과 만드는 방식"
       >
@@ -64,7 +67,12 @@ function SeamPosterPrototype({
             ) : null}
 
             {track.lane === 'what-i-built' ? (
-              <FeatureRain interactive={interactive} variant="desktop" />
+              <FeatureNavigation
+                interactive={interactive}
+                variant="desktop"
+                motionEnabled={motionEnabled}
+                onMotionToggle={toggleMotion}
+              />
             ) : null}
 
             <header className="poster-meta">
@@ -118,6 +126,8 @@ function SeamPosterPrototype({
       <MobileDiagonalPoster
         tracks={tracks}
         interactive={interactive}
+        motionEnabled={motionEnabled}
+        onMotionToggle={toggleMotion}
         guidePhase={guidePhase}
         onGuideEnd={onGuideEnd}
       />

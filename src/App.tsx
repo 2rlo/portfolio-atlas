@@ -2,6 +2,7 @@ import { Link, Outlet } from 'react-router'
 import RouteScrollRestoration from './app/RouteScrollRestoration.tsx'
 import DesktopNotice from './components/DesktopNotice.tsx'
 import './App.css'
+import './styles/home-feature-navigation.css'
 
 function App() {
   return (
