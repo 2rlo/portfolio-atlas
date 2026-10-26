@@ -42,6 +42,12 @@ HOME
 
 Security & Operations는 권한·변경·검증·복구의 확인된 evidence를 함께 다루는 네 번째 HOW 페이지다. 별도 evidence와 route가 없는 주제를 같은 깊이의 페이지처럼 navigation에 추가하지 않는다.
 
+2026-10-25 추가: WHAT의 `/what/operations`는 운영자가 상태와 조치 범위를 판단하는
+제품 경험을 보여준다. 확인되지 않은 상태를 정상과 구분하고, 제한된 조치의 미리보기와
+사람의 확인을 연결한다. HOW Security & Operations는 이 경험을 뒷받침하는 권한,
+검증, 복구 경계를 설명한다. API Usage의 호출·정산·게시, AI Candidate Review의
+확정 이후 실행 관리, Technical Writing의 독자별 인수인계는 기존 페이지 안에서 확장한다.
+
 ## 3. Unifying philosophy
 
 > 복잡해질수록, 맥락은 사람의 기억 밖에 있어야 한다.
@@ -277,7 +283,7 @@ Home cover의 현재 visual decision:
 
 ### Reduced-motion navigation (2026-10-24)
 
-- 움직임 줄이기 환경에서는 WHAT을 펼치면 기존 제품 링크 14개를 읽기 쉬운 2열 인덱스로 보여준다. 제목과 링크는 겹치지 않는다.
+- 움직임 줄이기 환경에서는 WHAT을 펼치면 제품 링크 15개를 읽기 쉬운 2열 인덱스로 보여준다. 제목과 링크는 겹치지 않는다.
 - WHAT의 `움직임 켜기 / 움직임 끄기` 컨트롤로 인덱스와 Feature Rain을 전환한다. 이 선택은 Feature Rain에만 적용하며 다른 reduced-motion 규칙은 유지한다.
 - 데스크톱과 모바일은 같은 선택을 사용한다. 새로 접속하거나 OS 모션 설정이 바뀌면 시스템 선호를 다시 따른다.
 - 모바일에서 정적 인덱스를 펼치면 목록에 필요한 직사각형 영역을 확보하고 HOW 진입점을 하단 대각선 영역에 유지한다. 작은 높이에서는 목록을 스크롤해 모든 링크에 접근한다.

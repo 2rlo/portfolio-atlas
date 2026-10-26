@@ -9,6 +9,7 @@ import DeveloperStatusRoute from '../routes/DeveloperStatusRoute.tsx'
 import FeatureValidationRoute from '../routes/FeatureValidationRoute.tsx'
 import HomeRoute from '../routes/HomeRoute.tsx'
 import MeetingLogRoute from '../routes/MeetingLogRoute.tsx'
+import OperationsRoute from '../routes/OperationsRoute.tsx'
 import PermissionRoute from '../routes/PermissionRoute.tsx'
 import ProjectSettingRoute from '../routes/ProjectSettingRoute.tsx'
 import QaRoute from '../routes/QaRoute.tsx'
@@ -116,6 +117,10 @@ export const router = createBrowserRouter([
       {
         path: 'what/api-usage',
         Component: ApiUsageRoute,
+      },
+      {
+        path: 'what/operations',
+        Component: OperationsRoute,
       },
       {
         path: 'what/:featureId',

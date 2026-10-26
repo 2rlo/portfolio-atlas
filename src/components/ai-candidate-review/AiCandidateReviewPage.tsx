@@ -2,6 +2,7 @@ import { Link, useSearchParams } from 'react-router'
 import type {
   AiCandidateReviewHotspotId,
   AiCandidateReviewPageContent,
+  RecordExecutionContent,
 } from '../../content/content-types.ts'
 import {
   ProductInspectionFrame,
@@ -13,6 +14,7 @@ import AiReviewSurfaceWorkflow, { AiReviewPrototypeSwitch } from './AiReviewSurf
 
 interface AiCandidateReviewPageProps {
   readonly content: AiCandidateReviewPageContent
+  readonly recordExecution: RecordExecutionContent
 }
 
 function EvolutionFragment({
@@ -34,7 +36,7 @@ function EvolutionFragment({
   }
 }
 
-function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
+function AiCandidateReviewPage({ content, recordExecution }: AiCandidateReviewPageProps) {
   const [searchParams] = useSearchParams()
   const isPrototype = searchParams.get('workflow') !== 'classic'
   const {
@@ -117,10 +119,36 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
         <p className="acr-workflow-boundary">{content.workflow.boundary}</p>
       </section>}
 
+      <section className="acr-record-execution" aria-labelledby="acr-record-execution-title">
+        <header className="acr-section-heading">
+          <p>{recordExecution.eyebrow}</p>
+          <h2 id="acr-record-execution-title">{recordExecution.title}</h2>
+          <span>{recordExecution.introduction}</span>
+        </header>
+        <ol className="acr-record-stages">
+          {recordExecution.stages.map((stage) => (
+            <li key={stage.label}>
+              <span>{stage.label}</span>
+              <h3>{stage.title}</h3>
+              <p>{stage.body}</p>
+            </li>
+          ))}
+        </ol>
+        <dl className="acr-record-guards" aria-label="계획 연결 조건">
+          {recordExecution.guards.map((guard) => (
+            <div key={guard.title}><dt>{guard.title}</dt><dd>{guard.body}</dd></div>
+          ))}
+        </dl>
+        <p className="acr-record-boundary">{recordExecution.boundary}</p>
+        <Link className="acr-record-related" to={recordExecution.related.href}>
+          {recordExecution.related.label} <span aria-hidden="true">↗</span>
+        </Link>
+      </section>
+
       <section className="acr-rules" aria-labelledby="acr-rules-title">
         <header>
           <p>{content.rules.eyebrow}</p>
-          <h2 id="acr-rules-title">후보 생성과 공식 기록 확정의 규칙</h2>
+          <h2 id="acr-rules-title">중복과 재추출을 막는 설계</h2>
         </header>
         <ol>
           {content.rules.items.map((rule) => (
@@ -149,9 +177,9 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
               <EvolutionFragment visual={scene.visual} />
               <strong>{scene.decision}</strong>
               <dl>
-                <div><dt>TRIGGER</dt><dd>{scene.trigger}</dd></div>
-                <div><dt>CHANGE</dt><dd>{scene.change}</dd></div>
-                <div><dt>CURRENT EFFECT</dt><dd>{scene.currentEffect}</dd></div>
+                <div><dt>계기</dt><dd>{scene.trigger}</dd></div>
+                <div><dt>바꾼 점</dt><dd>{scene.change}</dd></div>
+                <div><dt>달라진 작업</dt><dd>{scene.currentEffect}</dd></div>
               </dl>
             </li>
           ))}
@@ -159,23 +187,16 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
       </section>
 
       <section className="acr-evidence" aria-labelledby="acr-evidence-title">
-        {content.evidence.items.length > 0 ? <><header className="acr-evidence-heading">
+        <header className="acr-evidence-heading">
           <p>{content.evidence.eyebrow}</p>
           <h2 id="acr-evidence-title">{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
         </header>
-        <dl className="acr-evidence-register">
-          {content.evidence.items.map((item) => (
-            <div key={item.label}>
-              <dd>{item.value}</dd><dt>{item.label}</dt>
-              <p>{item.meaning}</p><small>{item.boundary}</small>
-            </div>
-          ))}
-        </dl></> : <h2 className="visually-hidden" id="acr-evidence-title">구현·운영 상태</h2>}
+
         <div className="acr-status">
-          <header><span>CURRENT STATUS</span><strong>{content.implementationStatus.state}</strong></header>
+          <header><span>구현한 흐름</span><strong>{content.implementationStatus.state}</strong></header>
           <ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul>
-          <p><span>RUNTIME / USE BOUNDARY</span>{content.implementationStatus.runtime}</p>
+          <p><span>작업을 바꾼 방식</span>{content.implementationStatus.runtime}</p>
         </div>
       </section>
 
@@ -188,7 +209,7 @@ function AiCandidateReviewPage({ content }: AiCandidateReviewPageProps) {
           {content.boundary.items.map((item) => <li key={item}>{item}</li>)}
         </ul>
         <nav className="acr-related" aria-label="AI Candidate Review와 연결된 시스템">
-          <p>RELATED SYSTEMS</p>
+          <p>연결된 설계 방식</p>
           {content.relatedSystems.map((system) => system.href ? (
             <Link to={system.href} key={system.title}>
               <span><strong>{system.title}</strong><small>{system.relation}</small></span>

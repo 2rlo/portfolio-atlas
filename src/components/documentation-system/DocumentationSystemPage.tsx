@@ -44,7 +44,7 @@ function DocumentationSystemPage({ content }: DocumentationSystemPageProps) {
                   <li key={artifact}>{artifact}</li>
                 ))}
               </ul>
-              <p>{content.hero.scope.boundary}</p>
+              {content.hero.scope.boundary ? <p>{content.hero.scope.boundary}</p> : null}
             </aside>
           </div>
 
@@ -76,15 +76,13 @@ function DocumentationSystemPage({ content }: DocumentationSystemPageProps) {
       />
 
       <section className="documentation-principle" aria-labelledby="principle-title">
-        <p className="section-eyebrow">문서의 역할과 확인 범위</p>
+        <p className="section-eyebrow">변경과 함께 갱신하는 문서</p>
         <h2 id="principle-title">{content.principle.statement}</h2>
         <p className="documentation-principle-boundary">
           {content.principle.boundary.map((line) => (
             <span key={line}>{line}</span>
           ))}
         </p>
-
-
       </section>
 
       <Link

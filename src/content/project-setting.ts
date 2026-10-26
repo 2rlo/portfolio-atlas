@@ -13,10 +13,10 @@ export const projectSettingContent = {
     eyebrow: 'WHAT I BUILT / 03',
     titleLines: ['PROJECT', 'SETTING'],
     thesis:
-      '화면마다 달라지던 프로젝트 이름을 하나의 공통 목록으로 모으되, 과거 연결은 끊지 않는다.',
+      "프로젝트를 한곳에서 관리하고, 이름이 바뀌어도 기존 업무 기록은 이어지게 했습니다.",
     summary:
-      '표시명·순서·노출은 바꿀 수 있게 하고, 일정·검토·AI 분류가 참조하는 프로젝트 ID는 유지했다.',
-    problemLabel: 'PROBLEM / LABELS DRIFT, REFERENCES SHOULD NOT',
+      "일정과 검토, 대시보드, AI 분류가 같은 프로젝트 목록과 순서를 사용하도록 바꿨습니다. 표시명은 수정하되 기록을 연결하는 ID는 유지합니다.",
+    problemLabel: "화면마다 달라지는 프로젝트 목록",
     problem:
       '기능마다 프로젝트 목록을 따로 두면 추가하거나 이름을 바꿀 때 선택지가 갈라집니다. 프로젝트를 삭제하면 이미 연결된 일정과 기록도 맥락을 잃습니다.',
   },
@@ -24,7 +24,7 @@ export const projectSettingContent = {
     eyebrow: 'PRODUCT SURFACE / TRACKED REGISTRY',
     title: '이름은 바뀌어도, 같은 프로젝트로 연결되도록.',
     instruction:
-      '코드와 표시명 · 기존 항목 확인 · 공통 순서 · 보관 이력 · 복원 검사',
+      "프로젝트 이름과 연결 관계, 공통 정렬, 보관과 복원 방식을 확인해 보세요.",
     defaultAnnotation: {
       index: '00',
       label: 'REGISTRY GUIDE',
@@ -92,7 +92,7 @@ export const projectSettingContent = {
         },
         {
           label: 'EVIDENCE',
-          body: '일정·대시보드·AI 후보·채팅·회의 추출이 같은 추적 프로젝트 목록을 읽는 운영 경로를 확인했습니다.',
+          body: "일정과 대시보드, AI 후보, 채팅, 회의 추출이 같은 프로젝트 목록을 사용합니다. 관리 화면에서 정한 목록과 순서가 각 업무 화면에 반영됩니다.",
         },
       ],
       evolution: { label: 'CONSUMERS ALIGNED', date: '2026.08.26' },
@@ -134,7 +134,7 @@ export const projectSettingContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '복원 코드와 검증 계약은 구현했습니다. 운영 환경에서 반복 실행한 횟수는 미확인입니다.',
+          body: "보관 이후 새로 생긴 프로젝트와의 충돌, 일정과 저장소의 연결 관계를 확인한 뒤 복원합니다.",
         },
       ],
       evolution: { label: 'REVALIDATION CONTRACT', date: '2026.08.27' },
@@ -183,24 +183,24 @@ export const projectSettingContent = {
       },
     ],
     boundary:
-      '등록된 프로젝트 ID와 목록은 여러 기능이 함께 사용합니다. 과거 기록의 연결 대상이 의미상 맞는지는 별도 확인이 필요합니다.',
+      "프로젝트를 등록하거나 표시 순서를 바꾸면 연결된 업무 화면이 같은 목록을 사용합니다. 이름을 바꾸거나 보관해도 기존 기록의 연결을 유지합니다.",
   },
   rules: {
     eyebrow: 'LIFECYCLE RULES',
     title: '현재 상태와 그 상태가 된 사건을 함께 본다.',
     items: [
       {
-        statement: 'RENAME THE LABEL, KEEP THE ID.',
+        statement: "이름을 바꿔도 기록은 연결",
         explanation:
           '표시명은 바꿀 수 있습니다. 일정과 기록은 같은 프로젝트 ID를 계속 참조합니다.',
       },
       {
-        statement: 'ARCHIVE IS NOT DELETE.',
+        statement: "보관할 때 이력은 보존",
         explanation:
           '운영 목록에서는 숨기되 row와 과거 관계를 보존하고, 참조가 남아 있으면 보관을 제한한다.',
       },
       {
-        statement: 'STATE NEEDS PROVENANCE.',
+        statement: "복원할 때 현재 관계 확인",
         explanation:
           '추적 여부와 성공한 보관 이력을 함께 확인해, 보조 항목과 보관 프로젝트를 구분합니다.',
       },
@@ -251,31 +251,27 @@ export const projectSettingContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
-    title: '공통 프로젝트 목록에 연결된 데이터의 범위.',
-    snapshot:
-      '읽기 전용 production snapshot의 registry와 계획 범위입니다. 효율·정확도·반복 사용량 지표가 아닙니다.',
-    items: [],
-  },
+  "eyebrow": "WORKFLOW CHANGE",
+  "title": "프로젝트 변경을 여러 화면에 따로 반영할 필요가 줄었습니다.",
+  "snapshot": "생성과 이름 변경, 정렬, 보관을 공통 관리 화면으로 모으고 각 기능이 같은 목록을 읽도록 연결했습니다.",
+  "items": []
+},
   implementationStatus: {
-    state: 'IMPLEMENTED / DEPLOYED / CONSUMED',
-    items: [
-      '프로젝트 생성·기존 항목의 추적 전환·표시명·정렬',
-      '데이터를 유지한 보관·복원과 참조 검증',
-      '일정·대시보드·검토·채팅·회의의 공통 추적 목록 조회',
-      'AI 분류 선택지·기타 분류 조건·기존 후보 연결 보완',
-    ],
-    runtime:
-      "2026.09.04 production snapshot에서 공통 프로젝트 목록과 연결된 계획 항목을 확인했다.",
-  },
+  "state": "공통 목록으로 이어지는 업무",
+  "items": [
+    "일정과 대시보드, 검토, 채팅, 회의에서 같은 프로젝트를 선택합니다.",
+    "새 항목을 만들기 전에 기존 연결을 찾아 중복 등록을 줄입니다.",
+    "보관할 때 과거 기록을 남기고, 복원할 때 현재 데이터와 충돌하는지 확인합니다."
+  ],
+  "runtime": "AI 후보의 프로젝트 선택지도 공통 목록을 따릅니다. 분류가 불명확한 항목은 검토자가 연결할 프로젝트를 선택할 수 있게 했습니다."
+},
   boundary: {
-    eyebrow: 'BOUNDARY / IDENTITY IS NOT OUTCOME',
-    statement: '공통 ID의 적용 범위와, 연결된 내용의 타당성은 따로 확인한다.',
-    items: [
-      "추적 상태는 현재 목록에 노출되는 범위를 뜻합니다.",
-      '기존 후보의 연결 보완 작업은 완료됐습니다. 과거 후보마다 프로젝트가 의미상 맞게 연결됐는지는 별도 검증이 필요합니다.',
-    ],
-  },
+  "eyebrow": "DESIGN TAKEAWAY",
+  "statement": "프로젝트의 이름과 연결 관계를 나눠 관리했습니다.",
+  "items": [
+    "사용자에게 보이는 이름과 순서는 바꾸기 쉽게, 업무 기록의 연결은 유지되도록 설계했습니다."
+  ]
+},
   relatedSystems: [
     {
       title: 'AI CANDIDATE REVIEW',

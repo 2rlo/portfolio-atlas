@@ -1,10 +1,11 @@
-import { useSearchParams } from 'react-router'
+import { Link, useSearchParams } from 'react-router'
 import SeamPosterPrototype, {
   type CoverTreatment,
   type DisplayTreatment,
 } from '../components/home/SeamPosterPrototype.tsx'
 import { homeContent } from '../content/home.ts'
 import { useTossEntryGuide } from '../components/home/useTossEntryGuide.ts'
+import '../styles/home-introduction.css'
 
 const treatments = new Set<CoverTreatment>(['t1', 't2', 't3'])
 const displayTreatments = new Set<DisplayTreatment>(['t0', 't1', 't2'])
@@ -40,6 +41,27 @@ function HomeRoute({ tossEntry = false }: { readonly tossEntry?: boolean }) {
         guidePhase={guide.phase}
         onGuideEnd={guide.dismiss}
       />
+      {interactive ? (
+        <section className="home-introduction" aria-labelledby="home-introduction-title">
+          <header>
+            <p>{homeContent.introduction.eyebrow}</p>
+            <h2 id="home-introduction-title">{homeContent.introduction.title}</h2>
+          </header>
+          <div className="home-introduction-copy">
+            <p>{homeContent.introduction.summary}</p>
+            <p>{homeContent.introduction.ownership}</p>
+          </div>
+          <nav aria-label="경험을 살펴보는 세 가지 출발점">
+            {homeContent.introduction.paths.map((path) => (
+              <Link key={path.href} to={path.href}>
+                <strong>{path.title}</strong>
+                <span>{path.body}</span>
+                <b aria-hidden="true">↗</b>
+              </Link>
+            ))}
+          </nav>
+        </section>
+      ) : null}
     </main>
   )
 }

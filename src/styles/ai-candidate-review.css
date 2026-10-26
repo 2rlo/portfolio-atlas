@@ -13,6 +13,7 @@
 
 .acr-hero-frame,
 .acr-workflow-section,
+.acr-record-execution,
 .acr-rules,
 .acr-evolution,
 .acr-evidence,
@@ -25,6 +26,97 @@
 .acr-hero-frame {
   padding-top: clamp(1.5rem, 3vw, 3rem);
   padding-bottom: clamp(4rem, 8vw, 8rem);
+}
+
+.acr-record-execution {
+  padding-block: clamp(3.5rem, 7vw, 7rem);
+}
+
+.acr-record-stages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
+  margin: 3rem 0 0;
+  border-block: 1px solid var(--line);
+  list-style: none;
+}
+
+.acr-record-stages > li {
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.acr-record-stages > li + li {
+  border-left: 1px solid var(--line);
+}
+
+.acr-record-stages > li > span {
+  color: var(--jade);
+  font-family: var(--utility);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+}
+
+.acr-record-stages h3 {
+  margin: 1.75rem 0 1rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.65rem);
+  letter-spacing: -0.04em;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.acr-record-stages p,
+.acr-record-guards dd,
+.acr-record-boundary {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+
+.acr-record-guards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 3rem;
+  margin: 2rem 0;
+}
+
+.acr-record-guards dt {
+  margin-bottom: 0.6rem;
+  color: var(--jade);
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.acr-record-boundary {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.acr-record-related {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--jade);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  text-underline-offset: 0.3em;
+}
+
+.acr-record-related:focus-visible {
+  outline: 2px solid var(--jade);
+  outline-offset: 5px;
+}
+
+@media (max-width: 700px) {
+  .acr-record-stages,
+  .acr-record-guards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .acr-record-stages > li + li {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
 }
 
 .acr-back {

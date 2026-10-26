@@ -31,7 +31,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
           <ProductHotspot
             id="generation-gate"
             activeId={activeId}
-            label="생성 권한과 영문 품질 확인 조건"
+            label="자동 생성과 권한별 수동 생성"
             className="report-generation"
             onActivate={onActivate}
           >
@@ -39,7 +39,6 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
             <strong>{fixture.generation.action}</strong>
             <small>{fixture.generation.automatic} · {fixture.generation.manual}</small>
             <em>{fixture.generation.locale}</em>
-            <em data-gated="true">{fixture.generation.gatedLocale}</em>
           </ProductHotspot>
         </header>
 
@@ -65,7 +64,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
         <ProductHotspot
           id="reviewed-source"
           activeId={activeId}
-          label="검토본 우선 입력과 미검토 예외 표시"
+          label="검토본 우선 입력과 자료별 검토 상태"
           className="report-source-state"
           onActivate={onActivate}
         >
@@ -102,7 +101,7 @@ function ReportProductView({ fixture, activeId, onActivate }: ReportProductViewP
             onActivate={onActivate}
           >
             <span className="report-panel-title">
-              <span><small>04 / QA EVIDENCE</small><strong>테스트 결과</strong></span>
+              <span><small>04 / QA RESULTS</small><strong>테스트 결과</strong></span>
               <em>총 9 TC</em>
             </span>
             <span className="report-test-ring" aria-hidden="true"><i>9</i></span>

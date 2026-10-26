@@ -6,7 +6,7 @@ function MeetingLogEvolutionFragment({ visual }: { readonly visual: MeetingLogEv
   const fragments: Record<MeetingLogEvolutionVisual, readonly string[]> = {
     'transcript-path': ['TRANSCRIPT', '→', 'MEETING SUMMARY', '→', 'REPORT'],
     'candidate-gate': ['MEETING RECORD', '→', 'PENDING', '→', 'REVIEW'],
-    'capture-paused': ['COMPANY MEETING', '×', 'PERSONAL PLAN', '→', 'PAUSED'],
+    'capture-paused': ['MEETING NOTE', '→', 'SYNC', '→', 'REVIEW'],
     'current-sync': ['07:00', '→', 'MEETINGS', '+', 'SEARCH DATA'],
   }
 
@@ -89,32 +89,15 @@ function MeetingLogPage({ content }: { readonly content: MeetingLogPageContent }
         </section>
       ) : null}
 
-      <section className="qa-evidence" aria-labelledby={`${titleId}-evidence`}>
-        {content.evidence.items.length > 0 ? <><header className="qa-evidence-heading">
+      <section className="qa-work-changes" aria-labelledby="meeting-log-title-changes">
+        <header className="qa-section-heading">
           <p>{content.evidence.eyebrow}</p>
-          <h2 id={`${titleId}-evidence`}>{content.evidence.title}</h2>
+          <h2 id="meeting-log-title-changes">{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
         </header>
-        <dl className="qa-evidence-register">
-          {content.evidence.items.map((item) => (
-            <div key={item.label}>
-              <dd>{item.value}</dd>
-              <dt>{item.label}</dt>
-              <p>{item.meaning}</p>
-              <small>{item.boundary}</small>
-            </div>
-          ))}
-        </dl></> : <h2 className="visually-hidden" id={`${titleId}-evidence`}>구현·운영 상태</h2>}
-        <div className="qa-status">
-          <header>
-            <span>구현·운영 상태</span>
-            <strong>{content.implementationStatus.state}</strong>
-          </header>
+        <div className="qa-work-changes-body">
+          <p>{content.implementationStatus.runtime}</p>
           <ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul>
-          <p><span>확인한 운영 범위</span>{content.implementationStatus.runtime}</p>
-          {content.implementationStatus.feedback ? (
-            <p><span>{content.implementationStatus.feedback.label}</span>{content.implementationStatus.feedback.text}</p>
-          ) : null}
         </div>
       </section>
 

@@ -96,7 +96,7 @@ function VersionLogPage({ content }: { readonly content: VersionLogPageContent }
           <h2 id={`${titleId}-evidence`}>{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
         </header>
-        <dl className="qa-evidence-register">
+        {content.evidence.items.length > 0 ? <dl className="qa-evidence-register">
           {content.evidence.items.map((item) => (
             <div key={item.label}>
               <dd>{item.value}</dd>
@@ -105,14 +105,14 @@ function VersionLogPage({ content }: { readonly content: VersionLogPageContent }
               {item.boundary ? <small>{item.boundary}</small> : null}
             </div>
           ))}
-        </dl>
+        </dl> : null}
         <div className="qa-status">
           <header>
-            <span>구현·운영 상태</span>
+            <span>달라진 업무</span>
             <strong>{content.implementationStatus.state}</strong>
           </header>
           <ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul>
-          <p><span>확인한 운영 범위</span>{content.implementationStatus.runtime}</p>
+          <p><span>설계가 연결된 지점</span>{content.implementationStatus.runtime}</p>
           {content.implementationStatus.feedback ? (
             <p><span>{content.implementationStatus.feedback.label}</span>{content.implementationStatus.feedback.text}</p>
           ) : null}

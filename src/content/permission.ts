@@ -13,18 +13,18 @@ export const permissionContent = {
     eyebrow: 'WHAT I BUILT / 11',
     titleLines: ['PERMISSION', 'CONTROL'],
     thesis:
-      '로그인과 업무 권한을 분리하고, 역할 기본값과 개인 예외를 합산한 최종 권한을 UI와 API가 함께 사용하게 했다.',
+      "개발자에게 요청하던 권한 변경을 관리자가 화면에서 직접 처리하게 했습니다.",
     summary:
-      '공용 인증을 개인별 인증으로 바꾸고, 고정 역할을 자원·행동별 권한과 위임 관리로 확장했습니다.',
-    problemLabel: 'PROBLEM / AUTHENTICATED DOES NOT MEAN AUTHORIZED',
+      "초대와 역할, 개인별 권한 예외, 변경 이력을 하나의 관리 화면으로 연결했습니다. 화면과 서버가 같은 권한을 적용하고, 마지막 관리자를 잃는 변경은 저장 단계에서 막습니다.",
+    problemLabel: "권한 변경이 개발자에게 몰리던 구조",
     problem:
-      '공용 계정과 화면 숨김만으로는 누가 무엇을 바꿀 수 있는지 강제·회수·감사하기 어려웠고, 역할별 예외를 두 곳에서 관리하면 결과가 쉽게 어긋났습니다.',
+      "신규 인원이 들어오거나 역할이 바뀔 때마다 개발자가 인증 서비스와 제품의 설정을 각각 수정했습니다. 역할별 예외가 늘면서 누가 무엇을 할 수 있는지 한곳에서 확인하고 관리할 필요가 생겼습니다.",
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / EFFECTIVE ACCESS',
-    title: 'One actor. One computed result. Every consuming surface.',
+    title: "역할과 개인 예외를 한 화면에서 조정합니다.",
     instruction:
-      '계정 연결 · 역할 기본값 · 개인 예외 · 최종 권한 · 변경 보호 규칙',
+      "계정을 선택하고 역할, 개인별 변경 사항, 최종 권한을 비교해 보세요.",
     defaultAnnotation: {
       index: '00',
       label: 'ACCESS GUIDE',
@@ -59,7 +59,7 @@ export const permissionContent = {
       id: 'role-default',
       index: '02',
       label: 'ROLE DEFAULT',
-      title: '역할은 반복되는 기본값이지, 모든 사람을 억지로 끼워 넣는 단일 분류가 아니다.',
+      title: "같은 역할의 기본 권한 위에 개인별 차이를 반영했습니다.",
       sections: [
         {
           label: 'WHY',
@@ -113,7 +113,7 @@ export const permissionContent = {
         },
         {
           label: 'BOUNDARY',
-          body: '즉시 회수 race를 피하기 위해 v1은 request 간 cache를 두지 않았습니다. 성능 최적화보다 stale 허용 방지를 우선했습니다.',
+          body: "권한을 회수한 뒤 다음 요청부터 반영되도록 요청 사이에 권한 계산 결과를 캐시하지 않았습니다.",
         },
       ],
       evolution: { label: 'RESOURCE × ACTION', date: '2026.08.24' },
@@ -130,7 +130,7 @@ export const permissionContent = {
         },
         {
           label: 'DECISION',
-          body: 'advisory lock과 행 잠금 안에서 역할·개인 예외를 바꾼 뒤 유효한 관리자 수를 다시 셌습니다. 변경과 감사 기록은 하나의 트랜잭션으로 확정했습니다.',
+          body: "동시에 권한을 바꿔도 마지막 관리자가 남도록 변경 대상을 잠그고 관리자 수를 다시 확인했습니다. 권한 변경과 감사 기록은 함께 저장합니다.",
         },
         {
           label: 'BOUNDARY',
@@ -155,18 +155,18 @@ export const permissionContent = {
   },
   decisions: {
     eyebrow: 'DESIGN DECISIONS',
-    title: 'Authenticate with identity. Authorize with product policy.',
+    title: "관리는 위임하고, 권한의 기준은 하나로 유지했습니다.",
     items: [
       {
-        statement: 'LOGIN GATE ≠ BUSINESS ACCESS.',
+        statement: "로그인과 업무 권한을 분리",
         explanation: '외부 인증 서비스는 사용자를 확인하고, 제품은 자체 DB의 정책을 기준으로 업무 권한을 판단합니다.',
       },
       {
-        statement: 'STORE DIFFERENCES, SHOW RESULTS.',
+        statement: "개인별 차이만 편집",
         explanation: '관리자는 역할과 개인별 차이를 편집하고, 사용 화면은 계산된 최종 권한을 적용합니다.',
       },
       {
-        statement: 'NO LAST-ADMIN WRITE.',
+        statement: "마지막 관리자는 보호",
         explanation: '변경 후에도 관리자가 남는지 트랜잭션 안에서 다시 확인하고, 보호 규칙을 위반한 변경은 모두 되돌립니다.',
       },
     ],
@@ -224,26 +224,25 @@ export const permissionContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / OPERATING DB 2026.09.04',
-    title: '2026년 8월 26일, 운영 DB의 권한 구성.',
-    snapshot: '읽기 전용 production snapshot에서 확인한 현재 authorization contract입니다.',
-    items: [],
-  },
+  "eyebrow": "WORKFLOW CHANGE",
+  "title": "권한 변경을 기다리던 관리자가 직접 처리하게 됐습니다.",
+  "snapshot": "인원 추가부터 권한 조정과 변경 이력 확인까지 제품 안에서 이어지도록 만들었습니다.",
+  "items": []
+},
   implementationStatus: {
-    state: 'DEPLOYED / CURRENT DB AUTHORIZATION',
-    items: [
-      'Entra OIDC·server-side session·CSRF 코드 경계',
-      'PostgreSQL catalog·template·개인 override 기반 effective permission',
-      '관리자 초대·권한 편집·감사·위임 관리',
-      'self·owner·관리 권한 재위임과 invite 생성·취소 guard',
-    ],
-    runtime: "2026.09.04 production DB에서 effective permission contract를 확인했다.",
-  },
+  "state": "팀 접근을 관리하는 화면",
+  "items": [
+    "관리자는 초대와 역할 지정, 개인별 추가·회수 권한을 같은 화면에서 관리합니다.",
+    "역할과 개인 예외가 합쳐진 최종 권한을 확인하고 변경 이유를 추적합니다.",
+    "같은 기준을 메뉴, 직접 URL 접근, 서버 요청에 적용합니다."
+  ],
+  "runtime": "관리 범위를 위임하면서도 자기 권한을 높이거나 마지막 관리자를 제거하는 변경은 차단했습니다."
+},
   boundary: {
-    eyebrow: "BOUNDARY / ACCESS CONTROL",
-    statement: "로그인 자격과 제품 안에서 가능한 행동을 나눠 관리한다.",
-    items: [],
-  },
+  "eyebrow": "DESIGN TAKEAWAY",
+  "statement": "일상적인 권한 관리를 제품 안으로 옮겼습니다.",
+  "items": []
+},
   relatedSystems: [
     { title: 'SCHEDULE', relation: '일정 조회와 변경에 서로 다른 권한을 적용한 제품 사례', href: '/what/schedule', status: 'available' },
     { title: 'QA', relation: '기록 작성자와 조회자의 행동 범위를 나눈 제품 사례', href: '/what/qa', status: 'available' },

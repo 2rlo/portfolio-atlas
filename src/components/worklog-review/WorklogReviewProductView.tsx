@@ -43,7 +43,7 @@ function WorklogReviewProductView({
         <div className="wl-product-canvas">
           <header className="wl-page-head" aria-hidden="true">
             <div><small>JADEBELL HUB</small><strong>업무일지 검토</strong><span>AI 정규화 초안을 원문과 비교해 보고에 사용할 기록을 확정합니다.</span></div>
-            <span>RECONSTRUCTED REVIEW / EXTERNAL WORKSPACE</span>
+            <span>REVIEW WORKSPACE</span>
           </header>
 
           <div className="wl-review-workspace">
@@ -76,7 +76,7 @@ function WorklogReviewProductView({
                 <span className="wl-step-index">01</span>
                 <span><small>ORIGINAL SOURCE</small><strong>{fixture.source.type}</strong><em>{fixture.source.date}</em></span>
                 <q>{fixture.source.message}</q>
-                <b>PUBLIC SYNTHETIC MESSAGE</b>
+                <b>원문 연결</b>
               </ProductHotspot>
 
               <div className="wl-review-body">
@@ -129,8 +129,8 @@ function WorklogReviewProductView({
                 onActivate={onActivate}
               >
                 <span>05</span>
-                <span><small>REPORT-SOURCE RULE</small><strong>REVIEWED RECORD FIRST</strong><em>사람이 수정·검토한 뒤 보고에 사용</em></span>
-                <span><small>ONLY WHEN</small><b>{fixture.fallback.condition}</b><em>{fixture.fallback.label}</em></span>
+                <span><small>REPORT SOURCE</small><strong>검토 완료 기록 우선</strong><em>수정한 기록을 주간보고에 사용</em></span>
+                <span><small>초안 사용</small><b>{fixture.fallback.condition}</b><em>{fixture.fallback.label}</em></span>
                 <b aria-hidden="true">→</b>
               </ProductHotspot>
             </article>

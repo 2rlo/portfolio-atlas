@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import type { ApiUsageEvolutionVisual, ApiUsagePageContent } from '../../content/content-types.ts'
+import type { ApiUsageEvolutionVisual, ApiUsagePageContent, PaidCallLifecycleContent } from '../../content/content-types.ts'
 import ApiUsageInspector from './ApiUsageInspector.tsx'
 
 function ApiUsageEvolutionFragment({ visual }: { readonly visual: ApiUsageEvolutionVisual }) {
@@ -10,7 +10,7 @@ function ApiUsageEvolutionFragment({ visual }: { readonly visual: ApiUsageEvolut
   return <div className="qa-evolution-fragment"><span>CACHE WRITE</span><i>+</i><span>READ</span><i>→</i><strong>NET</strong></div>
 }
 
-function ApiUsagePage({ content }: { readonly content: ApiUsagePageContent }) {
+function ApiUsagePage({ content, lifecycle }: { readonly content: ApiUsagePageContent; readonly lifecycle: PaidCallLifecycleContent }) {
   const titleId = 'api-usage-title'
 
   return (
@@ -88,27 +88,62 @@ function ApiUsagePage({ content }: { readonly content: ApiUsagePageContent }) {
           <h2 id={`${titleId}-evidence`}>{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
         </header>
-        <dl className="qa-evidence-register">
+        {content.evidence.items.length > 0 ? <dl className="qa-evidence-register">
           {content.evidence.items.map((item) => (
             <div key={item.label}>
               <dd>{item.value}</dd>
               <dt>{item.label}</dt>
               <p>{item.meaning}</p>
-              <small>{item.boundary}</small>
+              {item.boundary ? <small>{item.boundary}</small> : null}
             </div>
           ))}
-        </dl>
+        </dl> : null}
         <div className="qa-status">
           <header>
-            <span>구현·운영 상태</span>
+            <span>달라진 업무</span>
             <strong>{content.implementationStatus.state}</strong>
           </header>
           <ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul>
-          <p><span>확인한 운영 범위</span>{content.implementationStatus.runtime}</p>
+          <p><span>설계가 연결된 지점</span>{content.implementationStatus.runtime}</p>
           {content.implementationStatus.feedback ? (
             <p><span>{content.implementationStatus.feedback.label}</span>{content.implementationStatus.feedback.text}</p>
           ) : null}
         </div>
+      </section>
+
+      <section className="api-paid-lifecycle" id="paid-call-lifecycle" aria-labelledby={`${titleId}-lifecycle`}>
+        <header className="qa-section-heading">
+          <p>{lifecycle.eyebrow}</p>
+          <h2 id={`${titleId}-lifecycle`}>{lifecycle.title}</h2>
+          <span>{lifecycle.introduction}</span>
+        </header>
+        <ol className="api-paid-stages" aria-label="유료 호출 처리 단계">
+          {lifecycle.stages.map((stage) => (
+            <li key={stage.label}>
+              <span>{stage.label}</span>
+              <h3>{stage.title}</h3>
+              <p>{stage.body}</p>
+            </li>
+          ))}
+        </ol>
+        <div className="api-paid-situations">
+          <h3>같은 ‘미완료’라도 다음 판단은 다르다.</h3>
+          {lifecycle.situations.map((situation) => (
+            <article key={situation.id} aria-labelledby={`paid-call-${situation.id}`}>
+              <h4 id={`paid-call-${situation.id}`}>{situation.title}</h4>
+              <dl>
+                <div><dt>관측 상태</dt><dd>{situation.signal}</dd></div>
+                <div><dt>다음 판단</dt><dd>{situation.action}</dd></div>
+                <div><dt>판단 근거</dt><dd>{situation.reason}</dd></div>
+              </dl>
+            </article>
+          ))}
+        </div>
+        <aside className="api-paid-boundary" aria-label="유료 호출 처리 원칙">
+          <strong>다시 호출하지 않고 이어가는 처리</strong>
+          <p>{lifecycle.boundary}</p>
+          <Link to={lifecycle.related.href}>{lifecycle.related.label}<span aria-hidden="true"> ↗</span></Link>
+        </aside>
       </section>
 
       <footer className="qa-boundary">

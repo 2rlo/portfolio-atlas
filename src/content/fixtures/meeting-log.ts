@@ -9,8 +9,8 @@ export const meetingLogProductFixture = {
     title: 'Atlas release readiness sync',
     date: '2026.08.24 · 10:30',
     duration: '42 MIN',
-    source: 'SYNCED MEETING NOTE',
-    syncState: 'SOURCE SAVED',
+    source: '동기화한 회의 메모',
+    syncState: '동기화 완료',
     participants: [
       jadebellPublicWorld.people.minaKim,
       jadebellPublicWorld.people.danielLee,
@@ -77,9 +77,9 @@ export const meetingLogProductFixture = {
     notice: '승인한 항목만 공식 기록에 저장하고 답변 근거로 사용합니다.',
   },
   captureBoundary: {
-    label: 'AUTOMATED CAPTURE',
-    state: 'UPSTREAM BLOCKED',
-    activeInput: '현재 입력 · 동기화된 회의 메모',
-    remaining: '현재 남은 범위 · 자동 녹화 · 전사 · 원문 확보',
+    label: 'DAILY SYNC',
+    state: '07:00 KST',
+    activeInput: '동기화된 회의 메모',
+    remaining: '변경한 메모를 후보 추출과 검색 갱신에 연결',
   },
 } as const satisfies MeetingLogProductFixture

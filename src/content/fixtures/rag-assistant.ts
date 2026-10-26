@@ -36,13 +36,13 @@ export const ragAssistantProductFixture = {
   ],
   followup: {
     question: '그럼 배포 영향도와 우선순위도 확정해줘.',
-    headline: '현재 연결된 정보만으로는 영향도와 우선순위를 확정하기 어렵습니다.',
-    body: '상태 값은 확인되지만 QA 영향 범위와 승인 결정이 연결되지 않아 판단 맥락이 부족합니다.',
+    headline: '영향도와 우선순위를 정하려면 추가 자료가 필요합니다.',
+    body: 'QA 영향 범위와 승인 결정을 연결한 뒤 배포 의존 관계를 함께 검토해야 합니다.',
     missing: ['QA 영향 범위', '승인 결정', '배포 의존 관계'],
   },
   reviewAction: {
     label: '변경 후보로 정리',
-    detail: '답변은 공식 상태를 직접 바꾸지 않습니다.',
+    detail: '검토함에서 내용을 수정하고 승인하면 공식 기록으로 저장합니다.',
     destination: 'AI 기록 검토함에서 확인 후 반영',
   },
   suggestions: ['이번 주 요약', '롤백 준비 비교', '다음 할 일 추천'],

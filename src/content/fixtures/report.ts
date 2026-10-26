@@ -25,8 +25,8 @@ export const reportProductFixture = {
     action: '주간 요약 생성',
     automatic: '월요일 자동 생성',
     manual: '권한 보유자 수동 생성',
-    locale: 'KO ACTIVE',
-    gatedLocale: 'EN QUALITY GATE',
+    locale: '한국어 보고서',
+    gatedLocale: '',
   },
   metrics: [
     { label: '완료 작업', value: '12' },

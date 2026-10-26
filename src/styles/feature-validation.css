@@ -1171,7 +1171,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1.5rem, 4vw, 5rem);
-  margin-top: clamp(5rem, 9vw, 9rem);
+  margin-top: clamp(2.5rem, 5vw, 5rem);
 }
 
 .fv-status-grid section {

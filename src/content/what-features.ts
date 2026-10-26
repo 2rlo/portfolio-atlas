@@ -88,6 +88,12 @@ export const whatFeatureGroups = [
         href: '/what/developer-status',
         mobileLane: 2,
       },
+      {
+        id: 'operations',
+        name: 'OPERATIONS',
+        href: '/what/operations',
+        mobileLane: 1,
+      },
     ],
   },
 ] as const satisfies readonly WhatFeatureGroup[]

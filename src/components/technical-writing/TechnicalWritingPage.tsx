@@ -3,10 +3,12 @@ import type {
   TechnicalWritingAnnotation,
   TechnicalWritingContent,
   TechnicalWritingReaderGuide,
+  HandoverGuideContent,
 } from '../../content/content-types.ts'
 
 interface TechnicalWritingPageProps {
   readonly content: TechnicalWritingContent
+  readonly handoverGuide: HandoverGuideContent
 }
 
 interface EditorialAnnotationProps {
@@ -43,7 +45,7 @@ function ReaderGuide({ guide }: ReaderGuideProps) {
       aria-labelledby={titleId}
     >
       <p className="tw-reader-detail-label" aria-hidden="true">
-        {guide.role} · 핵심 순서
+        {guide.role} / 핵심 순서
       </p>
 
       <ol className="tw-reader-steps">
@@ -82,7 +84,7 @@ function SectionHeading({ id, eyebrow, title, summary }: SectionHeadingProps) {
   )
 }
 
-function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
+function TechnicalWritingPage({ content, handoverGuide }: TechnicalWritingPageProps) {
   return (
     <main className="technical-writing-page" id="main-content">
       <section className="tw-hero" aria-labelledby="technical-writing-title">
@@ -165,7 +167,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
             <header>
               <p>AUDIENCE MODEL / EVOLUTION</p>
               <h3 id="tw-evolution-title">
-                역할별 안내에서 실제 권한에 맞춘 통합 안내로.
+                권한이 바뀌자 안내도 통합했다.
               </h3>
             </header>
 
@@ -290,8 +292,6 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
                   </div>
                 ))}
               </dl>
-
-
             </aside>
           </div>
         </div>
@@ -335,7 +335,7 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
             <header>
               <p>검증 신호의 의미</p>
               <h3 id="tw-verification-title">
-                한 신호로 확인할 수 있는 범위
+                신호별로 나눈 확인 순서
               </h3>
             </header>
 
@@ -367,6 +367,32 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
             <strong>{content.operations.rollbackBoundary.statement}</strong>
             <span>{content.operations.rollbackBoundary.stopRule}</span>
           </aside>
+
+          <section className="tw-handover-section" aria-labelledby="tw-handover-title">
+            <header className="tw-handover-heading">
+              <p>{handoverGuide.eyebrow}</p>
+              <h3 id="tw-handover-title">{handoverGuide.title}</h3>
+              <span>{handoverGuide.introduction}</span>
+            </header>
+            <div className="tw-handover-readers">
+              {handoverGuide.readers.map((reader) => (
+                <article key={reader.id} aria-labelledby={`tw-handover-${reader.id}-title`}>
+                  <header>
+                    <h4 id={`tw-handover-${reader.id}-title`}>{reader.role}</h4>
+                    <p>{reader.question}</p>
+                  </header>
+                  <ol>{reader.steps.map((step) => <li key={step}>{step}</li>)}</ol>
+                  <dl>
+                    <div><dt>다음 행동</dt><dd>{reader.nextAction}</dd></div>
+                    <div><dt>중단 조건</dt><dd>{reader.stopCondition}</dd></div>
+                  </dl>
+                </article>
+              ))}
+            </div>
+            <Link className="tw-handover-related" to={handoverGuide.related.href}>
+              {handoverGuide.related.label} <span aria-hidden="true">↗</span>
+            </Link>
+          </section>
         </div>
       </section>
 
@@ -390,19 +416,6 @@ function TechnicalWritingPage({ content }: TechnicalWritingPageProps) {
               </li>
             ))}
           </ol>
-
-          <section className="tw-boundary" aria-labelledby="tw-boundary-title">
-            <header>
-              <p>{content.boundary.eyebrow}</p>
-              <h2 id="tw-boundary-title">{content.boundary.title}</h2>
-            </header>
-            <ul className="tw-boundary-statements">
-              {content.boundary.statements.map((statement) => (
-                <li key={statement}>{statement}</li>
-              ))}
-            </ul>
-
-          </section>
         </div>
       </section>
 

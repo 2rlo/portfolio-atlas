@@ -124,7 +124,7 @@ function RagAssistantProductView({ fixture, activeId, onActivate }: RagAssistant
               onActivate={onActivate}
             >
               <span>05</span>
-              <span><small>OFFICIAL WRITE BOUNDARY</small><strong>{fixture.reviewAction.label}</strong></span>
+              <span><small>RECORD REVIEW</small><strong>{fixture.reviewAction.label}</strong></span>
               <p>{fixture.reviewAction.detail}</p>
               <em>{fixture.reviewAction.destination} →</em>
             </ProductHotspot>

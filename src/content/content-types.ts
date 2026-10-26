@@ -28,6 +28,13 @@ export interface HomeTrackContent {
 
 export interface HomePageContent {
   readonly tracks: readonly HomeTrackContent[]
+  readonly introduction: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly summary: string
+    readonly ownership: string
+    readonly paths: readonly { readonly title: string; readonly body: string; readonly href: string }[]
+  }
 }
 
 export type WhatFeatureGroupId =
@@ -294,8 +301,6 @@ export interface DocumentationSystemContent {
   readonly principle: {
     readonly statement: string
     readonly boundary: readonly string[]
-    readonly claimBoundary: string
-    readonly notVerified: readonly string[]
   }
   readonly nextPage: {
     readonly eyebrow: string
@@ -345,9 +350,9 @@ export interface PublicCodemapContent {
     readonly thesis: string
     readonly summary: string
   }
-  readonly freshness: {
-    readonly state: 'FRESH'
-    readonly reviewedAt: string
+  readonly maintenance: {
+    readonly navigation: string
+    readonly artifacts: string
     readonly scope: string
     readonly rule: string
   }
@@ -1938,7 +1943,6 @@ export interface TechnicalWritingContent {
       readonly label: string
       readonly value: string
     }[]
-    readonly notFormalized: readonly string[]
   }
   readonly operations: {
     readonly eyebrow: string
@@ -1976,12 +1980,6 @@ export interface TechnicalWritingContent {
       readonly statement: string
       readonly evidence: string
     }[]
-  }
-  readonly boundary: {
-    readonly eyebrow: string
-    readonly title: string
-    readonly statements: readonly string[]
-    readonly notClaimed: readonly string[]
   }
   readonly nextPage: {
     readonly eyebrow: string
@@ -2128,6 +2126,7 @@ export interface SecurityOperationsContent {
       readonly items: readonly string[]
     }[]
     readonly knownBoundary: readonly string[]
+    readonly relatedProduct: { readonly label: string; readonly href: string }
   }
   readonly boundary: {
     readonly eyebrow: string
@@ -2147,4 +2146,96 @@ export interface SecurityOperationsContent {
     readonly summary: string
     readonly href: string
   }
+}
+export interface PaidCallLifecycleContent {
+  readonly eyebrow: string
+  readonly title: string
+  readonly introduction: string
+  readonly stages: readonly { readonly label: string; readonly title: string; readonly body: string }[]
+  readonly situations: readonly { readonly id: string; readonly title: string; readonly signal: string; readonly action: string; readonly reason: string }[]
+  readonly boundary: string
+  readonly related: { readonly label: string; readonly href: string }
+}
+
+export interface RecordExecutionContent {
+  readonly eyebrow: string
+  readonly title: string
+  readonly introduction: string
+  readonly stages: readonly { readonly label: string; readonly title: string; readonly body: string }[]
+  readonly guards: readonly { readonly title: string; readonly body: string }[]
+  readonly boundary: string
+  readonly related: { readonly label: string; readonly href: string }
+}
+
+export interface HandoverGuideContent {
+  readonly eyebrow: string
+  readonly title: string
+  readonly introduction: string
+  readonly readers: readonly { readonly id: string; readonly role: string; readonly question: string; readonly steps: readonly string[]; readonly nextAction: string; readonly stopCondition: string }[]
+  readonly related: { readonly label: string; readonly href: string }
+}
+
+export type OperationsCaseId = 'known-failure' | 'incomplete-evidence' | 'processing-paused'
+
+export interface OperationsDecisionCase {
+  readonly id: OperationsCaseId
+  readonly label: string
+  readonly state: string
+  readonly title: string
+  readonly summary: string
+  readonly signals: readonly {
+    readonly label: string
+    readonly value: string
+    readonly tone: 'known' | 'attention' | 'unknown'
+  }[]
+  readonly decision: {
+    readonly title: string
+    readonly reason: string
+    readonly nextAction: string
+    readonly stopCondition: string
+  }
+  readonly retryPreview: {
+    readonly scope: string
+    readonly preserves: string
+    readonly requires: string
+  } | null
+}
+
+export interface OperationsPageContent {
+  readonly meta: {
+    readonly classification: 'reconstructed-public-example'
+    readonly disclosure: string
+    readonly evidenceDate: '2026-09-30'
+    readonly boundary: PublicFixtureBoundary
+  }
+  readonly hero: ReusableWhatCaseContent<string, never, never>['hero']
+  readonly inspection: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly instruction: string
+    readonly localBoundary: string
+    readonly cases: readonly OperationsDecisionCase[]
+    readonly controls: {
+      readonly preview: string
+      readonly confirm: string
+      readonly reset: string
+    }
+    readonly status: {
+      readonly inspect: string
+      readonly preview: string
+      readonly recorded: string
+    }
+    readonly noTargetRule: string
+  }
+  readonly workflow: {
+    readonly eyebrow: string
+    readonly title: string
+    readonly steps: readonly { readonly label: string; readonly summary: string }[]
+    readonly boundary: string
+  }
+  readonly decisions: ReusableWhatCaseContent<string, never, never>['decisions']
+  readonly evidence: ReusableWhatCaseContent<string, never, never>['evidence']
+  readonly implementationStatus: ReusableWhatCaseContent<string, never, never>['implementationStatus']
+  readonly boundary: ReusableWhatCaseContent<string, never, never>['boundary']
+  readonly relatedSystems: ReusableWhatCaseContent<string, never, never>['relatedSystems']
 }

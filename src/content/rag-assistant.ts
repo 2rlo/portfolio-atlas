@@ -13,22 +13,22 @@ export const ragAssistantContent = {
     eyebrow: 'WHAT I BUILT / 10',
     titleLines: ['RAG', 'ASSISTANT'],
     thesis:
-      '날짜·프로젝트·상태는 조건으로 조회하고, 관련 문서는 의미 검색으로 보완했다. 답변에는 출처와 검토 상태를 함께 남겼다.',
+      '흩어진 업무 정보를 질문으로 찾고, 답변에서 원문까지 열 수 있게 했다.',
     summary:
-      '기본 조회와 의미 검색 뒤에도 근거가 부족하면 제한된 추가 검색을 수행한다. 개인 대화 기억과 공식 기록은 구분해 사용한다.',
-    problemLabel: 'PROBLEM / RELEVANCE IS NOT AUTHORITY',
+      '날짜와 프로젝트, 상태는 DB에서 조회하고 표현이 다른 문서는 의미 검색으로 찾는다. 검색 결과의 출처와 검토 상태를 함께 보여주며, 대화에서 찾은 기록 후보는 검토함으로 보낸다.',
+    problemLabel: '여러 화면을 오가던 정보 탐색',
     problem:
-      '프로젝트·일정·QA·회의가 여러 화면에 흩어져 있었다. 의미 유사도만으로 검색하면 미검토 원문과 승인된 기록을 구별하기 어려웠다.',
+      '프로젝트 현황을 찾으려면 일정과 QA, 회의 기록을 각각 열어야 했다. 문서를 찾은 뒤에도 최신 상태인지, 누가 검토했는지 다시 확인해야 했다.',
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / ANSWER + SOURCE RECEIPT',
-    title: '답변 옆에 남긴 출처와 확인할 조건',
+    title: '답변과 출처를 함께 읽기',
     instruction:
-      '조회 범위·출처·근거 부족·검토 연결의 설계 이유',
+      '질문에 맞는 자료를 찾고 기록으로 돌아가는 흐름',
     defaultAnnotation: {
       index: '00',
       label: 'ASSISTANT GUIDE',
-      title: '어떤 자료와 상태를 근거로 답했는가',
+      title: '질문에서 업무 기록까지',
       body: '질문에 필요한 업무 범위를 좁히고 정형 상태와 관련 문서를 조회한다. 답변에는 출처를 남기고, 근거가 부족한 판단은 필요한 자료와 함께 표시한다.',
     },
   },
@@ -38,7 +38,7 @@ export const ragAssistantContent = {
       id: 'context-entry',
       index: '01',
       label: 'CONTEXT ENTRY',
-      title: '사용자가 데이터 구조를 몰라도, 질문에서 필요한 업무 범위를 먼저 좁힌다.',
+      title: '질문에서 조회 범위 찾기',
       sections: [
         {
           label: 'WHY',
@@ -48,10 +48,6 @@ export const ragAssistantContent = {
           label: 'DECISION',
           body: '질문의 의도와 키워드로 조회 범위를 정하고, 사용자 권한 밖의 자료는 조회 단계에서 제외했다.',
         },
-        {
-          label: 'BOUNDARY',
-          body: '세션·도구·자료 조회의 접근 범위는 서버에서 제한한다. 화면의 범위 표시는 권한을 부여하지 않는다.',
-        },
       ],
       evolution: { label: 'CONTEXT ENTRY MVP', date: '2026.06.26' },
     },
@@ -59,7 +55,7 @@ export const ragAssistantContent = {
       id: 'deterministic-first',
       index: '02',
       label: 'DETERMINISTIC FIRST',
-      title: '날짜·프로젝트·상태는 조건을 지정해 먼저 조회했다.',
+      title: '상태 조회를 먼저 연결',
       sections: [
         {
           label: 'WHY',
@@ -69,10 +65,6 @@ export const ragAssistantContent = {
           label: 'DECISION',
           body: '질문 의도에 따른 DB 조회를 기본으로 유지했다. RAG가 켜져 있을 때만 의미 검색 결과를 뒤에 더했다.',
         },
-        {
-          label: 'BOUNDARY',
-          body: '정형 상태가 확인돼도 원인·영향·우선순위까지 자동으로 확정되는 것은 아닙니다.',
-        },
       ],
       evolution: { label: 'VECTOR ADDED, NOT REPLACED', date: '2026.07.07' },
     },
@@ -80,7 +72,7 @@ export const ragAssistantContent = {
       id: 'source-hierarchy',
       index: '03',
       label: 'SOURCE + REVIEW STATE',
-      title: '검색 유사도와 자료의 검토 상태를 따로 표시했다.',
+      title: '출처와 검토 상태 표시',
       sections: [
         {
           label: 'WHY',
@@ -88,11 +80,7 @@ export const ragAssistantContent = {
         },
         {
           label: 'DECISION',
-          body: '자료의 출처와 검토 상태를 함께 표시하고, 승인 전 후보는 기본 답변 근거에서 제외했습니다.',
-        },
-        {
-          label: 'BOUNDARY',
-          body: '답변은 연결된 자료가 설명하는 범위 안에서만 근거를 가진다.',
+          body: '승인된 기록을 기본 답변 근거로 사용하고 출처와 검토 상태를 함께 표시했다. 개인 대화 기억은 해당 사용자의 참고 맥락으로 따로 저장했다.',
         },
       ],
       evolution: { label: 'SOURCE STATES EXPLICIT', date: '2026.07.10' },
@@ -101,19 +89,15 @@ export const ragAssistantContent = {
       id: 'insufficient-evidence',
       index: '04',
       label: 'CONTEXT LIMITED',
-      title: '관계 근거가 부족하면, 확정할 수 없는 판단을 명시했다.',
+      title: '자료가 부족할 때 추가 검색',
       sections: [
         {
           label: 'WHY',
-          body: '상태 값 하나를 찾았다는 이유로 영향도와 우선순위를 추론하면 검색 결과가 의사결정처럼 보일 수 있습니다.',
+          body: '상태를 찾은 뒤에도 원인이나 관련 변경을 묻는 질문에는 추가 자료가 필요했다.',
         },
         {
           label: 'DECISION',
           body: '기본 검색이 부족할 때만 Company Context로 허용된 자료를 추가 검색했다. 그래도 근거가 없으면 필요한 자료를 명시했다.',
-        },
-        {
-          label: 'BOUNDARY',
-          body: '요구사항·QA·릴리스의 관계를 연결하는 Current State 모델과 검색 품질 자동 평가는 후속 범위다.',
         },
       ],
       evolution: { label: 'LIMITED CONTEXT TOOL', date: '2026.08.14' },
@@ -122,19 +106,15 @@ export const ragAssistantContent = {
       id: 'review-boundary',
       index: '05',
       label: 'REVIEW HANDOFF',
-      title: '변경 제안은 별도 검토함에서 사람이 결정한다.',
+      title: '발견한 기록을 검토함으로',
       sections: [
         {
           label: 'WHY',
-          body: '대화가 자연스러울수록 AI 제안이 이미 확정된 사실처럼 보이기 쉽습니다.',
+          body: '대화에서 발견한 결정과 계획을 저장하려면 원문을 대조하고 분류와 프로젝트를 고르는 검토가 필요했다.',
         },
         {
           label: 'DECISION',
           body: '기능·결정·계획 후보는 AI 기록 검토함으로 보낸다. 사람이 수정·승인·반려를 결정하고, 승인한 후보만 공식 기록에 저장한다.',
-        },
-        {
-          label: 'BOUNDARY',
-          body: 'Conversation Memory는 개인 대화의 참고 맥락으로만 사용한다. AI 답변은 v1 색인과 공식 지식에서 제외했다.',
         },
       ],
       evolution: { label: 'MEMORY ≠ KNOWLEDGE', date: '2026.08.20' },
@@ -142,7 +122,7 @@ export const ragAssistantContent = {
   ],
   workflow: {
     eyebrow: 'RETRIEVAL WORKFLOW',
-    title: '정형 상태 조회 → 의미 검색 보완 → 필요한 경우 추가 검색',
+    title: '질문에 맞춰 검색 범위 넓히기',
     introduction: '각 단계와 연결된 답변 영역을 함께 강조',
     steps: [
       { id: 'rag-flow-ask', hotspotId: 'context-entry', index: '01', label: 'ASK', summary: '질문과 사용자 접근 범위 확인' },
@@ -151,30 +131,30 @@ export const ragAssistantContent = {
       { id: 'rag-flow-answer', hotspotId: 'insufficient-evidence', index: '04', label: 'ANSWER', summary: '근거 범위 또는 부족 상태 표시' },
       { id: 'rag-flow-review', hotspotId: 'review-boundary', index: '05', label: 'REVIEW', summary: '공식 기록 변경은 검토함으로 연결' },
     ],
-    boundary: 'AI는 연결된 자료로 답변을 구성한다. 영향도·우선순위·공식 상태의 확정은 별도 판단으로 남긴다.',
+    boundary: '사용자는 답변 옆의 출처를 열어 원문을 확인하고, 저장할 내용은 검토함에서 수정한 뒤 공식 기록으로 남긴다.',
   },
   decisions: {
     eyebrow: 'DESIGN DECISIONS',
-    title: 'Deterministic first. Relevance second. Authority always visible.',
+    title: '조회와 검색을 나눈 이유',
     items: [
       {
-        statement: 'RAG AUGMENTS. IT DOES NOT REPLACE.',
+        statement: '정확한 조건은 DB 조회로',
         explanation: '조건에 따른 상태 조회를 유지하고, 표현이 다른 관련 문서는 의미 검색으로 보완한다.',
       },
       {
-        statement: 'RAW IS NOT CANONICAL.',
-        explanation: 'Teams 원문과 개인 대화 기억은 참고 자료로 표시하고 공식 기록과 구분한다.',
+        statement: '자료의 상태는 답변 옆에',
+        explanation: 'Teams 원문과 검토한 기록의 상태를 표시해, 사용자가 답변을 읽으며 출처의 성격까지 확인하게 했다.',
       },
       {
-        statement: 'NO SOURCE, NO CERTAINTY.',
-        explanation: '추가 검색 뒤에도 관계 근거가 없으면, 판단에 필요한 자료를 명시한다.',
+        statement: '부족한 자료는 추가 검색으로',
+        explanation: '기본 조회로 답하기 어려운 질문은 허용된 자료를 추가 검색하고, 더 필요한 자료가 있으면 답변에 적는다.',
       },
     ],
   },
   evolution: {
     eyebrow: 'PRODUCT EVOLUTION',
-    title: '상태 조회에 문서 검색과 출처 표시를 더한 과정',
-    introduction: '정형 조회, pgvector 보완, 출처 상태 표시, 추가 검색, 개인 대화 기억의 분리.',
+    title: '업무 질문에 맞춰 검색을 확장',
+    introduction: '현재 상태를 찾는 조회로 시작해, 표현이 다른 문서와 이전 대화까지 참고할 수 있도록 확장했다.',
     scenes: [
       {
         date: '2026.06.26',
@@ -209,12 +189,12 @@ export const ragAssistantContent = {
         visual: 'context-tool',
         decision: '추가 검색은 자동 1차 검색이 부족할 때만 열었다.',
         trigger: '동의어와 여러 관계를 잇는 질문에 기본 자료만으로는 부족',
-        change: 'QA·Teams·구현 근거의 제한적 재검색',
+        change: 'QA 기록과 Teams 대화, 구현 근거의 추가 검색',
         currentEffect: '근거 부족 상태에서 추가로 필요한 자료 범위를 명시',
       },
       {
         date: '2026.08.20',
-        label: 'MEMORY BOUNDARY',
+        label: 'PERSONAL MEMORY',
         visual: 'memory-boundary',
         decision: '개인 대화 기억과 승인된 지식의 저장·갱신 흐름을 분리했다.',
         trigger: '긴 대화 맥락 소실과 AI 답변 자기강화 위험',
@@ -224,33 +204,31 @@ export const ragAssistantContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
-    title: '대화·출력의 제한과 운영에서 확인한 경로',
-    snapshot: '채널과 채팅의 서로 다른 수집 경로에서 저장된 context 범위입니다.',
+    eyebrow: '업무에서 달라진 점',
+    title: '자료 찾기와 재질문을 한곳에서',
+    snapshot: '사용자는 메뉴를 찾아 이동하는 대신 질문으로 업무 자료를 찾고, 답변에 붙은 출처에서 원문을 확인한다.',
     items: [],
   },
   implementationStatus: {
-    state: 'DEPLOYED / ACTIVE / LIMITED OBSERVATION',
+    state: '조회부터 기록 검토까지 연결',
     items: [
-      '질문 의도에 따른 정형 조회와 pgvector 보조 검색',
-      '출처별 검색 우선순위·출처 표시·검색 실패 격리',
-      'Graph 채널과 Power Automate 선택 채팅의 분리된 수집 경로',
-      '사용자별 Conversation Memory와 검토 후 지식 반영',
+      '날짜와 프로젝트 조건 조회에 pgvector 문서 검색 결합',
+      '출처별 우선순위와 검토 상태를 답변에 표시',
+      'Graph 채널 수집과 Power Automate에서 선택한 채팅 수집 연결',
+      '개인 대화 기억과 검토 후 저장하는 업무 지식 분리',
     ],
-    runtime: 'deterministic lookup과 provenance-aware RAG 경로는 운영 구성에 있다. 채널은 Graph, 선택 채팅은 Power Automate로 수집한다.',
+    runtime: '한 검색 경로가 실패해도 다른 조회 결과를 남기고, 단계별 처리 상태를 기록해 운영 중 문제를 추적하도록 했다.',
     feedback: {
       label: '사용자 인터뷰',
       text: '필요한 정보를 허브에서 찾는 데 약 3분이 걸린다고 답했다. 담당자에게 직접 묻는 빈도는 주 3회 이상에서 약 1회로 줄었다고 회고했다.',
     },
   },
   boundary: {
-    eyebrow: 'BOUNDARY / RETRIEVAL, NOT TRUTH ENGINE',
-    statement: '연결된 자료가 설명하는 범위 안에서 답한다.',
+    eyebrow: '설계에서 배운 점',
+    statement: '질문에 맞게 검색을 조합',
     items: [
-      'AI 답변과 미검토 원문을 승인된 공식 기록처럼 취급하지 않습니다.',
-      '채팅 수집 범위는 Power Automate에서 선택한 대상을 따른다.',
-      '관측 로그에는 질문·답변·검색어 원문 없이 단계별 상태 정보만 기록했다.',
-      '관계 기반 Current State, 자동 검색 평가셋, 채팅 요청 급증 차단은 후속 범위다.',
+      '날짜와 상태가 분명한 질문에는 조건 조회를 쓰고, 표현이 다른 문서는 의미 검색으로 찾았다. 두 결과를 같은 답변의 출처 목록에 모았다.',
+      '긴 대화의 맥락은 사용자별 기억으로 남겼다. 공식 지식은 검토함에서 승인한 뒤 검색에 반영하도록 저장과 갱신 경로를 나눴다.',
     ],
   },
   relatedSystems: [

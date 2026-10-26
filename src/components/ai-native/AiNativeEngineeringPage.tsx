@@ -37,7 +37,7 @@ function WorkflowDetail({ step }: WorkflowDetailProps) {
           <p>{step.action}</p>
         </section>
         <section>
-          <h4>확인 결과</h4>
+          <h4>다음 작업에 남기는 것</h4>
           <p>{step.proof}</p>
         </section>
         <section>
@@ -287,7 +287,10 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
           <span>{content.principle.appliedIn}</span>
         </div>
 
-        <nav className="ai-native-cross-links" aria-label="연결된 HOW I BUILD 페이지">
+        <nav className="ai-native-cross-links" aria-label="연결된 제품과 제작 방식">
+          <Link to="/what/rag-assistant">
+            RAG Assistant <span aria-hidden="true">↗</span>
+          </Link>
           <Link to="/how/documentation-system">
             <span aria-hidden="true">←</span> Documentation System
           </Link>

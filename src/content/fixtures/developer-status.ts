@@ -8,7 +8,7 @@ export const developerStatusProductFixture = {
   people: [
     { person: jadebellPublicWorld.people.danielLee, project: 'Atlas', state: '추가 확인 필요', tone: 'partial' },
     { person: jadebellPublicWorld.people.alexSeo, project: 'Atlas', state: '근거 연결됨', tone: 'ready' },
-    { person: jadebellPublicWorld.people.soraLim, project: 'Canopy', state: '일부 정보 확인됨', tone: 'partial' },
+    { person: jadebellPublicWorld.people.soraLim, project: 'Canopy', state: '부분 결과', tone: 'partial' },
     { person: jadebellPublicWorld.people.minaKim, project: 'Cross-project', state: '근거 연결됨', tone: 'ready' },
   ],
   selected: {
@@ -17,7 +17,7 @@ export const developerStatusProductFixture = {
     refreshedAt: 'AUG 28 · 17:42 KST',
     state: 'PARTIAL / HUMAN CHECK NEEDED',
     summary:
-      '큰 요청의 시간 초과 재현 조건과 재시도 범위를 정리하고 코드 변경 묶음을 연결했습니다. UI 실패 상태는 구현 후보가 있지만 최종 반영 여부는 추가 확인이 필요합니다.',
+      '큰 요청의 시간 초과 재현 조건과 재시도 범위를 정리했습니다. 관련 코드 변경을 묶었고, UI 실패 상태는 연결 검토를 기다리고 있습니다.',
     counts: [
       { label: 'REVIEWED WORKLOGS', value: '04' },
       { label: 'CODE EVIDENCE', value: '03' },
@@ -25,7 +25,7 @@ export const developerStatusProductFixture = {
     ],
     warnings: [
       '검토 전 AI 업무일지 초안 1건이 포함돼 있습니다.',
-      '화면 상태와 코드 근거가 최종적으로 연결됐는지 확인이 필요합니다.',
+      'UI 실패 상태의 요구사항과 코드 변경을 대조하세요.',
     ],
     focus: [
       'API 시간 초과 재현 기준 · 요청 크기와 재시도 횟수',
