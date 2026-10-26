@@ -68,7 +68,7 @@ function DeveloperStatusInspector({ content }: { readonly content: DeveloperStat
             <h3>{annotation?.title ?? fallback.title}</h3>
             {annotation ? (
               <dl className="product-editorial-sections">
-                {annotation.sections.map((section) => <div key={section.label}><dt>{section.label}</dt><dd>{section.body}</dd></div>)}
+                {annotation.sections.map((section) => <div key={section.label}><dt>{{ WHY: '문제', DECISION: '선택한 방식', BOUNDARY: '적용 기준', EVIDENCE: '구현' }[section.label]}</dt><dd>{section.body}</dd></div>)}
               </dl>
             ) : <p className="product-editorial-prompt">{fallback.body}</p>}
             {annotation?.evolution ? <a className="product-editorial-evolution" href="#developer-status-evolution"><span>{annotation.evolution.label}</span><strong>{annotation.evolution.date} ↓</strong></a> : null}

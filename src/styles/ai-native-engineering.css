@@ -623,12 +623,13 @@
   min-width: 0;
   padding-top: clamp(4rem, 8vw, 8rem);
   margin-top: clamp(4rem, 8vw, 8rem);
-  font-family: var(--cover-roboto-flex-study);
-  font-size: clamp(3.5rem, 8.3vw, 9rem);
+  font-family: var(--body);
+  font-size: clamp(2.8rem, 5.3vw, 6rem);
   font-variation-settings: 'opsz' 144, 'wdth' 101, 'wght' 670;
   font-weight: 670;
   letter-spacing: -0.065em;
-  line-height: 0.84;
+  line-height: 1.2;
+  word-break: keep-all;
   border-top: 1px solid var(--ink);
 }
 
@@ -1089,7 +1090,7 @@
   .ai-native-incident-rule {
     font-size: clamp(2.25rem, 10vw, 3.4rem);
     overflow-wrap: normal;
-    word-break: normal;
+    word-break: keep-all;
   }
 
   .ai-native-incident-rule span {

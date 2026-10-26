@@ -199,7 +199,7 @@ function QaSurfaceWorkflow({ content }: { readonly content: QaPageContent }) {
                     </button>
                   </h3>
                   <p className="qaj-rail-summary" id={`qaj-summary-${item.id}`}>{item.summary}</p>
-                  <p className="qaj-rail-detail">{note?.sections.find((entry) => entry.label === (item.hotspotId === 'human-result' || item.hotspotId === 'attachments' ? 'BOUNDARY' : item.hotspotId === 'revision-history' ? 'WHY' : 'DECISION'))?.body}</p>
+                  <p className="qaj-rail-detail">{note?.sections.find((entry) => entry.label === 'DECISION')?.body}</p>
                 </li>
               )
             })}

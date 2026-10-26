@@ -5,7 +5,7 @@ import DeveloperStatusInspector from './DeveloperStatusInspector.tsx'
 function DeveloperStatusEvolutionFragment({ visual }: { readonly visual: DeveloperStatusEvolutionVisual }) {
   if (visual === 'identity') return <div className="qa-evolution-fragment"><span>PERSON</span><i>↔</i><strong>LOGIN</strong><i>≠</i><span>BOT</span></div>
   if (visual === 'time-window') return <div className="qa-evolution-fragment"><span>07:30</span><i>→</i><strong>13:00 KST</strong></div>
-  if (visual === 'batch') return <div className="qa-evolution-fragment"><span>6 SETS</span><i>→</i><span>DIGEST</span><i>→</i><strong>ROLLUP</strong></div>
+  if (visual === 'batch') return <div className="qa-evolution-fragment"><span>CHANGES</span><i>→</i><span>DIGEST</span><i>→</i><strong>ROLLUP</strong></div>
   if (visual === 'partial') return <div className="qa-evolution-fragment"><span>READY</span><i>/</i><strong>PARTIAL</strong><i>/</i><span>STALE</span></div>
   return <div className="qa-evolution-fragment"><span>EVENT × N</span><i>→</i><strong>DAILY 1×</strong></div>
 }
@@ -83,28 +83,19 @@ function DeveloperStatusPage({ content }: { readonly content: DeveloperStatusPag
       ) : null}
 
       <section className="qa-evidence" aria-labelledby={`${titleId}-evidence`}>
-        {content.evidence.items.length > 0 ? <><header className="qa-evidence-heading">
+        <header className="qa-evidence-heading">
           <p>{content.evidence.eyebrow}</p>
           <h2 id={`${titleId}-evidence`}>{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
         </header>
-        <dl className="qa-evidence-register">
-          {content.evidence.items.map((item) => (
-            <div key={item.label}>
-              <dd>{item.value}</dd>
-              <dt>{item.label}</dt>
-              <p>{item.meaning}</p>
-              <small>{item.boundary}</small>
-            </div>
-          ))}
-        </dl></> : <h2 className="visually-hidden" id={`${titleId}-evidence`}>구현·운영 상태</h2>}
+
         <div className="qa-status">
           <header>
-            <span>구현·운영 상태</span>
+            <span>구현한 흐름</span>
             <strong>{content.implementationStatus.state}</strong>
           </header>
           <ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul>
-          <p><span>확인한 운영 범위</span>{content.implementationStatus.runtime}</p>
+          <p><span>운영 설계</span>{content.implementationStatus.runtime}</p>
           {content.implementationStatus.feedback ? (
             <p><span>{content.implementationStatus.feedback.label}</span>{content.implementationStatus.feedback.text}</p>
           ) : null}

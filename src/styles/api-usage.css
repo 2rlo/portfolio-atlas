@@ -1,3 +1,22 @@
+.api-usage-page .qa-evidence-register {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.api-usage-page .qa-evidence-register > div {
+  grid-template-columns: minmax(12rem, 0.6fr) minmax(0, 1fr);
+  gap: 1rem 3rem;
+  min-height: auto;
+  padding-block: 2rem;
+}
+
+.api-usage-page .qa-evidence-register dt { grid-column: 1; }
+.api-usage-page .qa-evidence-register p { grid-column: 2; grid-row: 1 / 3; margin: 0; max-width: 40rem; font-size: 1rem; }
+
+@media (max-width: 43rem) {
+  .api-usage-page .qa-evidence-register > div { grid-template-columns: minmax(0, 1fr); }
+  .api-usage-page .qa-evidence-register p { grid-column: 1; grid-row: auto; }
+}
+
 .api-usage-product {
   min-width: 0;
   overflow: hidden;
@@ -1040,4 +1059,137 @@
 }
 @media (max-width: 63rem) and (min-height: 34.001rem) {
   .api-lens-section .api-lens-note, .api-lens-controls button { scroll-margin-top: calc(clamp(15rem, 38svh, 22rem) + 9rem); }
+}
+
+/* Later lifecycle evidence remains separate from the historical cost snapshot. */
+.api-paid-lifecycle {
+  width: min(100%, var(--page-max-width));
+  margin-inline: auto;
+  padding-block: clamp(4rem, 8vw, 8rem);
+  padding-inline: var(--page-gutter);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 6rem;
+}
+
+.api-paid-stages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding: 0;
+  margin: 3rem 0;
+  list-style: none;
+}
+
+.api-paid-stages li {
+  min-width: 0;
+  padding-top: 1rem;
+  border-top: 2px solid var(--jade);
+}
+
+.api-paid-stages li > span {
+  color: var(--jade);
+  font: 0.65rem var(--utility);
+  letter-spacing: 0.05em;
+}
+
+.api-paid-stages h3 {
+  margin: 1rem 0 0.75rem;
+  font-size: 1.3rem;
+  letter-spacing: -0.04em;
+}
+
+.api-paid-stages p,
+.api-paid-situations dd,
+.api-paid-boundary p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.8;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.api-paid-situations > h3 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.4rem, 2.3vw, 2.2rem);
+  letter-spacing: -0.04em;
+}
+
+.api-paid-situations article {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: 1.5rem clamp(1.5rem, 4vw, 4rem);
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.api-paid-situations h4 {
+  max-width: 24ch;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.api-paid-situations dl {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+}
+
+.api-paid-situations dl > div {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.api-paid-situations dt {
+  padding-top: 0.2rem;
+  color: var(--jade);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.api-paid-boundary {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 2rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-left: 2px solid var(--jade);
+  background: var(--pale-jade);
+}
+
+.api-paid-boundary > strong {
+  font-size: 0.88rem;
+}
+
+.api-paid-boundary a {
+  justify-self: start;
+  margin-top: 0.3rem;
+  color: var(--jade-deep);
+  font-size: 0.88rem;
+  line-height: 1.8;
+  text-underline-offset: 0.25em;
+}
+
+.api-paid-boundary a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 5px;
+}
+
+@media (max-width: 63rem) {
+  .api-paid-stages {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 43rem) {
+  .api-paid-situations article {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .api-paid-situations dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
 }

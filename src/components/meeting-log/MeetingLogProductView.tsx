@@ -85,7 +85,7 @@ function MeetingLogProductView({ fixture, activeId, onActivate }: MeetingLogProd
                   </span>
                 ))}
               </span>
-              <b className="meeting-pending-boundary">PENDING · NOT OFFICIAL</b>
+              <b className="meeting-pending-boundary">검토 대기</b>
             </ProductHotspot>
           </section>
 
@@ -106,7 +106,7 @@ function MeetingLogProductView({ fixture, activeId, onActivate }: MeetingLogProd
               <span><small>PROJECT</small><strong>{fixture.selectedCandidate.project}</strong></span>
               <span><small>DESTINATION</small><strong>{fixture.selectedCandidate.destination}</strong></span>
             </span>
-            <span className="meeting-source-proof"><small>SOURCE EVIDENCE</small><strong>{fixture.selectedCandidate.sourceExcerpt}</strong></span>
+            <span className="meeting-source-proof"><small>회의 원문</small><strong>{fixture.selectedCandidate.sourceExcerpt}</strong></span>
             <span className="meeting-duplicate"><small>DUPLICATE CHECK</small><strong>{fixture.selectedCandidate.duplicateState}</strong></span>
             <span className="meeting-review-actions" aria-hidden="true">
               {fixture.review.actions.map((action) => <b key={action}>{action}</b>)}
@@ -118,7 +118,7 @@ function MeetingLogProductView({ fixture, activeId, onActivate }: MeetingLogProd
         <ProductHotspot
           id="capture-boundary"
           activeId={activeId}
-          label="현재 회의록 입력과 미완료 자동 수집의 구분"
+          label="회의 메모 동기화와 후보 추출"
           className="meeting-capture-boundary"
           onActivate={onActivate}
         >

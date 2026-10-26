@@ -16,18 +16,18 @@ export const wikiContent = {
   hero: {
     eyebrow: 'WHAT I BUILT / 14',
     titleLines: ['TEAM', 'WIKI'],
-    thesis: '문서를 더 쌓기 전에, 다시 찾을 수 있는 입구를 열었다.',
+    thesis: '팀 문서를 모으고 다시 찾는 공유 Wiki를 도입했다.',
     summary:
-      '공유 Wiki로 Outline을 사용했다. 홈의 컬렉션·검색·최근 문서가 원문으로 돌아가는 입구를 맡는다.',
+      'Outline을 공유 Wiki로 사용하고, 읽는 목적에 맞춰 컬렉션을 구성했다. 처음 찾는 문서는 검색으로, 다시 읽을 문서는 최근 문서 목록으로 들어간다.',
     problemLabel: 'PROBLEM',
     problem:
       '개발·운영 문서가 늘어날수록 내용을 아는 사람만 경로를 기억했다. 독자와 목적에 맞춰 문서로 돌아가는 별도의 입구가 필요했다.',
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / OUTLINE',
-    title: '어디에 있는지 몰라도, 다시 찾게 하는 화면.',
+    title: '문서를 찾는 여러 입구',
     instruction:
-      '검색·컬렉션·다시 찾기·문서 정보의 설계 맥락',
+      '컬렉션과 검색, 최근 문서에서 본문으로 들어가는 흐름',
     defaultAnnotation: {
       index: '00',
       label: 'WIKI HOME',
@@ -41,15 +41,11 @@ export const wikiContent = {
       id: 'search-entry',
       index: '01',
       label: 'GLOBAL SEARCH',
-      title: '제목과 위치를 기억하지 못해도 시작할 수 있어야 했다.',
+      title: '위치를 몰라도 검색으로 시작',
       sections: [
         {
           label: 'WHY',
           body: '컬렉션 경로를 기억하지 못해도 문서 탐색을 시작할 수 있어야 한다. 전역 검색은 컬렉션과 나란히 놓인 진입점이다.',
-        },
-        {
-          label: 'BOUNDARY',
-          body: '검색 결과에 나타났다는 사실은 문서가 최신이거나 공식이라는 뜻이 아니다. 검색은 발견만 담당한다.',
         },
       ],
     },
@@ -57,15 +53,11 @@ export const wikiContent = {
       id: 'collection-structure',
       index: '02',
       label: 'COLLECTION ROUTES',
-      title: '읽는 목적에 따라 나뉜 컬렉션 입구',
+      title: '읽는 목적에 맞춘 컬렉션',
       sections: [
         {
           label: 'DECISION',
           body: '시작 안내, 협업, 제품, 엔지니어링, 파트너 운영처럼 읽는 목적에 가까운 단위로 진입점을 구분했다.',
-        },
-        {
-          label: 'BOUNDARY',
-          body: '컬렉션 이름은 탐색을 돕는 정보 구조다. 접근 권한, 문서 소유권, 내용의 사실성을 대신 확정하지 않는다.',
         },
       ],
     },
@@ -73,15 +65,11 @@ export const wikiContent = {
       id: 'return-views',
       index: '03',
       label: 'RETURN VIEWS',
-      title: '다시 찾는 이유는 하나가 아니었다.',
+      title: '최근 본 문서로 돌아가기',
       sections: [
         {
           label: 'WHY',
           body: '최근 본 문서, 최근 바뀐 문서, 내가 만든 문서는 다시 찾는 기준이 다르다. 홈은 각 기준을 별도 보기로 제공한다.',
-        },
-        {
-          label: 'BOUNDARY',
-          body: '인기와 최근 조회는 문서를 다시 찾는 단서다. 내용의 권위나 승인 상태를 뜻하지 않는다.',
         },
       ],
     },
@@ -89,22 +77,18 @@ export const wikiContent = {
       id: 'document-metadata',
       index: '04',
       label: 'DOCUMENT CONTEXT',
-      title: '제목 옆에 문서가 놓인 맥락을 남겼다.',
+      title: '목록에서 수정 정보 확인',
       sections: [
         {
           label: 'WHY',
           body: '제목 옆에서 수정자·수정 시각·컬렉션·최근 조회 정보를 확인할 수 있다.',
-        },
-        {
-          label: 'BOUNDARY',
-          body: '이 메타데이터는 변경 이력이나 승인 기록이 아니다. 중요한 판단은 문서 본문과 별도 근거에서 다시 확인해야 한다.',
         },
       ],
     },
   ],
   workflow: {
     eyebrow: 'PRODUCT WORKFLOW',
-    title: '기억한 경로와 기억하지 못한 경로를 같은 문서로 연결한다.',
+    title: '문서 목록에서 본문까지',
     introduction:
       'Wiki 홈은 문서를 발견하고, 문서 정보를 확인한 뒤 본문으로 들어가는 입구다.',
     steps: [
@@ -138,55 +122,46 @@ export const wikiContent = {
       },
     ],
     boundary:
-      '공개 재구성 범위는 홈의 탐색 흐름까지다. 검색 순위·편집기 동작·권한 모델·저장 방식은 확인 범위 밖이다.',
+      '컬렉션을 따라 찾거나 검색으로 바로 들어가고, 최근 본 문서 목록으로 읽던 내용을 다시 연다.',
   },
   decisions: {
     eyebrow: 'DESIGN DECISIONS',
-    title: 'Wiki를 지식의 판정자가 아니라, 지식으로 돌아가는 표면으로 봤다.',
+    title: '문서를 찾는 기준을 나누다',
     items: [
       {
-        statement: 'FINDABILITY BEFORE VOLUME.',
-        explanation: '문서 개수보다 먼저, 처음 온 사람과 다시 온 사람이 각각 어디서 시작하는지 설계했다.',
+        statement: '처음 찾는 사람의 진입점',
+        explanation: '공유 Wiki에 컬렉션과 검색을 함께 두어, 문서 위치를 아는 사람과 모르는 사람 모두 탐색을 시작하게 했다.',
       },
       {
-        statement: 'COLLECTION IS A ROUTE, NOT AUTHORITY.',
-        explanation: '컬렉션은 문서를 찾는 기준을 제공한다. 내용의 확정 상태는 문서와 근거에서 별도로 확인해야 한다.',
+        statement: '목적별로 나눈 컬렉션',
+        explanation: '시작 안내와 협업, 제품, 엔지니어링처럼 독자가 읽으려는 목적에 맞춰 문서 입구를 구분했다.',
       },
       {
-        statement: 'FRESHNESS STAYS VISIBLE.',
-        explanation: '문서 제목과 함께 최근 수정·조회 시점을 표시한다. 현재 내용인지는 문서에서 다시 확인해야 한다.',
+        statement: '다시 읽는 사람의 단서',
+        explanation: '최근 본 문서와 업데이트된 문서를 구분해, 읽던 문서로 돌아가거나 새로 바뀐 내용을 찾도록 했다.',
       },
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / CLAIM BOUNDARY',
-    title: 'Outline 사용과 홈 화면에서 확인한 범위',
-    snapshot: '제공된 제품 화면과 사용자 확인을 기준으로 한 범위',
-    items: [
-      {
-        value: 'OUTLINE',
-        label: 'PRODUCT SURFACE',
-        meaning: '공유 Wiki로 Outline을 사용한 사실',
-        boundary: "공유 Wiki 도구로 도입한 Outline.",
-      },
-    ],
+    eyebrow: '공유 도구 선택',
+    title: 'Outline으로 문서 탐색을 통합',
+    snapshot: '공유 Wiki 도입과 컬렉션 구성에 집중하고, 검색과 최근 문서 등 Outline의 탐색 기능을 함께 사용했다.',
+    items: [],
   },
   implementationStatus: {
-    state: 'ADOPTED TOOL / CONFIRMED SURFACE',
+    state: '검색과 컬렉션을 함께 사용',
     items: [
-      'Outline 사용 사실과 홈 화면 구성을 확인',
-      '검색·컬렉션·최근 문서·새 문서 진입을 화면에서 확인',
-      '공개 화면은 Jadebell 합성 데이터로 독립 재구성',
+      '읽는 목적별 컬렉션에서 문서 탐색',
+      '위치를 기억하지 못하는 문서는 전역 검색',
+      '최근 조회와 업데이트 목록에서 문서 다시 열기',
     ],
-    runtime:
-      "공유 Wiki로 Outline을 도입하고, 검색·컬렉션·최근 문서·새 문서 진입이 있는 홈 화면을 공개용으로 재구성했다.",
+    runtime: '팀 문서를 읽는 입구를 공유 Wiki에 모으고, 제목 옆의 수정자와 수정 시각, 컬렉션 정보로 열어볼 문서를 고르게 했다.',
   },
   boundary: {
-    eyebrow: 'BOUNDARY',
-    statement: '확인된 기여 범위: Outline 사용과 공개 홈 화면 재구성',
+    eyebrow: '문서 체계와 연결',
+    statement: '찾은 뒤에는 문서의 역할을 읽는다.',
     items: [
-      '공개 예시에는 원본 화면과 실제 조직·문서·사용자 이름을 포함하지 않았다.',
-      '검색 순위·편집기·보관·복원 동작은 홈 화면만으로 확인하지 않았다.',
+      'Wiki는 문서를 찾고 읽는 입구다. Documentation System에서는 현재 상태와 결정, 운영 안내를 나눠 각 문서가 맡을 역할을 정리했다.',
     ],
   },
   relatedSystems: [

@@ -3,7 +3,7 @@ import { jadebellPublicWorld } from './jadebell-public.ts'
 
 export const worklogReviewProductFixture = {
   productName: jadebellPublicWorld.productName,
-  workspaceLabel: 'WORKLOG REVIEW / RECONSTRUCTED',
+  workspaceLabel: 'WORKLOG REVIEW',
   author: jadebellPublicWorld.people.danielLee,
   reviewer: jadebellPublicWorld.people.minaKim,
   project: jadebellPublicWorld.projects.atlas,
@@ -49,7 +49,7 @@ export const worklogReviewProductFixture = {
     reviewedAt: '2026.08.28 · 10:12',
   },
   fallback: {
-    condition: 'reviewed records = 0',
-    label: 'UNREVIEWED SOURCE INCLUDED',
+    condition: '해당 원문에 검토본이 없을 때',
+    label: '미검토 자료 포함',
   },
 } as const satisfies WorklogReviewProductFixture

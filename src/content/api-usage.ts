@@ -1,4 +1,4 @@
-import type { ApiUsagePageContent } from './content-types.ts'
+import type { ApiUsagePageContent, PaidCallLifecycleContent } from './content-types.ts'
 import { apiUsageProductFixture } from './fixtures/api-usage.ts'
 import { jadebellPublicFixture } from './fixtures/jadebell-public.ts'
 
@@ -13,16 +13,16 @@ export const apiUsageContent = {
     eyebrow: 'WHAT I BUILT / 08',
     titleLines: ['API', 'USAGE'],
     thesis:
-      'AI 비용을 호출별 원장으로 추적해, 어떤 기능과 과금 규칙에서 비용이 발생했는지 연결했다.',
+      "어떤 업무에서 AI 비용이 발생하는지 찾고, 응답이 급하지 않은 작업부터 비용을 조정했습니다.",
     summary:
-      '연결 중단 시점의 사용량, 캐시 쓰기·읽기, 배치 요율을 호출 단위로 기록했습니다. 사용자 채팅과 중단 가능한 백그라운드 작업에는 서로 다른 예산 정책을 적용합니다.',
-    problemLabel: 'PROBLEM / TOTAL BILL HIDES THE CAUSE',
+      "호출 기록을 기능과 모델, 캐시, 배치 요율로 나눠 비용 원인을 확인했습니다. 채팅은 유지하면서 지연 가능한 백그라운드 작업에 예산 기준을 적용했습니다.",
+    problemLabel: "총액만으로는 찾기 어려운 비용 원인",
     problem:
       '기능과 호출 방식이 늘자 전체 청구액만으로는 비용 원인을 찾기 어려웠습니다. 연결이 끊긴 스트림과 배치 재시도는 사용량 누락·중복 집계 위험도 만들었습니다.',
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / COST LEDGER',
-    title: 'Cost is an operational state, not a decorative KPI.',
+    title: "비용을 만드는 기능부터 확인합니다.",
     instruction: '호출 원장 · 토큰별 요율 · 기능별 비용 · 예산 제어 · 가정별 비용 비교',
     defaultAnnotation: {
       index: '00', label: 'LEDGER GUIDE', title: '합계보다 먼저, 빠지거나 중복된 호출이 없는지 본다.',
@@ -36,7 +36,7 @@ export const apiUsageContent = {
       sections: [
         { label: 'WHY', body: '탭을 닫거나 연결이 끊겨 공급자의 최종 사용량 블록을 받지 못하면 소비한 토큰이 집계에서 빠질 수 있습니다.' },
         { label: 'DECISION', body: '연결 중단 전까지 관측한 누적 토큰을 하나의 사용량 기록으로 확정하고, 정상 종료와 구분했습니다.' },
-        { label: 'BOUNDARY', body: '중단 기록은 마지막으로 관측한 사용량입니다. 공급자의 최종 청구 내역과는 다를 수 있습니다.' },
+        { label: 'BOUNDARY', body: "연결이 끝나는 순간까지 관측한 사용량을 남기고, 정상 종료와 중단 기록을 구분해 비용을 추적합니다." },
       ],
       evolution: { label: 'DISCONNECT SNAPSHOT', date: '2026.07.03' },
     },
@@ -62,16 +62,16 @@ export const apiUsageContent = {
       sections: [
         { label: 'WHY', body: '모든 AI 기능에 같은 중단 기준을 적용하면 일일 한도를 넘을 때 사용자 채팅도 멈춥니다.' },
         { label: 'DECISION', body: '경고·일일 중단·월말 예상 비용 기준을 두었습니다. 채팅은 유지하고 코드 차이 분석·현황 요약처럼 지연 가능한 백그라운드 배치만 중단합니다.' },
-        { label: 'BOUNDARY', body: '이 제어는 백그라운드 작업 예산에 적용합니다. 채팅 사용량 급증 차단과 전역 장애 제어는 구현 범위 밖입니다.' },
+        { label: 'BOUNDARY', body: "코드 차이 분석과 현황 요약처럼 실행을 미룰 수 있는 작업에 예산 기준을 적용했습니다. 사용자가 대화 중인 채팅 경로는 유지합니다." },
       ],
       evolution: { label: 'BACKGROUND GUARD', date: '2026.07.28' },
     },
     {
-      id: 'counterfactual', index: '05', label: 'COUNTERFACTUAL', title: '원장 계산액과, 다른 요율을 가정한 금액을 구분했다.',
+      id: 'counterfactual', index: '05', label: 'COUNTERFACTUAL', title: "같은 사용량에 요율을 바꿔 비용 차이를 비교했습니다.",
       sections: [
-        { label: 'WHY', body: '배치·캐시의 영향을 비교하려면 같은 사용 토큰에 다른 단가를 적용해야 합니다. 이 계산은 실제로 발생한 청구액과 다릅니다.' },
-        { label: 'DECISION', body: '원장 계산액과 일반 요율·캐시 미사용 가정의 계산액을 나란히 두고, 차이를 가정에 따른 추정치로 표시했습니다.' },
-        { label: 'BOUNDARY', body: '계산 차이는 공급자 환급액이나 확정 절감액으로 사용하지 않습니다.' },
+        { label: 'WHY', body: "기능마다 입력과 출력, 캐시 사용 비중이 달라 배치와 캐시 정책을 각각 판단할 필요가 있었습니다." },
+        { label: 'DECISION', body: "같은 토큰 사용량에 일반 요율과 배치 요율, 캐시 사용 조건을 적용해 계산액을 나란히 비교했습니다." },
+        { label: 'BOUNDARY', body: "전체 캐시 적중률 대신 기능별 읽기·쓰기 비용을 계산해 채팅과 현황 요약의 정책을 재검토했습니다." },
       ],
       evolution: { label: 'WORKLOAD EFFECT CHECKED', date: '2026.08.26' },
     },
@@ -88,11 +88,11 @@ export const apiUsageContent = {
     boundary: '원장은 비용 판단의 근거를 제공합니다. 예산 임계값 설정과 지출의 최종 승인은 사람이 맡습니다.',
   },
   decisions: {
-    eyebrow: 'DESIGN DECISIONS', title: 'Measure every pricing dimension. Guard by workload.',
+    eyebrow: 'DESIGN DECISIONS', title: "비용을 기록하는 데서 실행 정책을 조정하는 데로.",
     items: [
-      { statement: 'DISCONNECT IS STILL USAGE.', explanation: '정상 종료되지 않아도 마지막 관측 토큰을 별도 상태의 기록으로 남깁니다.' },
-      { statement: 'CACHE IS NOT AUTOMATIC SAVINGS.', explanation: '캐시 쓰기와 읽기 비용을 나눠 기능별 순효과를 다시 계산합니다.' },
-      { statement: 'KEEP INTERACTIVE PATHS ALIVE.', explanation: '예산 제어는 지연을 허용하는 백그라운드 작업에 적용합니다.' },
+      { statement: "중단된 연결의 사용량도 보존", explanation: '정상 종료되지 않아도 마지막 관측 토큰을 별도 상태의 기록으로 남깁니다.' },
+      { statement: "기능별 캐시 비용 비교", explanation: '캐시 쓰기와 읽기 비용을 나눠 기능별 순효과를 다시 계산합니다.' },
+      { statement: "대화는 유지하고 배치는 조정", explanation: '예산 제어는 지연을 허용하는 백그라운드 작업에 적용합니다.' },
     ],
   },
   evolution: {
@@ -106,24 +106,85 @@ export const apiUsageContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / 2026.07.29 — 08.25', title: "호출 기록과 단가표로 계산한 비용.", snapshot: '2026년 7월 29일–8월 25일의 운영 토큰 원장과 저장된 단가를 기준으로 재계산했습니다.',
-    items: [
-      { value: '$113.89', label: 'RECORDED COST', meaning: '원장 단가표로 계산된 분석 기간 비용', boundary: '공급자 청구서와 별도로 계산한 금액입니다.' },
-      { value: '9.0%', label: 'CACHE READ SHARE', meaning: '대시보드의 정의로 계산한 전체 캐시 적중률', boundary: '기능별 캐시 순절감액과는 다른 지표입니다.' },
-    ],
-  },
+  "eyebrow": "COST COMPARISON",
+  "title": "배치와 캐시의 비용 차이를 같은 사용량으로 비교했습니다.",
+  "snapshot": "2026년 7월 29일–8월 25일의 토큰 사용량에 일반 요율과 배치·캐시 요율을 적용해 비교한 결과입니다.",
+  "items": [
+    {
+      "value": "31.3%",
+      "label": "요율에 따른 비용 차이",
+      "meaning": "일반 요율 계산액보다 $51.95 낮은 $113.89로 계산됐습니다. 이 비교를 바탕으로 기능별 배치와 캐시 정책을 검토했습니다.",
+      "boundary": ""
+    }
+  ]
+},
   implementationStatus: {
-    state: 'LEDGER + DASHBOARD + GUARD ACTIVE',
-    items: ['호출별 사용량·비용 원장', '캐시 쓰기·읽기와 배치 요율 구분', '기능·모델별 비용 화면', '지연 가능한 백그라운드 배치의 예산 제어'],
-    runtime: '원장과 기존 비용 화면·예산 제어는 운영에서 활성화된 상태였습니다. 8월 27일 관리자 탭 통합은 코드에서만 확인했으며, 변경 후 운영 반영은 미확인입니다. 공급자 서비스 중단으로 8월 26일 캐시 수정 후 효과도 재측정하지 못했습니다.',
-  },
+  "state": "비용 원인을 찾아 실행 방식 조정",
+  "items": [
+    "코드 차이 분석과 현황 요약을 주요 비용 발생 기능으로 확인했습니다.",
+    "즉시 응답이 필요 없는 현황 요약에 배치 호출과 요율을 적용했습니다.",
+    "기능별 캐시 쓰기와 읽기 비용을 비교해 정책을 재검토했습니다."
+  ],
+  "runtime": "예산이 기준을 넘으면 지연 가능한 작업을 멈추고 채팅은 유지하도록 실행 경로를 나눴습니다."
+},
   boundary: {
-    eyebrow: 'BOUNDARY / LEDGER, NOT INVOICE', statement: '원장 비용과 가정별 계산은 확인했으며, 수정 후 효과는 재측정 전입니다.',
-    items: ['$51.95·31.3%는 같은 실제 토큰에 다른 단가를 적용한 계산 차이입니다. 확정 절감액이 아닙니다.',  '질문·답변·검색어 원문은 비용 관측 로그에 저장하지 않습니다.', '영구 실패 알림·인프라 상태·전역 장애·채팅 사용량 급증 차단은 남은 구현 범위입니다.'],
-  },
+  "eyebrow": "DESIGN TAKEAWAY",
+  "statement": "비용 제어를 업무의 응답 요구와 연결했습니다.",
+  "items": [
+    "사용자가 기다리는 대화와 나중에 처리해도 되는 분석을 구분해 실행 방식을 정했습니다. 비용 관측에는 사용량과 처리 상태를 남기고 질문과 답변 원문은 저장하지 않습니다."
+  ]
+},
   relatedSystems: [
     { title: 'DEVELOPER STATUS', relation: 'Message Batch로 처리하는 개발자 현황 요약', href: '/what/developer-status', status: 'available' },
     { title: 'AI-NATIVE ENGINEERING', relation: '캐시·배치·재시도·예산을 운영 정책으로 연결한 방식', href: '/how/ai-native-engineering', status: 'available' },
-    { title: 'SECURITY & OPERATIONS', relation: 'provider·worker·incident 관측의 현재 경계와 남은 범위', href: '/how/security-operations', status: 'available' },
+    { title: 'SECURITY & OPERATIONS', relation: "권한과 작업 상태를 확인하고 변경과 복구를 통제하는 방식", href: '/how/security-operations', status: 'available' },
   ],
 } as const satisfies ApiUsagePageContent
+
+export const paidCallLifecycleContent = {
+  eyebrow: "PAID-CALL LIFECYCLE",
+  title: "중복 호출을 막고, 받은 결과의 처리를 이어갑니다.",
+  introduction: "유료 호출이 중간에 끊겼다고 처음부터 다시 실행하면 비용이 중복될 수 있습니다. 요청 전송, 결과 저장과 비용 확정, 사용자 공개를 나눠 각 단계에서 이어갈 작업을 판단하도록 만들었습니다.",
+  stages: [
+    {
+      label: '01 / DISPATCH',
+      title: '예약·전송',
+      body: '새 유료 호출을 예약한 뒤 공급자에게 보냅니다. 전송 이후 결과가 불명확하면 실패로 단정해 같은 호출을 다시 보내지 않습니다.',
+    },
+    {
+      label: '02 / SETTLEMENT',
+      title: '결과 저장·비용 확정',
+      body: '저장된 정확한 결과를 근거로 내부 비용 처리를 마칩니다. 결과가 이미 있다면 공급자를 다시 호출하지 않고 비용 확정을 이어갈 수 있습니다.',
+    },
+    {
+      label: '03 / PUBLICATION',
+      title: '권한 확인·공개',
+      body: '비용 처리가 끝난 결과도 공개 직전의 권한을 다시 확인합니다. 권한이 바뀐 사용자는 현재 허용된 범위에 따라 결과를 볼 수 있습니다.',
+    },
+  ],
+  situations: [
+    {
+      id: 'provider-outcome-unknown',
+      title: '공급자 처리 결과를 알 수 없을 때',
+      signal: '요청을 보냈지만 최종 결과를 확인할 근거가 부족한 상태.',
+      action: '결과를 미확인으로 남기고 재전송을 보류합니다.',
+      reason: '실패로 단정해 재전송하면 이미 처리된 유료 호출을 중복 실행할 수 있습니다.',
+    },
+    {
+      id: 'stored-result-awaiting-settlement',
+      title: '결과는 저장됐지만 비용 확정이 남았을 때',
+      signal: '정확한 결과가 저장돼 있고 내부 비용 처리만 완료되지 않은 상태.',
+      action: '저장된 결과로 비용 확정을 이어갑니다. 공급자 호출은 추가하지 않습니다.',
+      reason: '새 호출과 이미 비용을 지불한 결과의 후속 처리는 따로 다룹니다. 신규 유료 호출을 멈춰도 기존 결과의 비용 확정·공개가 자동으로 취소되지는 않습니다.',
+    },
+    {
+      id: 'permission-changed-before-publication',
+      title: '공개 전에 권한이 바뀌었을 때',
+      signal: '비용 처리는 끝났지만 현재 권한이 공개 조건을 충족하지 않는 상태.',
+      action: '공개를 보류하고 현재 권한을 기준으로 판단합니다.',
+      reason: '비용 확정은 공개 권한을 대신하지 않습니다. 비용 처리 완료와 사용자에게 보이는 상태를 분리해야 합니다.',
+    },
+  ],
+  boundary: "새 호출을 멈추는 정책과 이미 받은 결과를 처리하는 정책을 나눴습니다. 저장된 결과는 다시 생성하지 않고 비용 확정을 이어가며, 공개 직전에는 현재 권한을 확인합니다.",
+  related: { label: '운영 상태와 안전한 복구 판단 보기', href: '/what/operations' },
+} as const satisfies PaidCallLifecycleContent

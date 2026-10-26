@@ -162,11 +162,11 @@ function DeployAnnotationPanel({ step }: DeployAnnotationPanelProps) {
       </div>
       <dl>
         <div>
-          <dt>확인한 범위</dt>
+          <dt>이 단계의 확인</dt>
           <dd>{step.proves}</dd>
         </div>
         <div>
-          <dt>별도 확인이 필요한 범위</dt>
+          <dt>이어 확인할 대상</dt>
           <dd>{step.doesNotProve}</dd>
         </div>
       </dl>
@@ -411,7 +411,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
           <section className="so-authorization-evolution" aria-labelledby="so-evolution-title">
             <header>
               <p>권한 모델의 변화</p>
-              <h3 id="so-evolution-title">접근 제한에서, 운영 가능한 권한 모델로.</h3>
+              <h3 id="so-evolution-title">권한을 제품에서 관리하기까지</h3>
             </header>
             <ol>
               {content.authorization.evolution.map((stage) => (
@@ -492,7 +492,7 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
           <section className="so-component-boundary" aria-labelledby="so-component-title">
             <header>
               <p>구성요소별 복구 범위</p>
-              <h3 id="so-component-title">API·작업 프로세스·데이터의 복구 범위를 나눴다.</h3>
+              <h3 id="so-component-title">구성요소마다 다른 복구 방법</h3>
             </header>
             <dl>
               {content.deployment.components.map((component) => (
@@ -549,12 +549,15 @@ export function SecurityOperationsPage({ content }: SecurityOperationsPageProps)
           </div>
 
           <aside className="so-known-boundary">
-            <p>복구 방식의 적용 범위</p>
+            <p>실패에 맞는 복구 경로</p>
             <ul>
               {content.recovery.knownBoundary.map((boundary) => (
                 <li key={boundary}>{boundary}</li>
               ))}
             </ul>
+            <Link className="so-related-product" to={content.recovery.relatedProduct.href}>
+              {content.recovery.relatedProduct.label} <span aria-hidden="true">↗</span>
+            </Link>
           </aside>
         </div>
       </section>

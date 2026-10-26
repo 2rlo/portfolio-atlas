@@ -108,7 +108,7 @@ function EditorialAnnotation({
         <dl className="product-editorial-sections">
           {annotation.sections.map((section) => (
             <div key={section.label}>
-              <dt>{section.label}</dt>
+              <dt>{{ WHY: '문제', DECISION: '선택한 방식', BOUNDARY: '적용 기준', EVIDENCE: '구현' }[section.label]}</dt>
               <dd>{section.body}</dd>
             </div>
           ))}

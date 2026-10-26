@@ -87,7 +87,7 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
       <section className="fv-decisions" aria-labelledby="fv-decisions-title">
         <div className="fv-decisions-heading">
           <p>{content.decisions.eyebrow}</p>
-          <h2 id="fv-decisions-title">판정 전에, 근거가 충분한지 확인한다.</h2>
+          <h2 id="fv-decisions-title">검토자가 판단을 고칠 수 있게</h2>
         </div>
 
         <ol>
@@ -122,11 +122,11 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
               <strong>{scene.decision}</strong>
               <dl>
                 <div>
-                  <dt>TRIGGER</dt>
+                  <dt>계기</dt>
                   <dd>{scene.trigger}</dd>
                 </div>
                 <div>
-                  <dt>CHANGE</dt>
+                  <dt>바꾼 점</dt>
                   <dd>{scene.change}</dd>
                 </div>
               </dl>
@@ -136,22 +136,11 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
       </section>
 
       <section className="fv-evidence" aria-labelledby="fv-evidence-title">
-        {content.evidence.items.length > 0 ? <><div className="fv-evidence-heading">
+        <header className="fv-evidence-heading">
           <p>{content.evidence.eyebrow}</p>
           <h2 id="fv-evidence-title">{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
-        </div>
-
-        <dl className="fv-evidence-register">
-          {content.evidence.items.map((item) => (
-            <div key={item.label}>
-              <dd>{item.value}</dd>
-              <dt>{item.label}</dt>
-              <p>{item.meaning}</p>
-              <small>{item.boundary}</small>
-            </div>
-          ))}
-        </dl></> : <h2 className="visually-hidden" id="fv-evidence-title">구현·운영 상태</h2>}
+        </header>
 
         <div className="fv-status-grid">
           <section>
@@ -180,7 +169,7 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
         </div>
 
         <p className="fv-runtime-boundary">
-          <span>RUNTIME / USE BOUNDARY</span>
+          <span>작업을 바꾼 방식</span>
           {content.implementationStatus.runtime}
         </p>
       </section>
@@ -198,7 +187,7 @@ function FeatureValidationPage({ content }: FeatureValidationPageProps) {
         </ul>
 
         <nav className="fv-related" aria-label="Feature Validation과 연결된 시스템">
-          <p>RELATED SYSTEMS</p>
+          <p>연결된 설계 방식</p>
           {content.relatedSystems.map((system) =>
             system.href ? (
               <Link to={system.href} key={system.title}>

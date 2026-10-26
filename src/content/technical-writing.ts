@@ -1,4 +1,4 @@
-import type { TechnicalWritingContent } from './content-types.ts'
+import type { HandoverGuideContent, TechnicalWritingContent } from './content-types.ts'
 
 export const technicalWritingContent = {
   meta: {
@@ -16,8 +16,8 @@ export const technicalWritingContent = {
     eyebrow: 'HOW I BUILD / 03',
     titleLines: ['TECHNICAL', 'WRITING'],
     thesis: [
-      '독자와 목적에 맞춰,',
-      '같은 시스템의 설명을 달리 썼다.',
+      '사용자 안내부터 API 참조와 운영 인계까지,',
+      '독자가 다음 행동을 정할 수 있게 썼다.',
     ],
     coordinates: [
       { label: 'AUDIENCE', value: '누가 읽는가' },
@@ -28,14 +28,14 @@ export const technicalWritingContent = {
   },
   reader: {
     eyebrow: '01 / WRITING FOR THE READER',
-    title: '같은 기능도, 독자에 따라 필요한 정보와 다음 행동이 달랐습니다.',
-    commonContext: '품질 기록 기능 · 2026.08 권한별 안내',
+    title: '권한이 다르면 안내도 달라진다.',
+    commonContext: '품질 기록 기능 / 2026.08 권한별 안내',
     guides: [
       {
         id: 'writer',
         role: '작성 권한',
         purpose: '기록을 바꾸고 결과를 확정하는 사람',
-        actions: '수정 · 재생성 · 확정',
+        actions: '수정 → 재생성 → 확정',
         steps: [
           {
             index: '01',
@@ -45,7 +45,7 @@ export const technicalWritingContent = {
           {
             index: '02',
             action: '사실에 맞게 수정한다',
-            detail: '결과·상세·첨부를 수정',
+            detail: '결과와 상세 설명, 첨부를 수정',
           },
           {
             index: '03',
@@ -60,12 +60,12 @@ export const technicalWritingContent = {
         id: 'viewer',
         role: '열람 권한',
         purpose: '결과를 확인하고 변경을 요청하는 사람',
-        actions: '확인 · 비교 · 변경 요청',
+        actions: '확인 → 비교 → 변경 요청',
         steps: [
           {
             index: '01',
             action: '결과와 근거를 읽는다',
-            detail: '상세 설명·첨부·생성된 보조 내용 확인',
+            detail: '상세 설명과 첨부, 생성된 보조 내용 확인',
           },
           {
             index: '02',
@@ -75,7 +75,7 @@ export const technicalWritingContent = {
           {
             index: '03',
             action: '변경이 필요하면 요청한다',
-            detail: '직접 수정하지 않고 대상·근거와 함께 담당자에게 전달',
+            detail: '수정할 대상과 근거를 담당자에게 전달',
           },
         ],
         handoff:
@@ -86,7 +86,7 @@ export const technicalWritingContent = {
       statement:
         '작성자는 직접 바꾸는 사람이므로 실행 순서를 적고, 열람자는 직접 수정할 수 없으므로 확인 기준과 변경 요청 방법을 적었습니다.',
       note:
-        '자동으로 일어나지 않는 행동과, 권한 때문에 보이지 않는 기능도 명시했습니다.',
+        '재생성이 필요한 시점과 권한별로 보이는 기능을 안내에 함께 적었습니다.',
     },
     evolution: {
       before: {
@@ -112,9 +112,9 @@ export const technicalWritingContent = {
   },
   implementation: {
     eyebrow: '02 / WRITING FOR IMPLEMENTATION',
-    title: '호출법 뒤에, 결과의 의미까지.',
+    title: '응답을 받은 뒤 무엇을 확인할까.',
     summary:
-      '전체 API 경로를 먼저 정리하고, 복잡한 호출은 인증·요청·응답·예외를 이어 읽을 수 있게 풀었다.',
+      '유지보수자가 호출 결과를 해석할 수 있도록 API 경로를 정리했다. 복잡한 요청은 인증 조건부터 응답 상태와 예외까지 이어 읽게 했다.',
     artifact: {
       label: '내부 유지보수자를 위한 API 문서',
       title: 'EVENT INTAKE',
@@ -166,38 +166,29 @@ export const technicalWritingContent = {
         },
       ],
       behavior:
-        '응답 수신과 기록 변경을 구분한다. changed: false는 후속 상태가 바뀌었다는 뜻이 아니다.',
+        '응답 상태와 changed를 함께 읽으면 요청 처리 결과와 실제 저장 여부를 구분할 수 있다.',
       annotation: {
         marker: '3',
         label: 'MARGIN NOTE 03',
-        title: '“응답 성공”과 “상태 변경”을 같은 뜻으로 쓰지 않았다.',
-        body: 'status와 changed를 함께 설명해 요청 처리 결과와 저장 여부를 구분했다. 중복 수신·지원하지 않는 유형·저장 미완료는 각각의 상태 의미로 남겼다.',
+        title: '응답 상태와 저장 여부를 함께 설명했다.',
+        body: 'status와 changed를 함께 적어 중복 수신, 지원하지 않는 유형, 저장 미완료를 구별하도록 했다.',
       },
     },
     notes: [
       { label: '독자', value: '현재 구현을 이어받는 내부 개발자' },
       {
         label: '작성 판단',
-        value: '호출 조건·결과 상태·예외의 의미를 함께 기록',
-      },
-      {
-        label: '적용 범위',
-        value: "현재 구현을 이어받는 내부 개발자를 위한 참조 문서",
+        value: '호출 조건과 응답 상태, 예외의 의미를 함께 기록',
       },
       {
         label: '갱신 시점',
-        value: 'API 경로·요청 형식·접근 권한이 바뀔 때',
+        value: 'API 경로, 요청 형식, 접근 권한이 바뀔 때',
       },
-    ],
-    notFormalized: [
-      'endpoint마다 완전히 같은 template을 사용하지는 않음',
-      '공통 error model이 하나의 계약으로 정리되지는 않음',
-      '처음 호출까지 안내하는 Quickstart가 별도로 없음',
     ],
   },
   operations: {
     eyebrow: '03 / WRITING FOR SAFE ACTION',
-    title: '명령보다 먼저, 멈춰야 할 경계.',
+    title: '실행 조건부터 읽는 운영 문서.',
     summary:
       'Deployment와 Recovery에 명령의 전제, 검증 순서, 실패 시 중단 조건을 먼저 배치했다.',
     artifacts: [
@@ -238,14 +229,14 @@ export const technicalWritingContent = {
         index: '04',
         label: 'VERIFY',
         title: '신호를 분리해 확인',
-        description: '프로세스 응답·DB 접근·공개 트래픽·별도 작업 프로세스·권한을 각각 검사.',
+        description: '프로세스 응답과 DB 접근을 확인한 뒤 공개 트래픽, 작업 프로세스, 권한을 검사.',
         tone: 'act',
       },
       {
         index: '05',
         label: 'STOP / ROLLBACK',
         title: '실패하면 더 진행하지 않기',
-        description: '준비·전환·복원 중 실패하면 자동 rollback 결과를 먼저 확인하고, 이전 대상 복원까지 실패하면 수동 복구로 전환.',
+        description: '배포 단계에서 실패하면 자동 원복 결과를 먼저 확인. 이전 대상 복원도 실패하면 수동 복구로 전환.',
         tone: 'stop',
       },
     ],
@@ -267,16 +258,16 @@ export const technicalWritingContent = {
       },
     ],
     rollbackBoundary: {
-      title: 'APPLICATION ROLLBACK ≠ DATA ROLLBACK',
+      title: '코드 원복과 데이터 복구를 나눠 썼다.',
       statement:
-        '애플리케이션 롤백은 실행 코드의 버전을 되돌리는 일입니다. 이미 적용된 DB 변경·데이터 갱신·외부 연동 결과는 별도의 복구가 필요할 수 있습니다.',
+        '애플리케이션 롤백은 실행 코드의 버전을 되돌리는 일입니다. 이미 바뀐 DB와 데이터, 외부 연동 결과는 각각 복구 방법을 확인해야 합니다.',
       stopRule:
         '이전 대상 복원까지 실패하면 자동 진행을 멈추고, 관측한 상태를 보존한 채 수동 복구로 전환한다.',
     },
   },
   principles: {
     eyebrow: '04 / WRITING PRINCIPLES',
-    title: '문서마다 지킨 네 가지 작성 기준',
+    title: '독자가 다음 행동을 고를 수 있게',
     items: [
       {
         index: '01',
@@ -294,32 +285,18 @@ export const technicalWritingContent = {
       },
       {
         index: '03',
-        title: '결과로 확인할 수 있는 범위를 적는다.',
+        title: '결과를 읽는 방법을 적는다.',
         statement:
           '상태값과 검증 신호로 확인한 범위, 별도 확인이 필요한 범위를 함께 적는다.',
         evidence: 'CHANGED STATE / HEALTH SIGNAL',
       },
       {
         index: '04',
-        title: '현재 구현과 운영 사실을 섞지 않는다.',
+        title: '변경된 제품에 맞춰 안내를 고친다.',
         statement:
-          '코드에 있는 경로, 배포된 상태와 실제 사용은 서로 다른 근거로 확인한다.',
-        evidence: 'CODE BASIS / RUNTIME BOUNDARY',
+          '역할별 안내를 실제 권한에 맞춘 통합 안내로 바꾸고, API와 운영 절차도 구현 변경에 맞춰 갱신한다.',
+        evidence: 'PRODUCT CHANGE / GUIDE UPDATE',
       },
-    ],
-  },
-  boundary: {
-    eyebrow: '작성 경험과 검증 범위',
-    title: '작성한 문서와 검증한 결과를 구분한다.',
-    statements: [
-      '역할별 안내·내부 API 문서·운영 절차서를 제품 변화에 맞춰 작성하고 갱신했다.',
-      "운영 문서에는 실행 전제와 확인 순서, 실패 시 중단·복구 절차를 정리했다.",
-    ],
-    notClaimed: [
-      '온보딩 시간 단축',
-      '문의 감소 또는 이해도 향상',
-      '반복 검증된 전체 배포·자동 복구',
-      '완료된 전체 복원 훈련',
     ],
   },
   nextPage: {
@@ -330,3 +307,37 @@ export const technicalWritingContent = {
     href: '/how/ai-native-engineering',
   },
 } as const satisfies TechnicalWritingContent
+
+export const handoverGuideContent = {
+  eyebrow: 'HANDOVER / READING PATHS',
+  title: '같은 운영 상태, 서로 다른 다음 행동',
+  introduction:
+    '운영자는 상태 확인과 일상 대응에서 시작하고, 개발자는 전달받은 기록에서 원인 조사로 들어간다. 문서의 읽는 순서를 나눠 두 역할이 같은 기록으로 다음 작업을 이어가게 했다.',
+  readers: [
+    {
+      id: 'operator',
+      role: '운영자',
+      question: '지금 허용된 범위에서 무엇을 할 수 있는가',
+      steps: [
+        '상태와 관측 시점을 읽고 추가로 확인할 신호를 찾는다.',
+        '안내된 일상 대응의 전제와 권한, 변경될 대상을 확인한다.',
+        '허용된 대응 뒤에는 결과를 다시 읽고 해결 여부를 별도로 확인한다.',
+      ],
+      nextAction: '전제가 맞는 일상 대응만 수행하고 관측한 상태와 결과를 기록한다.',
+      stopCondition: '알 수 없는 실패, 반복되는 실패, 서로 맞지 않는 신호가 있으면 진행을 멈추고 개발자에게 근거와 함께 전달한다.',
+    },
+    {
+      id: 'developer',
+      role: '개발자',
+      question: '어디서 실패했고 어떤 변경을 검증해야 하는가',
+      steps: [
+        '운영자가 남긴 상태와 시점, 대응 결과에서 조사를 시작한다.',
+        '실패 지점과 현재 구현을 대조하고 재처리 조건과 변경의 영향 범위를 확인한다.',
+        '검증할 신호와 중단 조건을 정한 뒤 확인한 결과를 운영 안내에 반영한다.',
+      ],
+      nextAction: '실패 원인과 변경 범위를 좁힌 뒤 대응 방법과 검증 순서를 정한다.',
+      stopCondition: '근거가 부족하거나 상태가 모순되면 변경을 멈춘다. 복구 결과를 확인하기 전에는 정상화로 기록하지 않는다.',
+    },
+  ],
+  related: { label: '운영 상태와 안전한 복구 사례 보기', href: '/what/operations' },
+} as const satisfies HandoverGuideContent

@@ -14,7 +14,7 @@ export const qaProductFixture = {
       '큰 요청이 일시적으로 실패할 때 재시도 횟수, 최종 실패 상태, 중복 실행 여부를 함께 확인합니다.',
     environment: ['Staging mirror', 'Atlas 08-28', 'Large payload'],
     assessment:
-      '허용 횟수 안의 재시도는 완료됐지만, 시간 초과 후 목록과 상세의 상태가 어긋납니다. 검토 보조 요약이며 QA 판정은 별도로 유지됩니다.',
+      '허용 횟수 안의 재시도는 완료됐지만, 시간 초과 후 목록과 상세의 상태가 어긋납니다.',
     resultSummary: [
       { label: 'PASS', value: '01' },
       { label: 'FAIL', value: '01' },

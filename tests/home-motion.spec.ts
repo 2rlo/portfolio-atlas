@@ -24,7 +24,7 @@ async function assertMoving(nav: Locator) {
 
 async function assertIndexUsable(page: Page, nav: Locator) {
   const links = nav.locator('.feature-index-link')
-  await expect(links).toHaveCount(14)
+  await expect(links).toHaveCount(15)
   await expect(nav.locator('.feature-rain-track')).toHaveCount(0)
   const title = page.locator('.seam-poster:visible .poster-field--what-i-built .poster-word, .mobile-diagonal-poster:visible .mobile-poster-content--what-i-built .mobile-poster-word')
   const titleBox = await title.boundingBox()
@@ -58,7 +58,7 @@ test('reduced motion shows an accessible index and explicit keyboard opt-in real
   await expect(on).toBeFocused()
   await page.mouse.move(-10, -10)
   await expect(nav).toBeVisible()
-  await expect(nav.locator('.feature-index-link')).toHaveCount(14)
+  await expect(nav.locator('.feature-index-link')).toHaveCount(15)
 })
 
 for (const reducedMotion of ['reduce', 'no-preference'] as const) {
@@ -82,7 +82,7 @@ for (const reducedMotion of ['reduce', 'no-preference'] as const) {
       return Math.abs(what.width - how.width)
     })).toBeLessThan(1)
     await field.hover({ position: { x: 30, y: 150 } })
-    await expect(nav.locator('.feature-index-link')).toHaveCount(14)
+    await expect(nav.locator('.feature-index-link')).toHaveCount(15)
     await expect(nav.getByRole('button', { name: '움직임 켜기' })).toBeVisible()
   })
 }
@@ -212,7 +212,7 @@ test('every static destination opens a real product page', async ({ page }) => {
   const destinations = await nav.locator('.feature-index-link').evaluateAll((links) =>
     links.map((link) => link.getAttribute('href')!),
   )
-  expect(new Set(destinations).size).toBe(14)
+  expect(new Set(destinations).size).toBe(15)
   for (const href of destinations) {
     await nav.locator(`a[href="${href}"]`).click()
     await expect(page).toHaveURL(href)
@@ -223,4 +223,16 @@ test('every static destination opens a real product page', async ({ page }) => {
     await page.getByRole('link', { name: 'Portfolio Atlas 홈', exact: true }).click()
     await openWhat(page)
   }
+})
+
+test('Operations is reachable by keyboard from moving navigation', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await page.goto('/')
+  const nav = await openWhat(page)
+  const operations = nav.locator('[data-rain-copy="0"] [data-feature-id="operations"]')
+  await operations.focus()
+  await expect(operations).toBeInViewport()
+  await operations.press('Enter')
+  await expect(page).toHaveURL('/what/operations')
+  await expect(page.locator('main h1')).toHaveText('OPERATIONS')
 })

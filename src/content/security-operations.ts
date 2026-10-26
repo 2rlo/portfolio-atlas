@@ -16,9 +16,9 @@ export const securityOperationsContent = {
     eyebrow: 'HOW I BUILD / 04',
     titleLines: ['SECURITY &', 'OPERATIONS'],
     thesis: [
-      '변경 권한과 배포·복구 조건을 함께 설계했다.',
-      '권한은 요청 시점에 확인하고,',
-      '실패가 이어지면 자동화를 멈추고 사람이 판단한다.',
+      '같은 역할 안에서도 맡은 업무는 달랐다.',
+      '권한을 제품에서 조정하고,',
+      '변경과 복구에 필요한 확인 절차를 만들었다.',
     ],
     coordinates: [
       { label: 'BOUNDARY', value: '누가 무엇을 바꾸는가' },
@@ -29,10 +29,10 @@ export const securityOperationsContent = {
   },
   authorization: {
     eyebrow: '01 / AUTHORIZATION AS A PRODUCT',
-    title: '권한을 화면에서 조정하고, 요청마다 적용한다.',
+    title: '업무 차이를 권한에 반영한다.',
     question: '로그인한 사람이 실제로 할 수 있는 일은 어디에서 결정되는가?',
     summary:
-      '조직 계정은 신원을 확인한다. 역할의 기본값과 개인별 예외를 합친 실제 행동 권한은 제품 안에서 보고 바꾼다.',
+      '고정된 역할만으로는 사람마다 다른 업무 범위를 표현하기 어려웠다. 반복되는 권한은 템플릿으로 묶고, 개인별 허용과 회수를 더해 관리 화면에서 조정하도록 바꿨다. 서버는 이 값을 요청마다 확인한다.',
     productLabel: 'JADEBELL HUB / ACCESS CONTROL',
     members: [
       {
@@ -137,7 +137,7 @@ export const securityOperationsContent = {
         id: 'override',
         index: '02',
         label: 'INDIVIDUAL OVERRIDE',
-        title: '같은 역할 안의 실제 업무 차이를 남긴다.',
+        title: '사람마다 다른 업무를 반영한다.',
         body: '템플릿의 기본값 위에 사람별 허용과 회수를 별도로 둔다. 삭제와 고위험 관리는 일반 편집에서 분리했다.',
       },
       {
@@ -152,7 +152,7 @@ export const securityOperationsContent = {
         index: '04',
         label: 'ADMIN GUARD',
         title: '위임에도 넘지 못할 선을 둔다.',
-        body: '위임받은 관리자는 자기 자신이나 owner를 변경할 수 없고, 팀원·권한 관리 권한을 부여·회수·재위임할 수 없다. 초대 생성과 취소도 상위 관리자 전용 경계로 남긴다.',
+        body: '위임받은 관리자는 자기 자신이나 소유자의 권한을 바꿀 수 없다. 팀원과 권한을 관리하는 권한의 재위임, 초대 생성과 취소는 상위 관리자만 수행하도록 했다.',
       },
     ],
     formula: [
@@ -189,7 +189,7 @@ export const securityOperationsContent = {
   },
   security: {
     eyebrow: '02 / SECURITY BOUNDARIES',
-    title: '신원 확인과 행동 허용을 별도로 판단한다.',
+    title: '서버에서 한 번 더 확인한다.',
     summary:
       '사용자 연결이 없거나 현재 권한을 확인할 수 없는 경우, 접근을 허용하지 않도록 기준을 정했다.',
     decisions: [
@@ -209,9 +209,9 @@ export const securityOperationsContent = {
       },
       {
         index: '03',
-        risk: '허용된 오래된 권한의 요청을 현재 권한을 확인할 수 없는 상태에서 허용할 수 있음',
+        risk: '과거에 허용됐던 권한으로 현재 요청까지 통과할 수 있음',
         decision: '현재 값을 확인할 수 없으면 요청을 차단하고 오류로 처리',
-        boundary: '가용성보다 권한 우회를 막는 쪽을 우선함.',
+        boundary: '권한 조회가 실패하면 요청도 차단해 우회를 막는다.',
         evidence: 'FAIL CLOSED',
       },
     ],
@@ -220,16 +220,16 @@ export const securityOperationsContent = {
   },
   deployment: {
     eyebrow: '03 / DEPLOY WITH A WAY BACK',
-    title: '새 버전을 띄우는 일과, 넘겨도 되는지 판단하는 일을 분리했다.',
+    title: '검증한 뒤 트래픽을 넘긴다.',
     summary:
-      '비활성 API를 먼저 검증하고 트래픽을 넘긴다. 작업 프로세스는 따로 갱신하며 데이터 복구도 별도로 판단한다.',
+      '전환 전에 문제를 찾을 수 있도록 비활성 API에서 새 버전을 검증했다. 전환 후에는 공개 응답을 대조하고, 검증이 끝날 때까지 이전 API를 보존한다. 작업 프로세스 갱신과 데이터 복구는 별도 절차로 뒀다.',
     steps: [
       {
         id: 'checks',
         index: '01',
         label: 'CHANGE',
         title: '변경과 복구 조건 확인',
-        summary: '변경 범위와 데이터⋅권한 호환성, 복구 조건을 먼저 확인한다.',
+        summary: '변경 범위, 데이터와 권한의 호환성, 복구 조건을 먼저 확인한다.',
         proves: '배포 대상으로 삼을 변경과 사전 조건이 식별됨',
         doesNotProve: '새 버전의 실제 실행 상태',
         tone: 'prepare',
@@ -278,7 +278,7 @@ export const securityOperationsContent = {
         id: 'worker',
         index: '06',
         label: 'WORKER',
-        title: '별도 갱신과 누락 복구 확인',
+        title: '작업 프로세스 갱신',
         summary: 'API 전환과 별도 절차로 갱신하되, 전환 구간의 호환성을 확인한다.',
         proves: '새 작업 프로세스 이미지가 실행되고 재시작이 반복되지 않음',
         doesNotProve: '모든 예약 작업의 최근 성공',
@@ -288,7 +288,7 @@ export const securityOperationsContent = {
         id: 'decision',
         index: '07',
         label: 'KEEP / ROLLBACK',
-        title: '새 대상을 유지하거나 이전 API로 복귀',
+        title: '유지 또는 이전 API로 복귀',
         summary: '검증을 모두 통과하기 전에는 이전 API를 보존한다.',
         proves: '애플리케이션 트래픽을 이전 대상으로 되돌릴 경로가 남아 있음',
         doesNotProve: 'DB 스키마·데이터·Redis 상태의 복원',
@@ -305,7 +305,7 @@ export const securityOperationsContent = {
       {
         label: 'WORKER',
         mode: 'SEPARATE RECREATE',
-        boundary: 'API와 별도로 빌드⋅재생성하고, watchdog과 누락 복구 경로로 실행 상태를 확인한다. 갱신 중 짧은 실행 공백이 생길 수 있다.',
+        boundary: 'API와 별도로 빌드하고 재생성한다. watchdog과 누락 복구 경로로 실행 상태를 확인하며 갱신 중 실행 공백도 점검한다.',
         state: 'separate',
       },
       {
@@ -318,15 +318,15 @@ export const securityOperationsContent = {
   },
   recovery: {
     eyebrow: '04 / FAILURE & RECOVERY',
-    title: '재시도할 실패와, 멈춰서 볼 실패를 나눴다.',
+    title: '반복 실패는 멈추고 원인을 찾는다.',
     summary:
-      '일부 수집 실패의 일시 오류는 좁게 다시 시도한다. 같은 실패가 계속되면 자동화를 끝내고 원인과 대상 범위를 사람이 확인한다.',
+      '원본 저장의 일시 오류는 항목별로 격리해 다시 시도하도록 했다. 재시도 횟수를 넘기면 실패 단계와 원본을 남기고 처리를 멈춘다. 운영자는 기록을 확인한 뒤 한 건부터 재실행할 수 있다.',
     flow: [
       {
         index: '01',
         label: 'FAILURE',
         title: '원본 저장 실패',
-        detail: '성공처럼 숨기지 않고 실패 단계를 식별.',
+        detail: '실패한 처리 단계를 기록.',
         state: 'failure',
       },
       {
@@ -347,7 +347,7 @@ export const securityOperationsContent = {
         index: '04',
         label: 'TERMINAL',
         title: '자동 재시도 종료',
-        detail: '재시도 가능 횟수를 넘기면 terminal 상태로 남기고 자동 처리를 종료',
+        detail: '재시도 횟수를 넘기면 종료 상태로 남기고 자동 처리를 중단.',
         state: 'terminal',
       },
       {
@@ -374,52 +374,51 @@ export const securityOperationsContent = {
       {
         label: 'ASSISTED',
         title: '도구는 실행하고, 사람은 범위를 결정',
-        items: ['상태를 바꾸지 않는 확인', '원인 수정 뒤 단일 항목 재실행', '원인 수정 후 단일 항목 재실행'],
+        items: ['상태를 바꾸지 않는 확인', '원인 수정 후 단일 항목 재실행'],
       },
       {
         label: 'MANUAL',
         title: '별도 검증 후 실행해야 하는 복구',
-        items: ['격리 환경에서 복원 결과를 확인한 뒤 전환 판단', '전체 백업⋅복원은 별도 리허설 필요'],
+        items: ['격리 환경에서 백업 복원', '복원한 데이터와 동작을 확인한 뒤 전환 판단'],
       },
     ],
     knownBoundary: [
-      '실패 종류에 따라 적용하는 복구 경로가 다르다.',
-      'Runbook은 복구 절차를 안내한다. 실행·검증 결과는 별도로 확인한다.',
+      '일시 오류는 항목별 재시도, 반복 실패는 원인 확인 후 단일 재실행으로 대응한다.',
+      '전체 복원은 격리 환경에서 검증한 뒤 전환하도록 Runbook에 순서를 남겼다.',
     ],
+    relatedProduct: {
+      label: '운영 화면에서 상태와 복구 범위를 판단하는 방식',
+      href: '/what/operations',
+    },
   },
   boundary: {
-    eyebrow: '05 / CURRENT BOUNDARY',
-    title: '세 가지 경계로 안전장치를 구현했습니다.',
+    eyebrow: '05 / MAINTENANCE',
+    title: '구조가 바뀌면 안전장치도 갱신한다.',
     summary:
-      '권한, 배포, 복구를 각각 다른 경계로 다뤘습니다. 자동으로 처리할 범위와 사람이 판단할 조건을 구분해 운영에 남겼습니다.',
+      '권한 모델과 배포 구성이 달라지면 확인할 신호와 복구 절차도 바뀐다. 요청 차단, 전환 전 검증, 재시도 종료 조건을 관련 문서와 함께 관리한다.',
     groups: [
       {
         label: 'ACCESS',
-        question: '누가 무엇을 바꿀 수 있는가',
+        question: '권한 모델을 바꿀 때',
         items: [
-          '조직 로그인과 업무 권한을 분리하고, 기본 권한 템플릿에 개인별 조정을 반영합니다.',
-          'UI와 서버에서 같은 업무 대상·행동 권한을 확인합니다.',
-          '현재 권한을 확인할 수 없으면 요청을 차단합니다.',
+          '템플릿과 개인별 예외를 합친 권한이 화면과 서버에 동일하게 적용되는지 확인한다.',
+          '사용자 연결과 현재 권한을 확인할 수 없을 때 요청이 차단되는지 점검한다.',
         ],
       },
       {
         label: 'DEPLOY',
-        question: '어디까지 검증한 뒤 트래픽을 넘기는가',
+        question: '배포 구성을 바꿀 때',
         items: [
-          '변경·호환성·복구 조건을 확인하고, 비활성 API를 기동해 readiness를 검증합니다.',
-          '전환 후 public target을 대조하고, 검증이 끝날 때까지 이전 API를 보존합니다.',
-          '검증에 실패하면 이전 API로 복귀합니다.',
-          'worker는 API와 별도로 재생성합니다.',
+          '비활성 API의 DB 접근, 전환 후 공개 응답, 이전 API로 돌아갈 경로를 확인한다.',
+          '별도로 갱신하는 작업 프로세스와 공유 데이터의 호환성을 점검한다.',
         ],
       },
       {
         label: 'RECOVER',
-        question: '어디까지 자동화하고, 어디서 사람이 판단하는가',
+        question: '복구 절차를 바꿀 때',
         items: [
-          '실패 항목과 단계를 보존·격리하고, 수집 중 일시 오류를 제한적으로 재시도합니다.',
-          '반복 실패는 terminal 상태로 멈추고, 사람이 원인과 범위를 확인한 뒤 단일 항목을 replay합니다.',
-          'watchdog과 누락 복구 경로로 작업 프로세스의 실행 상태를 확인합니다.',
-          '구성요소별 복구 경계와 절차에 따라 복구 범위를 판단합니다.',
+          '재시도 횟수와 종료 조건, 단일 항목 재실행의 영향 범위를 확인한다.',
+          'watchdog과 누락 복구 경로를 점검하고 구성요소별 복구 순서를 문서에 반영한다.',
         ],
       },
     ],

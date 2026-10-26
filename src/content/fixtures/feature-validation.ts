@@ -44,7 +44,7 @@ export const featureValidationProductFixture = {
     summary:
       '파트너 알림 실패 뒤 재시도 범위와 사용자에게 보이는 최종 상태를 명세와 변경 근거로 함께 검토합니다.',
     status: '확인 필요',
-    lastReviewed: '8월 28일 16:20 · 가상 예시',
+    lastReviewed: '8월 28일 16:20',
     requirements: [
       {
         id: 'R1',
@@ -84,7 +84,7 @@ export const featureValidationProductFixture = {
           eyebrow: 'AI-SUGGESTED MATCH',
           title: 'Failure state visibility',
           summary:
-            '변경 문맥에서 관련 후보를 찾았지만 화면 문구와 명세의 최종 연결은 아직 사람이 확인하지 않았습니다.',
+            '실패 상태를 표시하는 변경을 관련 후보로 찾았습니다. 검토자는 화면 문구와 명세를 대조해 연결을 확정합니다.',
           tokens: ['FailureNotice.render', 'RetryState.exhausted'],
         },
         signal: 'AI 추천 · 문구와 연결 범위 확인 필요',
@@ -100,7 +100,7 @@ export const featureValidationProductFixture = {
           eyebrow: 'CANDIDATE EVIDENCE',
           title: 'Delivery message guard',
           summary:
-            '요청 키를 재사용하는 변경 후보가 보이지만 기능과의 확정 연결은 아직 없습니다.',
+            '요청 키를 재사용하는 변경을 후보로 찾았습니다. 중복 실행을 막는 범위를 검토한 뒤 기능에 연결합니다.',
           tokens: ['RequestQueue.release', 'PendingDelivery.guard'],
           companion: {
             eyebrow: 'WHY UNCERTAIN',
@@ -112,7 +112,7 @@ export const featureValidationProductFixture = {
     ],
     unlinkedCandidate: {
       title: 'Retry state cleanup',
-      label: '아직 기능과 확정 연결되지 않은 구현 후보',
+      label: '연결을 검토할 구현 후보',
       summary:
         '재시도 종료 뒤 남은 상태를 정리하지만 R2와 R3 중 어느 요구사항의 근거인지 확인이 필요합니다.',
       tokens: ['RetrySession.close', 'PendingDelivery.cleanup'],

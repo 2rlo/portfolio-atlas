@@ -216,7 +216,7 @@ function ArtifactShelf({
           <details className="artifact-library">
             <summary>
               <span>DOCUMENT LIBRARY</span>
-              <strong>추가 문서 {libraryArtifacts.length}개</strong>
+              <strong>질문별 문서 찾아보기</strong>
               <span aria-hidden="true">+</span>
             </summary>
             <ol aria-label="추가 문서">

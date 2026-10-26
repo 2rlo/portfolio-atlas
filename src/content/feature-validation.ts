@@ -13,22 +13,22 @@ export const featureValidationContent = {
     eyebrow: 'WHAT I BUILT / 01',
     titleLines: ['FEATURE', 'VALIDATION'],
     thesis:
-      '요구사항과 코드 근거를 연결하고, 사람이 확인한 뒤에만 판정을 갱신한다.',
+      '기능별 요구사항과 코드 변경을 한 화면에서 검토하도록 만들었다.',
     summary:
-      'PR 메시지와 AI가 추출한 구현 설명으로 후보를 찾고, 실제 변경 근거와 대조한다.',
-    problemLabel: 'PROBLEM / SCATTERED EVIDENCE',
+      'AI가 관련 변경을 찾으면 검토자가 연결을 수정하고 확정한다. 당시 명세와 판정 이력도 함께 남겨, 같은 기능을 다시 확인할 때 판단 과정을 따라갈 수 있게 했다.',
+    problemLabel: '흩어진 구현 정보',
     problem:
-      '명세·계획·QA·업무 기록과 코드 변경이 흩어져 있어, 비개발자가 기능 단위로 구현 여부를 다시 확인하기 어려웠다.',
+      '기획 문서와 QA, 업무 기록, 코드 변경이 각각 다른 곳에 있었다. 비개발자가 기능 하나의 구현 여부를 확인하려면 자료를 모으고 개발자에게 다시 물어야 했다.',
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / INSPECTION',
-    title: '명세부터 판정까지, 다섯 판단 지점',
+    title: '기능 하나를 검토하는 화면',
     instruction:
-      '강조 영역의 설계 이유 · 포인터, 키보드, 터치 지원',
+      '요구사항과 연결된 변경을 선택하면 설계 이유를 읽을 수 있다.',
     defaultAnnotation: {
       index: '00',
       label: 'INSPECTION GUIDE',
-      title: '다섯 개의 판단 지점',
+      title: '명세와 변경을 나란히 확인',
       body: '요구사항을 기준으로 변경 근거와 AI 추천을 대조한다. 근거가 부족하면 UNKNOWN으로 남기고, 사람이 연결을 확정한 뒤 재분석한다.',
     },
   },
@@ -38,7 +38,7 @@ export const featureValidationContent = {
       id: 'requirement',
       index: '01',
       label: 'REQUIREMENT',
-      title: '판정 기준도 시간축을 가진다.',
+      title: '판정 당시의 명세를 보존',
       sections: [
         {
           label: 'WHY',
@@ -46,11 +46,7 @@ export const featureValidationContent = {
         },
         {
           label: 'DECISION',
-          body: 'AI 추출 문구를 바로 기준으로 쓰지 않고 준비→수정→사람 확정 단계를 뒀다. 재분석도 확정 문구를 덮지 않는다.',
-        },
-        {
-          label: 'BOUNDARY',
-          body: '확정된 요구사항은 판정 기준이며, 구현 완료 상태와는 별개다.',
+          body: 'AI가 추출한 문구를 검토자가 수정하고 확정하도록 했다. 확정한 요구사항은 명세 이력과 함께 보존해, 재분석 후에도 당시의 판정 기준을 다시 읽을 수 있다.',
         },
       ],
       evolution: { label: 'EVOLVED FROM', date: '2026.08.10' },
@@ -59,7 +55,7 @@ export const featureValidationContent = {
       id: 'evidence',
       index: '02',
       label: 'CODE EVIDENCE',
-      title: '설명보다 다시 확인 가능한 변경을 남긴다.',
+      title: '실제 코드 변경으로 이동',
       sections: [
         {
           label: 'WHY',
@@ -69,10 +65,6 @@ export const featureValidationContent = {
           label: 'DECISION',
           body: '변경 범위에 소스·심벌 근거를 묶고 기능과의 연결을 별도로 확정했다. 검토자는 연결된 실제 변경으로 돌아갈 수 있다.',
         },
-        {
-          label: 'BOUNDARY',
-          body: '코드 변경의 존재는 기능 품질, QA 통과, 배포 또는 사용자 결과를 증명하지 않는다.',
-        },
       ],
       evolution: { label: 'LINKED IN', date: '2026.08.10–12' },
     },
@@ -80,7 +72,7 @@ export const featureValidationContent = {
       id: 'ai-assessment',
       index: '03',
       label: 'AI CANDIDATE',
-      title: 'AI는 관련 변경을 후보로 제안한다.',
+      title: '관련 변경을 찾는 AI 추천',
       sections: [
         {
           label: 'WHY',
@@ -88,11 +80,7 @@ export const featureValidationContent = {
         },
         {
           label: 'DECISION',
-          body: 'AI가 추출한 구현 설명은 탐색 자료로 재사용하고, 사람이 확정한 연결만 명시적 재분석에 넣었다.',
-        },
-        {
-          label: 'BOUNDARY',
-          body: 'AI 답변만으로 근거 연결이나 공식 상태를 확정하지 않는다.',
+          body: 'AI가 추출한 구현 설명과 임베딩 검색으로 관련 변경을 찾는다. 검토자는 후보를 대조하고 연결을 확정한 뒤 재분석한다.',
         },
       ],
       evolution: { label: 'REUSED SINCE', date: '2026.08.11' },
@@ -101,7 +89,7 @@ export const featureValidationContent = {
       id: 'unknown',
       index: '04',
       label: 'UNKNOWN',
-      title: '근거 부족과 미구현은 같은 상태가 아니다.',
+      title: '자료가 빠지면 확인 필요로 표시',
       sections: [
         {
           label: 'WHY',
@@ -111,10 +99,6 @@ export const featureValidationContent = {
           label: 'DECISION',
           body: '근거의 완전성을 먼저 확인하고 부족하면 UNKNOWN·확인 필요에서 멈추게 했다.',
         },
-        {
-          label: 'BOUNDARY',
-          body: 'UNKNOWN은 PASS도 MISSING도 아니며 구현 상태를 임의로 추정하지 않는다.',
-        },
       ],
       evolution: { label: 'CORRECTED ON', date: '2026.08.10' },
     },
@@ -122,7 +106,7 @@ export const featureValidationContent = {
       id: 'human-review',
       index: '05',
       label: 'HUMAN REVIEW',
-      title: '연결을 확인한 뒤에만 상태가 움직인다.',
+      title: '화면 안에서 연결을 확정',
       sections: [
         {
           label: 'WHY',
@@ -132,17 +116,13 @@ export const featureValidationContent = {
           label: 'DECISION',
           body: '사람이 후보 연결을 확정하거나 제외한 뒤, 명시적으로 재분석해 판정을 갱신하게 했다.',
         },
-        {
-          label: 'BOUNDARY',
-          body: '사람 확인은 근거 연결과 문구·판정 입력에 대한 결정이다. 기능 완료·배포의 최종 업무 승인과는 다르다.',
-        },
       ],
       evolution: { label: 'MOVED INTO UI', date: '2026.08.19' },
     },
   ],
   workflow: {
     eyebrow: 'PRODUCT WORKFLOW',
-    title: '근거 연결을 확정한 뒤, 판정을 다시 계산한다.',
+    title: '요구사항부터 판정까지',
     introduction:
       '각 단계와 연결된 화면 요소를 함께 강조',
     steps: [
@@ -183,23 +163,23 @@ export const featureValidationContent = {
       },
     ],
     boundary:
-      '명세·QA·코드 변경은 서로 다른 사실의 근거다. 링크 수나 AI 점수로 기능 완료를 계산하지 않는다.',
+      '검토자는 요구사항 옆에서 관련 변경을 찾고 연결을 확정한다. 재분석한 판정과 사용한 자료를 함께 남긴다.',
   },
   decisions: {
     eyebrow: 'DESIGN DECISIONS',
     items: [
       {
-        statement: 'AI DOES NOT CONFIRM IMPLEMENTATION.',
+        statement: '추천과 확정을 나눈 검토 흐름',
         explanation:
           'AI는 요구사항과 변경 근거 사이의 후보를 찾는다. 공식 상태를 바꾸는 결정은 사람이 맡는다.',
       },
       {
-        statement: 'INSUFFICIENT EVIDENCE IS A STATE.',
+        statement: '자료 누락을 다루는 상태',
         explanation:
           '확인할 근거가 부족하면 UNKNOWN으로 남긴다.',
       },
       {
-        statement: 'EVIDENCE MUST BE REVISITABLE.',
+        statement: '다시 열 수 있는 판정 이력',
         explanation:
           '판정 당시의 요구사항과 연결한 변경 근거를 함께 보존한다.',
       },
@@ -207,15 +187,15 @@ export const featureValidationContent = {
   },
   evolution: {
     eyebrow: 'PRODUCT EVOLUTION',
-    title: '읽기 중심 조회에서, 화면 안의 사람 검토까지.',
+    title: '조회 화면에 검토 기능을 더하다',
     introduction:
-      '근거 누락에 대응한 UNKNOWN, AI 추천과 사람 확정의 분리, 검토 UI의 추가.',
+      '잘린 코드 차이를 미구현으로 오판한 문제를 고쳤고, CLI에서 하던 연결 작업을 제품 화면으로 옮겼다.',
     scenes: [
       {
         date: '2026.08.07',
         label: 'READ-ONLY START',
         visual: 'read-only',
-        decision: 'AI가 공식 상태를 직접 수정하지 않는 읽기 중심 화면',
+        decision: '흩어진 명세와 변경을 모은 조회 화면',
         trigger: '명세와 구현 근거가 흩어져 기능 단위 검토가 어려움',
         change: '기능·명세 이력·요구사항·기존 근거를 한 화면에서 조회',
       },
@@ -246,41 +226,38 @@ export const featureValidationContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / 2026.09.04 SNAPSHOT',
-    title: '등록한 기능과 검토한 연결의 범위',
-    snapshot: '읽기 전용 production snapshot의 저장·분석 범위이며 현재 실시간 수치가 아닙니다.',
+    eyebrow: '검토 작업의 변화',
+    title: '한 화면에서 끝내는 근거 연결',
+    snapshot: '기능을 고른 뒤 요구사항을 읽고, 관련 변경을 찾아 연결하고, 판정을 갱신하는 순서로 화면을 구성했다.',
     items: [],
   },
   implementationStatus: {
     implemented: {
-      label: 'IMPLEMENTED',
-      phase: 'PHASE 1–2',
+      label: '자료 찾기',
+      phase: '명세와 변경을 함께 조회',
       items: [
-        '기능·명세·요구사항을 조회하는 읽기 중심 검증 화면',
-        '여러 출처의 추적 링크와 변경 묶음 연결 확정·제외',
-        '사람이 확정한 요구사항과 연결·판정 이력 보존',
+        '기능별 요구사항과 명세 이력 조회',
+        '계획과 QA, 업무 기록에서 관련 자료 검색',
+        '브랜치별로 중복 표시되던 변경을 하나로 묶어 확인',
       ],
     },
     remaining: {
-      label: 'NEXT SCOPE',
-      phase: 'POLICY + PHASE 3–4',
+      label: '검토 마무리',
+      phase: '수정하고 확정한 뒤 재분석',
       items: [
-        'actor·domain별로 세분화한 permission policy',
-        'HEAD·test·deployment evidence 자동 연결과 stale 재분석',
-        '반영 proposal과 다른 제품 화면의 교차 동작',
+        '요구사항 문구를 준비하고 수정한 뒤 확정',
+        '추천된 연결을 확정하거나 제외',
+        '확정한 문구와 연결, 판정 이력 보존',
       ],
     },
-    runtime:
-      '2026.09.04 기준 Phase 1–2의 구현과 production 경로를 확인했다. Phase 3–4의 자동 evidence·stale 재분석·proposal workflow는 시작하지 않았다.',
+    runtime: '직접 검색과 연결 확정을 화면으로 옮겨, 검토자가 CLI를 오가던 작업을 제품 안에서 마칠 수 있게 했다.',
   },
   boundary: {
-    eyebrow: 'BOUNDARY / CURRENT SCOPE',
-    statement: '근거 연결이 확인된 범위와, 아직 남은 검증.',
+    eyebrow: '설계에서 배운 점',
+    statement: '판정을 고칠 수 있는 검토 화면',
     items: [
-      'AI는 구현 완료를 단독 확정하지 않는다.',
-      '근거 부족을 완료 또는 미구현으로 추측하지 않는다.',
-      '요구사항과 코드 변경을 연결해도 품질·QA·배포·사용자·사업 결과는 각각 확인해야 한다.',
-      '현재 권한은 조회·편집의 coarse gate이며 actor·domain별 세분화는 planned다.',
+      '잘린 diff와 미연결 소스를 MISSING으로 처리하자 구현된 기능도 미구현으로 보였다. 자료가 부족한 경우를 UNKNOWN으로 분리했다.',
+      '검토자가 확정한 요구사항은 재분석 때 보존한다. AI 추천이 달라져도 사람이 잡은 기준을 유지한다.',
     ],
   },
   relatedSystems: [
@@ -295,11 +272,6 @@ export const featureValidationContent = {
       relation: 'AI 후보를 검증하고 사람이 변경을 확정하는 방식',
       href: '/how/ai-native-engineering',
       status: 'available',
-    },
-    {
-      title: 'AI TRUST / HUMAN REVIEW',
-      relation: '후보와 공식 상태 사이의 승인 경계',
-      status: 'in-development',
     },
   ],
 } as const satisfies FeatureValidationPageContent

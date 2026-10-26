@@ -82,20 +82,20 @@ function ProjectSettingPage({ content }: ProjectSettingPageProps) {
       </section>
 
       <section className="ps-evidence" aria-labelledby="ps-evidence-title">
-        {content.evidence.items.length > 0 ? <><header className="ps-evidence-heading">
+        <header className="ps-evidence-heading">
           <p>{content.evidence.eyebrow}</p>
           <h2 id="ps-evidence-title">{content.evidence.title}</h2>
           <span>{content.evidence.snapshot}</span>
         </header>
-        <dl className="ps-evidence-register">
+        {content.evidence.items.length > 0 ? <dl className="ps-evidence-register">
           {content.evidence.items.map((item) => (
-            <div key={item.label}><dd>{item.value}</dd><dt>{item.label}</dt><p>{item.meaning}</p><small>{item.boundary}</small></div>
+            <div key={item.label}><dd>{item.value}</dd><dt>{item.label}</dt><p>{item.meaning}</p>{item.boundary ? <small>{item.boundary}</small> : null}</div>
           ))}
-        </dl></> : <h2 className="visually-hidden" id="ps-evidence-title">구현·운영 상태</h2>}
+        </dl> : null}
         <div className="ps-status">
-          <header><span>CURRENT STATUS</span><strong>{content.implementationStatus.state}</strong></header>
+          <header><span>달라진 업무</span><strong>{content.implementationStatus.state}</strong></header>
           <ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul>
-          <p><span>RUNTIME / USE BOUNDARY</span>{content.implementationStatus.runtime}</p>
+          <p><span>설계가 연결된 지점</span>{content.implementationStatus.runtime}</p>
         </div>
       </section>
 
@@ -103,7 +103,7 @@ function ProjectSettingPage({ content }: ProjectSettingPageProps) {
         <div className="ps-boundary-heading"><p>{content.boundary.eyebrow}</p><h2>{content.boundary.statement}</h2></div>
         <ul className="ps-boundary-list">{content.boundary.items.map((item) => <li key={item}>{item}</li>)}</ul>
         <nav className="ps-related" aria-label="프로젝트 설정과 연결된 시스템">
-          <p>RELATED SYSTEMS</p>
+          <p>연결된 설계 방식</p>
           {content.relatedSystems.map((system) => system.href ? (
             <Link to={system.href} key={system.title}>
               <span><strong>{system.title}</strong><small>{system.relation}</small></span><b aria-hidden="true">↗</b>

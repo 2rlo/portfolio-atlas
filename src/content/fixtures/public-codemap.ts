@@ -8,16 +8,16 @@ export const publicCodemapContent = {
       '코드 탐색 방식과 갱신 규칙을 설명하기 위해 독립적으로 재구성한 예시입니다.',
   },
   hero: {
-    eyebrow: 'DOCUMENTATION SYSTEM / ARTIFACT 10',
+    eyebrow: 'DOCUMENTATION SYSTEM / CODE EXPLORER',
     titleLines: ['CODE', 'MAP'],
-    thesis: '코드의 위치와 관계를 다시 찾을 수 있게 만든 지도.',
+    thesis: '수정할 코드에서 영향받는 경로와 테스트까지.',
     summary:
-      '호출자·의존성·테스트·근거를 코드 위치와 연결한다.',
+      '파일 위치만으로는 변경이 어디까지 영향을 주는지 알기 어려웠다. 호출자와 의존성, 관련 테스트를 코드 위치에 연결해 사람과 개발 에이전트가 같은 경로를 탐색하도록 했다.',
   },
-  freshness: {
-    state: 'FRESH',
-    reviewedAt: '공개 예시 검토됨',
-    scope: '합성 모듈 5개 / 흐름 2개',
+  maintenance: {
+    navigation: '호출자 → 의존성 → 테스트',
+    artifacts: 'HTML / JSON / LOCK',
+    scope: '권한 확인과 기록 변경의 흐름',
     rule: '구조가 바뀌면 코드와 같은 변경에서 다시 생성하고 LOCK을 확인한다.',
   },
   nodes: [
@@ -72,7 +72,7 @@ export const publicCodemapContent = {
     { format: 'LOCK', audience: '변경 검토자', responsibility: '생성 기준·스캔 범위·모듈 지문으로 코드와 지도의 일치 여부를 확인한다.' },
   ],
   boundary: [
-    '모듈과 관계는 공개 목적에 맞게 독립적으로 재구성했다. 실제 저장소 식별정보와 내부 구조는 담지 않았다.',
-    'Codemap은 코드의 위치와 관계를 찾는 자료다. 배포·실행 상태·반복 사용은 각각의 운영 근거로 확인한다.',
+    '변경 전에는 호출 관계를 따라 수정할 코드와 함께 실행할 테스트를 찾는다.',
+    '구조를 바꾼 뒤에는 지도를 다시 생성하고 LOCK의 생성 기준과 스캔 범위를 확인한다.',
   ],
 } as const satisfies PublicCodemapContent

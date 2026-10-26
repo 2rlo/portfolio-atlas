@@ -23,9 +23,13 @@ function WikiPage({ content }: { readonly content: WikiPageContent }) {
       </section>
 
       <section className="qa-evidence" aria-labelledby="wiki-title-evidence">
-        <header className="qa-evidence-heading"><p>{content.evidence.eyebrow}</p><h2 id="wiki-title-evidence">{content.evidence.title}</h2><span>{content.evidence.snapshot}</span></header>
-        <dl className="qa-evidence-register">{content.evidence.items.map((item) => <div key={item.label}><dd>{item.value}</dd><dt>{item.label}</dt><p>{item.meaning}</p><small>{item.boundary}</small></div>)}</dl>
-        <div className="qa-status"><header><span>구현·운영 상태</span><strong>{content.implementationStatus.state}</strong></header><ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul><p><span>확인한 운영 범위</span>{content.implementationStatus.runtime}</p>{content.implementationStatus.feedback ? <p><span>{content.implementationStatus.feedback.label}</span>{content.implementationStatus.feedback.text}</p> : null}</div>
+        <header className="qa-evidence-heading">
+          <p>{content.evidence.eyebrow}</p>
+          <h2 id="wiki-title-evidence">{content.evidence.title}</h2>
+          <span>{content.evidence.snapshot}</span>
+        </header>
+
+        <div className="qa-status"><header><span>구현한 흐름</span><strong>{content.implementationStatus.state}</strong></header><ul>{content.implementationStatus.items.map((item) => <li key={item}>{item}</li>)}</ul><p><span>운영 설계</span>{content.implementationStatus.runtime}</p>{content.implementationStatus.feedback ? <p><span>{content.implementationStatus.feedback.label}</span>{content.implementationStatus.feedback.text}</p> : null}</div>
       </section>
 
       <footer className="qa-boundary">

@@ -13,70 +13,66 @@ export const developerStatusContent = {
     eyebrow: 'WHAT I BUILT / 07',
     titleLines: ['DEVELOPER', 'STATUS'],
     thesis:
-      '최근 7일의 업무와 코드 근거를 사람별로 연결하고, 아직 확인하지 못한 상태까지 남긴 현황 요약.',
+      '최근 7일의 업무와 코드 변경을 구성원별로 모아 읽게 했다.',
     summary:
-      '검토된 업무일지와 change set을 우선하고, AI draft·부분 실패·오래된 결과는 경고 상태로 남겨 원문으로 돌아갈 수 있게 했습니다.',
-    problemLabel: 'PROBLEM / ACTIVITY IS NOT DELIVERY',
+      '업무일지와 여러 Git 계정을 연결해 최근 작업을 요약한다. 검토한 기록을 우선 사용하고, 분석 실패나 오래된 결과도 화면에서 구분해 필요한 원문을 바로 열 수 있게 했다.',
+    problemLabel: '흩어진 사람별 업무 기록',
     problem:
-      '업무일지·개인/조직 계정·PR·커밋·코드 차이가 흩어져 있었습니다. 변경 건수나 제목만으로 구현 완료와 배포를 판단하면 사람과 결과를 잘못 연결할 수 있었습니다.',
+      '한 구성원의 업무가 일지와 개인 계정, 조직 계정에 나뉘어 있었다. PR 제목과 커밋 목록을 일일이 대조해야 최근 어떤 작업을 했는지 파악할 수 있었다.',
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / EVIDENCE ROLLUP',
-    title: '요약은 끝점이 아니라 근거로 돌아가는 입구.',
-    instruction: '사람·계정 연결 · 기록의 종류와 검토 상태 · 변경 근거 · 부분 결과 · 갱신 주기',
+    title: '사람별 최근 업무와 원문',
+    instruction: '구성원을 선택해 업무 요약과 코드 변경, 처리 상태를 함께 확인',
     defaultAnnotation: {
-      index: '00', label: 'ROLLUP GUIDE', title: '사람별로 연결된 최근 업무와 확인할 지점을 모았습니다.',
-      body: '업무일지와 코드 변경에서 최근 흐름을 찾고, 검토 상태와 남은 확인 항목을 함께 읽습니다. 표시된 건수는 구성원 평가 점수가 아닙니다.',
+      index: '00', label: 'ROLLUP GUIDE', title: '최근 업무를 한곳에서 읽기',
+      body: '최근 업무를 요약에서 읽고 관련 업무일지와 코드 변경을 연다. 일부 분석이 실패하면 수집한 자료와 처리 상태를 함께 남긴다.',
     },
   },
   product: developerStatusProductFixture,
   annotations: [
     {
-      id: 'identity-scope', index: '01', label: 'IDENTITY SCOPE', title: '사람과 계정을 추측으로 연결하지 않았다.',
+      id: 'identity-scope', index: '01', label: 'IDENTITY SCOPE', title: '구성원과 Git 계정을 직접 연결',
       sections: [
-        { label: 'WHY', body: '조직·개인 계정, 조직 이전 저장소, 서비스 계정, 공동 작업을 잘못 묶으면 다른 사람의 변경이 개인 현황으로 들어갑니다.' },
-        { label: 'DECISION', body: '활성 팀원과 허용 계정을 명시적으로 연결했습니다. 서비스 계정과 연결되지 않은 변경은 개인별 집계에서 제외했습니다.' },
-        { label: 'BOUNDARY', body: '공동 변경 묶음은 참여자의 근거로 연결하며, 한 사람의 단독 성과로 귀속하지 않습니다.' },
+        { label: 'WHY', body: '조직 계정과 개인 계정, 서비스 계정이 섞여 있어 변경 작성자 문자열만으로는 구성원을 찾기 어려웠다.' },
+        { label: 'DECISION', body: '활성 팀원과 허용 계정을 직접 연결했다. 공동 변경은 참여자의 자료로 연결하고 서비스 계정은 개인 집계에서 제외했다.' },
       ],
       evolution: { label: 'IDENTITY MAPPING', date: '2026.07.14 → 08.10' },
     },
     {
-      id: 'source-hierarchy', index: '02', label: 'SOURCE / REVIEW STATE', title: '검토된 기록과 AI 초안을 같은 사실로 섞지 않았다.',
+      id: 'source-hierarchy', index: '02', label: 'SOURCE / REVIEW STATE', title: '검토한 업무일지를 우선 사용',
       sections: [
-        { label: 'WHY', body: 'AI 초안에는 빠진 맥락과 모호한 표현이 남을 수 있습니다. 요약 문장만 읽으면 사람이 검토한 기록인지 구분하기 어렵습니다.' },
-        { label: 'DECISION', body: '같은 원문에 연결된 검토본을 우선하고, 연결되지 않은 draft만 보조로 사용하면서 source type과 warning을 유지했습니다.' },
-        { label: 'BOUNDARY', body: 'AI 초안이 포함된 요약은 ready로 표시하지 않습니다.' },
+        { label: 'WHY', body: '같은 업무의 AI 초안과 사람이 검토한 일지가 함께 남아 있었다. 요약할 때 어떤 기록을 먼저 읽을지 정해야 했다.' },
+        { label: 'DECISION', body: '같은 원문에 연결된 검토본을 우선했다. 검토본이 없는 초안은 보조로 사용하고 출처와 경고를 함께 표시했다.' },
       ],
     },
     {
-      id: 'grouped-evidence', index: '03', label: 'GROUPED CHANGE SET', title: '커밋 수보다, 어떤 변경이 어떤 주장에 연결되는지를 보여준다.',
+      id: 'grouped-evidence', index: '03', label: 'GROUPED CHANGE SET', title: '변경을 묶어 최근 작업 요약',
       sections: [
-      { label: 'WHY', body: 'PR 제목이나 커밋 개수만으로는 구현 범위·공동 작업·배포 상태를 알 수 없습니다.' },
-      { label: 'DECISION', body: '코드 차이와 심벌을 변경 묶음으로 정리하고 근거 ID를 유지했습니다. 중간 요약한 뒤 최근 7일 현황으로 합칩니다.' },
+      { label: 'WHY', body: 'PR 제목만으로 작업 내용을 읽기 어려웠고, 긴 코드 차이를 한 번에 요약하면 맥락이 빠질 수 있었다.' },
+      { label: 'DECISION', body: '코드 차이와 심벌을 변경 묶음으로 정리했다. 묶음별 중간 요약을 최근 7일 현황으로 합치고, 원문으로 돌아가는 연결을 유지했다.' },
     ],
       evolution: { label: 'HIERARCHICAL ROLLUP', date: '2026.07.14' },
     },
     {
-      id: 'partial-state', index: '04', label: 'PARTIAL STATE', title: '생성 실패가 이미 수집된 근거를 지우지 않게 했다.',
+      id: 'partial-state', index: '04', label: 'PARTIAL STATE', title: '실패해도 수집한 자료는 보존',
       sections: [
-        { label: 'WHY', body: '일부 코드 차이나 AI 분석이 실패해도 다른 구성원의 근거와 이미 수집한 변경 묶음은 남아 있을 수 있습니다.' },
-        { label: 'DECISION', body: 'ready·partial·stale·error를 구분했습니다. 실패한 묶음은 대체 요약으로 남기고 다음 실행에서 다시 시도했습니다.' },
-        { label: 'BOUNDARY', body: '대체 요약에는 실패 상태를 유지해, 완료된 AI 분석과 구분합니다.' },
+        { label: 'WHY', body: '일부 분석이 실패했을 때 전체 화면을 비우면, 정상적으로 수집한 다른 구성원의 기록까지 볼 수 없었다.' },
+        { label: 'DECISION', body: '정상과 부분 결과, 오래된 결과, 오류를 구분했다. 실패한 묶음은 대체 요약과 실패 상태를 남기고 다음 실행에서 재시도했다.' },
       ],
       evolution: { label: 'STATE UX ADDED', date: '2026.08.07' },
     },
     {
-      id: 'refresh-cadence', index: '05', label: 'REFRESH CADENCE', title: '기록 도착 시각에 맞춰 갱신 주기를 고정했다.',
+      id: 'refresh-cadence', index: '05', label: 'REFRESH CADENCE', title: '기록 도착에 맞춘 갱신 시각',
       sections: [
-        { label: 'WHY', body: '한 push가 여러 이벤트로 나뉘면 같은 현황을 반복 생성해 AI 비용이 늘었습니다. 이른 갱신에서는 해외 구성원의 기록도 빠졌습니다.' },
-        { label: 'DECISION', body: '평일 KST 13:00에 최근 7일 현황을 생성하도록 단순화하고, Message Batch 결과는 별도 주기적 조회로 회수했습니다.' },
-        { label: 'BOUNDARY', body: '현황은 정해진 시점의 최근 7일 기록을 반영합니다. 실시간 활동 목록은 아닙니다.' },
+        { label: 'WHY', body: '한 push가 여러 이벤트로 나뉘면 같은 현황을 반복 생성했다. 이른 시각의 집계에서는 해외 구성원의 업무일지도 빠졌다.' },
+        { label: 'DECISION', body: '평일 KST 13:00에 최근 7일 현황을 생성하도록 바꿨다. 즉시 응답이 필요 없는 일일 생성은 Message Batch로 처리하고 결과를 주기적으로 회수한다.' },
       ],
       evolution: { label: 'DAILY CADENCE', date: '2026.08.20' },
     },
   ],
   workflow: {
-    eyebrow: 'ROLLUP WORKFLOW', title: '계정을 연결하고, 기록 종류와 처리 상태를 남기며 집계한다.', introduction: '사람·계정 매핑에서 근거 묶음, 부분 결과, 정기 갱신으로 이어지는 흐름.',
+    eyebrow: 'ROLLUP WORKFLOW', title: '구성원별 현황을 만드는 순서', introduction: '계정을 연결하고 업무 기록과 코드 변경을 모아, 정해진 시각에 최근 현황을 갱신한다.',
     steps: [
       { id: 'dev-flow-map', hotspotId: 'identity-scope', index: '01', label: 'MAP', summary: '활성 사람과 허용 계정 연결' },
       { id: 'dev-flow-source', hotspotId: 'source-hierarchy', index: '02', label: 'SOURCE', summary: '검토본과 AI 초안을 구분' },
@@ -84,18 +80,18 @@ export const developerStatusContent = {
       { id: 'dev-flow-rollup', hotspotId: 'partial-state', index: '04', label: 'ROLL UP', summary: '부분 실패 상태를 보존' },
       { id: 'dev-flow-refresh', hotspotId: 'refresh-cadence', index: '05', label: 'REFRESH', summary: '평일 13:00에 최근 7일 현황 생성' },
     ],
-    boundary: '요약은 최근 업무의 근거를 찾는 진입점입니다. 완료와 배포는 명시적인 기록으로 별도 확인하며, 개인 생산성 평가에는 사용하지 않습니다.',
+    boundary: '요약에서 최근 작업 흐름을 읽고 필요한 업무일지와 코드 변경을 바로 연다. 처리 상태를 함께 표시해 다시 확인할 항목을 고를 수 있다.',
   },
   decisions: {
-    eyebrow: 'DESIGN DECISIONS', title: 'Describe the work. Never score the person.',
+    eyebrow: 'DESIGN DECISIONS', title: '업무 기록에 맞춘 집계 설계',
     items: [
-      { statement: 'IDENTITY MUST BE EXPLICIT.', explanation: '이름 유사도나 커밋 작성자 문자열만으로 변경을 개인에게 귀속하지 않습니다.' },
-      { statement: 'DEGRADED IS A VALID STATE.', explanation: '일부 분석이 실패하면 수집한 근거와 대체 요약의 범위를 함께 표시합니다.' },
-      { statement: 'EVIDENCE BEFORE COMPLETION.', explanation: '완료·배포 문장은 업무일지나 변경 메타데이터에 명시적인 근거가 있을 때만 유지합니다.' },
+      { statement: '계정은 직접 연결', explanation: '활성 구성원에 허용 계정을 연결해 개인 계정과 조직 계정의 작업을 함께 읽는다.' },
+      { statement: '실패한 부분도 표시', explanation: '일부 분석이 실패해도 수집한 자료를 보존하고 대체 요약에 처리 상태를 표시한다.' },
+      { statement: '요약에서 원문으로 이동', explanation: '중간 요약과 최종 현황에 원본 연결을 유지해, 작업 내용과 완료 기록을 직접 열어볼 수 있게 했다.' },
     ],
   },
   evolution: {
-    eyebrow: 'PRODUCT EVOLUTION', title: '사람·집계 시점·처리 상태를 차례로 분리했다.', introduction: '명시적 계정 연결에 기록 도착 시각, 배치 처리, 실패 상태, 일일 갱신 규칙을 더했습니다.',
+    eyebrow: 'PRODUCT EVOLUTION', title: '실제 기록 흐름에 맞춰 집계 개선', introduction: '해외 구성원의 기록 누락과 중복 생성을 겪으며, 갱신 시각과 배치 처리 방식을 바꿨다.',
     scenes: [
       { date: '2026.07.14', label: 'IDENTITY + 7 DAYS', visual: 'identity', decision: '명시적 계정 매핑과 최근 7일 근거를 한 화면에 연결했다.', trigger: '업무일지와 여러 Git 계정이 흩어짐', change: '검토된 업무일지·코드 차이·변경 묶음 기반 현황 집계', currentEffect: '구성원별 요약에서 원본 근거로 이동' },
       { date: '2026.07.31', label: 'TIME WINDOW', visual: 'time-window', decision: '실제 기록 도착 시각에 맞춰 전체 갱신을 늦췄다.', trigger: '해외 구성원의 업무일지가 이른 집계에서 누락', change: 'KST 07:30에서 13:00으로 이동', currentEffect: '기록 도착 패턴을 반영한 갱신 시각' },
@@ -105,18 +101,27 @@ export const developerStatusContent = {
     ],
   },
   evidence: {
-    eyebrow: 'EVIDENCE / SNAPSHOT 2026.09.04', title: '연결된 evidence corpus이지, 개인 개발량이 아니다.', snapshot: '읽기 전용 production snapshot에 저장된 GitHub evidence corpus입니다.',
+    eyebrow: '운영에서 바꾼 점',
+    title: '기록 도착과 처리 비용에 맞춘 갱신',
+    snapshot: '이벤트마다 다시 만들던 현황을 일일 생성으로 바꾸고, 해외 구성원의 업무일지가 도착하는 시각을 반영했다.',
     items: [],
   },
   implementationStatus: {
-    state: 'IMPLEMENTED / DEPLOYED / SCHEDULED',
-    items: ['활성 구성원과 Git 계정의 명시적 연결', 'web-reviewed worklog·all-branch change evidence', '단계별 요약·캐시·Message Batch', '부분 결과·오래된 결과·대체 요약·재시도 상태'],
-    runtime: '예약·worker 코드와 production evidence corpus는 확인했다.',
+    state: '평일 13:00, 최근 7일 현황',
+    items: [
+      'KST 07:30 집계를 13:00으로 이동',
+      '묶음별 중간 요약과 캐시로 긴 코드 차이 처리',
+      '일일 생성은 Message Batch로 처리하고 5분마다 결과 회수',
+      '실패한 묶음은 대체 요약을 남기고 다음 실행에서 재시도',
+    ],
+    runtime: '정기 생성은 배치로 처리하고 API와 CLI의 동기 응답은 유지했다. 호출 방식에 맞춰 결과를 받는 경로를 나눴다.',
   },
   boundary: {
-    eyebrow: 'BOUNDARY / STATUS, NOT PERFORMANCE', statement: '확인된 운영 범위는 최근 업무의 근거 연결과 정기 생성까지.',
+    eyebrow: '설계에서 배운 점',
+    statement: '집계 시각도 제품 동작의 일부였다.',
     items: [
-      '커밋·PR·코드 차이의 수는 연결된 근거의 규모이며 개인 생산성 점수가 아닙니다.',
+      '해외 구성원의 기록이 빠진 이유는 수집 조건보다 집계 시각에 있었다. 실제 도착 패턴을 보고 일일 갱신을 늦췄다.',
+      '부분 실패를 빈 화면으로 처리하지 않고 수집한 자료와 함께 남겼다. 운영자는 재시도할 지점을 확인하고 사용자는 나머지 업무를 계속 읽을 수 있다.',
     ],
   },
   relatedSystems: [

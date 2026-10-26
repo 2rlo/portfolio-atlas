@@ -32,19 +32,19 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
             <small>{content.meta.disclosure}</small>
           </div>
         </div>
-        <dl className="codemap-ledger" aria-label="Codemap 상태">
+        <dl className="codemap-ledger" aria-label="Codemap 탐색 구성">
           <div><dt>관리 주체</dt><dd>{content.meta.owner}</dd></div>
-          <div><dt>STATE</dt><dd data-state={content.freshness.state}>{content.freshness.state}</dd></div>
-          <div><dt>예시 범위</dt><dd>{content.freshness.scope}</dd></div>
-          <div><dt>검토 상태</dt><dd>{content.freshness.reviewedAt}</dd></div>
+          <div><dt>탐색 순서</dt><dd>{content.maintenance.navigation}</dd></div>
+          <div><dt>예시 범위</dt><dd>{content.maintenance.scope}</dd></div>
+          <div><dt>연결된 산출물</dt><dd>{content.maintenance.artifacts}</dd></div>
         </dl>
       </section>
 
       <section className="codemap-explorer" aria-labelledby="codemap-explorer-title">
         <header className="codemap-section-heading">
           <p>공개용 재구성 지도</p>
-          <h2 id="codemap-explorer-title">한 모듈에서 호출 관계와 검증 근거까지.</h2>
-          <span>{content.freshness.rule}</span>
+          <h2 id="codemap-explorer-title">호출 경로를 따라가 보기</h2>
+          <span>{content.maintenance.rule}</span>
         </header>
 
         <div className="codemap-flow-controls" aria-label="탐색 흐름">
@@ -119,7 +119,7 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
       <section className="codemap-contract" aria-labelledby="codemap-contract-title">
         <header>
           <p>하나의 코드 지도, 세 가지 형식</p>
-          <h2 id="codemap-contract-title">HTML로 탐색하고, JSON으로 읽고, LOCK으로 생성 기준을 확인한다.</h2>
+          <h2 id="codemap-contract-title">사람과 AI가 함께 읽는 코드 지도</h2>
         </header>
         <ol>
           {content.contract.map((item, index) => (
@@ -134,7 +134,7 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
       </section>
 
       <footer className="codemap-boundary">
-        <p>공개 예시의 범위</p>
+        <p>개발 작업에 연결하기</p>
         <ul>{content.boundary.map((item) => <li key={item}>{item}</li>)}</ul>
         <Link to="/how/ai-native-engineering">AI 개발 흐름에서의 활용 <span aria-hidden="true">→</span></Link>
       </footer>

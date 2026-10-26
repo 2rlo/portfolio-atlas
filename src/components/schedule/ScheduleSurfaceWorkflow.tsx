@@ -195,7 +195,7 @@ function ScheduleSurfaceWorkflow({ content }: { readonly content: SchedulePageCo
                     </button>
                   </h3>
                   <p className="schj-rail-summary" id={`schj-summary-${item.id}`}>{item.summary}</p>
-                  <p className="schj-rail-detail">{note?.sections.find((entry) => entry.label === (item.hotspotId === 'staged-changes' ? 'BOUNDARY' : 'DECISION'))?.body}</p>
+                  <p className="schj-rail-detail">{note?.sections.find((entry) => entry.label === 'DECISION')?.body}</p>
                 </li>
               )
             })}
