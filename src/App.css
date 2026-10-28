@@ -10,17 +10,14 @@
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  visibility: hidden;
   opacity: 0;
   transform: translateY(-180%);
   transition:
     opacity 160ms ease,
-    transform 160ms ease,
-    visibility 0s linear 160ms;
+    transform 160ms ease;
 }
 
 .skip-link:focus {
-  visibility: visible;
   opacity: 1;
   transform: translateY(0);
   transition-delay: 0s;
@@ -88,7 +85,13 @@
   position: absolute;
   z-index: 3;
   inset: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  background: transparent;
   color: inherit;
+  cursor: pointer;
   text-decoration: none;
 }
 
@@ -668,7 +671,7 @@
   }
 }
 
-@media (min-width: 821px) {
+@media (min-width: 821px), (orientation: landscape) {
   .seam-poster[data-interactive='true'] {
     transition: grid-template-columns 420ms cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -705,7 +708,7 @@
   }
 
   .seam-poster[data-interactive='true']:has(
-      .poster-field--how-i-build:focus-within
+      .poster-field--how-i-build[data-index-expanded='true']
     ),
   .seam-poster[data-entry-guide='recommendation'] {
     grid-template-columns: 45% 55%;
@@ -717,7 +720,7 @@
     .poster-field--how-i-build
     .poster-word,
   .seam-poster[data-interactive='true']:has(
-      .poster-field--how-i-build:focus-within
+      .poster-field--how-i-build[data-index-expanded='true']
     )
     .poster-field--what-i-built
     .poster-word,
@@ -732,7 +735,7 @@
     .poster-field--how-i-build
     .poster-meta,
   .seam-poster[data-interactive='true']:has(
-      .poster-field--how-i-build:focus-within
+      .poster-field--how-i-build[data-index-expanded='true']
     )
     .poster-field--what-i-built
     .poster-meta,
@@ -742,7 +745,7 @@
   }
 
   .seam-poster[data-interactive='true']
-    .poster-field:focus-within
+    .poster-field--how-i-build[data-index-expanded='true']
     .poster-index-list,
   .seam-poster[data-entry-guide='recommendation']
     .poster-field--how-i-build .poster-index-list {
@@ -761,7 +764,7 @@
   }
 
   .seam-poster[data-interactive='true']
-    .poster-field--how-i-build:focus-within
+    .poster-field--how-i-build[data-index-expanded='true']
     .poster-word,
   .seam-poster[data-entry-guide='recommendation']
     .poster-field--how-i-build .poster-word {
@@ -770,7 +773,8 @@
   }
 }
 
-@media (min-width: 821px) and (hover: hover) and (pointer: fine) {
+@media (min-width: 821px) and (hover: hover) and (pointer: fine),
+  (orientation: landscape) and (hover: hover) and (pointer: fine) {
   .seam-poster[data-interactive='true']
     .poster-field--what-i-built:hover
     .feature-rain--desktop {
@@ -827,7 +831,7 @@
   }
 
   .seam-poster[data-interactive='true']:has(
-      .poster-field--how-i-build:hover
+      .poster-field--how-i-build[data-index-expanded='true']
     ) {
     grid-template-columns: 45% 55%;
   }
@@ -838,7 +842,7 @@
     .poster-field--how-i-build
     .poster-word,
   .seam-poster[data-interactive='true']:has(
-      .poster-field--how-i-build:hover
+      .poster-field--how-i-build[data-index-expanded='true']
     )
     .poster-field--what-i-built
     .poster-word {
@@ -851,7 +855,7 @@
     .poster-field--how-i-build
     .poster-meta,
   .seam-poster[data-interactive='true']:has(
-      .poster-field--how-i-build:hover
+      .poster-field--how-i-build[data-index-expanded='true']
     )
     .poster-field--what-i-built
     .poster-meta {
@@ -859,7 +863,7 @@
   }
 
   .seam-poster[data-interactive='true']
-    .poster-field:hover
+    .poster-field--how-i-build[data-index-expanded='true']
     .poster-index-list {
     opacity: 1;
     visibility: visible;
@@ -876,25 +880,17 @@
   }
 
   .seam-poster[data-interactive='true']
-    .poster-field--how-i-build:hover
+    .poster-field--how-i-build[data-index-expanded='true']
     .poster-word {
     letter-spacing: var(--focused-word-tracking);
     transform: translate(-4px, -50%);
   }
 }
 
-/* Narrow landscape still uses the desktop poster. Reveal its existing index. */
-@media (max-width: 820px) and (orientation: landscape) {
-  .seam-poster[data-entry-guide='recommendation'] .poster-index-list {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-}
-
 /* Keep the four choices clear of the giant HOW word on short screens. */
 @media (max-height: 500px) and (orientation: landscape) {
+  .seam-poster[data-interactive='true']
+    .poster-field--how-i-build[data-index-expanded='true'] .poster-word,
   .seam-poster[data-entry-guide='recommendation']
     .poster-field--how-i-build .poster-word {
     top: 6rem;
@@ -902,15 +898,21 @@
     transform-origin: left top;
   }
 
+  .seam-poster[data-interactive='true']
+    .poster-field--how-i-build[data-index-expanded='true'] .poster-meta,
   .seam-poster[data-entry-guide='recommendation']
     .poster-field--how-i-build .poster-meta {
     opacity: 0;
   }
 
-  .seam-poster[data-entry-guide='recommendation'] .poster-index-list {
+  .seam-poster .poster-index-list {
     right: var(--page-gutter);
     bottom: 1rem;
     width: min(21rem, calc(100% - 2 * var(--page-gutter)));
+  }
+
+  .seam-poster .poster-index-list li {
+    font-size: 0.75rem;
   }
 }
 

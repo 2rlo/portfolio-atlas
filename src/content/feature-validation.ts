@@ -171,7 +171,7 @@ export const featureValidationContent = {
       {
         statement: '추천과 확정을 나눈 검토 흐름',
         explanation:
-          'AI는 요구사항과 변경 근거 사이의 후보를 찾는다. 공식 상태를 바꾸는 결정은 사람이 맡는다.',
+          'AI는 요구사항과 관련이 있을 만한 변경 근거를 찾는다. 공식 상태를 바꾸는 결정은 사람이 맡는다.',
       },
       {
         statement: '자료 누락을 다루는 상태',
@@ -220,7 +220,7 @@ export const featureValidationContent = {
         label: 'REVIEW IN PRODUCT',
         visual: 'review-ui',
         decision: '검토자가 화면을 떠나지 않고 연결을 끝내는 UI',
-        trigger: 'CLI에서의 확정과 브랜치별 중복 표시로 검토 흐름 단절',
+        trigger: 'CLI에서 연결을 확정해야 하고 같은 변경이 브랜치마다 중복 표시되어 검토 흐름이 끊김',
         change: '직접 검색·연결, 중복 변경 묶기, 준비·수정·확정 UI',
       },
     ],

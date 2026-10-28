@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router/dom'
 import { router } from './app/router.tsx'
 import './index.css'
+import './styles/portfolio-readability.css'
 
 const root = document.getElementById('root')
 

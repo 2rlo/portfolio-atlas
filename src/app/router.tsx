@@ -20,6 +20,7 @@ import SecurityOperationsRoute from '../routes/SecurityOperationsRoute.tsx'
 import TechnicalWritingRoute from '../routes/TechnicalWritingRoute.tsx'
 import VersionLogRoute from '../routes/VersionLogRoute.tsx'
 import WikiRoute from '../routes/WikiRoute.tsx'
+import WhatIndexRoute from '../routes/WhatIndexRoute.tsx'
 import WorklogReviewRoute from '../routes/WorklogReviewRoute.tsx'
 import WorkInProgressRoute from '../routes/WorkInProgressRoute.tsx'
 
@@ -60,7 +61,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'what',
-        Component: WorkInProgressRoute,
+        Component: WhatIndexRoute,
       },
       {
         path: 'what/feature-validation',

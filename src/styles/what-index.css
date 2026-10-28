@@ -1,0 +1,108 @@
+.page-shell:has(.what-index-page) > .site-header {
+  color: var(--ink);
+  border-bottom-color: var(--line);
+}
+
+.what-index-page {
+  max-width: var(--page-max-width);
+  margin-inline: auto;
+  padding: 8rem var(--page-gutter) 6rem;
+  color: var(--ink);
+  font-family: var(--body);
+}
+
+.what-index-back {
+  display: inline-block;
+  padding-block: 0.75rem;
+  color: var(--jade);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.what-index-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr);
+  align-items: end;
+  gap: 3rem;
+  margin-block: 3rem 5rem;
+}
+
+.what-index-eyebrow {
+  margin: 0 0 1.5rem;
+  color: var(--jade);
+  font: 0.7rem / 1.6 var(--utility);
+  letter-spacing: 0.12em;
+}
+
+.what-index-header h1 {
+  margin: 0;
+  font: 800 clamp(4rem, 9vw, 9rem) / 0.88 var(--grotesk);
+  letter-spacing: -0.065em;
+}
+
+.what-index-header h1 span { display: block; }
+
+.what-index-introduction {
+  max-width: 25rem;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+.what-index-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3.5rem clamp(2rem, 6vw, 6rem);
+}
+
+.what-index-groups section > header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 1.25rem;
+  border-top: 2px solid var(--jade);
+}
+
+.what-index-groups section > header > span {
+  color: var(--jade);
+  font: 0.7rem / 1.5 var(--utility);
+}
+
+.what-index-groups h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.what-index-groups ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.what-index-groups li { border-bottom: 1px solid var(--line); }
+
+.what-index-groups a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  min-height: 3.75rem;
+  padding-block: 1rem;
+  color: var(--ink);
+  font: 600 clamp(0.95rem, 1.6vw, 1.3rem) / 1.4 var(--grotesk);
+  text-decoration: none;
+}
+
+.what-index-groups a > span:last-child { color: var(--jade); }
+.what-index-page a:hover { color: var(--jade); text-decoration: underline; text-underline-offset: 0.25em; }
+.what-index-page a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; }
+
+@media (max-width: 48rem) {
+  .what-index-page { padding-top: 7rem; }
+  .what-index-header { grid-template-columns: minmax(0, 1fr); gap: 2rem; margin-block: 2rem 3rem; }
+  .what-index-header h1 { font-size: clamp(4rem, 17vw, 7rem); }
+  .what-index-groups { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+}

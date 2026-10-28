@@ -451,7 +451,7 @@
 .report-product[data-has-active='true'] .product-hotspot,
 .report-product[data-has-active='true'] .report-document,
 .report-product[data-has-active='true'] .report-head > div {
-  opacity: 0.18;
+  opacity: 1;
 }
 
 .report-product[data-has-active='true'] .product-hotspot[data-active='true'] {
@@ -736,7 +736,7 @@
 .rptj-journey-stage[data-compact='true'] .report-product[data-has-active='true'] .report-head > div,
 .rptj-journey-stage[data-compact='true'] .report-product[data-has-active='true'] .report-document,
 .rptj-journey-stage[data-compact='true'] .report-product[data-has-active='true'] .report-topbar {
-  opacity: 0.65;
+  opacity: 1;
 }
 
 .rptj-journey-stage[data-compact='true'] .report-product[data-has-active='true'] .product-hotspot[data-active='true'] {

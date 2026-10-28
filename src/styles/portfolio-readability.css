@@ -1,0 +1,37 @@
+/* Product titles use their actual text column as the upper size limit.
+   The page styles retain their preferred display size and optical treatment. */
+:is(.qa-hero-heading, .wl-hero-heading, .ps-hero-heading, .acr-hero-heading, .fv-hero-heading) > div:first-child {
+  min-width: 0;
+  container-type: inline-size;
+  --product-title-limit: 16.5cqi;
+}
+
+:is(.permission-page, .rag-assistant-page, .developer-status-page) .qa-hero-heading > div:first-child {
+  --product-title-limit: 15cqi;
+}
+
+:is(.report-page, .meeting-log-page, .version-log-page, .qa-case-page) .qa-hero-heading > div:first-child {
+  --product-title-limit: 20cqi;
+}
+
+:is(.api-usage-page, .wiki-page) .qa-hero-heading > div:first-child {
+  --product-title-limit: 25cqi;
+}
+
+:is(.wl-hero-heading, .ps-hero-heading, .fv-hero-heading) > div:first-child {
+  --product-title-limit: 18.5cqi;
+}
+
+/* Reserve the global wordmark row before the case-study return link.
+   Feature Validation and HOW pages already have a separate header row. */
+:is(.qa-page, .worklog-review-page, .project-setting-page, .ai-candidate-review-page)
+  :is(.qa-hero-frame, .wl-hero-frame, .ps-hero-frame, .acr-hero-frame) {
+  padding-top: 5.5rem;
+}
+
+@media (max-width: 820px) {
+  :is(.qa-page, .worklog-review-page, .project-setting-page, .ai-candidate-review-page)
+    :is(.qa-hero-frame, .wl-hero-frame, .ps-hero-frame, .acr-hero-frame) {
+    padding-top: 6rem;
+  }
+}

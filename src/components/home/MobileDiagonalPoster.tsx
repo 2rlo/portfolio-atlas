@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link } from 'react-router'
 import type {
   ContentLane,
   HomeTrackContent,
@@ -26,7 +26,6 @@ function MobileDiagonalPoster({
   onGuideEnd,
 }: MobileDiagonalPosterProps) {
   const [activeLane, setActiveLane] = useState<ContentLane | null>(null)
-  const navigate = useNavigate()
   const visibleLane = interactive
     ? activeLane ?? (guidePhase === 'recommendation' ? 'how-i-build' : null)
     : null
@@ -36,14 +35,7 @@ function MobileDiagonalPoster({
 
     onGuideEnd?.()
 
-    if (visibleLane === track.lane && track.href) {
-      void navigate(track.href)
-      return
-    }
-
-    setActiveLane((currentLane) =>
-      currentLane === track.lane ? null : track.lane,
-    )
+    setActiveLane(visibleLane === track.lane ? null : track.lane)
   }
 
   return (
@@ -68,10 +60,6 @@ function MobileDiagonalPoster({
         const indexId = `mobile-poster-index-${track.id}`
         const titleId = `mobile-poster-title-${track.id}`
 
-        const primaryDestination =
-          track.items.find((item) => item.href === track.href)?.name ??
-          track.label
-
         return (
           <Fragment key={track.id}>
             {interactive ? (
@@ -85,9 +73,7 @@ function MobileDiagonalPoster({
                   hasFeatures
                     ? `만든 제품 목록 ${isActive ? '접기' : '펼치기'}`
                     : hasIndex
-                    ? isActive && track.href
-                      ? `${primaryDestination} 열기`
-                      : `${track.label} 목록 ${isActive ? '접기' : '펼치기'}`
+                    ? `${track.label} 목록 ${isActive ? '접기' : '펼치기'}`
                     : `${track.label} ${isActive ? '강조 해제' : '강조'}`
                 }
                 onClick={() => activateLane(track)}

@@ -312,7 +312,7 @@ export const handoverGuideContent = {
   eyebrow: 'HANDOVER / READING PATHS',
   title: '같은 운영 상태, 서로 다른 다음 행동',
   introduction:
-    '운영자는 상태 확인과 일상 대응에서 시작하고, 개발자는 전달받은 기록에서 원인 조사로 들어간다. 문서의 읽는 순서를 나눠 두 역할이 같은 기록으로 다음 작업을 이어가게 했다.',
+    '운영자는 상태 확인과 일상 대응에서 시작하고, 개발자는 전달받은 기록에서 원인 조사로 들어간다. 문서를 읽는 순서를 나눠 두 역할이 같은 기록으로 다음 작업을 이어가게 했다.',
   readers: [
     {
       id: 'operator',

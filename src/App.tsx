@@ -5,9 +5,16 @@ import './App.css'
 import './styles/home-feature-navigation.css'
 
 function App() {
+  function focusMainContent() {
+    const main = document.getElementById('main-content')
+    if (!main) return
+    main.tabIndex = -1
+    main.focus({ preventScroll: true })
+  }
+
   return (
     <>
-      <a className="skip-link" href="#main-content">
+      <a className="skip-link" href="#main-content" onClick={focusMainContent}>
         본문으로 건너뛰기
       </a>
 

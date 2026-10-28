@@ -90,7 +90,7 @@ export const wikiContent = {
     eyebrow: 'PRODUCT WORKFLOW',
     title: '문서 목록에서 본문까지',
     introduction:
-      'Wiki 홈은 문서를 발견하고, 문서 정보를 확인한 뒤 본문으로 들어가는 입구다.',
+      'Wiki 홈에서 문서를 찾고 문서 정보를 확인한 뒤 본문을 연다.',
     steps: [
       {
         id: 'browse',
@@ -111,7 +111,7 @@ export const wikiContent = {
         hotspotId: 'return-views',
         index: '03',
         label: 'RETURN',
-        summary: '최근 조회·업데이트·작성 맥락으로 돌아간다.',
+        summary: '최근 본 문서, 업데이트된 문서, 내가 만든 문서를 다시 연다.',
       },
       {
         id: 'open',
@@ -159,7 +159,7 @@ export const wikiContent = {
   },
   boundary: {
     eyebrow: '문서 체계와 연결',
-    statement: '찾은 뒤에는 문서의 역할을 읽는다.',
+    statement: '찾은 문서가 어떤 역할을 하는지 확인한다.',
     items: [
       'Wiki는 문서를 찾고 읽는 입구다. Documentation System에서는 현재 상태와 결정, 운영 안내를 나눠 각 문서가 맡을 역할을 정리했다.',
     ],
@@ -167,7 +167,7 @@ export const wikiContent = {
   relatedSystems: [
     {
       title: 'DOCUMENTATION SYSTEM',
-      relation: '문서가 현재·미래·결정·운영 역할을 나누는 방식',
+      relation: '현재·미래·결정·운영에 따라 문서 역할을 나누는 방식',
       href: '/how/documentation-system',
       status: 'available',
     },

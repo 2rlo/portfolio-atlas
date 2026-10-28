@@ -1,32 +1,13 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { Link, useSearchParams } from 'react-router'
 import type { AiCandidateReviewHotspotId, AiCandidateReviewPageContent } from '../../content/content-types.ts'
 import { ProductInspectionFrame } from '../product-case/AnnotatedProductSurface.tsx'
 import useProductInspectionState from '../product-case/useProductInspectionState.ts'
 import AiCandidateReviewProductView from './AiCandidateReviewProductView.tsx'
 
-export function AiReviewPrototypeSwitch({ isPrototype }: { readonly isPrototype: boolean }) {
-  const [params] = useSearchParams()
-  const isPolished = isPrototype && params.get('workflow') !== 'sticky'
-  const href = (mode: string) => {
-    const next = new URLSearchParams(params)
-    next.set('workflow', mode)
-    return `?${next.toString()}#acr-product-journey`
-  }
-  return (
-    <nav className="acr-prototype-switch" aria-label="AI Review 레이아웃 비교">
-      <span>LAYOUT STUDY</span>
-      <Link to={href('sticky')} reloadDocument aria-current={isPrototype && !isPolished ? 'page' : undefined}>A · Sticky prototype</Link>
-      <Link to={href('polished')} reloadDocument aria-current={isPolished ? 'page' : undefined}>B · Polished prototype</Link>
-    </nav>
-  )
-}
-
 type Preview = { id: AiCandidateReviewHotspotId; kind: 'pointer' | 'focus' | 'tap' } | null
 
 export default function AiReviewSurfaceWorkflow({ content }: { readonly content: AiCandidateReviewPageContent }) {
-  const [params] = useSearchParams()
-  const isPolished = params.get('workflow') !== 'sticky'
+  const isPolished = true
   const stageRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLDivElement>(null)
@@ -174,7 +155,6 @@ export default function AiReviewSurfaceWorkflow({ content }: { readonly content:
   return (
     <section className="acr-journey" id="acr-product-journey" data-polished={isPolished} aria-labelledby="acr-inspection-title">
       <div className="acr-journey-heading">
-        <AiReviewPrototypeSwitch isPrototype />
         <header className="acr-inspection-heading">
           <p>{content.inspection.eyebrow}</p>
           <h2 id="acr-inspection-title">{content.inspection.title}</h2>
@@ -188,7 +168,7 @@ export default function AiReviewSurfaceWorkflow({ content }: { readonly content:
               activeAnnotation={annotation}
               defaultAnnotation={content.inspection.defaultAnnotation}
               disclosure={content.meta.disclosure}
-              surfaceLabel="AI Candidate Review 재구성 제품 화면과 editorial annotation"
+              surfaceLabel="AI Candidate Review 재구성 제품 화면과 설계 해설"
               evolutionTargetId="ai-candidate-review-evolution"
               interactionMode={compact ? 'idle' : inspection.interactionMode}
               onPointerPreviewEnd={inspection.clearPointerPreview}
@@ -213,7 +193,7 @@ export default function AiReviewSurfaceWorkflow({ content }: { readonly content:
           <header className="acr-reading-heading" ref={headingRef}>
             <p>{content.workflow.eyebrow}</p>
             <h2 id="acr-workflow-title">{content.workflow.title}</h2>
-            <span>{isPolished ? '각 단계가 활성화될 때, 같은 화면의 대응 지점도 함께 강조됩니다.' : '읽는 단계에 맞춰 같은 화면의 검토 지점이 강조됩니다. 다른 단계는 잠시 가리키거나 선택해 살펴보세요.'}</span>
+            <span>{isPolished ? '활성화된 단계에 해당하는 지점이 같은 화면에서 강조됩니다.' : '읽는 단계에 맞춰 같은 화면의 검토 지점이 강조됩니다. 다른 단계는 잠시 가리키거나 선택해 살펴보세요.'}</span>
           </header>
           <ol className="acr-workflow-rail" ref={stepsRef} aria-labelledby="acr-workflow-title" onKeyDown={(event) => { if (event.key === 'Escape') setPreview(null) }}>
             {content.workflow.steps.map((item) => {

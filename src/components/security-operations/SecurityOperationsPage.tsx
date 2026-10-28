@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
+import SelectionDescriptionLink from '../SelectionDescriptionLink.tsx'
 import type {
   SecurityOperationsAnnotation,
   SecurityOperationsAnnotationId,
@@ -141,6 +142,7 @@ function DeployStepControl({
         <strong>{step.label}</strong>
         <small>{step.title}</small>
       </button>
+      {active ? <SelectionDescriptionLink targetId="so-deploy-annotation" /> : null}
     </li>
   )
 }
@@ -151,7 +153,7 @@ interface DeployAnnotationPanelProps {
 
 function DeployAnnotationPanel({ step }: DeployAnnotationPanelProps) {
   return (
-    <aside aria-live="polite" className="so-deploy-annotation" id="so-deploy-annotation">
+    <aside aria-live="polite" className="so-deploy-annotation" id="so-deploy-annotation" tabIndex={-1}>
       <header>
         <span>{step.index}</span>
         <p>{step.label}</p>

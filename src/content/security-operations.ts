@@ -180,7 +180,7 @@ export const securityOperationsContent = {
         index: '03',
         label: 'IDENTITY / AUTHORIZATION',
         title: '신원과 업무 권한 분리',
-        summary: '로그인은 신원 경계, 실제 행동은 템플릿과 개인 예외를 합친 제품 데이터가 결정한다.',
+        summary: '로그인으로 신원을 확인하고, 실제 행동 권한은 템플릿과 개인별 예외를 합친 제품 데이터로 결정한다.',
         state: 'current',
       },
     ],
@@ -261,7 +261,7 @@ export const securityOperationsContent = {
         title: '검증된 대상으로 전환',
         summary: '프록시 설정을 검사한 뒤 새 API로 넘긴다.',
         proves: '전환 설정이 유효하고 적용됨',
-        doesNotProve: '공개 경로가 새 대상을 응답함',
+        doesNotProve: '공개 경로에서 새 대상이 응답함',
         tone: 'switch',
       },
       {

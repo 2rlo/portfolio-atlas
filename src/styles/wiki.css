@@ -1,5 +1,5 @@
 .wiki-page .qa-hero-heading h1 {
-  font-size: clamp(4.6rem, 9.4vw, 9.4rem);
+  font-size: min(clamp(4.6rem, 9.4vw, 9.4rem), var(--product-title-limit));
 }
 
 .wiki-page .qa-hero-heading h1 span:last-child {
@@ -420,7 +420,7 @@
 
 @media (max-width: 43rem) {
   .wiki-page .qa-hero-heading h1 {
-    font-size: clamp(3.6rem, 20vw, 5.5rem);
+    font-size: min(clamp(3.6rem, 20vw, 5.5rem), var(--product-title-limit));
   }
 
   .wiki-page .product-workflow {

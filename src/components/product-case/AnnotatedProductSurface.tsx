@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import SelectionDescriptionLink from '../SelectionDescriptionLink.tsx'
 import type {
   ProductEditorialAnnotation,
   ProductWorkflowStep,
@@ -42,6 +43,7 @@ interface ProductWorkflowProps<Id extends string> {
   readonly activeId: Id | null
   readonly onActivate: ProductActivationHandler<Id>
   readonly ariaLabel?: string
+  readonly interactionMode?: ProductInteractionMode
   readonly onPointerPreviewEnd?: () => void
   readonly onFocusPreviewEnd?: () => void
 }
@@ -94,6 +96,7 @@ function EditorialAnnotation({
     <aside
       className="product-editorial-note"
       id="product-editorial-note"
+      tabIndex={-1}
       aria-live={announcesSelection ? 'polite' : 'off'}
       aria-atomic="true"
     >
@@ -161,6 +164,11 @@ function ProductInspectionFrame({
       <div className="product-inspection-surface" aria-label={surfaceLabel}>
         <p className="product-inspection-disclosure">{disclosure}</p>
         {children}
+        {activeAnnotation && (interactionMode === 'pinned' || interactionMode === 'focus') ? (
+          <div className="product-selection-action">
+            <SelectionDescriptionLink targetId="product-editorial-note" />
+          </div>
+        ) : null}
       </div>
 
       <EditorialAnnotation
@@ -178,6 +186,7 @@ function ProductWorkflow<Id extends string>({
   activeId,
   onActivate,
   ariaLabel = '제품 검토 흐름',
+  interactionMode = 'idle',
   onPointerPreviewEnd,
   onFocusPreviewEnd,
 }: ProductWorkflowProps<Id>) {
@@ -216,6 +225,9 @@ function ProductWorkflow<Id extends string>({
               <strong>{step.label}</strong>
               <small>{step.summary}</small>
             </button>
+            {isActive && (interactionMode === 'pinned' || interactionMode === 'focus') ? (
+              <SelectionDescriptionLink targetId="product-editorial-note" />
+            ) : null}
           </li>
         )
       })}

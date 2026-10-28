@@ -55,6 +55,13 @@ export interface WhatFeatureGroup {
   readonly features: readonly WhatFeatureItem[]
 }
 
+export interface WhatIndexPageContent {
+  readonly eyebrow: string
+  readonly titleLines: readonly string[]
+  readonly introduction: string
+  readonly groups: readonly (WhatFeatureGroup & { readonly label: string })[]
+}
+
 export interface PublicFixtureBoundary {
   readonly dataOrigin: 'independently-authored-synthetic'
   readonly privateSourceRuntimeDependency: false

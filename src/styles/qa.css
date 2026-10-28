@@ -69,7 +69,7 @@
   display: grid;
   margin: 1.25rem 0 0;
   font-family: var(--cover-monumental);
-  font-size: clamp(4.8rem, 10.5vw, 10.5rem);
+  font-size: min(clamp(4.8rem, 10.5vw, 10.5rem), var(--product-title-limit));
   font-weight: 760;
   letter-spacing: -0.08em;
   line-height: 0.74;
@@ -1147,7 +1147,7 @@
   }
 
   .qa-hero-heading h1 {
-    font-size: clamp(4rem, 23vw, 6rem);
+    font-size: min(clamp(4rem, 23vw, 6rem), var(--product-title-limit));
   }
 
   .qa-hero-heading h1 span:last-child {

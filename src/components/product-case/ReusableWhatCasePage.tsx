@@ -61,7 +61,7 @@ function ReusableWhatCasePage<Id extends string, Product, Visual extends string>
 
       <section className="qa-workflow-section" aria-labelledby={`${titleId}-workflow`}>
         <header className="qa-section-heading"><p>{content.workflow.eyebrow}</p><h2 id={`${titleId}-workflow`}>{content.workflow.title}</h2><span>{content.workflow.introduction}</span></header>
-        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} ariaLabel={workflowLabel} onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
+        <ProductWorkflow steps={content.workflow.steps} activeId={activeHotspotId} onActivate={activateHotspot} ariaLabel={workflowLabel} interactionMode={interactionMode} onPointerPreviewEnd={clearPointerPreview} onFocusPreviewEnd={clearFocusPreview} />
         <p className="qa-workflow-boundary">{content.workflow.boundary}</p>
       </section>
 

@@ -69,7 +69,7 @@
   display: grid;
   margin: 1.25rem 0 0;
   font-family: var(--cover-monumental);
-  font-size: clamp(4rem, 9.2vw, 9.2rem);
+  font-size: min(clamp(4rem, 9.2vw, 9.2rem), var(--product-title-limit));
   font-weight: 760;
   letter-spacing: -0.075em;
   line-height: 0.77;
@@ -1121,7 +1121,7 @@
   }
 
   .ps-hero-heading h1 {
-    font-size: clamp(3.4rem, 17.5vw, 5rem);
+    font-size: min(clamp(3.4rem, 17.5vw, 5rem), var(--product-title-limit));
     line-height: 0.84;
   }
 

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
+import SelectionDescriptionLink from '../SelectionDescriptionLink.tsx'
 import type { PublicCodemapContent, PublicCodemapNodeId } from '../../content/content-types.ts'
 
 interface CodemapExplorerPageProps {
@@ -80,6 +81,7 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
                 <button
                   type="button"
                   aria-pressed={isSelected}
+                  aria-controls="codemap-inspection"
                   disabled={!isInFlow}
                   onClick={() => setActiveNodeId(node.id)}
                 >
@@ -87,13 +89,14 @@ function CodemapExplorerPage({ content }: CodemapExplorerPageProps) {
                   <small>{node.kind}</small>
                   <strong>{node.label}</strong>
                 </button>
+                {isSelected ? <SelectionDescriptionLink targetId="codemap-inspection" /> : null}
               </li>
             )
           })}
         </ol>
 
         {activeNode ? (
-          <article className="codemap-inspection" aria-live="polite">
+          <article className="codemap-inspection" id="codemap-inspection" tabIndex={-1} aria-live="polite">
             <header>
               <p>{activeNode.kind} / 선택한 모듈</p>
               <h3>{activeNode.label}</h3>

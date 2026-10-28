@@ -108,8 +108,8 @@ export const documentationSystemContent = {
       },
       {
         id: 'known-issues', parentId: 'architecture', index: '01.6', label: 'KNOWN ISSUES',
-        question: '알려진 문제와 아직 열린 위험은?',
-        authority: '재현 조건, 영향 범위, 임시 대응, 다음 확인.',
+        question: '알려진 문제와 남아 있는 위험은?',
+        authority: '재현 조건, 영향 범위, 임시 대응, 다음에 확인할 사항.',
         updateWhen: '문제가 해결되거나 영향 범위가 달라질 때.', kind: 'operation',
       },
       {
@@ -262,7 +262,7 @@ export const documentationSystemContent = {
       },
       {
         id: 'staleness', index: '05', time: '2026.08', title: '문서 최신성 관리', pressureLines: ['낡은 코드 지도'],
-        takeaway: '문서를 더 만드는 것보다, 낡지 않게 유지하는 일이 다음 문제가 됐다.',
+        takeaway: '문서를 최신 상태로 유지하는 일이 다음 문제가 됐다.',
         change: 'CHANGE → CONTEXT → VERIFY',
         evidence: { label: 'EVIDENCE', statement: '코드와 지도가 어긋나지 않도록, LOCK에 기준 리비전·생성 시각·스캔 범위·모듈 지문을 남겼다.' },
         boundary: '구조를 바꾸면 관련 문서도 같은 변경에서 갱신하고 검증한다.',

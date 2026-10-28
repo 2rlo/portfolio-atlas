@@ -113,7 +113,7 @@ export const worklogReviewContent = {
       sections: [
         {
           label: 'WHY',
-          body: '같은 주와 작성자 안에서도 원문별 검토 상태가 달라 어떤 자료를 보고에 썼는지 알아야 했습니다.'
+          body: '같은 주에 같은 사람이 쓴 기록도 원문마다 검토 상태가 달라, 보고에 어떤 자료를 썼는지 알아야 했습니다.'
         },
         {
           label: 'DECISION',
@@ -232,7 +232,7 @@ export const worklogReviewContent = {
         date: '2026.08.26–27',
         label: 'ANOMALY SEPARATION',
         visual: 'anomaly',
-        decision: '원인 수정과 기존 미래 날짜 초안 교정을 서로 다른 완료로 기록',
+        decision: '원인 수정 완료와 미래 날짜로 저장된 기존 초안의 교정 완료를 따로 기록',
         trigger: '원인 수정 뒤에도 미래 날짜의 기존 초안 2건이 남음',
         change: '사용자 날짜 교정 뒤 초안을 재조회하고, 확정 데이터의 영향 여부를 별도로 확인',
         currentEffect: '원인 수정·기존 데이터 정리·재발 방지 상태를 따로 기록한다.'

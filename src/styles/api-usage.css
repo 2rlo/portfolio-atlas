@@ -459,7 +459,7 @@
 
 @media (max-width: 43rem) {
   .api-usage-page .qa-hero-heading h1 {
-    font-size: clamp(4rem, 23vw, 6rem);
+    font-size: min(clamp(4rem, 23vw, 6rem), var(--product-title-limit));
   }
 
   .api-usage-topbar {
@@ -655,7 +655,7 @@
   display: block;
   width: 100%;
   padding: 0.6rem 0.7rem;
-  font: 0.72rem var(--body);
+  font: 0.875rem var(--body);
 }
 
 .api-lens-controls ol {
@@ -677,12 +677,12 @@
 }
 
 .api-lens-controls button span {
-  font: 0.6rem var(--utility);
+  font: 0.7rem var(--utility);
 }
 
 .api-lens-controls button strong {
-  font: 600 0.6rem var(--utility);
-  letter-spacing: 0.04em;
+  font: 600 0.8rem/1.4 var(--utility);
+  letter-spacing: 0.02em;
 }
 
 .api-lens-controls button small {
