@@ -170,7 +170,7 @@ export const ragAssistantContent = {
         label: 'VECTOR SUPPORT',
         visual: 'vector-support',
         decision: '기존 조회 뒤에 pgvector 결과와 출처를 더했다.',
-        trigger: '표현이 다른 관련 문서를 정형 조회 조건만으로 놓침',
+        trigger: '정형 조회 조건만 사용하면 표현이 다른 관련 문서를 놓침',
         change: '업무 데이터 임베딩·기존 데이터 색인과 출처가 붙은 검색 도입',
         currentEffect: '출처 목록에 정형 조회와 의미 검색의 근거를 함께 표시',
       },

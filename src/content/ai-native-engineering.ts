@@ -167,7 +167,7 @@ export const aiNativeEngineeringContent = {
     eyebrow: 'WORKING ENVIRONMENT',
     title: '다음 작업에서도 같은 기준으로',
     introduction:
-      '작업 지침은 읽기 순서와 권한을, Codemap은 영향 경로를, 변경 전 기준은 원인을 비교할 조건을 맡는다.',
+      '작업 지침에서는 읽기 순서와 권한을 확인하고, Codemap에서는 영향 경로를 찾는다. 변경 전 기준은 원인을 비교하는 데 쓴다.',
     items: [
       {
         index: 'A1',

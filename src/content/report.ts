@@ -28,7 +28,7 @@ export const reportContent = {
       index: '00',
       label: 'REPORT GUIDE',
       title: '주차와 자료를 함께 읽는 보고서',
-      body: '기록이 속한 주차와 검토 상태를 먼저 구분한다. 본문과 함께 저장한 지표, 같은 주차의 QA 결과, 생성 조건을 통해 보고서의 입력 범위를 다시 확인할 수 있다.'
+      body: '기록이 속한 주차와 검토 상태를 먼저 구분한다. 본문과 함께 저장한 지표, 같은 주차의 QA 결과, 생성 조건을 보면 어떤 자료로 보고서를 만들었는지 다시 확인할 수 있다.'
     }
   },
   product: reportProductFixture,
@@ -158,7 +158,7 @@ export const reportContent = {
         hotspotId: 'reviewed-source',
         index: '03',
         label: 'SELECT',
-        summary: '검토본을 우선하고 필요한 초안 보완'
+        summary: '검토본 우선 사용, 검토본이 없는 원문은 초안으로 보완'
       },
       {
         id: 'report-flow-compose',
@@ -261,7 +261,7 @@ export const reportContent = {
       '보고서 본문과 현황 화면의 집계 지표 함께 저장',
       '월요일 자동 생성과 권한별 수동 생성'
     ],
-    runtime: '검토한 업무일지를 웹에서 보고서로 이어가고, 같은 주차의 QA 결과와 회의 내용을 함께 읽게 됐습니다.',
+    runtime: '검토한 업무일지로 웹에서 보고서를 만들고, 같은 주차의 QA 결과와 회의 내용을 함께 읽게 됐습니다.',
     feedback: {
       label: '사용자 인터뷰',
       text: '이전에 정기적으로 하지 않던 주간 업무 정리를 보고 흐름으로 이어가게 됐다는 응답이 있었다. 번역·자료 취합·문서 초안 작성에 드는 시간은 이전의 절반 정도로 줄었다고 회고했다.'

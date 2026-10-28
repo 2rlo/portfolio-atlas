@@ -251,6 +251,8 @@
 .codemap-boundary a { display: inline-flex; gap: 1rem; margin-top: 4rem; color: var(--cover-cream); font-size: 1rem; text-decoration: none; border-bottom: 1px solid var(--cover-muted-jade); }
 
 @media (max-width: 800px) {
+  .codemap-node-rail .selection-description-link { display: flex; margin: 0 0.75rem 0.75rem; }
+  .codemap-inspection { scroll-margin-top: 5rem; }
   .codemap-hero { background: var(--cover-jade); }
   .codemap-hero-grid { grid-template-columns: 1fr; min-height: auto; margin-top: 4rem; }
   .codemap-hero h1 { font-size: clamp(5.5rem, 28vw, 8.4rem); }

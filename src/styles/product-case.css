@@ -23,6 +23,7 @@
 }
 
 .product-editorial-note {
+  scroll-margin-top: 5rem;
   position: relative;
   align-self: stretch;
   min-width: 0;
@@ -259,6 +260,19 @@
 }
 
 @media (max-width: 56rem) {
+  .product-selection-action {
+    position: sticky;
+    z-index: 3;
+    bottom: 0;
+    padding-top: 0.75rem;
+    background: var(--cover-cream);
+  }
+
+  .product-selection-action .selection-description-link,
+  .product-workflow .selection-description-link {
+    display: flex;
+  }
+
   .product-inspection-frame {
     grid-template-columns: minmax(0, 1fr);
   }

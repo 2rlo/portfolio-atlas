@@ -65,7 +65,7 @@
   margin: 1.1rem 0 0;
   font-family: var(--cover-roboto-flex-study);
   font-optical-sizing: none;
-  font-size: clamp(4.75rem, 11vw, 10.5rem);
+  font-size: min(clamp(4.75rem, 11vw, 10.5rem), var(--product-title-limit));
   font-variation-settings:
     'opsz' 144,
     'wdth' 96,
@@ -1417,7 +1417,7 @@
   }
 
   .fv-hero-heading h1 {
-    font-size: clamp(4.2rem, 22vw, 6.4rem);
+    font-size: min(clamp(4.2rem, 22vw, 6.4rem), var(--product-title-limit));
     line-height: 0.76;
   }
 

@@ -45,7 +45,7 @@ function ApiUsageInspector({ content }: { readonly content: ApiUsagePageContent 
 
         <div className="api-lens-reading">
           <div className="api-lens-controls" role="group" aria-label="API 비용 화면의 설계 설명">
-            <button className="api-lens-overview" type="button" aria-pressed={selectedId === null} aria-controls="product-editorial-note" onClick={() => select(null)} onFocus={() => select(null)}>전체 화면</button>
+            <button className="api-lens-overview" type="button" aria-pressed={selectedId === null} aria-controls="product-editorial-note" onClick={() => select(null)} onFocus={() => select(null)}>전체 보기</button>
             <ol>
               {content.annotations.map((item) => (
                 <li key={item.id}>

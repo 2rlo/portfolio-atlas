@@ -51,7 +51,7 @@ function DeveloperStatusInspector({ content }: { readonly content: DeveloperStat
 
         <div className="dev-lens-reading">
           <div className="dev-lens-controls" role="group" aria-label="개발자 현황 집계 흐름" aria-describedby="developer-status-title-workflow">
-            <button className="dev-lens-overview" type="button" aria-pressed={selectedId === null} aria-controls="product-editorial-note" onClick={() => select(null)} onFocus={() => select(null)}>전체 화면</button>
+            <button className="dev-lens-overview" type="button" aria-pressed={selectedId === null} aria-controls="product-editorial-note" onClick={() => select(null)} onFocus={() => select(null)}>전체 보기</button>
             <ol>
               {content.workflow.steps.map((step) => (
                 <li key={step.id}>

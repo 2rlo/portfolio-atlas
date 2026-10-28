@@ -226,7 +226,7 @@ export const versionLogContent = {
   evidence: {
   "eyebrow": "WORKFLOW CHANGE",
   "title": "버전과 배포 주의사항을 한 흐름에서 찾습니다.",
-  "snapshot": "외부 기록을 따로 열어 비교하던 정보를 제품의 릴리스 목록과 질문 응답에 연결했습니다.",
+  "snapshot": "외부 기록을 따로 열어 비교하던 버전 정보를 제품의 릴리스 목록과 질문 응답에서 확인할 수 있게 했습니다.",
   "items": []
 },
   implementationStatus: {

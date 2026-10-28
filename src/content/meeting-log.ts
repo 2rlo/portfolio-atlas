@@ -65,7 +65,7 @@ export const meetingLogContent = {
         },
         {
           label: 'DECISION',
-          body: '동기화할 때 내용 변경 여부를 먼저 확인하고 바뀐 회의 기록을 후보 추출과 검색 데이터 갱신으로 보냈습니다.'
+          body: '동기화할 때 내용 변경 여부를 먼저 확인하고, 바뀐 회의 기록을 후보 추출과 검색 데이터 갱신에 사용했습니다.'
         }
       ],
       evolution: {
@@ -235,7 +235,7 @@ export const meetingLogContent = {
     eyebrow: 'DESIGN TAKEAWAY',
     statement: '회의 뒤 할 일까지 연결한다.',
     items: [
-      '회의에서 나온 내용이 원문, 검토 후보, 공식 기록으로 이어지도록 같은 근거를 연결했습니다.'
+      '회의 원문에서 검토 후보를 거쳐 공식 기록까지 같은 근거를 따라갈 수 있게 했습니다.'
     ]
   },
   relatedSystems: [

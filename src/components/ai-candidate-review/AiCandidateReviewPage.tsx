@@ -1,16 +1,9 @@
-import { Link, useSearchParams } from 'react-router'
+import { Link } from 'react-router'
 import type {
-  AiCandidateReviewHotspotId,
   AiCandidateReviewPageContent,
   RecordExecutionContent,
 } from '../../content/content-types.ts'
-import {
-  ProductInspectionFrame,
-  ProductWorkflow,
-} from '../product-case/AnnotatedProductSurface.tsx'
-import useProductInspectionState from '../product-case/useProductInspectionState.ts'
-import AiCandidateReviewProductView from './AiCandidateReviewProductView.tsx'
-import AiReviewSurfaceWorkflow, { AiReviewPrototypeSwitch } from './AiReviewSurfaceWorkflow.tsx'
+import AiReviewSurfaceWorkflow from './AiReviewSurfaceWorkflow.tsx'
 
 interface AiCandidateReviewPageProps {
   readonly content: AiCandidateReviewPageContent
@@ -37,21 +30,8 @@ function EvolutionFragment({
 }
 
 function AiCandidateReviewPage({ content, recordExecution }: AiCandidateReviewPageProps) {
-  const [searchParams] = useSearchParams()
-  const isPrototype = searchParams.get('workflow') !== 'classic'
-  const {
-    activeHotspotId,
-    interactionMode,
-    activateHotspot,
-    clearPointerPreview,
-    clearFocusPreview,
-  } = useProductInspectionState<AiCandidateReviewHotspotId>()
-  const activeAnnotation = content.annotations.find(
-    (annotation) => annotation.id === activeHotspotId,
-  )
-
   return (
-    <main className="ai-candidate-review-page" id="main-content" data-workflow-layout={isPrototype ? 'sticky' : 'classic'}>
+    <main className="ai-candidate-review-page" id="main-content" data-workflow-layout="sticky">
       <section className="acr-hero" aria-labelledby="ai-candidate-review-title">
         <div className="acr-hero-frame">
           <Link className="acr-back" to="/">
@@ -75,49 +55,10 @@ function AiCandidateReviewPage({ content, recordExecution }: AiCandidateReviewPa
             </div>
           </header>
 
-          {!isPrototype && <section className="acr-inspection" id="acr-product-journey" aria-labelledby="acr-inspection-title">
-            <AiReviewPrototypeSwitch isPrototype={false} />
-            <header className="acr-inspection-heading">
-              <p>{content.inspection.eyebrow}</p>
-              <h2 id="acr-inspection-title">{content.inspection.title}</h2>
-              <span>{content.inspection.instruction}</span>
-            </header>
-
-            <ProductInspectionFrame
-              activeAnnotation={activeAnnotation}
-              defaultAnnotation={content.inspection.defaultAnnotation}
-              disclosure={content.meta.disclosure}
-              surfaceLabel="AI Candidate Review 재구성 화면과 설계 해설"
-              evolutionTargetId="ai-candidate-review-evolution"
-              interactionMode={interactionMode}
-              onPointerPreviewEnd={clearPointerPreview}
-              onFocusPreviewEnd={clearFocusPreview}
-            >
-              <AiCandidateReviewProductView
-                fixture={content.product}
-                activeId={activeHotspotId}
-                onActivate={activateHotspot}
-              />
-            </ProductInspectionFrame>
-          </section>}
         </div>
       </section>
 
-      {isPrototype ? <AiReviewSurfaceWorkflow content={content} /> : <section className="acr-workflow-section" aria-labelledby="acr-workflow-title">
-        <header className="acr-section-heading">
-          <p>{content.workflow.eyebrow}</p>
-          <h2 id="acr-workflow-title">{content.workflow.title}</h2>
-          <span>{content.workflow.introduction}</span>
-        </header>
-        <ProductWorkflow
-          steps={content.workflow.steps}
-          activeId={activeHotspotId}
-          onActivate={activateHotspot}
-          onPointerPreviewEnd={clearPointerPreview}
-          onFocusPreviewEnd={clearFocusPreview}
-        />
-        <p className="acr-workflow-boundary">{content.workflow.boundary}</p>
-      </section>}
+      <AiReviewSurfaceWorkflow content={content} />
 
       <section className="acr-record-execution" aria-labelledby="acr-record-execution-title">
         <header className="acr-section-heading">

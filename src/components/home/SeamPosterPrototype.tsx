@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import { Link } from 'react-router'
 import type { HomeTrackContent } from '../../content/content-types.ts'
 import { homeEntryRecommendation } from '../../content/home.ts'
@@ -27,6 +28,14 @@ function SeamPosterPrototype({
   onGuideEnd,
 }: SeamPosterPrototypeProps) {
   const { motionEnabled, toggleMotion } = useFeatureMotion()
+  const [howHovered, setHowHovered] = useState(false)
+  const [howFocused, setHowFocused] = useState(false)
+  const [howOpenOverride, setHowOpenOverride] = useState<boolean | null>(null)
+  const howControlRef = useRef<HTMLButtonElement>(null)
+  const howOpenAtPointerDown = useRef(false)
+  const howExpanded = howOpenOverride ?? (
+    howHovered || howFocused || guidePhase === 'recommendation'
+  )
   const displayClassName = displayTreatment
     ? ` display-treatment--${displayTreatment}`
     : ''
@@ -52,17 +61,49 @@ function SeamPosterPrototype({
             id={track.id}
             aria-labelledby={`poster-title-${track.id}`}
             key={track.id}
+            data-index-expanded={track.lane === 'how-i-build' ? howExpanded : undefined}
             tabIndex={
               interactive && track.lane === 'what-i-built' ? 0 : undefined
             }
+            onMouseEnter={track.lane === 'how-i-build' ? () => {
+              if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                setHowHovered(true)
+                setHowOpenOverride(null)
+              }
+            } : undefined}
+            onMouseLeave={track.lane === 'how-i-build' ? (event) => {
+              setHowHovered(false)
+              if (!event.currentTarget.contains(document.activeElement)) setHowOpenOverride(null)
+            } : undefined}
+            onFocus={track.lane === 'how-i-build' ? () => setHowFocused(true) : undefined}
+            onBlur={track.lane === 'how-i-build' ? (event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                setHowFocused(false)
+                setHowOpenOverride(null)
+              }
+            } : undefined}
+            onKeyDown={track.lane === 'how-i-build' ? (event) => {
+              if (event.key === 'Escape') {
+                event.preventDefault()
+                setHowOpenOverride(false)
+                onGuideEnd?.()
+                howControlRef.current?.focus()
+              }
+            } : undefined}
           >
             {interactive && track.href ? (
-              <Link
-                aria-label={`${track.items[0]?.name ?? track.label} 열기`}
+              <button
+                ref={howControlRef}
+                type="button"
+                aria-label={`${track.label} 목록 ${howExpanded ? '접기' : '펼치기'}`}
+                aria-controls={`poster-index-${track.id}`}
+                aria-expanded={howExpanded}
                 className="poster-field-background-link"
-                to={track.href}
-                onClick={onGuideEnd}
-                onAuxClick={onGuideEnd}
+                onPointerDown={() => { howOpenAtPointerDown.current = howExpanded }}
+                onClick={(event) => {
+                  setHowOpenOverride(!(event.detail > 0 ? howOpenAtPointerDown.current : howExpanded))
+                  onGuideEnd?.()
+                }}
               />
             ) : null}
 
@@ -87,7 +128,9 @@ function SeamPosterPrototype({
             {track.items.length > 0 ? (
               <ol
                 className="poster-index-list"
+                id={`poster-index-${track.id}`}
                 aria-label={`${track.label} 목록`}
+                aria-hidden={!howExpanded}
               >
                 {track.items.map((item, itemIndex) => (
                   <li key={item.id}>
@@ -95,6 +138,7 @@ function SeamPosterPrototype({
                     {interactive && item.href ? (
                       <Link
                         className="poster-index-link"
+                        tabIndex={howExpanded ? undefined : -1}
                         to={item.href}
                         onClick={onGuideEnd}
                         onAuxClick={onGuideEnd}

@@ -18,7 +18,7 @@ export const qaContent = {
     thesis: '테스트를 다시 실행할 때 이전 실패와 수정 내용을 한 기록에서 따라갈 수 있게 했다.',
     summary: '테스트 목적과 환경, 기대 결과와 실제 결과를 한 화면에 모았습니다. 실행마다 첨부와 판정을 연결하고 재테스트 이력을 남겼습니다.',
     problemLabel: 'PROBLEM / RESULT WITHOUT HISTORY',
-    problem: '문서 버전과 언어가 나뉘면 같은 테스트의 수정·재실행·첨부를 함께 추적하기 어렵고, 최신 판정이 무엇인지 다시 확인하는 비용이 커졌습니다.'
+    problem: '문서 버전과 언어가 나뉘어 같은 테스트의 수정·재실행·첨부를 함께 추적하기 어려웠습니다. 최신 판정을 다시 확인하는 데 드는 비용도 커졌습니다.'
   },
   inspection: {
     eyebrow: 'PRODUCT SURFACE / TEST DETAIL',

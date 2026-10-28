@@ -74,7 +74,7 @@ export const developerStatusContent = {
   workflow: {
     eyebrow: 'ROLLUP WORKFLOW', title: '구성원별 현황을 만드는 순서', introduction: '계정을 연결하고 업무 기록과 코드 변경을 모아, 정해진 시각에 최근 현황을 갱신한다.',
     steps: [
-      { id: 'dev-flow-map', hotspotId: 'identity-scope', index: '01', label: 'MAP', summary: '활성 사람과 허용 계정 연결' },
+      { id: 'dev-flow-map', hotspotId: 'identity-scope', index: '01', label: 'MAP', summary: '활성 구성원과 허용 계정 연결' },
       { id: 'dev-flow-source', hotspotId: 'source-hierarchy', index: '02', label: 'SOURCE', summary: '검토본과 AI 초안을 구분' },
       { id: 'dev-flow-group', hotspotId: 'grouped-evidence', index: '03', label: 'GROUP', summary: '코드 차이를 변경 묶음으로 정리' },
       { id: 'dev-flow-rollup', hotspotId: 'partial-state', index: '04', label: 'ROLL UP', summary: '부분 실패 상태를 보존' },
@@ -93,7 +93,7 @@ export const developerStatusContent = {
   evolution: {
     eyebrow: 'PRODUCT EVOLUTION', title: '실제 기록 흐름에 맞춰 집계 개선', introduction: '해외 구성원의 기록 누락과 중복 생성을 겪으며, 갱신 시각과 배치 처리 방식을 바꿨다.',
     scenes: [
-      { date: '2026.07.14', label: 'IDENTITY + 7 DAYS', visual: 'identity', decision: '명시적 계정 매핑과 최근 7일 근거를 한 화면에 연결했다.', trigger: '업무일지와 여러 Git 계정이 흩어짐', change: '검토된 업무일지·코드 차이·변경 묶음 기반 현황 집계', currentEffect: '구성원별 요약에서 원본 근거로 이동' },
+      { date: '2026.07.14', label: 'IDENTITY + 7 DAYS', visual: 'identity', decision: '계정 연결 관계와 최근 7일의 업무 자료를 한 화면에서 확인하게 했다.', trigger: '업무일지와 여러 Git 계정이 흩어짐', change: '검토된 업무일지·코드 차이·변경 묶음 기반 현황 집계', currentEffect: '구성원별 요약에서 원본 근거로 이동' },
       { date: '2026.07.31', label: 'TIME WINDOW', visual: 'time-window', decision: '실제 기록 도착 시각에 맞춰 전체 갱신을 늦췄다.', trigger: '해외 구성원의 업무일지가 이른 집계에서 누락', change: 'KST 07:30에서 13:00으로 이동', currentEffect: '기록 도착 패턴을 반영한 갱신 시각' },
       { date: '2026.08.03', label: 'MESSAGE BATCH', visual: 'batch', decision: '즉시 응답이 필요 없는 일일 현황 생성을 배치 경로로 분리했다.', trigger: '긴 코드 차이의 처리 비용과 즉시 응답이 필요 없는 작업 특성', change: '일일 생성은 배치 처리, API/CLI의 동기 응답 계약은 유지', currentEffect: '정기 생성과 대화형 생성의 응답 방식 분리' },
       { date: '2026.08.07', label: 'PARTIAL / STALE', visual: 'partial', decision: '실패와 오래된 결과를 화면 상태로 드러냈다.', trigger: '일부 분석 장애가 빈 화면이나 ready 오인으로 이어짐', change: '초기·부분 결과·오래된 결과·대체 요약·재시도 상태 표시', currentEffect: '상세에 경고와 출처별 처리 상태 표시' },

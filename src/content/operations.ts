@@ -126,7 +126,7 @@ export const operationsContent = {
   evidence: {
   "eyebrow": "WORKFLOW CHANGE",
   "title": "운영 화면에서 다음 행동을 정할 수 있게 됐습니다.",
-  "snapshot": "작업이 돌아가는지 확인하는 데서 더 나아가, 무엇을 다시 실행하고 무엇을 먼저 점검할지 판단하도록 연결했습니다.",
+  "snapshot": "작업이 돌아가는지 확인하고, 다시 실행할 대상과 먼저 점검할 대상을 판단할 수 있게 했습니다.",
   "items": []
 },
   implementationStatus: {
@@ -142,7 +142,7 @@ export const operationsContent = {
   "eyebrow": "DESIGN TAKEAWAY",
   "statement": "운영자가 알아야 할 것은 상태와 다음 행동입니다.",
   "items": [
-    "신호를 모으는 것에 그치지 않고, 재시도 조건과 중단 조건을 같은 화면에 배치했습니다."
+    "점검 신호와 재시도 조건, 중단 조건을 같은 화면에 배치했습니다."
   ]
 },
   relatedSystems: [

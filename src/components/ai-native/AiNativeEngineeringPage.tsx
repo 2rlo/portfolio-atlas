@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
+import SelectionDescriptionLink from '../SelectionDescriptionLink.tsx'
 import type {
   AiNativeEngineeringContent,
   AiNativeWorkflowStep,
@@ -18,6 +19,7 @@ function WorkflowDetail({ step }: WorkflowDetailProps) {
     <article
       className="ai-native-step-detail"
       id="ai-native-step-panel"
+      tabIndex={-1}
       aria-labelledby={`ai-native-step-${step.id}`}
       aria-live="polite"
       data-step={step.id}
@@ -148,6 +150,9 @@ function AiNativeEngineeringPage({ content }: AiNativeEngineeringPageProps) {
                   <strong>{step.label}</strong>
                   <small>{step.summary}</small>
                 </button>
+                {step.id === activeStep?.id ? (
+                  <SelectionDescriptionLink targetId="ai-native-step-panel" />
+                ) : null}
               </li>
             ))}
           </ol>

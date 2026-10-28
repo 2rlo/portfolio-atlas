@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router'
 import type { DocumentationArtifact } from '../../content/content-types.ts'
 
 interface ArtifactShelfProps {
@@ -45,16 +45,31 @@ interface ArtifactDetailProps {
 
 function ArtifactDetail({ artifact, onClose }: ArtifactDetailProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const originScrollRef = useRef({ top: 0, left: 0 })
 
   useEffect(() => {
     const dialog = dialogRef.current
     if (!dialog) return
 
     if (artifact && !dialog.open) {
+      originScrollRef.current = { top: window.scrollY, left: window.scrollX }
+      dialog.scrollTop = 0
       dialog.showModal()
     } else if (!artifact && dialog.open) {
       dialog.close()
+      // Fragment history and native focus restoration can move the list on close.
+      const frame = requestAnimationFrame(() => {
+        window.scrollTo({ ...originScrollRef.current, behavior: 'instant' })
+      })
+      return () => cancelAnimationFrame(frame)
     }
+  }, [artifact])
+
+  useEffect(() => {
+    if (!artifact) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = previousOverflow }
   }, [artifact])
 
   return (
@@ -65,15 +80,20 @@ function ArtifactDetail({ artifact, onClose }: ArtifactDetailProps) {
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose()
       }}
-      onClose={onClose}
+      onCancel={(event) => {
+        event.preventDefault()
+        onClose()
+      }}
     >
       {artifact ? (
         <article className="artifact-detail-sheet">
-          <header className="artifact-detail-header">
-            <p>{artifact.index}</p>
+          <div className="artifact-detail-toolbar">
+            <p>{artifact.index} / {artifact.title}</p>
             <button type="button" onClick={onClose} aria-label="문서 상세 닫기">
               닫기 <span aria-hidden="true">×</span>
             </button>
+          </div>
+          <header className="artifact-detail-header">
             <h2 id="artifact-detail-title">{artifact.title}</h2>
             <p>공개용 재구성본</p>
           </header>
@@ -148,11 +168,14 @@ function ArtifactShelf({
   primaryArtifacts,
   libraryArtifacts,
 }: ArtifactShelfProps) {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const [selectedArtifactId, setSelectedArtifactId] = useState(
     primaryArtifacts[0]?.id ?? '',
   )
   const [previewArtifactId, setPreviewArtifactId] = useState<string | null>(null)
-  const [detailArtifactId, setDetailArtifactId] = useState<string | null>(null)
+  const detailArtifactId = searchParams.get('artifact')
   const activeArtifactId = previewArtifactId ?? selectedArtifactId
   const selectedArtifact =
     primaryArtifacts.find((artifact) => artifact.id === activeArtifactId) ??
@@ -163,9 +186,31 @@ function ArtifactShelf({
     null
 
   function openArtifact(artifactId: string) {
-    setSelectedArtifactId(artifactId)
+    if (primaryArtifacts.some((artifact) => artifact.id === artifactId)) {
+      setSelectedArtifactId(artifactId)
+    }
     setPreviewArtifactId(null)
-    setDetailArtifactId(artifactId)
+    const next = new URLSearchParams(searchParams)
+    next.set('artifact', artifactId)
+    navigate({ search: `?${next}`, hash: location.hash }, {
+      preventScrollReset: true,
+      state: { ...location.state, artifactPreviewFromShelf: true },
+    })
+  }
+
+  function closeArtifact() {
+    if (!detailArtifact) return
+    if (location.state?.artifactPreviewFromShelf) {
+      navigate(-1)
+      return
+    }
+    // Shared preview URLs have no list entry behind them in browser history.
+    const next = new URLSearchParams(searchParams)
+    next.delete('artifact')
+    navigate({ search: next.size ? `?${next}` : '', hash: location.hash }, {
+      replace: true,
+      preventScrollReset: true,
+    })
   }
 
   return (
@@ -232,7 +277,7 @@ function ArtifactShelf({
                     <button
                       type="button"
                       aria-haspopup="dialog"
-                      onClick={() => setDetailArtifactId(artifact.id)}
+                      onClick={() => openArtifact(artifact.id)}
                     >
                       <span>{artifact.index}</span>
                       <strong>{artifact.title}</strong>
@@ -250,7 +295,7 @@ function ArtifactShelf({
 
       <ArtifactDetail
         artifact={detailArtifact}
-        onClose={() => setDetailArtifactId(null)}
+        onClose={closeArtifact}
       />
     </section>
   )

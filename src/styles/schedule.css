@@ -626,7 +626,7 @@
 
 @media (max-width: 43rem) {
   .schedule-page .qa-hero-heading h1 {
-    font-size: clamp(3.1rem, 18vw, 5rem);
+    font-size: min(clamp(3.1rem, 18vw, 5rem), var(--product-title-limit));
   }
 
   .schedule-product-topbar {

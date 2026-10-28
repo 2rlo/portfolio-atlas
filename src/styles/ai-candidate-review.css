@@ -161,7 +161,7 @@
   display: grid;
   margin: 1.25rem 0 0;
   font-family: var(--cover-monumental);
-  font-size: clamp(4rem, 9.4vw, 9.5rem);
+  font-size: min(clamp(4rem, 9.4vw, 9.5rem), var(--product-title-limit));
   font-weight: 760;
   letter-spacing: -0.075em;
   line-height: 0.76;
@@ -1360,7 +1360,7 @@
   }
 
   .acr-hero-heading h1 {
-    font-size: clamp(3.5rem, 18vw, 5.1rem);
+    font-size: min(clamp(3.5rem, 18vw, 5.1rem), var(--product-title-limit));
     line-height: 0.82;
   }
 

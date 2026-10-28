@@ -25,7 +25,7 @@ export const apiUsageContent = {
     title: "비용을 만드는 기능부터 확인합니다.",
     instruction: '호출 원장 · 토큰별 요율 · 기능별 비용 · 예산 제어 · 가정별 비용 비교',
     defaultAnnotation: {
-      index: '00', label: 'LEDGER GUIDE', title: '합계보다 먼저, 빠지거나 중복된 호출이 없는지 본다.',
+      index: '00', label: 'LEDGER GUIDE', title: '호출 누락과 중복을 확인한 뒤 합계를 본다.',
       body: '호출별 사용량에 토큰 종류와 호출 방식의 단가를 적용합니다. 기능별 비용과 예산 상태를 연결하고, 다른 요율을 가정한 계산은 원장 금액과 구분합니다.',
     },
   },
@@ -41,7 +41,7 @@ export const apiUsageContent = {
       evolution: { label: 'DISCONNECT SNAPSHOT', date: '2026.07.03' },
     },
     {
-      id: 'pricing-dimensions', index: '02', label: 'PRICING DIMENSIONS', title: '토큰 하나를 하나의 단가로 계산하지 않았다.',
+      id: 'pricing-dimensions', index: '02', label: 'PRICING DIMENSIONS', title: '토큰 종류와 호출 방식에 따라 단가를 나눴다.',
       sections: [
         { label: 'WHY', body: '모델별 입력·출력, 캐시 쓰기·읽기, 배치 호출에는 서로 다른 단가가 적용됩니다.' },
         { label: 'DECISION', body: '기능·모델·토큰 종류·배치 여부를 공통 기록 형식으로 정리하고 당시 단가표를 적용했습니다.' },
@@ -77,7 +77,7 @@ export const apiUsageContent = {
     },
   ],
   workflow: {
-    eyebrow: 'OBSERVABILITY WORKFLOW', title: '호출을 기록하고, 가격을 정규화한 뒤에만 제어한다.', introduction: '사용량 기록에서 단가 적용·기능별 집계·비교·예산 제어로 이어지는 흐름.',
+    eyebrow: 'OBSERVABILITY WORKFLOW', title: '호출을 기록하고 가격을 정규화한 뒤 예산을 제어한다.', introduction: '사용량 기록에서 단가 적용·기능별 집계·비교·예산 제어로 이어지는 흐름.',
     steps: [
       { id: 'cost-flow-capture', hotspotId: 'usage-ledger', index: '01', label: 'CAPTURE', summary: '정상 종료·연결 중단 사용량 보존' },
       { id: 'cost-flow-price', hotspotId: 'pricing-dimensions', index: '02', label: 'NORMALIZE', summary: '토큰 종류별 단가 적용' },

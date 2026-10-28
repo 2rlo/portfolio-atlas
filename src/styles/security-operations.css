@@ -1210,6 +1210,7 @@
 }
 
 .so-deploy-annotation {
+  scroll-margin-top: 5rem;
   display: grid;
   grid-template-columns: 8rem minmax(15rem, 0.8fr) minmax(28rem, 1.2fr);
   gap: clamp(1.5rem, 4vw, 4rem);
@@ -1846,6 +1847,11 @@
 }
 
 @media (max-width: 760px) {
+  .so-deploy-flow .selection-description-link {
+    display: flex;
+    margin: 0 1rem 0.9rem;
+  }
+
   .so-hero {
     gap: 2rem;
     min-height: 46rem;

@@ -4,23 +4,17 @@
 
 @media (max-width: 820px), (max-width: 1024px) and (pointer: coarse) and (orientation: landscape) {
   .desktop-notice {
-    position: fixed;
-    z-index: 30;
-    right: max(1rem, env(safe-area-inset-right));
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    left: max(1rem, env(safe-area-inset-left));
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    width: auto;
+    width: calc(100% - 2 * var(--page-gutter));
     max-width: 28rem;
     padding: 0.875rem 0.625rem 0.875rem 1rem;
-    margin-inline: auto;
+    margin: 1.5rem auto max(1.5rem, env(safe-area-inset-bottom));
     border: 1px solid var(--line);
     border-radius: 0.5rem;
     color: var(--ink);
     background: var(--paper);
-    box-shadow: 0 0.5rem 2rem var(--status-halo);
   }
 
   .desktop-notice-copy {

@@ -15,7 +15,7 @@ export const permissionContent = {
     thesis:
       "개발자에게 요청하던 권한 변경을 관리자가 화면에서 직접 처리하게 했습니다.",
     summary:
-      "초대와 역할, 개인별 권한 예외, 변경 이력을 하나의 관리 화면으로 연결했습니다. 화면과 서버가 같은 권한을 적용하고, 마지막 관리자를 잃는 변경은 저장 단계에서 막습니다.",
+      "초대와 역할, 개인별 권한 예외, 변경 이력을 하나의 관리 화면에 모았습니다. 화면과 서버에서 같은 권한을 적용하고, 마지막 관리자가 없어지는 변경은 저장 단계에서 막습니다.",
     problemLabel: "권한 변경이 개발자에게 몰리던 구조",
     problem:
       "신규 인원이 들어오거나 역할이 바뀔 때마다 개발자가 인증 서비스와 제품의 설정을 각각 수정했습니다. 역할별 예외가 늘면서 누가 무엇을 할 수 있는지 한곳에서 확인하고 관리할 필요가 생겼습니다.",
@@ -38,7 +38,7 @@ export const permissionContent = {
       id: 'identity-link',
       index: '01',
       label: 'IDENTITY LINK',
-      title: '회사 계정으로 인증됐다는 사실과, 제품 안에서 허용됐다는 사실을 분리했다.',
+      title: '회사 계정 인증과 제품 안의 업무 권한을 분리했다.',
       sections: [
         {
           label: 'WHY',
@@ -122,7 +122,7 @@ export const permissionContent = {
       id: 'protected-change',
       index: '05',
       label: 'PROTECTED CHANGE',
-      title: '저장 버튼보다 먼저, 변경 후에도 복구 가능한 관리자가 남는지 확인한다.',
+      title: '변경 후에도 복구 가능한 관리자가 남는지 저장 전에 확인한다.',
       sections: [
         {
           label: 'WHY',
@@ -246,6 +246,6 @@ export const permissionContent = {
   relatedSystems: [
     { title: 'SCHEDULE', relation: '일정 조회와 변경에 서로 다른 권한을 적용한 제품 사례', href: '/what/schedule', status: 'available' },
     { title: 'QA', relation: '기록 작성자와 조회자의 행동 범위를 나눈 제품 사례', href: '/what/qa', status: 'available' },
-    { title: 'SECURITY & OPERATIONS', relation: 'OIDC·session·권한·배포 access의 더 넓은 위험 경계', href: '/how/security-operations', status: 'available' },
+    { title: 'SECURITY & OPERATIONS', relation: 'OIDC·세션·권한·배포 접근의 더 넓은 위험 경계', href: '/how/security-operations', status: 'available' },
   ],
 } as const satisfies PermissionPageContent

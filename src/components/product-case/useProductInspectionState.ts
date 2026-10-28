@@ -27,7 +27,10 @@ function useProductInspectionState<Id extends string>() {
     previewMode = 'pointer'
   }
 
-  const activeHotspotId = previewId ?? pinnedId
+  // Crossing another hotspot on the way to a pinned explanation must not replace it.
+  const activeHotspotId = previewMode === 'pointer'
+    ? pinnedId ?? previewId
+    : previewId ?? pinnedId
   let interactionMode: ProductInteractionMode = 'idle'
 
   if (activeHotspotId && activeHotspotId === pinnedId) {

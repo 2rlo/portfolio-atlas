@@ -46,7 +46,7 @@ export const projectSettingContent = {
         },
         {
           label: 'DECISION',
-          body: '코드와 내부 ID는 고정하고, 표시명과 정렬 순서를 사용자 편집 영역으로 열었습니다.',
+          body: '코드와 내부 ID는 고정하고, 사용자가 표시명과 정렬 순서를 편집할 수 있게 했습니다.',
         },
         {
           label: 'BOUNDARY',
@@ -197,7 +197,7 @@ export const projectSettingContent = {
       {
         statement: "보관할 때 이력은 보존",
         explanation:
-          '운영 목록에서는 숨기되 row와 과거 관계를 보존하고, 참조가 남아 있으면 보관을 제한한다.',
+          '운영 목록에서는 숨기되 데이터 행과 과거 연결 관계는 보존하고, 참조가 남아 있으면 보관을 제한한다.',
       },
       {
         statement: "복원할 때 현재 관계 확인",

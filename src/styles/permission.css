@@ -578,7 +578,7 @@
 .permission-product[data-has-active='true'] .permission-effective-card,
 .permission-product[data-has-active='true'] .permission-member-list,
 .permission-product[data-has-active='true'] .permission-head {
-  opacity: 0.18;
+  opacity: 1;
 }
 
 .permission-product[data-has-active='true'] .product-hotspot[data-active='true'] {
@@ -874,7 +874,7 @@
 .permj-journey-stage[data-compact='true'] .permission-product[data-has-active='true'] .permission-head,
 .permj-journey-stage[data-compact='true'] .permission-product[data-has-active='true'] .permission-member-list,
 .permj-journey-stage[data-compact='true'] .permission-product[data-has-active='true'] .permission-effective-card {
-  opacity: 0.65;
+  opacity: 1;
 }
 
 .permj-journey-stage[data-compact='true'] .permission-product[data-has-active='true'] .product-hotspot[data-active='true'] {

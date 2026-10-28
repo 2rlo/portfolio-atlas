@@ -73,7 +73,7 @@
   display: grid;
   margin: 1.25rem 0 0;
   font-family: var(--cover-monumental);
-  font-size: clamp(4rem, 9.2vw, 9.2rem);
+  font-size: min(clamp(4rem, 9.2vw, 9.2rem), var(--product-title-limit));
   font-weight: 760;
   letter-spacing: -0.075em;
   line-height: 0.77;
@@ -744,7 +744,7 @@
 .wl-product[data-has-active='true'] .product-hotspot,
 .wl-product[data-has-active='true'] .wl-queue,
 .wl-product[data-has-active='true'] .wl-detail-head {
-  opacity: 0.25;
+  opacity: 1;
 }
 
 .wl-product[data-has-active='true'] .product-hotspot[data-active='true'] {
@@ -1263,7 +1263,7 @@
   }
 
   .wl-hero-heading h1 {
-    font-size: clamp(3.35rem, 17.2vw, 5rem);
+    font-size: min(clamp(3.35rem, 17.2vw, 5rem), var(--product-title-limit));
     line-height: 0.84;
   }
 
@@ -1469,7 +1469,7 @@
 .wl-journey-stage[data-compact='true'] .wl-product[data-has-active='true'] .product-hotspot,
 .wl-journey-stage[data-compact='true'] .wl-product[data-has-active='true'] .wl-queue,
 .wl-journey-stage[data-compact='true'] .wl-product[data-has-active='true'] .wl-detail-head {
-  opacity: 0.65;
+  opacity: 1;
 }
 
 .wl-journey-stage[data-compact='true'] .wl-product[data-has-active='true'] .product-hotspot[data-active='true'] {
@@ -1481,7 +1481,7 @@
 }
 
 .wl-journey-stage[data-compact='true'] .wl-product[data-has-active='true'] .wl-queue-item:not(.product-hotspot) {
-  opacity: 0.65;
+  opacity: 1;
 }
 
 .wl-journey-stage[data-compact='true'] .wl-product .product-hotspot::after {

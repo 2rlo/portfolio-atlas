@@ -567,7 +567,7 @@
 
 @media (max-width: 43rem) {
   .developer-status-page .qa-hero-heading h1 {
-    font-size: clamp(2.8rem, 17vw, 4.6rem);
+    font-size: min(clamp(2.8rem, 17vw, 4.6rem), var(--product-title-limit));
   }
 
   .dev-status-topbar {
@@ -697,12 +697,12 @@
 .dev-lens-controls button:focus-visible,
 .dev-lens-viewport:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
 .dev-lens-controls button[aria-pressed='true'] { color: var(--jade-deep); border-bottom: 2px solid var(--jade); background: var(--pale-jade); }
-.dev-lens-overview { display: block; width: 100%; padding: 0.6rem 0.7rem; font: 0.72rem var(--body); }
+.dev-lens-overview { display: block; width: 100%; padding: 0.6rem 0.7rem; font: 0.875rem var(--body); }
 .dev-lens-controls ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.3rem 0.5rem; padding: 0; margin: 0.5rem 0 0; list-style: none; }
 .dev-lens-controls li:last-child { grid-column: 1 / -1; }
 .dev-lens-controls li button { display: grid; grid-template-columns: auto 1fr; align-content: start; gap: 0.3rem 0.45rem; width: 100%; padding: 0.65rem 0.7rem; }
-.dev-lens-controls button span { font: 0.6rem var(--utility); }
-.dev-lens-controls button strong { font: 600 0.65rem var(--utility); letter-spacing: 0.04em; }
+.dev-lens-controls button span { font: 0.7rem var(--utility); }
+.dev-lens-controls button strong { font: 600 0.8rem/1.4 var(--utility); letter-spacing: 0.02em; }
 .dev-lens-controls button small { grid-column: 1 / -1; font-size: 0.68rem; line-height: 1.45; word-break: keep-all; }
 .dev-lens-section .dev-lens-note { padding: 1.5rem; border: 0; }
 .dev-lens-section .dev-lens-note::before { display: none; }
